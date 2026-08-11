@@ -1,0 +1,123 @@
+id: kano-model
+name: The Kano Model
+order: 3
+domain: customer
+in_one_line: >-
+  Satisfaction is not linear in features — some things only ever hurt when absent,
+  and some only ever delight when present.
+
+why_it_matters: >-
+  It explains why shipping more of what customers say they want frequently moves
+  nothing, and it gives you language for the trade-off between fixing basics and
+  building differentiators — which is the substance of most prioritisation debates.
+
+layers:
+  - level: orientation
+    title: Five categories, two of them counter-intuitive
+    body: >-
+      Must-be attributes cause severe dissatisfaction when absent and no
+      satisfaction when present — nobody praises an app for launching, but everyone
+      leaves if it crashes. One-dimensional attributes scale linearly: more speed,
+      more satisfaction. Attractive attributes delight when present and are not
+      missed when absent, because customers did not know to ask. Indifferent
+      attributes move nothing either way, and a surprising share of shipped work
+      lands here. Reverse attributes actively make some customers worse off. The
+      practical consequence is that must-be work has a ceiling — perfecting it
+      cannot make anyone happy — while attractive work has a floor, since nobody
+      misses what they never expected.
+
+  - level: working
+    title: How the questionnaire actually works
+    body: >-
+      The classification comes from asking each feature twice: how would you feel
+      if it were present, and how would you feel if it were absent. The pairing is
+      what makes the method work — the answer to either question alone is
+      uninformative. A feature that draws "I like it" when present and "I dislike
+      it" when absent is one-dimensional. Liked when present but neutral when
+      absent is attractive. Neutral when present but disliked when absent is
+      must-be. Neutral to both is indifferent, and that result is the most
+      actionable one because it identifies work you can stop doing. In practice the
+      categorisation is more valuable than the arithmetic, and you can run a rough
+      version of it in an afternoon on a feature list.
+
+  - level: expert
+    title: Categories decay, and the model does not price anything
+    body: >-
+      The central dynamic claim is that attributes migrate over time: today's
+      attractive feature becomes tomorrow's one-dimensional feature and eventually
+      a must-be. A front-facing camera delighted, then differentiated, then became
+      unremarkable. This means a Kano classification has a shelf life and should be
+      re-run, and it also implies that a strategy of only maintaining must-be
+      quality guarantees gradual decline relative to competitors. Two real limits.
+      First, the model says nothing about cost — an attractive attribute requiring
+      three years of engineering may be a worse investment than an unglamorous
+      must-be fix, and Kano cannot tell you that. Second, categories are
+      segment-specific: what is attractive to a power user is frequently
+      indifferent to a novice, so a single classification averaged across your base
+      can be true of nobody. The model is well cited and durable, but it is a
+      classification scheme rather than a predictive theory, and no version of it
+      tells you what to build — only what kind of thing each candidate is.
+
+worked_example:
+  situation: "A banking app team must choose between faster login, spending insights, and instant transfers."
+  steps:
+    - "Run the paired questionnaire on each: present/absent, across both retail and business customers."
+    - "Faster login: neutral when present, strongly disliked when absent. Must-be — invisible upside, severe downside."
+    - "Instant transfers: liked when present, disliked when absent. One-dimensional and still improving satisfaction."
+    - "Spending insights: liked when present, neutral when absent, for retail customers. Attractive."
+    - "But for business customers, spending insights scored indifferent — they already use accounting software."
+    - "Decision: fix login only to the point of adequacy, invest in instant transfers, ship insights to retail only."
+  takeaway: >-
+    Two findings that a flat feature ranking would have missed: perfecting login
+    beyond adequacy buys nothing, and the same feature is attractive to one segment
+    and indifferent to another.
+
+common_errors:
+  - mistake: "Treating must-be attributes as low priority because they score low on satisfaction."
+    instead: >-
+      Their absence is catastrophic even though their presence is invisible. They
+      need to reach adequacy, not excellence — but they must reach adequacy.
+  - mistake: "Chasing delighters while basics are broken."
+    instead: >-
+      Must-be failures cap everything above them. A beautiful feature on an app
+      that crashes is worth nothing.
+  - mistake: "Classifying once and treating it as permanent."
+    instead: >-
+      Categories migrate downward over time. Re-run periodically, and expect
+      today's differentiator to become table stakes.
+  - mistake: "Averaging categories across all users."
+    instead: >-
+      Classify per segment. A single average category can describe none of your
+      actual customers.
+
+in_interview:
+  how_to_deploy: >-
+    Use it in prioritisation to explain why you are not simply ranking by requested
+    frequency. The migration point — that delighters decay into expectations — is
+    the part that reads as genuine understanding rather than recall.
+  strong_sounds_like: >-
+    I would sort these by Kano category rather than by request volume. Faster login
+    is must-be: getting it to adequate is mandatory, and going beyond adequate buys
+    us nothing measurable. Insights look attractive for retail but indifferent for
+    business customers, who already have accounting tools — so I would ship it to
+    one segment. And I would revisit this in a year, because attractive attributes
+    reliably decay into expected ones.
+  weak_sounds_like: >-
+    Using the Kano model, I would prioritise the delighters because those are what
+    make customers love the product.
+
+evidence:
+  strength: supported
+  note: >-
+    Introduced by Noriaki Kano in the 1984 paper "Attractive Quality and Must-Be
+    Quality", based on study work with roughly 900 participants, and since one of
+    the most cited frameworks in product development with several thousand academic
+    citations. The non-linearity of satisfaction is well supported. The migration
+    of categories over time is widely observed but harder to establish rigorously,
+    and the questionnaire's classification is sensitive to wording and to sample
+    composition.
+
+sources:
+  - label: "Kano, N. et al. — Attractive Quality and Must-Be Quality, Journal of the Japanese Society for Quality Control"
+    year: 1984
+  - label: "Review of Kano model applications in marketing research, 1984–2006"

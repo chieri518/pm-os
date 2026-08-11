@@ -1,0 +1,133 @@
+id: product-improvement
+name: Improve a Product
+order: 2
+family: product
+prompt_forms:
+  - "What would you improve about Instagram?"
+  - "How would you make Google Maps better?"
+  - "Pick a product you use and tell me what is wrong with it."
+
+what_is_tested:
+  - "Whether you anchor improvements to a goal rather than to irritations"
+  - "Whether you can criticise a product without sounding merely negative"
+  - "Whether you prioritise, or just enumerate"
+  - "Whether you know how you would measure the improvement working"
+
+approach:
+  - step: 1
+    title: Establish the goal first
+    detail: >-
+      Ask what we are optimising for: engagement, revenue, retention, a new
+      market? "Better" is meaningless until this is fixed. A change that helps
+      revenue and hurts retention is an improvement under one goal and a
+      regression under another.
+  - step: 2
+    title: Pick a user segment
+    detail: >-
+      Improvements for a power user and improvements for a first-week user are
+      usually opposites. Name the segment and stay in it.
+  - step: 3
+    title: Map the current experience against their goals
+    detail: >-
+      Walk the journey and find where it breaks for that segment. This is what
+      separates a diagnosis from a wish list.
+  - step: 4
+    title: Generate improvements that address the gaps
+    detail: >-
+      Aim for genuinely different mechanisms, not three variations of one idea.
+      Tie each to the gap it closes.
+  - step: 5
+    title: Prioritise explicitly and pick one
+    detail: >-
+      State your criterion — impact against effort, or reach against confidence —
+      rank against it, and commit to one. Say what you are dropping.
+  - step: 6
+    title: Name the success metric and the guardrail
+    detail: >-
+      What would move if this worked, and what must not move? The guardrail is
+      what shows you have thought about the downside.
+
+time_guidance: >-
+  Do not spend more than a couple of minutes on critique. The score is in the
+  prioritisation and the metric, and candidates routinely run out of time before
+  reaching either.
+
+pitfalls:
+  - mistake: "Reeling off every annoyance you have with the product."
+    instead: >-
+      This is the classic failure. A long list of fixes with no goal, no segment,
+      and no ranking reads as a frustrated user, not a product manager.
+  - mistake: "Improving whatever you personally find annoying."
+    instead: >-
+      Pick the segment first, then find their friction. Your own irritation is a
+      hypothesis, not a finding.
+  - mistake: "Proposing a change with no way to tell if it worked."
+    instead: >-
+      Always close with a success metric and a counter-metric that would reveal
+      the idea failing.
+
+sample_questions:
+  - "How would you improve Instagram?"
+  - "What is the biggest problem with Google Maps and how would you fix it?"
+  - "How would you increase engagement on Spotify?"
+  - "Pick any app on your phone and improve it."
+
+teaching:
+  in_one_line: >-
+    An improvement question is a prioritisation question wearing a critique
+    costume — the ranking is what gets scored, not the ideas.
+
+  mechanism: >-
+    Anyone can list what irritates them about a product they use daily, which is
+    exactly why listing scores nothing. The scarce skill is choosing: deciding
+    which single problem is most worth solving for a named user against a stated
+    goal, and defending the ones you passed over. The structure of the question
+    guarantees you will have more ideas than time, which is precisely the
+    condition prioritisation exists for.
+
+  in_interview:
+    how_to_deploy: >-
+      Open by asking for the goal, even when it feels pedantic. If the interviewer
+      declines to give one, pick one and say why — that is still better than
+      improving toward nothing in particular.
+    strong_sounds_like: >-
+      Before I improve anything — are we optimising for retention or for new-user
+      growth? I will assume retention of users in months two to six, since that is
+      usually where the leak is. For that segment the sharpest gap is that the
+      product gives them no reason to return on a Tuesday, so I would attack
+      trigger design rather than adding features.
+    weak_sounds_like: >-
+      The search is slow, the notifications are annoying, the profile page is
+      cluttered, and I have never understood why you cannot sort by date.
+
+  in_product_work: >-
+    It is the roadmap conversation. The difference between a PM who lists what
+    stakeholders asked for and one who says "these three, in this order, because
+    of this goal, and here is what we are not doing this quarter."
+
+  in_daily_life: >-
+    Deciding what to fix in a flat you have just moved into. Everyone can list
+    twenty things wrong; the useful person asks whether you are optimising for
+    resale value or for living there comfortably, and starts there.
+
+  worked_example:
+    situation: "What would you improve about a music streaming app?"
+    without: >-
+      Better search, offline improvements, a nicer queue editor, social sharing,
+      lyrics. Five reasonable ideas with no goal, no segment, no ranking.
+    with: >-
+      Goal: retention in months two to six. Segment: users who imported a library
+      but never built a habit. Gap: nothing brings them back on an ordinary
+      weekday. One change: a Tuesday-morning mix tied to their commute. Metric:
+      week-four return rate. Guardrail: unsubscribe rate from notifications.
+    takeaway: >-
+      The second answer proposes fewer ideas and scores much higher, because
+      every part of it is accountable to something.
+
+context_prompts:
+  - "Improve the checkout flow of an online shop"
+  - "Improve the search experience of a large marketplace"
+  - "Improve the notification experience of a messaging app"
+  - "Improve the first week of a subscription product"
+  - "Improve how a calendar app handles conflicts"
+  - "Improve the settings experience of a mobile app"

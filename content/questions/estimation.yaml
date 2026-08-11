@@ -1,0 +1,150 @@
+id: estimation
+name: Estimation
+order: 3
+family: analytical
+prompt_forms:
+  - "How many pizzas are sold in Manhattan every year?"
+  - "How much revenue does Gmail make from ads annually?"
+  - "How many golf balls fit in a school bus?"
+  - "Estimate the market size for X."
+
+what_is_tested:
+  - "Whether you can decompose a problem you have no data for"
+  - "Whether your equation is sound, independent of your guesses"
+  - "Whether you state assumptions rather than smuggle them in"
+  - "Whether you sanity-check a result instead of accepting your own arithmetic"
+  - "Comfort with numbers under mild pressure"
+
+approach:
+  - step: 1
+    title: Clarify the question
+    detail: >-
+      Repeat it back, then attack the ambiguity. "How much money does Gmail make"
+      hides at least four questions: revenue or profit, which costs count,
+      whether hosted business accounts are included, and US or worldwide. Each
+      answer changes the equation.
+  - step: 2
+    title: Catalogue what you know
+    detail: >-
+      List the facts you have and the ones you wish you had. Some you can ask for
+      — anything a well-informed person would plausibly know is fair game. Phrase
+      it openly — offer to derive the figure yourself, and let them decide whether
+      to hand it to you instead.
+  - step: 3
+    title: Write the equation
+    detail: >-
+      This is where the answer is won or lost. Users × clicks per user × revenue
+      per click. Brainstorm two or three candidate equations before committing —
+      you do not want to compute half of one and discover the other half is
+      unknowable.
+  - step: 4
+    title: Challenge your own framing
+    detail: >-
+      Name what your equation misses before the interviewer does. Counting pizza
+      restaurants and forgot college towns? Estimating window cleaning and
+      forgot broken windows, car windows, bus windows? Volunteering the flaw is a
+      signal, not an admission.
+  - step: 5
+    title: Break each term down
+    detail: >-
+      Each term of the main equation gets its own sub-equation. Keep them
+      visually separate — a line down the whiteboard — rather than merging
+      everything into one monster expression you cannot debug.
+  - step: 6
+    title: State assumptions and why
+    detail: >-
+      Pick round numbers and say out loud why you chose each one. The reasoning
+      matters more than the number. Watch for sampling bias from your own life —
+      everyone you know having a smartphone is not evidence about the country.
+  - step: 7
+    title: Do the arithmetic
+    detail: >-
+      Keep numbers round and the magnitudes tracked. Precision here buys nothing;
+      an arithmetic slip costs everything.
+  - step: 8
+    title: Sanity-check the result
+    detail: >-
+      Convert the answer into a per-person or per-day figure and ask whether it is
+      believable. $5B of US Gmail ad revenue implies about $16 per American per
+      year, which is far too high. If it fails, the error is almost always in the
+      equation, an assumption, or the arithmetic — in that order.
+
+time_guidance: >-
+  Spend the first quarter on clarifying and building the equation. Candidates who
+  rush into arithmetic with a shaky equation cannot recover; candidates with a
+  clean equation can be wrong by 3× and still score well.
+
+pitfalls:
+  - mistake: "Racing to a number because you think speed is the signal."
+    instead: >-
+      Nobody cares how many pizzas Manhattan eats. The equation is the deliverable;
+      the number is a by-product.
+  - mistake: "Hiding assumptions inside the arithmetic."
+    instead: >-
+      Say every assumption out loud as you make it, with the reason. An unstated
+      assumption reads as a guess; a stated one reads as a model.
+  - mistake: "Using precise-looking numbers — 314 million, 8,760 hours."
+    instead: >-
+      Round hard: 300 million, 9,000 hours. Precision you did not earn is worse
+      than useless, because it slows the arithmetic and implies false confidence.
+  - mistake: "Accepting your own answer without a check."
+    instead: >-
+      Always convert to a human-scale unit and ask if it is plausible. This is the
+      single cheapest way to catch an order-of-magnitude error.
+
+sample_questions:
+  - "How many pizzas are sold in Manhattan each year?"
+  - "Estimate annual revenue from Gmail advertising in the US."
+  - "How many people are airborne over the US right now?"
+  - "How much would it cost to wash every window in Seattle?"
+  - "How many smartphones are sold in India each year?"
+
+teaching:
+  in_one_line: >-
+    Estimation questions test whether you can build a defensible model with no
+    data — the number itself is almost irrelevant.
+
+  mechanism: >-
+    A PM constantly has to size things nobody has measured: how much revenue a
+    feature might produce, how many users a segment contains, whether an
+    opportunity is worth a quarter of engineering time. The interview compresses
+    that into a problem with no lookup answer, which forces you to expose your
+    reasoning. Decomposition is the skill being tested — because errors in a
+    multiplicative model partially cancel, a sound equation with sloppy inputs
+    usually lands within an order of magnitude, while a broken equation with
+    perfect inputs does not.
+
+  in_interview:
+    how_to_deploy: >-
+      Narrate constantly. An estimation answer delivered silently is worthless
+      even if correct, because the process IS the artefact being evaluated.
+    strong_sounds_like: >-
+      Let me define revenue as gross ad revenue, US only, for the last full year.
+      I will use users times annual clicks per user times revenue per click. Before
+      I estimate those, one thing my equation misses: hosted business accounts
+      monetise differently, so I will flag that and treat it as consumer-only.
+    weak_sounds_like: >-
+      The US has a few hundred million people and maybe half of them use it, so...
+      call it 150 million, times... let me see... I think the answer is around 2 billion.
+
+  in_product_work: >-
+    It is how you decide whether an opportunity deserves a quarter before anyone
+    has built anything. A PM who cannot ballpark a market ends up either
+    over-investing in something small or dismissing something large.
+
+  in_daily_life: >-
+    Working out whether a house is affordable, or whether a road trip is cheaper
+    than flying, without opening a spreadsheet. Same muscle: decompose, estimate
+    each part, sanity-check the total.
+
+  worked_example:
+    situation: "Estimate annual US Gmail advertising revenue."
+    without: >-
+      Guess a plausible-sounding total based on Google's size. There is nothing to
+      check, nothing to correct, and nothing for the interviewer to score.
+    with: >-
+      Users × clicks per user per year × revenue per click, each broken down
+      further, each assumption stated, then a per-capita sanity check at the end.
+    takeaway: >-
+      Two candidates can produce answers 5× apart and receive identical scores.
+      What differs is whether the reasoning could be audited and corrected.

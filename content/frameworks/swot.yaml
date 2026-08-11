@@ -1,0 +1,91 @@
+id: swot
+kind: taxonomic
+name: SWOT Analysis
+summary: >-
+  A four-quadrant structure for analysing a strategic decision, split along two
+  axes: helpful versus harmful, and internal versus external.
+best_for:
+  - "Should the company pursue this opportunity?"
+  - "Why did this acquisition happen?"
+  - "Analyse this company's position"
+source:
+  label: "Widely attributed to Albert Humphrey, Stanford Research Institute, 1960s"
+
+dimensions:
+  - id: swot.strengths
+    name: Strengths
+    prompt: Internal factors that help. What does this company already have that others do not?
+    example_metrics: ["existing distribution", "brand trust", "proprietary data", "cost structure"]
+  - id: swot.weaknesses
+    name: Weaknesses
+    prompt: Internal factors that hurt. What is structurally hard for this company specifically?
+    example_metrics: ["no hardware experience", "channel conflict", "legacy architecture"]
+  - id: swot.opportunities
+    name: Opportunities
+    prompt: External factors that help. What is changing in the world that opens a door?
+    example_metrics: ["market growth", "new regulation", "technology shift", "competitor stumble"]
+  - id: swot.threats
+    name: Threats
+    prompt: External factors that hurt. What could close the door regardless of execution?
+    example_metrics: ["regulatory risk", "new entrants", "substitutes", "platform dependency"]
+
+teaching:
+  in_one_line: >-
+    Two axes, four boxes: helpful versus harmful, and inside your control versus
+    outside it.
+
+  why_this_structure: >-
+    The internal/external split is the part that does the work, and the part most
+    people skip. Internal factors are things you can change with a decision;
+    external factors you can only position against. Sorting a messy strategic
+    argument along that line immediately tells you which items are levers and
+    which are constraints — and it exposes the common error of treating a market
+    trend as though it were a company capability.
+
+  when_to_use:
+    - "Evaluating a specific strategic decision — an entry, a launch, an acquisition"
+    - "When you need to force yourself to consider the outside world, not just the product"
+    - "As a fast blind-spot check before committing to a position"
+
+  when_not_to_use:
+    - "As the spine of an answer — it produces four lists, not a recommendation"
+    - "For product design questions, where it says nothing about users"
+    - "When the real question is about an industry's structure — use Porter's Five Forces"
+    - "When you have not yet decided what the decision even is; SWOT analyses options, it does not generate them"
+
+  worked_walkthrough:
+    question: "Should Amazon have launched the Kindle?"
+    beats:
+      - part_id: swot.strengths
+        say: >-
+          Amazon was already where people bought books, held the publisher
+          relationships, and owned the payment and recommendation infrastructure.
+          Nobody else could launch an e-reader with a catalogue on day one.
+      - part_id: swot.weaknesses
+        say: >-
+          No hardware design or manufacturing history, no retail presence, and a
+          business built on selling other people's physical goods rather than
+          making its own device.
+      - part_id: swot.opportunities
+        say: >-
+          E-ink had just become good enough to read on comfortably, and digital
+          distribution removed inventory and shipping from the economics entirely.
+      - part_id: swot.threats
+        say: >-
+          Publishers resisting digital pricing, and the obvious risk that a
+          general-purpose tablet would make a single-purpose reader redundant —
+          which is roughly what the iPad went on to test.
+
+  failure_modes:
+    - mistake: "Filling all four boxes and stopping."
+      instead: >-
+        Use the quadrants to reach a position: which strength does this leverage,
+        which weakness does it expose, and does the opportunity outrun the threat?
+    - mistake: "Putting market conditions under Strengths."
+      instead: >-
+        If you do not control it, it is an opportunity or a threat. Getting this
+        wrong makes the whole analysis useless, because it hides what you can act on.
+    - mistake: "Announcing 'I am going to do a SWOT analysis'."
+      instead: >-
+        Use the structure silently. Interviewers reward the thinking and are wary
+        of frameworks recited as scripts.

@@ -1,0 +1,44 @@
+id: apple
+company: Apple
+round_types:
+  - "Product / Craft"
+  - "Cross-functional collaboration"
+  - "Domain depth for the specific team"
+philosophy: >-
+  Apple's process is notably team-specific and secretive — you are hired into a
+  particular group rather than into a general PM pool, and you may learn little
+  about the actual product until late. Design is largely owned by a dedicated
+  design organisation, so the PM is judged less on generating interface ideas and
+  more on taste, craft, depth in the domain, and the ability to work across
+  functions without owning them.
+rubric:
+  - id: apple.taste
+    name: Product Taste & Craft
+    weight: 30
+    description: "Judgement about quality — why one execution is better than another."
+    strong_signal: "Explains why a design decision is right in terms of the user, not aesthetics."
+  - id: apple.depth
+    name: Domain Depth
+    weight: 25
+    description: "Genuine knowledge of the specific product area, not general PM fluency."
+    strong_signal: "Discusses the category's real constraints, including the unglamorous ones."
+  - id: apple.collaboration
+    name: Cross-functional Collaboration
+    weight: 20
+    description: "Working with design, hardware, and engineering without formal authority."
+    strong_signal: "Describes influencing a decision owned by another function, respectfully."
+  - id: apple.focus
+    name: Focus & Restraint
+    weight: 15
+    description: "Willingness to cut, and to ship less in service of coherence."
+    strong_signal: "Names what they removed and why the product is better without it."
+  - id: apple.communication
+    name: Communication
+    weight: 10
+    description: "Precision and concision; comfort with detail."
+    strong_signal: "Answers the question actually asked, without padding."
+red_flags:
+  - "Feature-maximalism — solving disagreement by adding options"
+  - "Generic PM answers with no depth in the specific domain"
+  - "Treating design as something the PM directs rather than partners with"
+  - "Indiscretion about previous employers' unreleased work"

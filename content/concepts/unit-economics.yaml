@@ -1,0 +1,134 @@
+id: unit-economics
+name: Unit Economics
+order: 20
+domain: economics
+in_one_line: >-
+  Whether a single customer makes or loses you money, and how long it takes to
+  find out.
+
+why_it_matters: >-
+  Almost every growth argument in an interview eventually reduces to unit
+  economics. "We should spend more on acquisition" is only true if a customer
+  returns more than they cost, and "our retention problem is really an acquisition
+  problem" is usually the reverse. A candidate who can move between the funnel and
+  the P&L is doing something most cannot.
+
+layers:
+  - level: orientation
+    title: The one question underneath everything
+    body: >-
+      Strip away the funnels and dashboards and one question remains: over the
+      whole time someone uses your product, do they bring in more gross profit
+      than it cost to acquire them? If yes, spending more on marketing is a
+      machine that turns money into more money. If no, growth accelerates the
+      losses. That is the entire subject in two sentences. Everything else is
+      making those two numbers honest.
+
+  - level: working
+    title: The four numbers, and the one people forget
+    body: >-
+      CAC is total sales and marketing spend divided by customers acquired in that
+      period — all of it, including salaries, not just ad spend. LTV is average
+      revenue per user, multiplied by gross margin, divided by churn rate. The
+      gross-margin term is the one most candidates drop, and dropping it inflates
+      LTV by whatever your cost of serving is: quoting revenue LTV against cost
+      CAC compares two different things. Payback period is CAC divided by monthly
+      gross profit per customer, and it is the number investors actually watch,
+      because it tells you how long your cash is tied up. A business with a
+      wonderful LTV:CAC ratio and a thirty-month payback can still die of thirst
+      before the ratio pays out.
+
+  - level: expert
+    title: Where the standard numbers come from, and why 3:1 is not a law
+    body: >-
+      The 3:1 LTV:CAC target traces to David Skok's SaaS Metrics work around 2010,
+      derived from observing mature public SaaS companies at steady state. Skok's
+      own phrasing was a guideline, not a derivation — and it carried conditions
+      that get dropped in repetition: a mature customer base with stable churn, a
+      realistic multi-year window, and a payback comfortably under twelve months.
+      Two failures follow. First, early-stage LTV is extrapolated, not observed:
+      with eighteen months of data you have a churn assumption, and assuming 3%
+      monthly rather than 5% inflates LTV by roughly 1.7× on identical revenue.
+      Second, the ratio is model-specific — DTC transactional businesses running
+      50-65% gross margins cannot be judged against SaaS businesses running 75-85%.
+      Blended CAC hides the same problem one level down: organic and paid
+      customers averaged together produce a number that describes neither, and
+      paid CAC almost always rises with scale as you exhaust the cheapest channel.
+
+formulas:
+  - name: Customer Acquisition Cost
+    expression: "CAC = (total sales + marketing spend) ÷ new customers acquired"
+    notes: "Include salaries and tooling, not just media spend. Segment paid from organic."
+  - name: Lifetime Value
+    expression: "LTV = ARPU × gross margin % ÷ churn rate"
+    notes: "The gross-margin term is the one most often dropped. Without it you are comparing revenue to cost."
+  - name: CAC Payback Period
+    expression: "Payback (months) = CAC ÷ (monthly ARPU × gross margin %)"
+    notes: "Usually more decision-relevant than the ratio, because it measures cash risk rather than eventual return."
+  - name: Contribution Margin
+    expression: "Contribution margin = revenue − variable costs"
+    notes: "What each additional sale contributes toward fixed costs. Negative means growth makes things worse."
+
+worked_example:
+  situation: >-
+    A subscription app charges £10/month, has 5% monthly churn, 70% gross margin,
+    and spends £180 to acquire a customer.
+  steps:
+    - "Average lifetime = 1 ÷ 0.05 = 20 months."
+    - "Monthly gross profit per customer = £10 × 0.70 = £7."
+    - "LTV = £7 × 20 = £140."
+    - "LTV:CAC = £140 ÷ £180 = 0.78 — every customer loses about £40."
+    - "Payback = £180 ÷ £7 = 26 months, against an average life of 20. They never pay back."
+    - "Naive version, skipping gross margin: LTV = £10 × 20 = £200, ratio 1.1, looks merely weak rather than fatal."
+  takeaway: >-
+    The margin term flipped the verdict from "underperforming" to "structurally
+    broken". Note also which lever matters: cutting churn to 3% raises LTV to £233
+    and fixes the business, while cutting CAC by 20% does not.
+
+common_errors:
+  - mistake: "Quoting revenue LTV against cost-based CAC."
+    instead: >-
+      Always apply gross margin to LTV. Otherwise you are comparing what customers
+      pay you against what customers cost you, which are not comparable quantities.
+  - mistake: "Treating 3:1 as a pass mark."
+    instead: >-
+      Say where the number comes from and what it assumes. A 3:1 ratio with a
+      30-month payback is worse than 2:1 with a 6-month payback, because the second
+      recycles cash and the first does not.
+  - mistake: "Using blended CAC."
+    instead: >-
+      Separate paid from organic. Blended CAC falls automatically when organic
+      grows, which makes paid acquisition look like it is improving when it is not.
+  - mistake: "Assuming CAC stays flat as you scale."
+    instead: >-
+      It almost never does. The cheapest channel saturates first, so marginal CAC
+      rises even while average CAC looks stable.
+
+in_interview:
+  how_to_deploy: >-
+    Reach for it whenever a question involves growth spend, pricing, or whether a
+    business model works. Naming payback period alongside the ratio is a cheap and
+    unusually strong signal, because most candidates only know the ratio.
+  strong_sounds_like: >-
+    At £10 a month with 70% margin and 5% churn, LTV is about £140 against £180
+    CAC, so we lose money per customer. But the ratio is not the interesting part —
+    payback is 26 months against a 20-month average life, so we never recover the
+    cash. That tells me this is a retention problem rather than an acquisition-cost
+    problem, because halving churn fixes both numbers and discounting fixes neither.
+  weak_sounds_like: >-
+    We would want an LTV to CAC ratio of at least 3 to 1, so I would look at
+    reducing acquisition costs and increasing lifetime value.
+
+evidence:
+  strength: supported
+  note: >-
+    The underlying accounting is arithmetic and not in dispute. The 3:1 benchmark
+    is industry convention rather than a research finding — it originates in David
+    Skok's guideline for mature SaaS businesses and does not transfer cleanly to
+    DTC, marketplaces, or services, where observed healthy ratios range roughly
+    from 1.5:1 to over 4:1 depending on margin structure.
+
+sources:
+  - label: "Skok, D. — SaaS Metrics 2.0, Matrix Partners"
+    year: 2010
+  - label: "Reported 2026 sector benchmarks: B2B SaaS ~3.2:1, DTC ecommerce 1.5–3:1, vertical SaaS 3.5–4.2:1"

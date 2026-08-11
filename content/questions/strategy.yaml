@@ -1,0 +1,132 @@
+id: strategy
+name: Strategy & Business Case
+order: 6
+family: analytical
+prompt_forms:
+  - "Why did Facebook buy Instagram for a billion dollars?"
+  - "Should this company enter a market it has never operated in?"
+  - "If you were CEO of this company, what would you do?"
+  - "Should a hardware company stock a rival's accessories in its own stores?"
+
+what_is_tested:
+  - "Whether you can structure an open-ended business problem"
+  - "Whether you have instincts, given that you will never have the data"
+  - "Whether you reason at both the product level and the company level"
+  - "Whether you drive the discussion rather than waiting to be prompted"
+
+approach:
+  - step: 1
+    title: Decompose before you opine
+    detail: >-
+      Break the question into components and say what they are. An acquisition
+      splits into the team, the product, and the users. A market entry splits into
+      demand, competition, capability, and economics.
+  - step: 2
+    title: Anchor on the company's mission and strengths
+    detail: >-
+      Strategy questions are only answerable relative to what the company is
+      trying to be. Start from the mission, then ask which strengths this leverages
+      and which weaknesses it covers.
+  - step: 3
+    title: Work the micro and the macro
+    detail: >-
+      Micro is whether this makes money on its own terms. Macro is what it does
+      for the company's position. The Kindle earns revenue AND entrenches Amazon
+      as where you buy content — most strong strategic moves work on both levels,
+      and naming both is what distinguishes a strategic answer.
+  - step: 4
+    title: Borrow structure from a business framework, lightly
+    detail: >-
+      SWOT for a strategic decision, the Five Cs for the environment, Porter for
+      the industry. Use them to avoid blind spots, not as a script to recite. An
+      interviewer who does not know the framework will still recognise the
+      structure — and will notice force-fitting.
+  - step: 5
+    title: Take a position and name the risk
+    detail: >-
+      End with a recommendation, the strongest argument against it, and what would
+      change your mind. Refusing to conclude is the most costly move available.
+
+time_guidance: >-
+  Decompose in the first two minutes. If you have not named your components early,
+  the rest of the answer will wander and the interviewer will start driving.
+
+pitfalls:
+  - mistake: "Objecting that you lack the data or context to answer."
+    instead: >-
+      Nobody expects the right answer; they are watching the process. Saying the
+      question is unfair is close to a guaranteed fail.
+  - mistake: "Reciting a framework end to end."
+    instead: >-
+      Take the parts that generate insight for this problem and skip the rest.
+      Structure scores; regurgitation does not.
+  - mistake: "Answering only at the product level."
+    instead: >-
+      Always ask what the move does for the company's broader position. That is
+      the difference between a business answer and a strategic one.
+  - mistake: "Riding instead of driving — short answers, waiting for prompts."
+    instead: >-
+      Be relatively exhaustive: benefits and trade-offs, short and long term,
+      backed by reasons. If the interviewer is asking many follow-ups to short
+      answers, you are riding.
+
+sample_questions:
+  - "Why do you think Facebook acquired Instagram?"
+  - "Should a global retailer enter the Indian grocery market? How would you decide?"
+  - "Should a hardware company stock a rival's accessories in its own stores?"
+  - "Which of this company's products do not make sense to you?"
+  - "How would you decide between two launches with similar revenue and cost?"
+
+teaching:
+  in_one_line: >-
+    Strategy questions test structure and instinct together — you will never have
+    the data, and being unwilling to decide without it is the failure mode.
+
+  mechanism: >-
+    This is where PM interviews diverge most sharply from consulting interviews. A
+    consultant is trained to ask for data, gather it, and then diagnose; a PM
+    interviewer will not produce a data pack, because the thing being tested is
+    judgement under permanent uncertainty. Real product decisions are made with
+    partial information and a deadline, so the interview reproduces that
+    constraint deliberately. Structure is what makes an instinct-driven answer
+    credible rather than arbitrary.
+
+  in_interview:
+    how_to_deploy: >-
+      Say your decomposition out loud before analysing anything, then work each
+      component. If you have consulting training, actively resist asking for data
+      — the request itself reads as the wrong instinct here.
+    strong_sounds_like: >-
+      Let me break the acquisition into what was actually bought — the team, the
+      product, and the users — and test each against Facebook's mission of helping
+      people share. The team was small, so that is unlikely to justify a billion.
+      The product was beating Facebook at photo sharing, which is a core strength
+      rather than an adjacent one. The users had formed a second social graph,
+      which erodes the barrier to entry Facebook depends on. So I read this as
+      defensive: buying back two strengths before someone else did.
+    weak_sounds_like: >-
+      I do not really know much about Instagram's numbers at the time, so it is
+      hard to say whether a billion dollars was the right price.
+
+  in_product_work: >-
+    It is the substance of a roadmap defence to an executive. Not what you are
+    building, but why it strengthens the company's position, and what you would
+    give up to do it.
+
+  in_daily_life: >-
+    Deciding whether to take a lower-paid job with better prospects. You will never
+    have the data; you decompose it, weigh it, decide, and name what would make
+    you reverse.
+
+  worked_example:
+    situation: "Should this company enter a new geographic market?"
+    without: >-
+      A general discussion of the market's attractiveness, ending without a
+      recommendation because there is not enough information.
+    with: >-
+      Components named up front, micro and macro treated separately, a Five Cs
+      sweep to catch blind spots, then a clear position with the strongest
+      counter-argument and a falsifying condition.
+    takeaway: >-
+      Concluding under uncertainty is not overconfidence. It is the job — and
+      declining to do it is the most common way this question is failed.

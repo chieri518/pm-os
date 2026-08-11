@@ -1,0 +1,87 @@
+id: loss-aversion
+scope: experience
+name: Loss Aversion
+aka: ["losses loom larger than gains"]
+claim: >-
+  Under prospect theory, a loss is weighted more heavily than an equivalent gain —
+  Tversky & Kahneman's 1992 estimate put the coefficient around 2.25.
+implication: >-
+  When stakes are real, framing an outcome as avoiding a loss can move behaviour
+  more than framing it as achieving an equivalent gain. Also: taking away a
+  feature users already have costs more goodwill than never shipping it would have.
+evidence_strength: contested
+caveat: >-
+  Actively disputed. Gal & Rucker (2018) argue the general claim is not supported
+  and that much of the evidence reflects inertia or change aversion rather than
+  loss aversion as such. Kahneman has himself conceded it is context-dependent —
+  "not a law of human nature that you have to find it in every context." The
+  asymmetry does hold reasonably consistently for medium-to-large-stakes risky
+  choice; its most-cited supports, the endowment effect and status quo bias, have
+  competing explanations. A 2025 re-meta-analysis concluded it is not robust.
+common_misapplication: >-
+  Asserting a universal 2:1 pain-to-pleasure ratio and designing dark patterns
+  around it ("only 2 left!"). In an interview, claiming loss aversion as settled
+  science is now a credibility risk — the stronger move is to cite it WITH the
+  dispute and say what you would test.
+teaching:
+  in_one_line: >-
+    Losses may loom larger than gains — but the effect is far narrower and more
+    contested than product folklore assumes.
+
+  mechanism: >-
+    In prospect theory, value is measured as change from a REFERENCE POINT rather
+    than in absolute terms, and the curve is steeper below that point than above
+    it. Everything therefore turns on where the reference point sits, which is why
+    framing the identical outcome as a loss or a gain can move behaviour at all.
+    The live dispute is about how much of the classic evidence really shows loss
+    WEIGHTING as opposed to plain inertia: Gal and Rucker argue the endowment
+    effect and status quo bias are better explained by change aversion, and when
+    losses and gains are decoupled from action and inaction, the asymmetry
+    substantially weakens.
+
+  in_interview:
+    how_to_deploy: >-
+      Deploy it in Evaluate Trade-offs when a solution removes something users
+      already have. Cite it WITH the dispute attached — in 2026 an unqualified
+      claim here reads as out of date rather than sophisticated.
+    strong_sounds_like: >-
+      Removing this will cost more goodwill than never having shipped it, which
+      is usually attributed to loss aversion — though Gal and Rucker make a
+      decent case that a lot of what we call loss aversion is really change
+      aversion. Either way the design implication holds, and I would test framing
+      the migration as an upgrade rather than a removal.
+    weak_sounds_like: >-
+      Losses hurt twice as much as gains feel good, so we would frame it as
+      losing access and add a scarcity countdown.
+
+  in_product_work: >-
+    It is why sunsetting a feature costs disproportionate goodwill relative to its
+    usage, and why free trials convert: by the time it ends, the reference point
+    has moved and giving it up now registers as a loss.
+
+  in_daily_life: >-
+    Why you will spend twenty minutes arguing over a twenty-pound refund you
+    already had, but would not walk ten minutes to collect a twenty-pound
+    discount you never held.
+
+  worked_example:
+    situation: >-
+      Sunsetting a rarely used feature — around two percent of monthly actives.
+    without: >-
+      Remove it quietly on the assumption that two percent is noise. The backlash
+      is wildly out of proportion to the usage numbers and lands in public.
+    with: >-
+      Ask first whether this is genuine loss weighting or just change aversion,
+      since the remedies differ. Migrate the two percent to a named replacement
+      before removal, so there is somewhere to land.
+    takeaway: >-
+      The size of the backlash was never about the feature. It was about it being
+      taken. But note how easily that story is told either way — which is exactly
+      why this one deserves a test rather than an assertion.
+
+applies_when:
+  all:
+    - { dim: stakes, op: gte, value: medium }
+source:
+  label: "Kahneman & Tversky (1979) Prospect Theory, Econometrica; Gal & Rucker (2018) J. Consumer Psychology"
+  year: 1979

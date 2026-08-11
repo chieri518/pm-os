@@ -1,0 +1,132 @@
+id: survey-metrics-nps
+name: Survey Metrics & NPS
+order: 42
+domain: metrics
+in_one_line: >-
+  Asking people what they think is cheap, biased, and sometimes the only way to
+  learn why — NPS in particular is far weaker than its ubiquity suggests.
+
+why_it_matters: >-
+  Survey numbers appear constantly in product discussions and interviews, usually
+  quoted with unearned confidence. Knowing what they can and cannot support — and
+  being able to say so without dismissing qualitative evidence entirely — is a
+  genuine differentiator.
+
+layers:
+  - level: orientation
+    title: What surveys are and are not for
+    body: >-
+      Behavioural data tells you what people did; surveys tell you what people say.
+      The two diverge constantly, because stated preference is shaped by memory,
+      social desirability, and whatever the question implied. The useful framing is
+      that behavioural data is better at "what" and "how much", while surveys are
+      better at "why" — and that a survey is at its strongest when it explains a
+      pattern you already found in behaviour, rather than when it is asked to
+      establish one.
+
+  - level: working
+    title: The instruments, and their biases
+    body: >-
+      NPS asks how likely you are to recommend on a 0–10 scale, then subtracts the
+      percentage scoring 0–6 from the percentage scoring 9–10. CSAT asks about
+      satisfaction with a specific interaction. CES asks how much effort something
+      took. Every one of them carries sampling bias: the people who respond are
+      systematically more engaged than those who do not, and the users whose
+      experience most needs measuring have often already left. Response-rate
+      differences between periods can move a score without any underlying change.
+      Wording moves results substantially — a leading question produces the answer
+      it leads to — and so does placement, since a survey shown after a successful
+      action measures a different population than one shown at random.
+
+  - level: expert
+    title: Why NPS specifically does not deserve its status
+    body: >-
+      Reichheld's 2003 claim was that likelihood-to-recommend is "the one number
+      you need to grow". Keiningham and colleagues replicated the analysis with a
+      larger sample and more rigorous method and found NPS performed no better than
+      conventional satisfaction measures at predicting company growth; ACSI and
+      other satisfaction metrics correlated equally or more strongly with revenue
+      growth. Subsequent academic assessment has remained sceptical of both its
+      construct and its predictive validity, while managerial adoption has stayed
+      enormous — an unusually wide gap between evidence and practice. There are
+      also specific statistical problems: collapsing an eleven-point scale into
+      three buckets discards information, the resulting difference-of-proportions
+      has wide and rarely reported confidence intervals, and two very different
+      distributions can produce an identical score. None of this means you should
+      refuse to use NPS — it is a serviceable tracking metric and it is what many
+      organisations run on. It means you should not treat a movement in it as
+      evidence of anything on its own, and should pair it with behavioural data and
+      with the free-text responses, which are usually the most informative part of
+      the instrument and the part most often ignored.
+
+formulas:
+  - name: Net Promoter Score
+    expression: "NPS = %(scores 9–10) − %(scores 0–6)"
+    notes: "Scores of 7–8 are excluded entirely. Two very different distributions can yield the same NPS."
+
+worked_example:
+  situation: "NPS rose from 22 to 31 quarter over quarter. Leadership wants to attribute it to the redesign."
+  steps:
+    - "Check the sample: response rate fell from 12% to 6% — a smaller, more engaged group answered."
+    - "Check where the survey fires: it was moved from random timing to post-successful-checkout."
+    - "That placement change alone selects for people who just had a good experience."
+    - "Check behaviour over the same window: retention and repeat purchase rate are flat."
+    - "Read the free text: the most common theme is unchanged and concerns delivery times, not the interface."
+    - "Conclusion: the movement is most plausibly a measurement artefact, and the honest report says so."
+  takeaway: >-
+    The score moved nine points with no evidence the experience changed. Placement
+    and response rate explained it — and the free text, which nobody had read,
+    pointed at the actual problem.
+
+common_errors:
+  - mistake: "Treating an NPS movement as evidence of a product change."
+    instead: >-
+      Check response rate, sampling, and placement first, then corroborate against
+      behavioural data. Small samples move this metric easily.
+  - mistake: "Reporting NPS without a confidence interval."
+    instead: >-
+      It is a difference of two proportions and has real uncertainty. A move from
+      22 to 31 on a few hundred responses is frequently not distinguishable from noise.
+  - mistake: "Surveying only current active users."
+    instead: >-
+      The lapsed users are the ones whose experience defines your problem. They are
+      harder to reach, which is exactly why the bias persists.
+  - mistake: "Dismissing surveys entirely because NPS is weak."
+    instead: >-
+      Qualitative and free-text data explain why behaviour changed. The failure is
+      treating a single number as evidence, not the act of asking.
+
+in_interview:
+  how_to_deploy: >-
+    If someone offers you an NPS movement, interrogate the measurement before
+    accepting the conclusion. If you propose a survey, say what behavioural
+    evidence you would pair it with.
+  strong_sounds_like: >-
+    Before attributing that to the redesign I would check the response rate and
+    where the survey fires, because moving it to post-checkout alone would raise
+    the score. I would also want a confidence interval — on a few hundred responses
+    a nine-point move often is not distinguishable from noise. And I would corroborate
+    against retention, since Keiningham's replication found NPS predicts growth no
+    better than ordinary satisfaction measures.
+  weak_sounds_like: >-
+    Our NPS went from 22 to 31, which shows customers are much happier with the
+    redesign.
+
+evidence:
+  strength: contested
+  note: >-
+    The specific claim that NPS is uniquely predictive of growth has been directly
+    challenged. Keiningham et al. replicated Reichheld's analysis with a larger
+    sample and found no advantage over conventional satisfaction measures, and
+    later academic assessments of construct and predictive validity have remained
+    critical. Sampling and response bias in surveys generally are well documented
+    and not in dispute. The honest position: NPS is a usable tracker with real
+    limitations, not the one number you need.
+
+sources:
+  - label: "Reichheld, F. — The One Number You Need to Grow, Harvard Business Review"
+    year: 2003
+  - label: "Keiningham, T. et al. — A Longitudinal Examination of Net Promoter and Firm Revenue Growth, Journal of Marketing"
+    year: 2007
+  - label: "Jaramillo, Deitz, Hansen & Babakus — Taking the measure of Net Promoter Score: construct and predictive validity"
+    year: 2024

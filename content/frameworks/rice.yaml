@@ -1,0 +1,94 @@
+id: rice
+kind: calculative
+name: RICE Scoring
+aka: ["Reach Impact Confidence Effort"]
+summary: >-
+  A prioritisation score: Reach × Impact × Confidence, divided by Effort. Turns an
+  argument about opinions into an argument about inputs.
+best_for:
+  - "How would you prioritise these features?"
+  - "What would you build first and why?"
+  - "Defending a roadmap to stakeholders"
+source:
+  label: "Sean McBride, Intercom"
+  year: 2016
+
+factors:
+  - id: rice.reach
+    name: Reach
+    prompt: How many people does this affect in a given period? Use a real number from real data.
+    scale: "users or events per quarter"
+  - id: rice.impact
+    name: Impact
+    prompt: How much does it move the thing you care about, per person affected?
+    scale: "3 = massive, 2 = high, 1 = medium, 0.5 = low, 0.25 = minimal"
+  - id: rice.confidence
+    name: Confidence
+    prompt: How much do you actually believe your own Reach and Impact numbers?
+    scale: "100% = high, 80% = medium, 50% = low"
+  - id: rice.effort
+    name: Effort
+    prompt: Total person-months across engineering, design, and product.
+    scale: "person-months (divisor)"
+
+teaching:
+  in_one_line: >-
+    (Reach × Impact × Confidence) ÷ Effort — a score whose real purpose is to make
+    people argue about inputs instead of conclusions.
+
+  why_this_structure: >-
+    Each term neutralises a specific bias. Reach counters the loudest-stakeholder
+    problem, since a feature three enterprise customers demanded scores honestly
+    against one affecting a million users. Effort as a divisor counters the
+    ambition problem, where big ideas crowd out cheap wins. Confidence is the
+    clever one: it is an explicit tax on made-up numbers, which means the honest
+    move — admitting you are guessing — is also the one that correctly lowers the
+    score. Without it, the most speculative ideas would systematically win, because
+    speculation is where the biggest numbers live.
+
+  when_to_use:
+    - "Comparing many similar-sized candidates within one team's roadmap"
+    - "When prioritisation has become a contest of who argues hardest"
+    - "When you need to show your reasoning to stakeholders rather than assert it"
+
+  when_not_to_use:
+    - "For strategic bets, where reach and confidence are unknowable and the score punishes exactly the thing you should do anyway"
+    - "For work with no user-facing reach — infrastructure, security, tech debt — which scores near zero and starves"
+    - "When items differ by orders of magnitude in size; comparing a two-day change to a two-quarter platform is meaningless"
+    - "As the decision itself rather than an input to it"
+
+  worked_walkthrough:
+    question: "Prioritise between a faster checkout and a new referral programme."
+    beats:
+      - part_id: rice.reach
+        say: >-
+          Checkout touches every purchasing user — say 40,000 a quarter. Referral
+          touches only those who would ever invite someone, realistically 4,000.
+      - part_id: rice.impact
+        say: >-
+          Checkout is a medium improvement to an existing flow, so 1. Referral
+          could bring in new users at a high per-person impact, so 2.
+      - part_id: rice.confidence
+        say: >-
+          We have funnel data on checkout drop-off, so 100%. The referral estimate
+          is essentially a guess, so 50% — and that discount is the honest part.
+      - part_id: rice.effort
+        say: >-
+          Checkout is 2 person-months, referral is 3. So checkout scores 20,000 and
+          referral about 1,333 — an order of magnitude apart, which is a much
+          stronger signal than the ranking itself.
+
+  failure_modes:
+    - mistake: "Treating the score as the decision."
+      instead: >-
+        It is an input. If the score contradicts your judgement, that is a prompt
+        to examine which input is wrong — often it is Impact, which is where
+        wishful thinking hides.
+    - mistake: "Inventing Reach numbers to make a favoured feature win."
+      instead: >-
+        If you are guessing, drop Confidence to 50% and say so. Manipulating Reach
+        while leaving Confidence at 100% defeats the entire mechanism.
+    - mistake: "Comparing scores across teams with different Effort conventions."
+      instead: >-
+        RICE is only comparable within a consistent estimation culture. Two teams
+        that size person-months differently produce incomparable scores.

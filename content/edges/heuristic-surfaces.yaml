@@ -1,0 +1,81 @@
+# SURFACES_AT: where in a CIRCLES answer this heuristic should be deployed.
+# For `decision`-scope heuristics this is the ONLY way they reach the graph —
+# they have no situational predicate.
+
+- from: { type: heuristic, id: fogg-behavior-model }
+  to: { type: framework_part, id: circles.report }
+  relation: SURFACES_AT
+  strength: 5
+  rationale: >-
+    Use B=MAP to structure the needs section: state for each need whether the gap
+    is motivation, ability, or prompt. This converts a flat list of pain points
+    into a diagnosis, which is what separates a strong Report stage from a weak one.
+
+- from: { type: heuristic, id: millers-law }
+  to: { type: framework_part, id: circles.report }
+  relation: SURFACES_AT
+  strength: 3
+  rationale: >-
+    Applies when describing what the user must remember between steps. Cite the
+    four-chunk limit rather than seven — the correction is a cheap credibility signal.
+
+- from: { type: heuristic, id: hicks-law }
+  to: { type: framework_part, id: circles.list }
+  relation: SURFACES_AT
+  strength: 4
+  rationale: >-
+    Justifies why a proposed solution reduces or defers choices rather than adding
+    a setting. Name the caveat about serial scanning if the list is unfamiliar to
+    the user, otherwise the citation is doing less work than it appears to.
+
+- from: { type: heuristic, id: jakobs-law }
+  to: { type: framework_part, id: circles.list }
+  relation: SURFACES_AT
+  strength: 3
+  rationale: >-
+    Use it to explain where you are deliberately NOT innovating, which makes the
+    one place you are innovating read as a choice rather than an oversight.
+
+- from: { type: heuristic, id: goal-gradient-effect }
+  to: { type: framework_part, id: circles.list }
+  relation: SURFACES_AT
+  strength: 3
+  rationale: >-
+    Supports any solution involving onboarding, streaks, or multi-step completion.
+    The endowed-progress finding is the specific, quotable part.
+
+- from: { type: heuristic, id: peak-end-rule }
+  to: { type: framework_part, id: circles.evaluate }
+  relation: SURFACES_AT
+  strength: 4
+  rationale: >-
+    Reframes the trade-off discussion: argue that reducing peak pain beats reducing
+    average duration, and you have made an evidence-backed prioritisation argument
+    rather than an aesthetic one.
+
+- from: { type: heuristic, id: loss-aversion }
+  to: { type: framework_part, id: circles.evaluate }
+  relation: SURFACES_AT
+  strength: 3
+  rationale: >-
+    Relevant when a solution removes something users already have. Cite it with the
+    Gal & Rucker dispute attached — an unqualified claim here is now a risk rather
+    than a signal of sophistication.
+
+- from: { type: heuristic, id: type-1-type-2-doors }
+  to: { type: framework_part, id: circles.evaluate }
+  relation: SURFACES_AT
+  strength: 5
+  rationale: >-
+    The highest-leverage move available in the Evaluate stage: classify the
+    recommendation as a one-way or two-way door, then set your proposed rigour to
+    match. It converts a trade-off list into a decision, which is what the stage
+    is actually asking for.
+
+- from: { type: heuristic, id: type-1-type-2-doors }
+  to: { type: framework_part, id: circles.summarize }
+  relation: SURFACES_AT
+  strength: 4
+  rationale: >-
+    In the recommendation, use reversibility to justify the size of the first step.
+    A two-way door licenses shipping a narrow version now and learning from it.

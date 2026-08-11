@@ -1,0 +1,26 @@
+# Deliberately shares `weekend-meal-planning` with the new parent. Situations are
+# many-to-many: two very different people can occupy the same context, and when
+# they do, the same heuristics fire for both. That is the point of the split.
+id: shift-worker-clinician
+name: Shift-Working Clinician
+order: 2
+age_band: "24-45"
+life_stage: "Rotating shift pattern, irregular sleep"
+role: "Ward nurse or junior doctor"
+tech_literacy: medium
+drivers:
+  - "Never be the reason a patient comes to harm"
+  - "Get through the shift without falling behind"
+  - "Avoid documentation spilling into unpaid time"
+values:
+  - "accuracy > speed"
+  - "auditability > convenience"
+  - "familiarity > capability"
+frictions:
+  - "Hands are frequently gloved or occupied"
+  - "Interrupted every few minutes"
+  - "Shared workstations log out constantly"
+  - "Cannot trust memory across a 12-hour shift"
+typical_situations:
+  - ward-handover-lookup
+  - weekend-meal-planning

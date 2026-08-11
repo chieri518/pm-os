@@ -1,0 +1,33 @@
+{
+  "name": "pm-os",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "All-In-One PM Career & Interview Prep OS — a knowledge graph bridging frameworks, archetypes, heuristics, and company lenses.",
+  "scripts": {
+    "validate": "tsx src/scripts/validate.ts",
+    "demo": "tsx src/scripts/demo.ts",
+    "typecheck": "npm run build:graph && tsc --noEmit",
+    "dev": "npm run build:graph && next dev",
+    "build": "npm run build:graph && next build",
+    "start": "next start",
+    "build:graph": "tsx src/scripts/build-graph.ts",
+    "check": "tsx src/scripts/check-practice.ts"
+  },
+  "dependencies": {
+    "next": "^16.3.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "yaml": "^2.5.1",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^22.7.5",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "tailwindcss": "^4.3.3",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  }
+}

@@ -1,0 +1,142 @@
+id: ab-testing
+name: A/B Testing & Experiment Design
+order: 30
+domain: experimentation
+in_one_line: >-
+  Randomised assignment lets you claim your change caused the outcome — and almost
+  every way people run experiments quietly destroys that claim.
+
+why_it_matters: >-
+  Experimentation is the main mechanism by which product decisions become
+  defensible rather than merely confident. It is also where the largest number of
+  PMs say something quantitatively wrong in an interview, because the vocabulary
+  is easy and the statistics are not.
+
+layers:
+  - level: orientation
+    title: Why randomisation is the whole trick
+    body: >-
+      Comparing this week to last week cannot tell you whether your change worked,
+      because a hundred other things also changed — the weather, a competitor's
+      campaign, payday, a public holiday. Randomly splitting users into two groups
+      at the same moment solves this by making the two groups identical on average
+      in every respect except the one you control. That is the only reason an A/B
+      test supports a causal claim at all, and it is why anything that breaks the
+      randomisation breaks the conclusion.
+
+  - level: working
+    title: Designing one properly, before it starts
+    body: >-
+      Four things get decided before launch, and deciding them afterwards is what
+      invalidates most tests. First, the primary metric — one, chosen in advance.
+      Second, the minimum detectable effect: the smallest change that would
+      actually alter your decision, which is a product judgement rather than a
+      statistical one. Third, the sample size and therefore the runtime, computed
+      from that MDE — and smaller effects need dramatically more traffic, since
+      required sample scales with roughly the inverse square of the effect. Fourth,
+      the stopping rule. Run for whole weeks to cover weekday and weekend
+      behaviour, and expect the first few days to mislead: a novelty effect makes
+      changed interfaces look better than they are, while regular users temporarily
+      slowed by relearning make them look worse.
+
+  - level: expert
+    title: Peeking, and the other ways a valid test becomes invalid
+    body: >-
+      The most consequential error is optional stopping — checking results
+      repeatedly and stopping when significance appears. Standard fixed-horizon
+      p-values assume exactly one look at one predetermined sample size. Checking
+      many times is a multiple-comparisons problem, and the false-positive rate
+      inflates far past the nominal 5%; with frequent peeking it can reach 40% or
+      more. The fixes are real: sequential testing or always-valid confidence
+      intervals adjust the thresholds so continuous monitoring stays honest, which
+      is why platforms increasingly implement one or the other. Beyond peeking,
+      watch for sample-ratio mismatch — if a 50/50 split arrives as 52/48, the
+      randomisation itself is broken and the result should be discarded before
+      it is interpreted. Watch for interference in social or marketplace products,
+      where treated users affect control users and the groups stop being
+      independent. Watch for Simpson's paradox, where an effect that is positive
+      in every segment reverses in aggregate because the segment mix differs.
+      And remember Twyman's law: any figure that looks interesting or unusual is
+      usually wrong, so a surprisingly large win deserves an instrumentation audit
+      before a celebration.
+
+formulas:
+  - name: Required sample size (per arm, roughly)
+    expression: "n ≈ 16 × σ² ÷ MDE²"
+    notes: "For a continuous metric at 80% power and 5% significance. The MDE² term is why halving the detectable effect quadruples the traffic you need."
+  - name: Sample ratio mismatch check
+    expression: "chi-square test of observed split against intended split"
+    notes: "A failing SRM check invalidates the experiment. Diagnose it before reading any result."
+
+worked_example:
+  situation: >-
+    A team ships a new onboarding flow to 50% of new users. After three days,
+    activation is up 12% and the result reads as significant. They want to ship.
+  steps:
+    - "Ask what the pre-registered MDE and runtime were. If none were set, this is exploration, not a test."
+    - "Check the split: 50/50 intended, 53/47 observed — an SRM failure. Investigate before reading anything else."
+    - "The cause turns out to be a redirect failing on one browser, which dropped users out of treatment before they were counted."
+    - "Those dropped users were disproportionately slow-loading, i.e. the least likely to activate — so treatment was being fed an easier population."
+    - "Re-run after the fix, for two full weeks, with a stopping rule set in advance."
+    - "The corrected effect is +2%, below the 5% MDE that would have justified the engineering cost."
+  takeaway: >-
+    The original result was not a small overstatement; it was an artefact of broken
+    randomisation. Three days of peeking would have shipped it, and the team would
+    have attributed the later flat numbers to seasonality.
+
+common_errors:
+  - mistake: "Watching the dashboard daily and stopping when it goes green."
+    instead: >-
+      Fix the runtime in advance, or use a sequential testing method designed for
+      continuous monitoring. Peeking can push the false-positive rate several times
+      above the nominal 5%.
+  - mistake: "Treating a non-significant result as proof of no effect."
+    instead: >-
+      Absence of evidence is not evidence of absence. Report the confidence
+      interval — an underpowered test often cannot rule out an effect you would
+      have cared about.
+  - mistake: "Adding metrics after seeing the data and reporting whichever moved."
+    instead: >-
+      One pre-registered primary metric, plus guardrails. Testing twenty metrics
+      guarantees one hits p<0.05 by chance.
+  - mistake: "Running for three days because the effect looked big."
+    instead: >-
+      Run whole weeks. Day-of-week effects are large in most products, and novelty
+      effects fade over the first week or two.
+  - mistake: "Ignoring interference in social or marketplace products."
+    instead: >-
+      If treated users can affect control users — messaging, matching, shared
+      inventory — standard randomisation is violated. Cluster or switchback designs
+      exist for this.
+
+in_interview:
+  how_to_deploy: >-
+    Whenever you propose measuring something, say what would make the measurement
+    invalid. Naming SRM or the peeking problem unprompted is one of the strongest
+    available analytical signals, because it shows you have run tests rather than
+    read about them.
+  strong_sounds_like: >-
+    I would pre-register activation rate as the primary metric with a 5% MDE, which
+    at our traffic means about two weeks — and I would fix that runtime up front,
+    because if we monitor daily and stop on significance the false-positive rate is
+    far above 5%. Before reading any result I would check the sample ratio, since a
+    50/50 split arriving as 53/47 usually means the randomisation broke and the
+    effect is an artefact rather than a finding.
+  weak_sounds_like: >-
+    I would A/B test it and see if the results are statistically significant, then
+    roll it out to everyone if the new version wins.
+
+evidence:
+  strength: replicated
+  note: >-
+    The statistical foundations are settled mathematics rather than empirical
+    claims. The practical failure modes — optional stopping inflating false
+    positives, sample-ratio mismatch, novelty effects — are extensively documented
+    in industry experimentation literature, notably Kohavi, Tang & Xu's
+    "Trustworthy Online Controlled Experiments" (2020), which is the standard
+    reference and worth naming by title if the conversation goes deep.
+
+sources:
+  - label: "Kohavi, R., Tang, D. & Xu, Y. — Trustworthy Online Controlled Experiments: A Practical Guide to A/B Testing"
+    year: 2020
+  - label: "Johari, Koomen, Pekelis & Walsh — Always Valid Inference / sequential testing for continuous monitoring"

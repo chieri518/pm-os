@@ -1,0 +1,137 @@
+id: cohort-retention
+name: Cohort Analysis & Retention Curves
+order: 40
+domain: metrics
+in_one_line: >-
+  Group users by when they joined and track each group separately — because
+  aggregate numbers hide almost everything that matters.
+
+why_it_matters: >-
+  Retention is the metric most predictive of whether a product works, and it is
+  invisible in aggregate data. A company can show rising DAU for a year while every
+  cohort retains worse than the last; the growth is just acquisition outrunning a
+  leak. Reading cohort tables is the single most transferable analytical skill in
+  product work.
+
+layers:
+  - level: orientation
+    title: Why the aggregate lies
+    body: >-
+      Total active users is a mixture of everyone who ever joined, weighted by how
+      many joined when. If you double marketing spend, the total rises even if your
+      product got worse, because new arrivals mask departing users. A cohort is a
+      group defined by when they started — the January cohort, the February cohort
+      — tracked over their own lifetime rather than on the calendar. That single
+      change makes the product's actual behaviour visible, because each cohort
+      experienced the product independently.
+
+  - level: working
+    title: Reading the curve and the triangle
+    body: >-
+      Plot the percentage of a cohort still active in week 1, 2, 3 and so on. The
+      shape carries the meaning. A curve that keeps declining toward zero means you
+      have no product-market fit — everyone eventually leaves, and growth is a
+      treadmill. A curve that declines and then flattens means a stable core exists,
+      and the height of that plateau is roughly what you are actually building on.
+      That flattening is the thing to look for; the asymptote matters far more than
+      the week-one number. Retention is also metric-dependent and must be defined
+      before it is measured: retention of "opened the app" and retention of
+      "completed the core action" are different products' worth of difference. Read
+      cohort tables in two directions — down a column to compare the same lifetime
+      week across cohorts (is the product improving?), and along a row to see one
+      cohort's decay (does it stabilise?).
+
+  - level: expert
+    title: Mix shift, survivorship, and the paradox
+    body: >-
+      Three failure modes catch experienced people. First, mix shift: aggregate
+      retention can fall while every individual cohort improves, simply because a
+      newer, worse-retaining acquisition channel now supplies a larger share of
+      users. This is Simpson's paradox in its most common product form, and it is
+      why "retention is down" should always be followed by "in which cohorts, from
+      which channels". Second, survivorship bias in cohort-based research: surveying
+      currently active users to find out why people leave asks precisely the people
+      who did not. Third, the definition drift problem — if the product changes what
+      counts as an active user, old and new cohorts are no longer comparable, and
+      the resulting step change looks like a product event. Also note that resurrection
+      matters: many "churned" users return, so a simple retention curve understates
+      long-run engagement for products with episodic use, like travel or tax
+      software, where a twelve-month gap is normal behaviour rather than churn.
+
+formulas:
+  - name: N-day retention
+    expression: "Retention(n) = users active on day n ÷ users in the cohort"
+    notes: "Specify whether 'active' means any session or the core action — they diverge fast."
+  - name: Implied average lifetime
+    expression: "Average lifetime ≈ 1 ÷ churn rate"
+    notes: "Only valid where churn is roughly constant. If the curve flattens, this understates the core cohort badly."
+  - name: Quick ratio
+    expression: "(new + resurrected) ÷ churned"
+    notes: "Above 1 means the user base is growing net of churn. Useful when raw growth hides a leak."
+
+worked_example:
+  situation: >-
+    A B2C app reports flat overall 30-day retention across six months and concludes
+    the product has not improved.
+  steps:
+    - "Break the aggregate into monthly cohorts and read down the day-30 column."
+    - "Every cohort improved: 18% → 21% → 24% over the six months."
+    - "Aggregate stayed flat because paid-social acquisition grew from 10% to 45% of new users."
+    - "Paid-social users retain at 12%; organic users at 30%. The mix shifted toward the worse channel."
+    - "So the product genuinely improved, and the marketing mix masked it entirely."
+    - "The right actions are opposite to what the aggregate suggested: keep shipping, and fix or cut paid social."
+  takeaway: >-
+    The aggregate said 'the product is not getting better'. The cohorts said 'the
+    product is getting better and the channel mix is getting worse'. Only one of
+    those leads to a correct decision.
+
+common_errors:
+  - mistake: "Reporting retention without defining 'active'."
+    instead: >-
+      State the action. App-open retention and core-action retention can differ by
+      a factor of two, and only one of them predicts revenue.
+  - mistake: "Reading only the aggregate."
+    instead: >-
+      Always cut by cohort and by channel. Mix shift makes aggregates
+      systematically misleading in exactly the situations you most need them.
+  - mistake: "Comparing cohorts of different maturity."
+    instead: >-
+      A cohort that is three weeks old has no day-30 number. Comparing it to a
+      mature cohort silently compares different things.
+  - mistake: "Surveying active users about why people churn."
+    instead: >-
+      Survivorship bias. Reach lapsed users, even though they are much harder to
+      contact — that difficulty is exactly why the error is so common.
+
+in_interview:
+  how_to_deploy: >-
+    Reach for it in any diagnosis question and in any question about growth or
+    engagement. "Let me cut that by cohort" is close to a free strong signal,
+    because it is the first thing a competent analyst does and the last thing most
+    candidates mention.
+  strong_sounds_like: >-
+    Before theorising I would break this into monthly cohorts and read down the
+    day-30 column, then cut by acquisition channel. Flat aggregate retention with
+    improving cohorts is a mix-shift pattern — it usually means a newer channel with
+    worse-retaining users has grown as a share of intake, and the fix is in
+    marketing rather than in the product. I would also check whether the definition
+    of an active user changed in that window, because that produces the same shape.
+  weak_sounds_like: >-
+    I would look at our retention metrics and see if they are trending up or down
+    over the last few months.
+
+evidence:
+  strength: replicated
+  note: >-
+    Cohort analysis is a measurement technique rather than a claim, so it is not
+    the kind of thing that gets falsified. The interpretive rules are well
+    established: flattening curves as an indicator of a stable core is standard
+    practice in growth analysis, and Simpson's paradox is a proven statistical
+    phenomenon, not a heuristic. The specific retention benchmarks that circulate
+    by category are far softer and vary enormously by product type — quote them
+    with caution.
+
+sources:
+  - label: "Simpson, E. H. — The Interpretation of Interaction in Contingency Tables"
+    year: 1951
+  - label: "Standard growth-analysis practice; retention-curve flattening as a product-market-fit signal"

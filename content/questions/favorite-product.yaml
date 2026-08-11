@@ -1,0 +1,122 @@
+id: favorite-product
+name: Favorite Product
+order: 4
+family: product
+prompt_forms:
+  - "What is your favorite product and why?"
+  - "What is a well-designed product you admire?"
+  - "Which product do you think is badly designed?"
+
+what_is_tested:
+  - "Whether you can articulate WHY something works, not just that you like it"
+  - "Whether you think about the product's users rather than only yourself"
+  - "Whether you understand the business behind the product, not only the interface"
+  - "Whether you can critique something you love, and praise something you criticise"
+
+approach:
+  - step: 1
+    title: Pick deliberately, not sentimentally
+    detail: >-
+      Choose a product where you can speak to the user, the problem, the
+      mechanism, and the business. Avoid the obvious defaults everyone names
+      unless you have a genuinely non-obvious angle on one.
+  - step: 2
+    title: State who it is for and what job it does
+    detail: >-
+      Open with the user and the job, not with the features. "It is for people who
+      X, and before it existed they had to Y."
+  - step: 3
+    title: Explain the specific design decisions that make it work
+    detail: >-
+      Name two or three concrete choices and why each is right for that user.
+      This is the section that separates a PM answer from an enthusiastic one.
+  - step: 4
+    title: Say how it makes money and why that model fits
+    detail: >-
+      A product you admire that you cannot explain commercially suggests you
+      think about interfaces rather than products.
+  - step: 5
+    title: Offer a genuine criticism and an improvement
+    detail: >-
+      Something you love should still have a flaw you can name. This is almost
+      always asked as a follow-up, so volunteer it and control the framing.
+
+time_guidance: >-
+  Prepare two or three products in advance. This question is close to guaranteed
+  in some form, and it is the cheapest one to prepare properly.
+
+pitfalls:
+  - mistake: "Describing features you enjoy."
+    instead: >-
+      Talk about decisions and trade-offs. "It syncs across devices" is a feature;
+      "it chose sync over offline-first, which costs them in poor connectivity but
+      wins them the multi-device household" is a decision.
+  - mistake: "Only being able to speak about yourself as the user."
+    instead: >-
+      Name at least one segment that is not you, and say how the product serves
+      them differently.
+  - mistake: "Being unable to criticise something you love."
+    instead: >-
+      Prepare the criticism as part of the answer. Refusing to find one reads as
+      lack of judgement rather than enthusiasm.
+  - mistake: "Being harsh about a product without structure."
+    instead: >-
+      If asked what you would change, still establish goal and user first. This is
+      where an unstructured critique loses candidates the loop.
+
+sample_questions:
+  - "What is your favorite product and why?"
+  - "What is your favorite website or app, and what would you change about it?"
+  - "Tell me about a product you think is poorly designed."
+  - "What is a product that has been launched recently that you admire?"
+
+teaching:
+  in_one_line: >-
+    A disguised design question — the interviewer is checking whether you can
+    reverse-engineer decisions from a finished product.
+
+  mechanism: >-
+    Every shipped product is the residue of hundreds of decisions under
+    constraint. Someone who thinks like a PM can look at the result and infer some
+    of those decisions: who was prioritised, what was traded away, how the
+    business model shaped the interface. Someone who thinks like a user sees only
+    the surface. The question is cheap to ask and unusually revealing, which is
+    why almost every loop contains some version of it.
+
+  in_interview:
+    how_to_deploy: >-
+      Treat it as structured, not conversational. Users, job, decisions, business
+      model, honest criticism. The casual framing tempts candidates into a casual
+      answer, which is the trap.
+    strong_sounds_like: >-
+      I will take a transit app. It is for people who need to leave right now and
+      cannot afford to be wrong — so its most important decision is showing
+      departures relative to now rather than as clock times, which costs precision
+      but removes the mental arithmetic at exactly the moment you are least able
+      to do it. It monetises through city contracts rather than users, which is
+      why there are no ads at the decision moment. The weakness is that it is
+      almost useless for planning tomorrow.
+    weak_sounds_like: >-
+      I love Spotify. The interface is really clean, Discover Weekly is amazing,
+      and it just works everywhere.
+
+  in_product_work: >-
+    It is the skill behind competitive analysis. Reading a competitor's product
+    for the decisions and constraints behind it, rather than producing a feature
+    comparison table nobody acts on.
+
+  in_daily_life: >-
+    Noticing that supermarket staples are at the back of the store, and knowing
+    that is a decision rather than an accident.
+
+  worked_example:
+    situation: "What is your favorite product?"
+    without: >-
+      Name a beloved product and list what is good about it. Warm, fluent, and
+      indistinguishable from any enthusiastic user.
+    with: >-
+      Name the user and the job, then reverse-engineer two decisions and what each
+      one traded away, then explain the business model, then name the real flaw.
+    takeaway: >-
+      Same product, same enthusiasm. The second answer demonstrates that you see
+      products as sets of decisions, which is the entire point of the question.

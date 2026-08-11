@@ -1,0 +1,44 @@
+id: meta
+company: Meta
+round_types:
+  - "Product Sense"
+  - "Execution (Analytical)"
+  - "Leadership & Drive"
+philosophy: >-
+  Meta's product interview rewards a candidate who commits to a specific user
+  segment early and defends that choice, then connects the proposed solution back
+  to a measurable movement in a metric. Breadth of ideas matters less than the
+  quality of the segment choice and the honesty of the trade-off discussion.
+rubric:
+  - id: meta.product-sense
+    name: Product Sense
+    weight: 35
+    description: >-
+      Choosing a specific user, articulating a genuine unmet need, and proposing
+      solutions that follow from that need rather than from a feature wish-list.
+    strong_signal: "Names one segment, says why the others were rejected, and never drifts back to 'all users'."
+  - id: meta.analytical
+    name: Analytical Rigour
+    weight: 25
+    description: "Defining success metrics, guardrail metrics, and what would falsify the bet."
+    strong_signal: "Proposes a counter-metric that would reveal the idea failing, unprompted."
+  - id: meta.execution
+    name: Execution & Prioritisation
+    weight: 20
+    description: "Ranking against an explicit criterion and stating what is being dropped."
+    strong_signal: "Says out loud what they are choosing NOT to build, and why."
+  - id: meta.communication
+    name: Structure & Communication
+    weight: 12
+    description: "Signposting the structure and keeping the interviewer oriented."
+    strong_signal: "States the framework up front and announces each transition."
+  - id: meta.drive
+    name: Drive
+    weight: 8
+    description: "Ownership and momentum in behavioural answers."
+    strong_signal: "First-person singular ownership of a decision that went badly."
+red_flags:
+  - "Designing for 'everyone' or refusing to pick a segment"
+  - "Listing solutions before establishing the user need"
+  - "Proposing a metric that cannot go down"
+  - "Spending most of the answer on brainstorming breadth with no prioritisation"

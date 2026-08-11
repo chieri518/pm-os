@@ -1,0 +1,85 @@
+id: fogg-behavior-model
+scope: experience
+name: Fogg Behavior Model
+aka: ["B = MAP", "B = MAT"]
+claim: >-
+  A behaviour occurs when Motivation, Ability, and a Prompt converge at the same
+  moment: B = MAP. If the behaviour does not happen, exactly one of the three was
+  missing.
+implication: >-
+  Diagnose before you design. If motivation is the gap, change the value
+  proposition or timing; if ability is the gap, make the behaviour smaller; if the
+  prompt is the gap, fix triggering. Adding motivation to an ability problem is
+  the most common wasted effort in product work.
+evidence_strength: heuristic
+caveat: >-
+  This is a design and diagnostic model from persuasive technology research, not
+  an empirically-derived law with an effect size. Its value is as a
+  forcing-function for decomposition — it tells you which question to ask next,
+  it does not predict conversion rates. Fogg originally called the third element a
+  "trigger" and renamed it "prompt" in later work; both names appear in the wild.
+common_misapplication: >-
+  Treating motivation as the default lever. Fogg's own emphasis is the opposite:
+  ability is almost always cheaper to move than motivation, because simplifying a
+  behaviour is under your control while wanting is not.
+teaching:
+  in_one_line: >-
+    A behaviour needs motivation, ability, and a prompt at the same moment.
+    Missing any one and it simply does not happen.
+
+  mechanism: >-
+    Motivation and ability trade off against each other along a curve. A highly
+    motivated person will tolerate a painful process; an easy enough process
+    needs almost no motivation. Below that action line no prompt works — it just
+    annoys. Above it, a prompt fires the behaviour. The model's real power is
+    diagnostic rather than predictive: because exactly one of the three is
+    missing, "why didn't they do it?" has only three possible answers, and you
+    can usually tell which by asking whether they wanted to, whether they could,
+    and whether anything asked them to.
+
+  in_interview:
+    how_to_deploy: >-
+      Deploy it in Report Customer Needs to convert a flat list of pain points
+      into a diagnosis. State, for each need, which of the three is the gap.
+    strong_sounds_like: >-
+      Users want two-factor authentication — surveys show they value it — so
+      motivation is not the constraint. The gap is ability: setup is six steps
+      across two devices. I would attack ability first, because it is the axis I
+      control, and only look at prompting once the behaviour is cheap enough to
+      be worth prompting.
+    weak_sounds_like: >-
+      Users are not motivated enough, so I would add gamification and a rewards
+      programme.
+
+  in_product_work: >-
+    It is the discipline that stops "add a notification" being the answer to
+    every adoption problem. If ability is the real gap, a prompt does not just
+    fail — it actively costs you trust, because you asked for something the user
+    could not deliver.
+
+  in_daily_life: >-
+    Why leaving your running shoes by the door works better than a motivational
+    quote on the fridge. The shoes are an ability intervention; the quote is a
+    motivation intervention aimed at the wrong axis.
+
+  worked_example:
+    situation: "Only twelve percent of users have enabled two-factor authentication."
+    without: >-
+      An email campaign explaining why account security matters. A motivation
+      play. It moves the number by roughly nothing, because motivation was never
+      the binding constraint.
+    with: >-
+      Cut setup from six steps to a single tap inside a flow the user is already
+      in. An ability play, aimed at the axis that was actually short.
+    takeaway: >-
+      Motivation was never the constraint. The six steps were. Most adoption
+      problems are ability problems wearing a motivation costume, and ability is
+      also the cheaper axis to move because it is the one you control.
+
+applies_when:
+  any:
+    - { dim: motivation, op: lte, value: medium }
+    - { dim: ability, op: lte, value: medium }
+source:
+  label: "Fogg, B. J. (2009) A Behavior Model for Persuasive Design, Persuasive '09; Tiny Habits (2019)"
+  year: 2009

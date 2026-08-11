@@ -1,0 +1,78 @@
+id: type-1-type-2-doors
+scope: decision
+name: Type 1 / Type 2 Doors
+aka: ["one-way and two-way doors", "reversible vs irreversible decisions"]
+claim: >-
+  Decisions divide into Type 1 — consequential and effectively irreversible, a
+  one-way door — and Type 2, which are changeable, a door you can walk back
+  through. Bezos argued organisations tend to apply heavyweight Type 1 process to
+  Type 2 decisions as they grow, producing slowness and diminished invention.
+implication: >-
+  Classify the decision before choosing how much rigour to spend on it. For a
+  Type 2 door, decide fast with roughly 70% of the information you wish you had
+  and iterate. For a Type 1 door, slow down deliberately and gather more.
+evidence_strength: heuristic
+caveat: >-
+  This is an organisational decision-making principle from Amazon's shareholder
+  letters, not an empirical finding. Its weakness is classification itself: the
+  category of a decision is often contested, and calling a genuinely one-way door
+  "reversible" is exactly how the framework gets abused to justify haste.
+common_misapplication: >-
+  Using "it's a two-way door" as a rhetorical shortcut to skip analysis on a
+  decision that is actually load-bearing — pricing changes, data-model choices,
+  and public API shapes are far less reversible than they first appear.
+teaching:
+  in_one_line: >-
+    Decide fast on reversible doors and slowly on irreversible ones — and most
+    doors are more reversible than they feel in the room.
+
+  mechanism: >-
+    The cost of being wrong is wildly asymmetric between the two classes. For a
+    two-way door, the cost of DELAY almost always exceeds the cost of a wrong call
+    you can walk back, so heavyweight process destroys value. Organisations drift
+    toward Type 1 rigour everywhere as they grow for a structural reason: the cost
+    of slowness is diffuse and unattributable, while the cost of a visible mistake
+    lands on an identifiable person. Nobody is ever blamed for the decision that
+    took three weeks too long.
+
+  in_interview:
+    how_to_deploy: >-
+      Deploy it in Evaluate Trade-offs and again in Summarize. It converts a list
+      of pros and cons into an actual decision, which is what those stages are
+      asking for and what most candidates never quite deliver.
+    strong_sounds_like: >-
+      This is a two-way door — we can revert the nav in a sprint — so I would
+      ship behind a flag at seventy percent confidence and learn from real usage.
+      What would make it a one-way door is if we changed the URL structure at the
+      same time, so I would explicitly keep those two decisions separate.
+    weak_sounds_like: >-
+      It is a two-way door, so we can just ship it and see what happens.
+
+  in_product_work: >-
+    It is the argument for having different launch checklists by decision class
+    rather than one heavyweight process applied uniformly. Data models, pricing,
+    and public API shapes deserve real rigour; button copy, layout, and default
+    sort order do not.
+
+  in_daily_life: >-
+    Choosing a restaurant versus signing a lease. Most people apply lease-grade
+    deliberation to restaurant-grade decisions many times a week.
+
+  worked_example:
+    situation: "A team has spent three weeks debating a navigation restructure."
+    without: >-
+      More research, more stakeholder review, another round of comparative
+      mockups — all treating a reversible layout decision as though it were
+      permanent.
+    with: >-
+      Classify it explicitly: navigation is reversible within a sprint. Ship
+      behind a flag, measure, revert if wrong.
+    takeaway: >-
+      Three weeks of debate cost more than the wrong navigation would have. The
+      trap on the other side is real though — "it's a two-way door" is also the
+      most common way people talk themselves out of thinking about a decision
+      that genuinely was not reversible.
+
+source:
+  label: "Bezos, J. — Amazon shareholder letters (1997, 2015)"
+  year: 2015

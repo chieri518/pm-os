@@ -1,0 +1,131 @@
+id: pricing-strategy
+name: Pricing & Willingness to Pay
+order: 21
+domain: economics
+in_one_line: >-
+  Price is a positioning decision expressed as a number, and it is the highest-leverage
+  variable most teams never touch.
+
+why_it_matters: >-
+  Pricing moves profit faster than almost any product change, because a price
+  increase flows almost entirely to the bottom line while a volume increase carries
+  costs with it. It also appears in interviews as a question type of its own, and
+  most candidates answer it with cost-plus reasoning, which is the weakest available
+  approach.
+
+layers:
+  - level: orientation
+    title: Three ways to set a price, only one of them good
+    body: >-
+      Cost-plus takes what it costs you and adds a margin. It is simple and it
+      ignores the customer entirely — the customer does not care what it cost you.
+      Competitive pricing anchors to what rivals charge, which outsources your
+      strategy to them and races toward commoditisation. Value-based pricing starts
+      from what the outcome is worth to the buyer and captures a share of that.
+      Value-based is the right default in software, where marginal cost is near
+      zero and cost-plus therefore produces a nearly meaningless number.
+
+  - level: working
+    title: Finding willingness to pay, and choosing a metric
+    body: >-
+      You cannot simply ask people what they would pay; stated intent overstates
+      real behaviour. Van Westendorp's price-sensitivity meter asks four indirect
+      questions — at what price would this be too expensive, expensive but
+      acceptable, a bargain, and so cheap you would doubt the quality — and
+      triangulates an acceptable range. Conjoint analysis is stronger: it presents
+      bundles of features at prices and infers the value of each attribute from
+      choices rather than from opinions. Separately, choose your pricing metric —
+      the unit you charge for. Per seat, per usage, per outcome. A good metric
+      scales with the value the customer receives, which means their bill grows as
+      they succeed rather than as they are penalised. Per-seat pricing on a product
+      whose value comes from broad adoption actively fights your own product goal.
+
+  - level: expert
+    title: Segmentation, anchoring, and why discounting is a tax on your best customers
+    body: >-
+      Good pricing is price discrimination made legitimate: different willingness
+      to pay across segments, captured through fences — versioning, usage tiers,
+      student and non-profit rates, annual commitments. Good-better-best exists
+      partly because a middle option makes a decision easier and partly because the
+      top tier anchors the middle one; a deliberately expensive top tier can raise
+      revenue even when nobody buys it. Consumption of a subscription matters more
+      than it appears: customers who do not use what they bought churn at renewal,
+      so a plan that overshoots is a deferred loss rather than a win. Discounting
+      deserves particular suspicion — an unstructured discount is a transfer from
+      customers who paid full price to those who negotiated hardest, and it teaches
+      the market to wait. If you must move price, prefer changing what is included
+      over changing the number, because the number is very hard to raise later.
+
+formulas:
+  - name: Price elasticity of demand
+    expression: "E = % change in quantity ÷ % change in price"
+    notes: "Below 1 in absolute terms is inelastic: raising price raises revenue. Rarely known precisely; usually estimated from a test."
+  - name: Profit impact of price versus volume
+    expression: "Δprofit from +1% price ≈ revenue × 1%; Δprofit from +1% volume ≈ contribution margin × 1%"
+    notes: "This is why price beats volume for profit in most businesses — the price increase carries no incremental cost."
+
+worked_example:
+  situation: "A project-management SaaS charges £12 per seat per month and wants to raise revenue."
+  steps:
+    - "Notice the metric fights the product: value grows with whole-team adoption, but per-seat pricing punishes adding people."
+    - "Run a conjoint study rather than asking willingness to pay directly — stated intent overstates behaviour."
+    - "Finding: admins value automation and integrations highly; occasional viewers contribute almost no perceived value."
+    - "Restructure: free viewer seats, paid editor seats, and usage-based automation runs as a second metric."
+    - "Add a deliberately expensive enterprise tier — mainly to anchor the middle tier upward."
+    - "Test on new customers only, grandfathering existing ones, so the change is reversible and does not trigger churn."
+  takeaway: >-
+    Revenue rose without raising the headline number, because the pricing metric
+    was realigned with where value was actually created. Note the test design too:
+    new customers only keeps a one-way door from being opened by accident.
+
+common_errors:
+  - mistake: "Pricing from cost in a software business."
+    instead: >-
+      Marginal cost is near zero, so cost-plus produces an arbitrary number. Start
+      from the value of the outcome to the buyer.
+  - mistake: "Asking customers what they would pay."
+    instead: >-
+      Use indirect elicitation — Van Westendorp, conjoint, or a live price test.
+      Stated willingness to pay consistently overstates actual behaviour.
+  - mistake: "Choosing a pricing metric that fights adoption."
+    instead: >-
+      Charge for something that grows with realised value. Per-seat pricing on a
+      collaboration product taxes the behaviour you are trying to cause.
+  - mistake: "Treating a price change as reversible."
+    instead: >-
+      It is close to a one-way door, especially upward for existing customers. Test
+      on new cohorts and grandfather the rest.
+
+in_interview:
+  how_to_deploy: >-
+    On any pricing prompt, refuse the cost-plus framing explicitly and start from
+    value and segmentation. Naming the pricing metric as a separate decision from
+    the price level is the move that distinguishes a strong answer.
+  strong_sounds_like: >-
+    Before the number, I would question the metric — we charge per seat, but value
+    comes from whole-team adoption, so our pricing actively taxes the behaviour we
+    want. I would make viewers free, keep editors paid, and add usage-based pricing
+    on automation, which is where admins told us the value concentrates. I would
+    infer that from a conjoint study rather than asking directly, and test on new
+    customers only, since raising price on existing accounts is close to
+    irreversible.
+  weak_sounds_like: >-
+    I would look at what competitors charge and price slightly below them, then
+    consider raising prices once we have added more features.
+
+evidence:
+  strength: supported
+  note: >-
+    Price elasticity and the arithmetic of price-versus-volume profit impact are
+    established microeconomics. Conjoint analysis is a well-validated measurement
+    technique with a substantial academic literature. Van Westendorp is widely used
+    in practice but is a weaker instrument — it produces a plausible range rather
+    than a demand curve, and it is sensitive to question framing. The strategic
+    guidance on pricing metrics and tier anchoring is practitioner craft, supported
+    by consistent industry experience rather than controlled study.
+
+sources:
+  - label: "Van Westendorp, P. — NSS Price Sensitivity Meter"
+    year: 1976
+  - label: "Green, P. & Rao, V. — Conjoint measurement for quantifying judgmental data"
+    year: 1971

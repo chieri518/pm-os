@@ -1,0 +1,23 @@
+id: later-life-cautious
+name: Cautious Later-Life User
+order: 6
+age_band: "65+"
+life_stage: "Retired, living independently"
+role: "Managing own affairs; occasionally helped by an adult child"
+tech_literacy: low
+drivers:
+  - "Stay independent without asking for help"
+  - "Not be defrauded"
+  - "Understand what just happened on the screen"
+values:
+  - "reversibility > speed"
+  - "familiarity > capability"
+  - "human contact > self-service"
+frictions:
+  - "Assumes any error was their own fault and stops"
+  - "Cannot easily distinguish a real prompt from a scam"
+  - "An adult child is often the second, remote user"
+typical_situations:
+  - first-run-setup
+  - desk-deep-work
+  - evening-low-intent

@@ -1,0 +1,152 @@
+# WEIGHTS: how much each company's rubric rewards each CIRCLES stage.
+# Researched estimates from published guidance, not insider information.
+
+# ---------------------------------------------------------------- google
+- from: { type: company_lens, id: google }
+  to: { type: framework_part, id: circles.comprehend }
+  relation: WEIGHTS
+  weight: 12
+  rationale: >-
+    Scoping is genuinely credited: clarifying an ambiguous prompt is treated as analytical work, not throat-clearing.
+
+- from: { type: company_lens, id: google }
+  to: { type: framework_part, id: circles.identify }
+  relation: WEIGHTS
+  weight: 22
+  rationale: >-
+    Google expects a specific user before any design work, and probes segment choice hard in Product Sense rounds.
+
+- from: { type: company_lens, id: google }
+  to: { type: framework_part, id: circles.report }
+  relation: WEIGHTS
+  weight: 20
+  rationale: >-
+    Needs must be stated concretely enough to be measured later; this lens pays for precision here.
+
+- from: { type: company_lens, id: google }
+  to: { type: framework_part, id: circles.cut }
+  relation: WEIGHTS
+  weight: 12
+  rationale: >-
+    Prioritisation matters but is weighted below the analytical reasoning that justifies it.
+
+- from: { type: company_lens, id: google }
+  to: { type: framework_part, id: circles.list }
+  relation: WEIGHTS
+  weight: 12
+  rationale: >-
+    Idea volume is not the signal; solutions are judged on whether they follow from the stated need.
+
+- from: { type: company_lens, id: google }
+  to: { type: framework_part, id: circles.evaluate }
+  relation: WEIGHTS
+  weight: 16
+  rationale: >-
+    The analytical rounds live here — trade-offs are expected to reach numbers rather than adjectives.
+
+- from: { type: company_lens, id: google }
+  to: { type: framework_part, id: circles.summarize }
+  relation: WEIGHTS
+  weight: 6
+  rationale: >-
+    A crisp close is expected but carries little independent weight.
+
+# ---------------------------------------------------------------- apple
+- from: { type: company_lens, id: apple }
+  to: { type: framework_part, id: circles.comprehend }
+  relation: WEIGHTS
+  weight: 10
+  rationale: >-
+    Some scoping credit, though the team context usually supplies much of it.
+
+- from: { type: company_lens, id: apple }
+  to: { type: framework_part, id: circles.identify }
+  relation: WEIGHTS
+  weight: 20
+  rationale: >-
+    Team-specific hiring means the user is usually narrow and known; naming them precisely still matters.
+
+- from: { type: company_lens, id: apple }
+  to: { type: framework_part, id: circles.report }
+  relation: WEIGHTS
+  weight: 22
+  rationale: >-
+    Depth about the user's real context is the heart of this lens — taste is judged by how well you understand who you are serving.
+
+- from: { type: company_lens, id: apple }
+  to: { type: framework_part, id: circles.cut }
+  relation: WEIGHTS
+  weight: 18
+  rationale: >-
+    Focus and restraint are explicitly valued. What you remove is scored more heavily here than anywhere else.
+
+- from: { type: company_lens, id: apple }
+  to: { type: framework_part, id: circles.list }
+  relation: WEIGHTS
+  weight: 10
+  rationale: >-
+    Weighted low by design — the design organisation owns much of the ideation.
+
+- from: { type: company_lens, id: apple }
+  to: { type: framework_part, id: circles.evaluate }
+  relation: WEIGHTS
+  weight: 14
+  rationale: >-
+    Trade-offs are judged on craft and coherence rather than on quantified impact.
+
+- from: { type: company_lens, id: apple }
+  to: { type: framework_part, id: circles.summarize }
+  relation: WEIGHTS
+  weight: 6
+  rationale: >-
+    Concision is expected; the recommendation is short and unpadded.
+
+# ---------------------------------------------------------------- microsoft
+- from: { type: company_lens, id: microsoft }
+  to: { type: framework_part, id: circles.comprehend }
+  relation: WEIGHTS
+  weight: 14
+  rationale: >-
+    Scoping earns real credit because shipped software cannot be quietly corrected after release.
+
+- from: { type: company_lens, id: microsoft }
+  to: { type: framework_part, id: circles.identify }
+  relation: WEIGHTS
+  weight: 16
+  rationale: >-
+    Customer scenarios matter, though segmentation rigour is weighted below requirement completeness.
+
+- from: { type: company_lens, id: microsoft }
+  to: { type: framework_part, id: circles.report }
+  relation: WEIGHTS
+  weight: 24
+  rationale: >-
+    Requirements completeness is the historic core of the PM role here, including states and edge cases most candidates skip.
+
+- from: { type: company_lens, id: microsoft }
+  to: { type: framework_part, id: circles.cut }
+  relation: WEIGHTS
+  weight: 10
+  rationale: >-
+    Prioritisation is expected but is less distinguishing than specification quality.
+
+- from: { type: company_lens, id: microsoft }
+  to: { type: framework_part, id: circles.list }
+  relation: WEIGHTS
+  weight: 12
+  rationale: >-
+    Solutions are judged on feasibility and coverage rather than on novelty.
+
+- from: { type: company_lens, id: microsoft }
+  to: { type: framework_part, id: circles.evaluate }
+  relation: WEIGHTS
+  weight: 16
+  rationale: >-
+    Trade-offs are expected to include implementation cost and cross-team dependencies.
+
+- from: { type: company_lens, id: microsoft }
+  to: { type: framework_part, id: circles.summarize }
+  relation: WEIGHTS
+  weight: 8
+  rationale: >-
+    The recommendation should name the dependencies and the launch risks, not just the choice.

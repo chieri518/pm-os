@@ -1,0 +1,119 @@
+id: segmentation-stp
+name: Segmentation, Targeting & Positioning
+order: 1
+domain: customer
+in_one_line: >-
+  Divide the market into groups that behave differently, choose one to serve
+  properly, and say what you are to them that nobody else is.
+
+why_it_matters: >-
+  This is the backbone of the product design question. "Designing for everyone" is
+  the single most common failure in PM interviews, and STP is the discipline that
+  prevents it. It is also the part of a marketing curriculum that transfers most
+  directly into product work.
+
+layers:
+  - level: orientation
+    title: Three decisions, in order
+    body: >-
+      Segmentation is describing the different kinds of people in a market.
+      Targeting is choosing which kind you will serve — and, by implication, which
+      you will not. Positioning is deciding what you mean to that group relative to
+      the alternatives they already have. The order is not decorative: you cannot
+      position without a target, and you cannot target without segments. Most weak
+      answers collapse all three into "our users are busy professionals", which is
+      a demographic, not a segment, and tells you nothing about what to build.
+
+  - level: working
+    title: What makes a segment real
+    body: >-
+      A useful segment satisfies four tests. It is measurable — you can tell who is
+      in it. It is substantial — big enough to be worth serving. It is accessible —
+      you can actually reach it. And critically, it is differentiable: members
+      behave differently from other segments in a way that changes what you should
+      build. That last test is the one that kills most segmentations. "Users aged
+      25–34" fails it, because a 26-year-old and a 33-year-old do not want
+      different products. "Users who need it to work offline" passes, because that
+      genuinely implies different engineering. Behavioural and needs-based
+      segmentation almost always beats demographic segmentation in product work,
+      which is why the strongest interview answers segment by job, context, or
+      constraint rather than by age bracket.
+
+  - level: expert
+    title: Positioning as a competitive claim, and where segmentation fails
+    body: >-
+      A positioning statement forces a real commitment: for [target] who [need],
+      our product is [category] that [key benefit], unlike [alternative] which
+      [limitation]. The "unlike" clause is the part with information in it — a
+      position that no competitor could contradict is not a position. The deeper
+      problem is that segments are not natural kinds; they are constructions, and
+      the same market can be validly cut several ways. Jobs-to-be-Done argues you
+      should segment by the job rather than by the person, on the grounds that one
+      person hires different products in different circumstances — the commuter and
+      the weekend cook are the same human. In two-sided markets segmentation must be
+      run separately per side, and the binding constraint is usually the scarcer
+      side. And segments drift: a segmentation that was correct at launch is often
+      quietly wrong two years later, which is why treating it as a permanent
+      artefact rather than a periodically re-tested hypothesis is a real failure
+      mode in practice.
+
+worked_example:
+  situation: "Design a feature for a recipe app."
+  steps:
+    - "Weak segmentation: 'home cooks aged 25-45'. Fails differentiability — nothing follows from it."
+    - "Better cut, by job: weekly meal planners, tonight's-dinner deciders, aspirational skill-builders, and dietary-constraint managers."
+    - "Test them: each implies genuinely different behaviour, different session length, and different success metrics. Differentiable."
+    - "Target the tonight's-dinner decider: highest frequency, worst served by existing recipe layouts optimised for browsing."
+    - "Position: for people deciding dinner at 6pm with whatever is in the fridge, we are the app that starts from ingredients you have, unlike recipe sites that start from a dish you have already chosen."
+  takeaway: >-
+    The second segmentation generates product decisions and the first does not.
+    That is the only test that matters — and note that the four segments are the
+    same people at different moments, not four different populations.
+
+common_errors:
+  - mistake: "Segmenting by demographics because the data is available."
+    instead: >-
+      Segment by behaviour, need, or context. Availability of a variable is not
+      evidence that it predicts anything you care about.
+  - mistake: "Naming segments but never choosing one."
+    instead: >-
+      Targeting is a commitment. Say which you picked and why you rejected the
+      others — the rejection carries most of the signal.
+  - mistake: "Positioning against nothing."
+    instead: >-
+      A position needs an 'unlike'. If no competitor or status quo would dispute
+      your claim, you have written a description rather than a position.
+  - mistake: "Treating a segmentation as permanent."
+    instead: >-
+      It is a hypothesis with a shelf life. Say what evidence would make you re-cut it.
+
+in_interview:
+  how_to_deploy: >-
+    Use it in the Identify and Report stages of a product question. Name three or
+    four segments, apply the differentiability test out loud, commit to one, and
+    give the positioning statement. That single move covers the highest-weighted
+    stage in most product rubrics.
+  strong_sounds_like: >-
+    I can cut this market a few ways, but demographics will not help me here
+    because a 26-year-old and a 34-year-old want the same thing. Cutting by job
+    instead: planners, tonight's-dinner deciders, and skill-builders. I will target
+    the deciders — highest frequency, and worst served today because every existing
+    layout assumes you have already chosen a dish. Against them we are the app that
+    starts from your fridge, unlike recipe sites that start from a recipe.
+  weak_sounds_like: >-
+    Our target users are millennials aged 25 to 40 who are busy professionals
+    interested in cooking and healthy eating.
+
+evidence:
+  strength: heuristic
+  note: >-
+    STP is a durable pedagogical framework from marketing strategy rather than an
+    empirically validated model, and it has no effect size attached. Its value is
+    as a forcing structure: it makes the targeting commitment explicit. The four
+    tests for segment quality are widely taught and sensible, but they are craft
+    criteria rather than research findings.
+
+sources:
+  - label: "Kotler, P. — Marketing Management; standard STP treatment in marketing curricula"
+  - label: "Smith, W. R. — Product Differentiation and Market Segmentation as Alternative Marketing Strategies"
+    year: 1956

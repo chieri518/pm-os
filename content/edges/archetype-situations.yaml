@@ -1,0 +1,34 @@
+# TYPICAL_FOR: situation -> archetype. Many-to-many by design.
+
+- from: { type: situation, id: night-feed-checkout }
+  to: { type: archetype, id: time-poor-new-parent }
+  relation: TYPICAL_FOR
+  strength: 5
+  rationale: >-
+    The defining context for this archetype during the first year. Any design that
+    fails here fails the archetype, regardless of how well it performs elsewhere.
+
+- from: { type: situation, id: weekend-meal-planning }
+  to: { type: archetype, id: time-poor-new-parent }
+  relation: TYPICAL_FOR
+  strength: 3
+  rationale: >-
+    Real but infrequent for this archetype in the newborn phase. Included precisely
+    because it inverts the night-feed constraints and exposes designs that were
+    over-fitted to the crisis case.
+
+- from: { type: situation, id: weekend-meal-planning }
+  to: { type: archetype, id: shift-worker-clinician }
+  relation: TYPICAL_FOR
+  strength: 3
+  rationale: >-
+    Shift workers batch-cook around rota patterns, so they occupy the same unhurried
+    planning context as the new parent despite having nothing else in common.
+
+- from: { type: situation, id: ward-handover-lookup }
+  to: { type: archetype, id: shift-worker-clinician }
+  relation: TYPICAL_FOR
+  strength: 5
+  rationale: >-
+    The highest-stakes context in the current corpus, and the only one where an
+    error has consequences the user cannot undo themselves.

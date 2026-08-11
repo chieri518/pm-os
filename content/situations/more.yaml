@@ -1,0 +1,81 @@
+# Additional situations, authored to make practice scenarios vary rather than to be
+# browsed. Each is a genuinely different corner of the 7-dimension space, so the
+# heuristics that fire differ meaningfully between them.
+
+- id: commute-hands-free
+  label: "Hands-free commute"
+  narrative: >-
+    Driving or walking with headphones in. Cannot look at a screen, has a long
+    uninterrupted stretch, and is receptive but unable to act on anything now.
+  device: voice
+  hands_free: 0
+  time_budget_sec: 1200
+  cognitive_load: medium
+  motivation: medium
+  ability: medium
+  stakes: low
+
+- id: desk-deep-work
+  label: "Focused desk session"
+  narrative: >-
+    Sitting down deliberately to get something done properly. Two hands, a large
+    screen, low interruption risk, and willing to learn something new to do it well.
+  device: desktop
+  hands_free: 2
+  time_budget_sec: 2700
+  cognitive_load: low
+  motivation: high
+  ability: high
+  stakes: medium
+
+- id: procurement-review
+  label: "Procurement and security review"
+  narrative: >-
+    Evaluating a purchase that colleagues will have to live with for years, with
+    a compliance checklist open and a nervous eye on the audit trail.
+  device: desktop
+  hands_free: 2
+  time_budget_sec: 3600
+  cognitive_load: medium
+  motivation: medium
+  ability: high
+  stakes: high
+
+- id: shop-floor-interrupt
+  label: "Interrupted on the shop floor"
+  narrative: >-
+    A customer is waiting. Needs one fact from a handheld device, standing up,
+    with an audience and no tolerance for a loading screen.
+  device: mobile
+  hands_free: 1
+  time_budget_sec: 30
+  cognitive_load: high
+  motivation: high
+  ability: medium
+  stakes: medium
+
+- id: evening-low-intent
+  label: "Idle evening browsing"
+  narrative: >-
+    On the sofa, no particular goal, half-watching something else. Will engage
+    with anything easy and abandon anything that asks for effort.
+  device: tablet
+  hands_free: 2
+  time_budget_sec: 900
+  cognitive_load: low
+  motivation: low
+  ability: medium
+  stakes: low
+
+- id: first-run-setup
+  label: "First run, never used it before"
+  narrative: >-
+    Has just installed the product on someone's recommendation. No mental model
+    of how it works yet, and a low tolerance for being made to feel stupid.
+  device: mobile
+  hands_free: 2
+  time_budget_sec: 300
+  cognitive_load: medium
+  motivation: medium
+  ability: low
+  stakes: low

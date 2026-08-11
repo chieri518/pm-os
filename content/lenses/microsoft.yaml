@@ -1,0 +1,44 @@
+id: microsoft
+company: Microsoft
+round_types:
+  - "Product Design"
+  - "Technical / Coding"
+  - "As-appropriate (Behavioral + culture)"
+philosophy: >-
+  Microsoft's program manager role has historically been the most
+  specification-driven of the major companies, particularly on shipped-software
+  teams where a feature cannot be quietly revised after release. That shapes the
+  interview: expect emphasis on completeness, edge cases, and cross-team
+  coordination. Enumerating the states a feature can be in is a strength here,
+  where at a faster-moving company it might read as over-specification.
+rubric:
+  - id: microsoft.product-design
+    name: Product Design & Completeness
+    weight: 30
+    description: "Defining a feature thoroughly, including states, errors, and edge cases."
+    strong_signal: "Volunteers the failure states and the accessibility implications unprompted."
+  - id: microsoft.technical
+    name: Technical Depth
+    weight: 25
+    description: "Real technical fluency; historically including coding for some roles."
+    strong_signal: "Reasons about implementation cost when proposing a design."
+  - id: microsoft.collaboration
+    name: Cross-team Collaboration
+    weight: 20
+    description: "Driving work across teams you do not control, on long timelines."
+    strong_signal: "Describes managing a dependency on another org through to delivery."
+  - id: microsoft.customer-focus
+    name: Customer Focus
+    weight: 15
+    description: "Grounding decisions in customer scenarios rather than internal preference."
+    strong_signal: "Frames requirements as scenarios rather than as feature lists."
+  - id: microsoft.growth-mindset
+    name: Growth Mindset
+    weight: 10
+    description: "Learning posture; the culture explicitly rewards it."
+    strong_signal: "Describes a belief they changed, and what changed it."
+red_flags:
+  - "Vague requirements that leave decisions to engineers by accident"
+  - "Ignoring accessibility, internationalisation, or error states"
+  - "Know-it-all posture — explicitly counter-cultural here"
+  - "No plan for the teams you depend on but do not control"

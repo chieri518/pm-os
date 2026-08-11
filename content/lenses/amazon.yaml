@@ -1,0 +1,45 @@
+id: amazon
+company: Amazon
+round_types:
+  - "Bar Raiser"
+  - "Leadership Principles (behavioural)"
+  - "Product / Technical depth"
+philosophy: >-
+  Amazon's loop is explicitly Leadership-Principle-driven and evidence-hungry. The
+  distinguishing demand is DEPTH: an answer that stays at the level of strategy
+  will be probed downward until it reaches specific numbers, specific decisions,
+  and specific personal ownership. Working backwards from the customer is the
+  expected starting point, not a nice-to-have.
+rubric:
+  - id: amazon.customer-obsession
+    name: Customer Obsession
+    weight: 28
+    description: "Starting from the customer and working backwards to the solution."
+    strong_signal: "Opens with the customer problem stated in the customer's own terms, before any solution."
+  - id: amazon.dive-deep
+    name: Dive Deep
+    weight: 24
+    description: "Owning the detail — real numbers, mechanisms, and root causes rather than summaries."
+    strong_signal: "Volunteers the specific metric and its baseline without being asked twice."
+  - id: amazon.bias-for-action
+    name: Bias for Action
+    weight: 20
+    description: >-
+      Recognising that most decisions are reversible and moving with roughly 70%
+      of the information rather than waiting for certainty.
+    strong_signal: "Explicitly classifies the decision as reversible or not, then sets rigour accordingly."
+  - id: amazon.ownership
+    name: Ownership
+    weight: 16
+    description: "Acting beyond your remit and never saying 'that's not my job'."
+    strong_signal: "Describes picking up work nobody owned, including the cost of doing so."
+  - id: amazon.deliver-results
+    name: Deliver Results
+    weight: 12
+    description: "Quantified outcomes, and honesty about what missed."
+    strong_signal: "Gives the number that missed target alongside the one that hit."
+red_flags:
+  - "Answering in 'we' when asked what you personally did"
+  - "Strategy-level answers that never reach a specific number"
+  - "Treating every decision as irreversible and over-analysing"
+  - "No mechanism proposed to prevent the problem recurring"

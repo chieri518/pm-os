@@ -1,0 +1,38 @@
+# TENSIONS_WITH is symmetric and the schema REFUSES it without resolution guidance.
+# A tension you cannot resolve out loud is not usable in an interview.
+
+- from: { type: heuristic, id: hicks-law }
+  to: { type: heuristic, id: jakobs-law }
+  relation: TENSIONS_WITH
+  strength: 5
+  rationale: >-
+    Hick's Law pushes you to collapse the interface to the fewest options; Jakob's
+    Law pushes you to match the dense, conventional layout users already know from
+    competitors. Resolve toward Hick's when the user is under load, time-pressured,
+    or new to the category, and toward Jakob's when they are experienced and
+    scanning for a specific known target. The failure mode is splitting the
+    difference: a layout that is neither familiar nor simple satisfies neither law
+    and performs worse than committing to either one.
+
+- from: { type: heuristic, id: peak-end-rule }
+  to: { type: heuristic, id: hicks-law }
+  relation: TENSIONS_WITH
+  strength: 4
+  rationale: >-
+    Peak-End argues for investing in a distinctive final moment; under severe time
+    pressure that same moment is pure friction standing between the user and the
+    exit. Prefer Peak-End when the session is discretionary and the user chose to be
+    there, and prefer Hick's when the session is a chore the user is trying to
+    escape. A useful test: if the user would feel relief rather than satisfaction at
+    the end, do not decorate the ending — shorten it.
+
+- from: { type: heuristic, id: goal-gradient-effect }
+  to: { type: heuristic, id: millers-law }
+  relation: TENSIONS_WITH
+  strength: 3
+  rationale: >-
+    Goal-gradient rewards making progress visible, which usually means decomposing
+    a task into more visible steps; chunk limits punish asking the user to track
+    more units of information. Resolve toward goal-gradient when the steps are
+    self-explanatory and stay on screen, and toward Miller/Cowan when each step
+    requires carrying information forward in the user's head.

@@ -1,0 +1,120 @@
+id: mece-issue-trees
+name: MECE & Issue Trees
+order: 50
+domain: analytical
+in_one_line: >-
+  Break a problem into parts that do not overlap and leave nothing out — then work
+  the branch most likely to contain the answer.
+
+why_it_matters: >-
+  This is the machinery underneath "structured thinking", which every PM rubric
+  claims to score and few candidates demonstrate explicitly. It is also the fastest
+  route through diagnosis questions, where an unstructured answer becomes a list of
+  guesses.
+
+layers:
+  - level: orientation
+    title: Mutually exclusive, collectively exhaustive
+    body: >-
+      A decomposition is MECE when the pieces do not overlap and together cover
+      everything. "Users are on iOS, Android, or web" is MECE. "Users are new,
+      mobile, or unhappy" is neither — a person can be all three, and plenty are
+      none. The reason this matters is not tidiness: a decomposition with overlaps
+      double-counts, and one with gaps hides the answer in the missing region. When
+      a diagnosis stalls, the cause is very often a gap in the tree rather than a
+      lack of data.
+
+  - level: working
+    title: Building a tree that actually helps
+    body: >-
+      Start from the question and split it into causes or components, then split
+      each again, until you reach something you could check with a query. Two
+      reliably MECE splitting patterns: arithmetic decomposition, where a metric is
+      the product or sum of its parts, and binary splits, where every case is either
+      X or not-X. Prefer the arithmetic split whenever the metric is a product of
+      terms, because it is MECE by construction. For a drop in weekly orders:
+      orders equals users × order rate, users splits into new and returning, order
+      rate splits by platform. Then prune — you are not obliged to work every
+      branch. Say which branch you are pursuing and why, which is what converts a
+      tree from an exhaustive chore into an efficient search.
+
+  - level: expert
+    title: Hypothesis-led search, and when MECE is the wrong tool
+    body: >-
+      The expert move is not to build a bigger tree but to build a small one and
+      apply prior knowledge to rank branches before checking any of them. State a
+      leading hypothesis, name the cheapest evidence that would falsify it, and go
+      there first — this is hypothesis-driven analysis rather than exhaustive
+      enumeration, and it is much faster in an interview where you have twenty
+      minutes. Two limits worth knowing. First, real causes are often not mutually
+      exclusive: an outage and a seasonal dip can coexist, and a strictly MECE frame
+      can push you toward a single-cause story when the truth is additive. Second,
+      MECE decompositions are excellent for diagnosis and poor for generation —
+      they are a search structure over a space that already exists, so using one to
+      brainstorm new product ideas tends to produce exhaustively organised
+      mediocrity. For generation you want divergence first and structure afterward.
+
+worked_example:
+  situation: "Weekly orders fell 12%. Structure the diagnosis."
+  steps:
+    - "Top split, arithmetic: orders = active users × orders per active user. MECE by construction."
+    - "Check which term moved: users are flat, orders per user fell 12%. The left branch is now dead — prune it."
+    - "Split orders per user: by platform (iOS / Android / web), which is MECE."
+    - "iOS and web flat; Android down 34%. Prune again."
+    - "Split Android: by app version, which is MECE and cheap to query."
+    - "Concentrated entirely in one recent build. Leading hypothesis: a release regression, not a demand change."
+    - "Cheapest falsifying check: does the drop start exactly at that build's rollout curve? It does."
+  takeaway: >-
+    Four splits and roughly three queries reached a specific, testable cause. The
+    unstructured version of this answer is a list of plausible explanations —
+    seasonality, competitors, pricing — with no way to choose between them.
+
+common_errors:
+  - mistake: "Splitting into categories that overlap."
+    instead: >-
+      Test each split out loud: could one case fall into two branches? Could a case
+      fall into none? Arithmetic splits avoid the problem entirely.
+  - mistake: "Building an exhaustive tree and working every branch."
+    instead: >-
+      Prune aggressively and say why. The tree exists to direct search, not to be
+      completed.
+  - mistake: "Naming causes before decomposing."
+    instead: >-
+      A cause proposed in the first minute is a guess. Structure first, then use
+      priors to rank branches.
+  - mistake: "Using MECE to generate ideas."
+    instead: >-
+      It is a search tool over existing possibilities. For generation, diverge
+      first and organise afterwards.
+
+in_interview:
+  how_to_deploy: >-
+    Say the split out loud before analysing anything, and name the branch you are
+    pruning along with the reason. This is the single most legible demonstration of
+    structured thinking available, and it costs about fifteen seconds.
+  strong_sounds_like: >-
+    Orders is users times orders per user, so let me see which term moved before
+    theorising. Users are flat, so I will prune that branch entirely and split
+    orders per user by platform — that split is clean because every session is
+    exactly one platform. If it concentrates in one platform I would split again by
+    app version, since a release regression is both the most common cause of a
+    sudden step change and the cheapest hypothesis to falsify.
+  weak_sounds_like: >-
+    There could be a lot of reasons — maybe seasonality, maybe a competitor
+    launched, maybe the new design is confusing, maybe pricing changed.
+
+evidence:
+  strength: heuristic
+  note: >-
+    MECE is a logical property rather than an empirical claim — a partition either
+    is or is not exhaustive and non-overlapping, and that is verifiable rather than
+    testable. The associated consulting practice, popularised through McKinsey's
+    problem-solving tradition and Barbara Minto's Pyramid Principle, is craft
+    knowledge with no controlled evidence of superior outcomes. Its value in
+    interviews is not in dispute regardless: it makes reasoning auditable.
+
+sources:
+  - label: "Minto, B. — The Pyramid Principle"
+    year: 1987
+  - label: "Rasiel, E. — The McKinsey Way (popular treatment of MECE)"
+    year: 1999

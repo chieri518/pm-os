@@ -1,0 +1,107 @@
+# WEIGHTS: how much each company's rubric rewards each CIRCLES stage.
+# Weights are relative importance within one lens and sum to 100 per lens.
+#
+# The contrast is the product: Meta front-loads segmentation (Identify + Report),
+# Amazon back-loads decision quality (Evaluate + Summarize). Identical answer,
+# different score, depending on where the candidate spent their minutes.
+
+# ---------------------------------------------------------------- Meta
+- from: { type: company_lens, id: meta }
+  to: { type: framework_part, id: circles.comprehend }
+  relation: WEIGHTS
+  weight: 5
+  rationale: "Scoping is expected to be quick; lingering here reads as stalling rather than rigour."
+
+- from: { type: company_lens, id: meta }
+  to: { type: framework_part, id: circles.identify }
+  relation: WEIGHTS
+  weight: 30
+  rationale: >-
+    The single highest-weighted stage in this lens. Meta's Product Sense rubric
+    turns on committing to one segment and defending the rejection of the others.
+
+- from: { type: company_lens, id: meta }
+  to: { type: framework_part, id: circles.report }
+  relation: WEIGHTS
+  weight: 25
+  rationale: >-
+    Needs must be genuine and specific to the chosen segment. Generic needs here
+    retroactively weaken the Identify stage that preceded them.
+
+- from: { type: company_lens, id: meta }
+  to: { type: framework_part, id: circles.cut }
+  relation: WEIGHTS
+  weight: 15
+  rationale: "Explicit prioritisation criteria; naming what is dropped is the scored behaviour."
+
+- from: { type: company_lens, id: meta }
+  to: { type: framework_part, id: circles.list }
+  relation: WEIGHTS
+  weight: 10
+  rationale: >-
+    Weighted lower than candidates expect. Volume of ideas is not the signal —
+    Meta scores whether solutions follow from the stated need.
+
+- from: { type: company_lens, id: meta }
+  to: { type: framework_part, id: circles.evaluate }
+  relation: WEIGHTS
+  weight: 12
+  rationale: "Trade-offs matter, but chiefly as a route into the success-metric discussion."
+
+- from: { type: company_lens, id: meta }
+  to: { type: framework_part, id: circles.summarize }
+  relation: WEIGHTS
+  weight: 3
+  rationale: "A crisp close is expected but carries little independent weight in this rubric."
+
+# ---------------------------------------------------------------- Amazon
+- from: { type: company_lens, id: amazon }
+  to: { type: framework_part, id: circles.comprehend }
+  relation: WEIGHTS
+  weight: 10
+  rationale: >-
+    Working backwards means establishing the customer problem properly before
+    moving, so scoping earns real credit here unlike in Meta's lens.
+
+- from: { type: company_lens, id: amazon }
+  to: { type: framework_part, id: circles.identify }
+  relation: WEIGHTS
+  weight: 18
+  rationale: "Customer Obsession requires a specific customer, though segmentation rigour is weighted below Meta's."
+
+- from: { type: company_lens, id: amazon }
+  to: { type: framework_part, id: circles.report }
+  relation: WEIGHTS
+  weight: 20
+  rationale: >-
+    Dive Deep is probed hardest here: needs stated without a mechanism or a number
+    behind them will be pushed on until they have one.
+
+- from: { type: company_lens, id: amazon }
+  to: { type: framework_part, id: circles.cut }
+  relation: WEIGHTS
+  weight: 10
+  rationale: "Prioritisation is expected but is less distinguishing than the depth of the reasoning underneath it."
+
+- from: { type: company_lens, id: amazon }
+  to: { type: framework_part, id: circles.list }
+  relation: WEIGHTS
+  weight: 8
+  rationale: "The lowest-weighted stage in this lens; idea generation is not what the loop is testing."
+
+- from: { type: company_lens, id: amazon }
+  to: { type: framework_part, id: circles.evaluate }
+  relation: WEIGHTS
+  weight: 22
+  rationale: >-
+    The highest-weighted stage for Amazon and the mirror image of Meta. Bias for
+    Action plus Dive Deep both land here: classify reversibility, then set rigour
+    to match it.
+
+- from: { type: company_lens, id: amazon }
+  to: { type: framework_part, id: circles.summarize }
+  relation: WEIGHTS
+  weight: 12
+  rationale: >-
+    Deliver Results expects a committed recommendation with a metric and a
+    mechanism to prevent recurrence — four times the weight Meta gives this stage.

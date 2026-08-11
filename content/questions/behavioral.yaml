@@ -1,0 +1,138 @@
+id: behavioral
+name: Behavioral
+order: 5
+family: behavioral
+prompt_forms:
+  - "Tell me about a time when you influenced a team without authority."
+  - "Tell me about a time you failed."
+  - "Describe a conflict with a stakeholder."
+  - "Walk me through your most significant accomplishment."
+
+what_is_tested:
+  - "Whether your resume matches what you actually did"
+  - "The scale of problems you consider significant"
+  - "Specific attributes: influence without authority, ownership, judgement"
+  - "Whether you can admit failure without sugarcoating it"
+  - "Communication — structure and concision under recall pressure"
+
+approach:
+  - step: 1
+    title: Lead with the nugget
+    detail: >-
+      Open with the thesis of the story in one sentence: "This is the one where I
+      had to cut a feature the engineers were attached to." The interviewer
+      now has a slot to file every subsequent detail into, and you are far less
+      likely to ramble.
+  - step: 2
+    title: Situation — only what is needed
+    detail: >-
+      Give just enough background to make the actions make sense. "We were behind
+      on a release for a key client" is usually sufficient; the architecture of
+      the product is usually not.
+  - step: 3
+    title: Action — in first person singular
+    detail: >-
+      This is the bulk of the answer and the part that gets scored. Say "I", not
+      "we". The interviewer is hiring you, not your former team — and "we"
+      answers are the single most common way strong experience gets no credit.
+  - step: 4
+    title: Result — quantified, with the learning
+    detail: >-
+      Give the number. Not "retention improved" but "retention improved about
+      ten percent over the quarter". Then say what you would do differently,
+      which is what turns a story into evidence of growth.
+  - step: 5
+    title: Speak in bullets
+    detail: >-
+      "I did three things. First... second... third..." Signposting inside the
+      answer costs nothing and makes a complex story followable by someone with
+      none of your context.
+
+time_guidance: >-
+  Two to three minutes per story. Prepare a grid mapping five or six real stories
+  to the common question themes — most stories can serve several, and preparation
+  is what makes these the highest-return questions to drill.
+
+pitfalls:
+  - mistake: "Answering in 'we' when asked what you personally did."
+    instead: >-
+      Explicitly separate the team's work from yours. This is Amazon's single
+      most-cited behavioural red flag, and it costs strong candidates offers.
+  - mistake: "Choosing a failure that is not really a failure."
+    instead: >-
+      A safe non-failure reads as either evasive or inexperienced. Pick something
+      genuinely costly — but avoid anything touching honesty or integrity, which
+      is much harder to recover from than a bad judgement call.
+  - mistake: "Telling the story chronologically, in full."
+    instead: >-
+      Nugget first, then compress the setup. The interviewer needs the shape of
+      the story, not its history.
+  - mistake: "No number in the result."
+    instead: >-
+      Quantify the impact, and where you missed, give that number too. Naming the
+      metric that missed alongside the one that hit reads as honest rather than weak.
+
+sample_questions:
+  - "Tell me about a time you had to influence someone more senior than you."
+  - "Tell me about a time you made a mistake."
+  - "Tell me about a time you had to compromise."
+  - "Tell me about a project you are most proud of."
+  - "Tell me about a time you had to make a decision with insufficient data."
+  - "Tell me about a time you disagreed with your manager."
+
+teaching:
+  in_one_line: >-
+    Behavioral questions score two independent things — the content of what you
+    did and the structure of how you tell it — and most candidates prepare only
+    the first.
+
+  mechanism: >-
+    A fifteen-word resume bullet is nearly uninterpretable. "Implemented a process
+    that raised retention 15%" could mean adding a link to an email or rebuilding
+    a team's analytics from scratch. The interviewer cannot tell which, so they
+    ask you to unpack it. That means these questions serve as verification as much
+    as evaluation — and it explains why specificity, first-person ownership, and
+    numbers move the score so much: they are precisely the details that
+    distinguish real experience from a well-written bullet.
+
+  in_interview:
+    how_to_deploy: >-
+      Prepare a grid of five or six stories against the common themes — influence,
+      conflict, failure, success, ambiguity, leadership. Reuse across themes is
+      fine and expected. This is the highest-return preparation in the entire loop
+      because the questions are genuinely predictable.
+    strong_sounds_like: >-
+      This is the one where I cut a feature the team was attached to. We had to
+      make a release date and something had to go. I identified the two engineers
+      with the most influence and won them over separately — the senior one through
+      the architecture argument, the well-liked one by being straight with him
+      about what his support meant. I then asked both to help me present it. We
+      made the date with a day spare and shipped the cut feature three weeks later.
+      What I would do differently is tell the whole team earlier; handling it
+      privately first made a few people feel worked around.
+    weak_sounds_like: >-
+      We were behind schedule so we had a meeting and we decided as a team to cut
+      the feature, and everyone was on board, and we ended up shipping on time.
+
+  in_product_work: >-
+    The same structure is what makes a project retro or a promotion packet
+    persuasive. Nugget, context, what you personally did, quantified outcome, what
+    you would change.
+
+  in_daily_life: >-
+    It is why some people can tell a five-minute story that holds a table and
+    others lose the room in thirty seconds. The difference is almost always
+    whether they said what the story was about before they started telling it.
+
+  worked_example:
+    situation: "Tell me about a time you influenced without authority."
+    without: >-
+      A chronological account of a project, heavy on context, mostly in "we",
+      ending with "and it went well".
+    with: >-
+      Nugget first, two sentences of setup, then the specific moves you personally
+      made and why each one suited that person, a quantified result, and one
+      honest thing you would change.
+    takeaway: >-
+      The underlying experience can be identical. Only the second version gives
+      the interviewer anything to score.

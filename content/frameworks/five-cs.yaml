@@ -1,0 +1,91 @@
+id: five-cs
+kind: taxonomic
+name: The Five Cs
+aka: ["Situational Analysis"]
+summary: >-
+  A sweep of the whole environment around a product decision — the company, its
+  competitors, its customers, its collaborators, and the climate it operates in.
+best_for:
+  - "Should we launch this product?"
+  - "What is going on in this market?"
+  - "Analyse this company's situation"
+
+dimensions:
+  - id: five-cs.company
+    name: Company
+    prompt: Mission, strategy, existing products, brand, capabilities, and infrastructure.
+    example_metrics: ["current revenue mix", "core competency", "brand permission"]
+  - id: five-cs.competitors
+    name: Competitors
+    prompt: Direct rivals, potential entrants, and substitutes. Their positioning and likely next moves.
+    example_metrics: ["market share", "differentiation", "switching costs"]
+  - id: five-cs.customers
+    name: Customers
+    prompt: Segments, needs, purchase behaviour, market size, and how they are reached.
+    example_metrics: ["segment size", "willingness to pay", "acquisition channel"]
+  - id: five-cs.collaborators
+    name: Collaborators
+    prompt: Suppliers, distributors, platforms, and partners. Who else must succeed for you to succeed?
+    example_metrics: ["partner concentration", "platform dependency"]
+  - id: five-cs.climate
+    name: Climate
+    prompt: Regulation, technology shifts, economic conditions, and cultural trends.
+    example_metrics: ["regulatory direction", "enabling technology", "cost of capital"]
+
+teaching:
+  in_one_line: >-
+    A five-way sweep of everything around a decision, designed to catch the factor
+    you would otherwise forget.
+
+  why_this_structure: >-
+    Its value is coverage rather than insight. Most people analysing a product
+    decision naturally cover Company, Competitors, and Customers — the three that
+    feel like the product. Collaborators and Climate are the two that get missed,
+    and they are disproportionately where products die: a platform changing its
+    terms, a supplier with all the leverage, a regulation arriving mid-build. The
+    framework earns its place by forcing those two into view.
+
+  when_to_use:
+    - "Open-ended 'should we do this' questions where you need breadth fast"
+    - "As a checklist at the end of an answer, to catch what you missed"
+    - "When a decision depends on parties outside the company"
+
+  when_not_to_use:
+    - "As the structure of your spoken answer — five sequential lists is exhausting to listen to"
+    - "For design or improvement questions, which are about users, not environments"
+    - "When you already know the specific decision axis; the sweep wastes time you do not have"
+
+  worked_walkthrough:
+    question: "Should a streaming service launch its own hardware device?"
+    beats:
+      - part_id: five-cs.company
+        say: >-
+          Strong content brand and subscriber relationship, but no hardware
+          capability and no retail channel.
+      - part_id: five-cs.competitors
+        say: >-
+          Existing streaming boxes are cheap and good, and the incumbents have
+          platform-level advantages we cannot match on price.
+      - part_id: five-cs.customers
+        say: >-
+          Most subscribers already own two or three devices that run our app.
+          The unmet need is thin.
+      - part_id: five-cs.collaborators
+        say: >-
+          Here is the real argument. Today we depend on platforms that take a cut
+          and control our discovery. Owning hardware reduces that leverage.
+      - part_id: five-cs.climate
+        say: >-
+          Regulatory pressure on app-store commissions may solve this for us
+          without a hardware bet, which materially weakens the case for building.
+
+  failure_modes:
+    - mistake: "Reciting all five in order regardless of relevance."
+      instead: >-
+        Sweep them privately, then talk about the two or three that actually
+        matter. In the walkthrough above, Collaborators and Climate carry the
+        decision; the rest is context.
+    - mistake: "Confusing Collaborators with Competitors."
+      instead: >-
+        A platform can be both, and that is usually the most interesting fact
+        about it. Say so explicitly rather than filing it in one box.

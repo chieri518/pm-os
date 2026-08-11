@@ -1,0 +1,23 @@
+id: time-poor-new-parent
+name: Time-Poor New Parent
+order: 1
+age_band: "28-38"
+life_stage: "First child, 0-18 months"
+role: "Full-time employee on or recently returned from parental leave"
+tech_literacy: high
+drivers:
+  - "Protect the child from anything going wrong"
+  - "Reclaim time and cognitive headroom"
+  - "Reduce guilt about doing things imperfectly"
+values:
+  - "reliability > novelty"
+  - "predictability > optimisation"
+  - "speed > breadth of choice"
+frictions:
+  - "Often has only one hand available"
+  - "Sessions terminate without warning when the child needs attention"
+  - "Cannot use audio in a dark room without waking the child"
+  - "Forgets what they were doing between interruptions"
+typical_situations:
+  - night-feed-checkout
+  - weekend-meal-planning

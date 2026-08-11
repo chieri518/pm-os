@@ -1,0 +1,126 @@
+id: jobs-to-be-done
+name: Jobs to Be Done
+order: 2
+domain: customer
+in_one_line: >-
+  People do not buy products; they hire them to make progress in a situation — so
+  the unit of analysis is the job, not the customer.
+
+why_it_matters: >-
+  JTBD is the standard antidote to feature-request-driven product management. It
+  reframes "what do users want" into "what are they trying to accomplish, and what
+  are they currently using instead" — which is where non-obvious competitors and
+  non-obvious solutions come from.
+
+layers:
+  - level: orientation
+    title: The drill and the hole
+    body: >-
+      The canonical illustration is that nobody wants a quarter-inch drill; they
+      want a quarter-inch hole. The point is that the product is a means, and the
+      job is the end — so your real competitor is anything else that produces the
+      hole, including a neighbour who already owns a drill. The immediate practical
+      consequence is that your competitive set is defined by the job rather than by
+      your category. A milkshake bought to survive a boring commute competes with a
+      banana and a radio station, not with other milkshakes.
+
+  - level: working
+    title: Jobs have three dimensions and a switching moment
+    body: >-
+      A job has a functional dimension (get breakfast while driving), an emotional
+      one (not feel bored), and a social one (not look unprofessional). Weak
+      analysis stops at the functional. The other productive move is the switching
+      interview: find people who recently changed solutions and reconstruct what
+      happened. There are four forces at work — the push of the current situation,
+      the pull of the new option, the anxiety about switching, and the habit
+      holding them in place. Most products lose to the last two rather than to a
+      competitor, which is why "our competitor is doing nothing" is so often the
+      honest answer. Write the job as a stable outcome — "get from A to B reliably
+      on a schedule I control" — not as a solution in disguise, because a job
+      phrased as a feature just smuggles your existing product back in.
+
+  - level: expert
+    title: Two incompatible schools, and where the theory is soft
+    body: >-
+      There are two JTBD traditions that are often blurred together and are not
+      actually compatible. Tony Ulwick's Outcome-Driven Innovation treats a job as
+      a process to be decomposed into measurable outcome statements, which you then
+      score on importance and satisfaction to find underserved gaps — quantitative
+      and prescriptive. Clayton Christensen's version, popularised through the
+      milkshake story and the Jobs to Be Done language of hiring and firing, is
+      narrative and circumstantial, focused on the moment of struggle. Ulwick
+      introduced Christensen to the concept in 1999, and Christensen coined the
+      "jobs-to-be-done" term in The Innovator's Solution (2003). Knowing which
+      school you are drawing on is a genuine sophistication signal. On evidence:
+      JTBD is a practitioner theory rather than a validated model — the case
+      material is compelling and largely retrospective, and it has no controlled
+      empirical base. Its real weaknesses are that job statements are unfalsifiable
+      if written loosely, and that it is much better at explaining switching after
+      the fact than at predicting it. Note also that the drill-and-hole line is
+      usually credited to Theodore Levitt, who was himself quoting Leo McGinneva.
+
+worked_example:
+  situation: "A language-learning app has high signup and terrible week-four retention."
+  steps:
+    - "Feature framing: users want more content and better exercises. Leads to building more lessons."
+    - "Job framing: what were they hiring the app to do? Interview recent quitters and recent persisters."
+    - "Quitters were hiring it for 'become someone who speaks Spanish' — an identity job with no near-term proof point."
+    - "Persisters were hiring it for 'be able to order food on my trip in six weeks' — a dated, concrete, verifiable job."
+    - "The four forces on quitters: weak push (no deadline), strong habit (evenings already full), high anxiety (feeling stupid in public)."
+    - "Implication: not more lessons. Help users attach a real deadline and produce an early, private proof of capability."
+  takeaway: >-
+    Same users, same data, completely different roadmap. The feature framing
+    generates content work; the job framing generates onboarding and goal-setting
+    work — and only the second addresses why people actually left.
+
+common_errors:
+  - mistake: "Writing the job as a feature — 'the job is to filter search results'."
+    instead: >-
+      A job should be stable across solutions and survive the disappearance of your
+      product. If your feature appears in the sentence, you have not found the job.
+  - mistake: "Stopping at the functional dimension."
+    instead: >-
+      Emotional and social dimensions usually explain the switching and the
+      resistance. Functional alone rarely explains why someone stayed with a worse
+      option.
+  - mistake: "Blending Ulwick and Christensen without noticing."
+    instead: >-
+      They are different methods with different outputs. Say which one you are
+      using if you go deep.
+  - mistake: "Presenting JTBD as validated theory."
+    instead: >-
+      It is a strong lens with a thin empirical base. Its power is generative, not
+      predictive — and claiming otherwise is easy to challenge.
+
+in_interview:
+  how_to_deploy: >-
+    Use it in Report Customer Needs to move from a list of complaints to a
+    statement of progress the user is trying to make. Naming the non-obvious
+    competitor that the job framing reveals is usually the moment the answer gets
+    interesting.
+  strong_sounds_like: >-
+    Rather than asking what features they want, I would ask what they hired this
+    for. If the job is 'be able to order food on a trip in six weeks', then our real
+    competitor is a phrasebook and a friend who speaks Spanish, and the failure is
+    that we never let them prove to themselves that it worked. The emotional
+    dimension matters more than the functional one here — the anxiety about
+    sounding stupid is doing more to drive churn than lesson quality is.
+  weak_sounds_like: >-
+    Using Jobs to Be Done, the job here is that users want to learn a language more
+    effectively, so I would focus on making the lessons better.
+
+evidence:
+  strength: heuristic
+  note: >-
+    Practitioner theory with substantial influence and no controlled empirical
+    base. The case evidence is largely retrospective and selected, which makes it
+    persuasive but not predictive. Best treated as a generative reframing device
+    rather than as a model that forecasts behaviour — and in an interview, saying
+    so is a strength rather than a hedge.
+
+sources:
+  - label: "Christensen, C. — The Innovator's Solution (coined the JTBD term)"
+    year: 2003
+  - label: "Ulwick, A. — Outcome-Driven Innovation; introduced the concept to Christensen in 1999"
+  - label: "Levitt, T. — The Marketing Imagination (drill/hole line, quoting Leo McGinneva)"
+    year: 1983

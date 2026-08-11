@@ -1,0 +1,163 @@
+id: product-design
+name: Design a Product
+order: 1
+family: product
+prompt_forms:
+  - "How would you design a medication reminder for someone living alone?"
+  - "Design a savings product for teenagers."
+  - "Design a better washing machine."
+  - "How would you build a product for X?"
+
+what_is_tested:
+  - "Whether you establish the user before you establish the solution"
+  - "Whether you ask clarifying questions rather than assuming the obvious reading"
+  - "Whether you can name distinct user segments and commit to one"
+  - "Whether your features trace back to a stated use case rather than to your own taste"
+  - "Structured thinking, signposted out loud so the interviewer can follow"
+
+approach:
+  - step: 1
+    title: Ask questions to understand the problem
+    detail: >-
+      The question is almost never as narrow as it sounds. "Design a pen" could
+      mean a pen for astronauts, for scuba divers, for children in a bathtub, or
+      one whose ink survives the laundry. Each implies a completely different
+      product. Establish which one before you spend a single minute designing.
+  - step: 2
+    title: State your structure out loud
+    detail: >-
+      Say what you are about to do before you do it: "First the users, then their
+      use cases, then where current products fail them, then what I would build."
+      This is the cheapest possible signal of structured thinking, and it keeps
+      the interviewer oriented for the next fifteen minutes.
+  - step: 3
+    title: Identify users AND customers
+    detail: >-
+      These are frequently different people. For a children's calculator the
+      child is the user, the teacher is a secondary user, and the parent is both
+      a user and the person paying. Products for the elderly, for patients, or
+      for professionals almost always have a caregiver, clinician, or assistant
+      in the picture.
+  - step: 4
+    title: List use cases and the motivation underneath them
+    detail: >-
+      For each user, list what they are actually trying to do. Then push one
+      level down to WHY. For a keychain designed for an elderly user the use
+      cases are finding, adding, and removing keys — but the motivation is
+      independence, and that is the thing worth designing for.
+  - step: 5
+    title: Assess where current solutions fail
+    detail: >-
+      Walk each use case against what exists today and find the gaps. This is
+      where your design gets its justification. Skipping it is what makes a
+      feature list feel arbitrary.
+  - step: 6
+    title: Propose features tied explicitly to the gaps
+    detail: >-
+      Name each feature alongside the use case it serves. Offer a few, then ask
+      whether the interviewer wants you to go deeper on any one — that keeps you
+      driving without monologuing.
+  - step: 7
+    title: Summarise the recommendation
+    detail: >-
+      After fifteen minutes of exploration the interviewer may genuinely not know
+      what you are proposing. Restate it, name the success metric, and stop.
+
+time_guidance: >-
+  Roughly a third of your time on understanding the problem and the user, a third
+  on solutions, a third on evaluation and wrap-up. Candidates routinely invert
+  this and start listing features in the first two minutes.
+
+pitfalls:
+  - mistake: "Listing features immediately, because you know the product well."
+    instead: >-
+      Product familiarity is a trap here — it makes skipping straight to
+      solutions feel efficient. Establish the user first even when you are certain
+      you already know them.
+  - mistake: "Designing for 'everyone' or refusing to pick a segment."
+    instead: >-
+      Name the segments, pick one, and say why you rejected the others. The
+      rejection is the part that scores.
+  - mistake: "Proposing features you personally want."
+    instead: >-
+      Tie every feature to a use case you established earlier. If you cannot
+      trace it back, do not propose it.
+  - mistake: "Asking so many clarifying questions that the interviewer takes over."
+    instead: >-
+      If they flip a question back to you — 'what do you think?' — that is the
+      signal to stop asking and start deciding.
+
+sample_questions:
+  - "Design a way for someone with limited hand mobility to control their television."
+  - "Design a bus shelter for a city with hard winters."
+  - "How would you design a fridge for a studio apartment?"
+  - "Design a product to help people find a new apartment."
+  - "How would you improve public transport in your city?"
+
+teaching:
+  in_one_line: >-
+    The design question is not testing your imagination. It is testing whether
+    you can resist solving before you know who you are solving for.
+
+  mechanism: >-
+    An interviewer cannot observe how you would run a six-month project, so they
+    observe the compressed version: given an ambiguous prompt, do you narrow it
+    down responsibly or do you fill the ambiguity with your own assumptions? Every
+    step in the approach exists to expose that. The clarifying questions test
+    whether you notice ambiguity; the segment choice tests whether you can commit
+    under uncertainty; tying features to use cases tests whether your ideas come
+    from the user or from you. That is also why the "right" answer barely matters
+    — two candidates can propose opposite products and both score well.
+
+  in_interview:
+    how_to_deploy: >-
+      Pair this with a procedural framework — CIRCLES maps onto it almost
+      one-to-one — and signpost every transition. The structure is the content
+      here more than in any other question type.
+    strong_sounds_like: >-
+      Before I design anything: when you say a calculator for kids, are we talking
+      about a seven-year-old learning arithmetic or a sixteen-year-old doing
+      trigonometry? I will assume seven to nine. That gives me three parties — the
+      child using it, the teacher assigning with it, and the parent buying it —
+      and I am going to design primarily for the child while making sure I have
+      not made it unusable for the other two.
+    weak_sounds_like: >-
+      I would make it colourful and rounded so it is safe, add a fun sound when
+      you get the answer right, and maybe some games to make maths more engaging.
+
+  in_product_work: >-
+    This is the compressed version of a discovery process. The same failure mode
+    shows up in real work as a roadmap full of features that trace back to a
+    stakeholder's preference rather than to an observed user problem.
+
+  in_daily_life: >-
+    It is the difference between someone who asks what you are cooking before
+    recommending a knife, and someone who just tells you which knife they own.
+
+  worked_example:
+    situation: "Design a way for someone with limited hand mobility to control their television."
+    without: >-
+      Jump to features: voice control, larger buttons, a simplified remote.
+      Reasonable ideas, no reasoning — and they are aimed at the wrong moment.
+    with: >-
+      Walk the use cases one at a time and notice that selecting a channel is the
+      easy part. The expensive moment is UNDOING a mis-tap: correcting an input
+      demands more precision than making it, and voice fails exactly when the
+      television is loud, which is whenever you most need to change it. Note too
+      that the remote is shared with a household and moves without warning.
+    takeaway: >-
+      The design target turned out to be error recovery rather than input. That
+      only surfaced because each use case was walked separately — and it is why
+      the obvious accessibility features would have missed.
+
+# Open prompts — deliberately silent about who the user is, so a practice session
+# can bind an archetype and a situation to them.
+context_prompts:
+  - "Design a grocery shopping experience"
+  - "Design a way to manage recurring bills"
+  - "Design a feature that helps people keep track of medication"
+  - "Design a travel booking flow"
+  - "Design a way to share photos with family"
+  - "Design a tool for managing personal finances"
+  - "Design an onboarding experience for a banking app"
+  - "Design a way to schedule and keep appointments"

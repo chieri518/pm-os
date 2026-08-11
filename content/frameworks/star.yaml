@@ -1,0 +1,98 @@
+id: star
+kind: narrative
+name: STAR
+aka: ["STAR method", "SAR"]
+summary: >-
+  An answer structure for behavioural questions. Deliberately modelled as
+  narrative rather than procedural: beats are ordered but carry no time
+  budget, because behavioural answers are judged on specificity and ownership
+  rather than on stage pacing.
+best_for:
+  - "Tell me about a time when..."
+  - "Describe a conflict with a stakeholder"
+  - "Walk me through a failure"
+
+teaching:
+  in_one_line: >-
+    Four beats for a behavioral answer, where the Action beat should be most of it
+    and should be told in the first person singular.
+
+  why_this_structure: >-
+    Interviewers are trying to separate what you did from what happened around
+    you, and unstructured recall reliably blurs the two. The beats exist in
+    proportion: Situation is scene-setting and should be short, Action is the
+    evidence and should dominate, Result is what makes the evidence checkable.
+    Most candidates invert this — long context, brief action, vague outcome —
+    which is why so many genuinely strong experiences score as unremarkable.
+    Adding a nugget sentence before Situation solves the other half of the
+    problem, giving the listener somewhere to file the details as they arrive.
+
+  when_to_use:
+    - "Any 'tell me about a time when' question"
+    - "Conflict, failure, influence, and leadership stories"
+    - "Anywhere you need to make a messy real experience legible in two minutes"
+
+  when_not_to_use:
+    - "Hypotheticals — 'what would you do if' wants reasoning, not a story"
+    - "Product, estimation, or strategy questions"
+    - "When the interviewer explicitly asks only for the outcome"
+
+  worked_walkthrough:
+    question: "Tell me about a time you had to influence a team without authority."
+    beats:
+      - part_id: star.situation
+        say: >-
+          We had to hit a release date and one feature had to be cut. It was the
+          one the engineers were most invested in.
+      - part_id: star.task
+        say: >-
+          I owned the scope decision, and I needed the team to accept it without
+          feeling overruled.
+      - part_id: star.action
+        say: >-
+          I identified the two most influential engineers and spoke to each
+          separately. With the senior one I worked through the architectural
+          consequences until she reached the same conclusion herself. With the
+          other, who cared about standing on the team, I was direct about what his
+          support would mean to me. Then I asked both to help present it, so the
+          decision did not arrive from me alone.
+      - part_id: star.result
+        say: >-
+          We shipped with a day to spare and delivered the cut feature three weeks
+          later. What I would change is telling the full team sooner — handling it
+          privately first left two people feeling worked around.
+
+  failure_modes:
+    - mistake: "Saying 'we' throughout the Action beat."
+      instead: >-
+        First person singular. Separate what the team did from what you did — this
+        is the most common and most expensive error in behavioral answers.
+    - mistake: "Spending half the answer on Situation."
+      instead: >-
+        Two sentences of context is usually enough. If the detail does not change
+        how your actions are read, cut it.
+    - mistake: "Ending with an unquantified Result."
+      instead: >-
+        Give a number, and add what you would do differently. The reflection is
+        what turns an anecdote into evidence.
+
+beats:
+  - id: star.situation
+    order: 1
+    name: Situation
+    prompt: Set the context in two sentences — team, stakes, timeframe.
+
+  - id: star.task
+    order: 2
+    name: Task
+    prompt: State what you specifically owned. Not what the team owned.
+
+  - id: star.action
+    order: 3
+    name: Action
+    prompt: Describe what you did, in first person singular, with the reasoning behind each choice.
+
+  - id: star.result
+    order: 4
+    name: Result
+    prompt: Quantify the outcome, then say what you would do differently.

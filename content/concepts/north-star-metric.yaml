@@ -1,0 +1,129 @@
+id: north-star-metric
+name: North Star Metrics & Metric Trees
+order: 41
+domain: metrics
+in_one_line: >-
+  One metric that captures the value customers get, decomposed into the inputs
+  teams can actually move.
+
+why_it_matters: >-
+  "How would you measure success?" is asked in almost every loop. The scarce skill
+  is not listing metrics — it is committing to one and showing how the work
+  connects to it. A metric tree is what makes that connection legible.
+
+layers:
+  - level: orientation
+    title: One number, chosen on purpose
+    body: >-
+      A North Star metric is the single quantity that best represents the value
+      your product delivers to customers, and which the business depends on. The
+      test is not "is it easy to measure" but "if this went up for a year, would we
+      be confident the product genuinely got better for people?" Revenue usually
+      fails that test, because revenue can rise through price increases that make
+      customers worse off. Nights booked, messages sent to someone who replies,
+      minutes of content people chose to finish — these pass, because they cannot
+      easily rise while the experience deteriorates.
+
+  - level: working
+    title: Decomposing it into a tree
+    body: >-
+      A North Star alone is useless to a team, because no individual can move it
+      directly. Break it into a multiplicative tree of inputs. If the North Star is
+      weekly booked nights, that is roughly active searchers × search-to-book
+      conversion × bookings per booker × nights per booking. Each of those
+      decomposes again, and eventually you reach something a team owns and can
+      change this quarter. The tree does three jobs: it shows which input is
+      currently weakest, it makes clear whose work affects what, and it exposes
+      trade-offs, because pushing one branch often pulls another down. Pair the
+      North Star with guardrails — counter-metrics that must not move — since every
+      metric is gameable and the tree tells you exactly how.
+
+  - level: expert
+    title: Goodhart, gaming, and the leading-lagging problem
+    body: >-
+      Goodhart's law is the governing constraint: when a measure becomes a target,
+      it ceases to be a good measure. This is not cynicism about incentives; it is
+      structural. Any proxy is chosen because it correlates with the thing you care
+      about, and optimisation pressure attacks exactly the part of the correlation
+      that is incidental. Session length rises when navigation gets worse. Messages
+      sent rises when messages fail to deliver. The mitigations are to choose
+      metrics closer to realised value (a booked and completed stay rather than a
+      click), to hold guardrails alongside, and to re-derive the metric
+      periodically rather than inheriting it. Separately, distinguish leading from
+      lagging indicators: retention is the truest signal and the slowest, so teams
+      need leading proxies to steer by, while accepting that proxies are where the
+      gaming happens. Beware also of averages over bimodal populations — a mean
+      session length of eight minutes can describe a product where nobody has ever
+      had an eight-minute session.
+
+formulas:
+  - name: Metric tree (multiplicative form)
+    expression: "North Star = users × frequency × conversion × depth"
+    notes: "Exact decomposition varies by product. What matters is that the branches multiply to the top and each leaf is owned by someone."
+  - name: DAU/MAU
+    expression: "Stickiness = daily actives ÷ monthly actives"
+    notes: "A crude habit proxy. Meaningless for products with legitimately episodic use — nobody books flights daily."
+
+worked_example:
+  situation: "Choose a North Star for a freelance marketplace and decompose it."
+  steps:
+    - "Candidate: GMV. Fails the test — it rises with fee increases that help nobody."
+    - "Candidate: completed contracts with both sides rating 4+. Passes — it cannot rise while the experience degrades."
+    - "Tree: active clients × briefs posted per client × brief-to-hire rate × contracts completed per hire."
+    - "Weakest branch on inspection is brief-to-hire rate at 22%, so that is where the quarter goes."
+    - "Guardrail: freelancer earnings per hour. Raising hire rate by pushing prices down would move the North Star and damage supply."
+    - "Leading proxy: time-to-first-proposal, which predicts hire rate and moves within days rather than weeks."
+  takeaway: >-
+    The guardrail is doing the real work here. Without it, the fastest way to move
+    the North Star is to make the marketplace worse for the side that is harder to
+    replace.
+
+common_errors:
+  - mistake: "Choosing revenue as the North Star."
+    instead: >-
+      Revenue is the outcome, not the value. It can rise while customers get a
+      worse deal, which is exactly the failure a North Star exists to prevent.
+  - mistake: "Naming a North Star with no tree under it."
+    instead: >-
+      Decompose until you reach something a team can move this quarter. An
+      undecomposed metric is a poster, not an instrument.
+  - mistake: "Forgetting the guardrail."
+    instead: >-
+      Say what must not move. It demonstrates you understand your own metric's
+      failure mode, which is the part that gets scored.
+  - mistake: "Using DAU/MAU for an episodic product."
+    instead: >-
+      Match the measurement window to the natural usage cadence. Daily metrics on a
+      product used twice a year measure nothing.
+
+in_interview:
+  how_to_deploy: >-
+    When asked to measure something, define value in words, commit to one metric,
+    decompose it two levels out loud, then volunteer the guardrail. That sequence
+    covers nearly everything an analytical rubric is looking for.
+  strong_sounds_like: >-
+    I would define success as completed contracts where both sides rate each other
+    well — not GMV, which rises if we simply raise fees. That decomposes into active
+    clients, briefs per client, brief-to-hire rate, and contracts per hire; hire
+    rate is the weak branch at 22%. My guardrail is freelancer earnings per hour,
+    because the fastest way to game hire rate is to suppress prices, and that
+    damages the side of the marketplace that is harder to replace.
+  weak_sounds_like: >-
+    Our North Star would be daily active users, and I would also track engagement,
+    retention, revenue, and NPS.
+
+evidence:
+  strength: heuristic
+  note: >-
+    A management practice rather than a research finding — there is no study
+    showing North Star adoption causes better outcomes. Goodhart's law, by
+    contrast, is a well-established observation across economics and public policy,
+    and the gaming dynamic it describes is reliably reproduced whenever proxy
+    metrics carry incentives. Treat the framework as useful discipline and the
+    gaming risk as the empirically solid part.
+
+sources:
+  - label: "Goodhart, C. — Problems of Monetary Management: The UK Experience"
+    year: 1975
+  - label: "Strathern, M. — 'Improving ratings': the widely quoted formulation of Goodhart's law"
+    year: 1997

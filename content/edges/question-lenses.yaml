@@ -1,0 +1,84 @@
+# ASKED_BY: question_type -> company_lens. Where each question type carries the
+# most weight. Researched estimates from published guidance, not insider knowledge.
+
+- from: { type: question_type, id: product-design }
+  to: { type: company_lens, id: meta }
+  relation: ASKED_BY
+  strength: 5
+  rationale: >-
+    The centre of Meta's loop. Expect the segment choice to be probed hardest,
+    and expect to be asked why you rejected the other segments.
+
+- from: { type: question_type, id: product-design }
+  to: { type: company_lens, id: google }
+  relation: ASKED_BY
+  strength: 4
+  rationale: >-
+    Present and important, but weighted alongside analytical rounds rather than
+    dominating the loop as it does at Meta.
+
+- from: { type: question_type, id: estimation }
+  to: { type: company_lens, id: google }
+  relation: ASKED_BY
+  strength: 5
+  rationale: >-
+    Google's analytical round is where estimation lives, and the expectation is
+    an explicit equation before any number is guessed.
+
+- from: { type: question_type, id: behavioral }
+  to: { type: company_lens, id: amazon }
+  relation: ASKED_BY
+  strength: 5
+  rationale: >-
+    Amazon's loop is explicitly Leadership-Principle-driven, so behavioural
+    questions carry more weight here than anywhere else — and answering in "we"
+    rather than "I" is the most commonly cited failure.
+
+- from: { type: question_type, id: strategy }
+  to: { type: company_lens, id: amazon }
+  relation: ASKED_BY
+  strength: 4
+  rationale: >-
+    Expect to be pushed downward until the answer reaches specific numbers and a
+    mechanism to prevent the problem recurring.
+
+- from: { type: question_type, id: metrics-diagnosis }
+  to: { type: company_lens, id: meta }
+  relation: ASKED_BY
+  strength: 5
+  rationale: >-
+    Meta's execution and analytical round. Proposing a counter-metric unprompted
+    is one of the clearest positive signals available in this loop.
+
+- from: { type: question_type, id: technical }
+  to: { type: company_lens, id: google }
+  relation: ASKED_BY
+  strength: 4
+  rationale: >-
+    Historically the most technical of the major PM loops. Confirm the bar with
+    your recruiter, since it has varied by org and over time.
+
+- from: { type: question_type, id: technical }
+  to: { type: company_lens, id: microsoft }
+  relation: ASKED_BY
+  strength: 4
+  rationale: >-
+    Program-manager roles here have historically included real technical depth,
+    and specification completeness is judged partly on implementation awareness.
+
+- from: { type: question_type, id: favorite-product }
+  to: { type: company_lens, id: apple }
+  relation: ASKED_BY
+  strength: 5
+  rationale: >-
+    Taste and craft are the primary rubric dimensions, so this question does more
+    work here than at any other company. Expect follow-ups on why a decision is
+    right rather than merely pleasant.
+
+- from: { type: question_type, id: product-improvement }
+  to: { type: company_lens, id: meta }
+  relation: ASKED_BY
+  strength: 4
+  rationale: >-
+    Frequently the second half of a product round. The prioritisation and the
+    success metric are what get scored, not the volume of ideas.

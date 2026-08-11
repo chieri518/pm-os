@@ -1,0 +1,22 @@
+id: enterprise-admin
+name: Enterprise IT Admin
+order: 4
+age_band: "28-50"
+life_stage: "Mid-career, in a governance-heavy organisation"
+role: "IT administrator or platform owner; buyer but rarely the end user"
+tech_literacy: high
+drivers:
+  - "Nothing under my name causes an incident"
+  - "Pass the audit without a scramble"
+  - "Reduce the number of tickets I personally answer"
+values:
+  - "auditability > convenience"
+  - "predictable > fast"
+  - "vendor stability > feature richness"
+frictions:
+  - "Must justify every purchase to procurement and security"
+  - "Cannot roll out anything that needs per-user training"
+  - "Blamed for outages caused by tools they did not choose"
+typical_situations:
+  - procurement-review
+  - desk-deep-work

@@ -1,0 +1,86 @@
+id: millers-law
+scope: experience
+name: Miller's Law (Cowan-corrected)
+aka: ["The Magical Number Seven", "7±2"]
+claim: >-
+  Immediate memory holds a small number of CHUNKS, not items. Miller (1956)
+  estimated seven plus or minus two for serial recall of unrelated items; Cowan
+  (2001) put the real focus-of-attention limit closer to four chunks once
+  rehearsal and long-term-memory support are controlled for.
+implication: >-
+  Do not require a user to hold more than roughly four unrelated pieces of
+  information in their head across a step boundary. Either chunk related items
+  into one unit, or keep the information on screen so recall is unnecessary.
+evidence_strength: replicated
+caveat: >-
+  Miller himself framed seven as a rhetorical device rather than a hard capacity
+  limit — the paper opens by joking about being persecuted by an integer. The
+  defensible modern number is about four chunks (Cowan 2001), and even that varies
+  with material type and whether chunking is possible.
+common_misapplication: >-
+  "Miller's Law means a nav bar should have 7±2 items." Miller studied immediate
+  serial recall of unrelated items, not visual scanning of a persistent list. A
+  menu that stays on screen imposes no memory load at all, so the limit does not
+  apply. Use Miller/Cowan for things the user must CARRY between steps — a
+  verification code, a set of criteria — not for things they can simply look at.
+teaching:
+  in_one_line: >-
+    People hold about four chunks in mind at once — not seven — and the limit
+    only bites for things they must carry between steps.
+
+  mechanism: >-
+    The constraint is on CHUNKS, not items. "CIA FBI NSA" is three chunks, not
+    nine letters, because long-term memory supplies the grouping. That is why the
+    real design lever is chunk size rather than item count: you are not reducing
+    what the user handles, you are changing how much of it counts as one thing.
+    Miller's seven came from serial recall of unrelated items with rehearsal
+    available; Cowan's four is what remains once rehearsal and long-term-memory
+    support are controlled out. And anything visible on screen imposes no memory
+    load at all — the limit applies to carrying, not to looking.
+
+  in_interview:
+    how_to_deploy: >-
+      Deploy it in Report Customer Needs when describing what the user must
+      remember between steps. Saying "four, per Cowan, not seven" is a cheap and
+      very legible credibility signal.
+    strong_sounds_like: >-
+      Between step one and step four the user has to carry their policy number,
+      their claim date, and the incident reference — three unrelated chunks
+      across three screens, which is right at the working-memory limit. I would
+      persist them in a summary rail rather than shortening the form.
+    weak_sounds_like: >-
+      Miller's Law says seven plus or minus two, so the navigation should have
+      about seven items.
+
+  in_product_work: >-
+    It is the argument for showing the order summary on the payment step instead
+    of trusting people to remember what they are buying, and the reason
+    verification codes are chunked three-and-three rather than printed as six
+    loose digits.
+
+  in_daily_life: >-
+    Why you can hold a phone number long enough to dial it but not while someone
+    reads you an address at the same time — and why you repeat a new name aloud
+    immediately after hearing it.
+
+  worked_example:
+    situation: >-
+      A multi-step insurance claim form that asks for the policy number on step
+      four, having displayed it on step one.
+    without: >-
+      Users tab backwards to retrieve it, lose their place, and a share abandon.
+      The team reads the drop-off as "the form is too long" and cuts fields.
+    with: >-
+      Keep every field, but persist the policy number in a summary rail visible
+      throughout. The carry requirement disappears.
+    takeaway: >-
+      The fix was not fewer fields. It was removing the need to carry one. Length
+      and memory load are independent problems that look identical in a funnel.
+
+applies_when:
+  any:
+    - { dim: cognitive_load, op: gte, value: medium }
+    - { dim: hands_free, op: lte, value: 1 }
+source:
+  label: "Miller, G. A. (1956), Psychological Review; Cowan, N. (2001), Behavioral and Brain Sciences 24(1):87-114"
+  year: 2001

@@ -1,0 +1,103 @@
+id: aarrr
+kind: taxonomic
+name: AARRR (Pirate Metrics)
+aka: ["Pirate Metrics"]
+summary: >-
+  A funnel taxonomy for classifying growth metrics. Modelled as taxonomic, not
+  procedural: the categories are a classification scheme, not a sequence you walk
+  through in an answer, and they carry no time budget.
+best_for:
+  - "How would you measure success"
+  - "Diagnose a drop in growth"
+  - "Which metric would you move"
+source:
+  label: "McClure, D. — Startup Metrics for Pirates"
+  year: 2007
+
+teaching:
+  in_one_line: >-
+    Five stages of the customer lifecycle, used to locate WHERE a growth problem
+    lives before arguing about how to fix it.
+
+  why_this_structure: >-
+    It is a diagnostic partition rather than a sequence you walk through. Growth
+    problems present as one aggregate symptom — "growth is flat" — but the
+    remedies for each stage are unrelated and mostly incompatible. Acquisition
+    problems want channels and positioning; activation problems want onboarding;
+    retention problems want the product to be worth returning to. Naming the stage
+    first prevents the standard failure of spending a marketing budget on a
+    retention problem, where more users arriving simply leak out faster.
+
+  when_to_use:
+    - "How would you grow this product?"
+    - "Growth has stalled — diagnose it"
+    - "Which metric matters most here?"
+
+  when_not_to_use:
+    - "Product design questions, where it says nothing about what to build"
+    - "Products with no self-serve funnel — enterprise sales does not work this way"
+    - "As a sequence; these are categories, not stages you complete in order"
+
+  worked_walkthrough:
+    question: "Growth is flat for a note-taking app. Where do you look?"
+    beats:
+      - part_id: aarrr.acquisition
+        say: >-
+          Signups are steady month over month, so the top of the funnel is not
+          the problem. That already eliminates most marketing answers.
+      - part_id: aarrr.activation
+        say: >-
+          Only a third of new accounts ever create a second note. That is where
+          the leak is concentrated.
+      - part_id: aarrr.retention
+        say: >-
+          Among people who do create a second note, thirty-day retention is
+          strong — so the product works once it lands.
+      - part_id: aarrr.referral
+        say: >-
+          Retained users invite others at a healthy rate, which means fixing
+          activation compounds rather than just adding a one-off gain.
+      - part_id: aarrr.revenue
+        say: >-
+          Conversion to paid is fine among retained users, so revenue is
+          downstream of the activation problem rather than a separate issue.
+
+  failure_modes:
+    - mistake: "Treating it as a checklist and reporting all five."
+      instead: >-
+        Use it to find the one leaking stage, then spend your time there. The
+        other four exist to be ruled out quickly.
+    - mistake: "Optimising acquisition because it is the most visible stage."
+      instead: >-
+        Adding users to a leaking funnel scales the leak. Retention and activation
+        problems must be fixed before acquisition spending makes sense.
+    - mistake: "Reporting cumulative totals per stage."
+      instead: >-
+        Use cohorts and rates. All-time signups only ever go up and can hide a
+        collapse happening right now.
+
+dimensions:
+  - id: aarrr.acquisition
+    name: Acquisition
+    prompt: How do users first find the product?
+    example_metrics: ["new visitors", "cost per acquisition", "traffic by channel"]
+
+  - id: aarrr.activation
+    name: Activation
+    prompt: Do they reach first value quickly enough to come back?
+    example_metrics: ["% reaching the aha moment", "time to first value", "setup completion"]
+
+  - id: aarrr.retention
+    name: Retention
+    prompt: Do they come back? This is the dimension most candidates skip.
+    example_metrics: ["D1/D7/D30 retention", "cohort curves", "resurrection rate"]
+
+  - id: aarrr.referral
+    name: Referral
+    prompt: Do they bring others?
+    example_metrics: ["invites sent per user", "viral coefficient", "NPS"]
+
+  - id: aarrr.revenue
+    name: Revenue
+    prompt: Does the behaviour convert into money?
+    example_metrics: ["ARPU", "conversion to paid", "LTV:CAC"]

@@ -1,0 +1,78 @@
+id: jakobs-law
+scope: experience
+name: Jakob's Law
+claim: >-
+  Users spend most of their time on other products, so they expect yours to work
+  the way everything else they already use works.
+implication: >-
+  Prefer conventional patterns for anything that is not your differentiator. Spend
+  your novelty budget on the one interaction that is genuinely your product's
+  reason to exist, and make everything around it boringly familiar.
+evidence_strength: heuristic
+caveat: >-
+  This is practitioner wisdom from usability consulting, not a controlled finding
+  with an effect size. It is well-supported by transfer-of-learning research in
+  general terms, but "Jakob's Law" itself has no single underlying study, and it
+  offers no guidance on WHEN a convention is bad enough to be worth breaking.
+common_misapplication: >-
+  Using it as a blanket argument against all differentiation. Every category
+  leader broke some convention to win; the law tells you novelty is expensive,
+  not that it is forbidden.
+teaching:
+  in_one_line: >-
+    Users spend almost all of their time on other products, so they arrive at
+    yours expecting it to work like those.
+
+  mechanism: >-
+    Mental models are built from aggregate exposure, not from your product.
+    Someone lands on your checkout carrying a model assembled from every other
+    checkout they have used, and they will act on that model before they read
+    anything. Convention is therefore not laziness — it is borrowed learning, and
+    every break from it spends a budget of attention and goodwill that could have
+    gone to the thing that actually differentiates you.
+
+  in_interview:
+    how_to_deploy: >-
+      Deploy it in List Solutions to explain where you are deliberately NOT
+      innovating. Done well, this makes the one place you ARE innovating read as
+      a decision rather than an oversight.
+    strong_sounds_like: >-
+      I would keep the navigation, search, and account patterns completely
+      conventional, and spend the entire novelty budget on the comparison view,
+      because that is the actual reason to use this product over the incumbent.
+    weak_sounds_like: >-
+      Users expect things to work like other sites, so I would copy the market
+      leader's layout.
+
+  in_product_work: >-
+    It is why moving the search bar costs more than the redesign deck suggests,
+    and why redesigns that test beautifully in isolation still fail on release:
+    the test measured the design, not the cost of unlearning the old one.
+
+  in_daily_life: >-
+    Why you can drive an unfamiliar rental car immediately but an unfamiliar
+    shower control is genuinely infuriating. Cars converged on a convention;
+    showers never did.
+
+  worked_example:
+    situation: >-
+      A B2B dashboard ships with a novel left-rail navigation that tested well
+      with new users in a lab.
+    without: >-
+      Existing users cannot find settings. Support tickets spike, and the team
+      reads it as a training problem rather than a convention problem.
+    with: >-
+      Conventional navigation, with the novelty spent instead on the one
+      differentiating view the product exists for.
+    takeaway: >-
+      The innovation budget is finite. Spend it where the product IS the
+      difference, not on the plumbing — and note the law tells you novelty is
+      expensive, not that it is forbidden. Every category leader broke something.
+
+applies_when:
+  any:
+    - { dim: ability, op: gte, value: medium }
+    - { dim: cognitive_load, op: gte, value: high }
+source:
+  label: "Nielsen, J. — Nielsen Norman Group"
+  url: "https://www.nngroup.com/"

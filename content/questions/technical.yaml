@@ -1,0 +1,129 @@
+id: technical
+name: Technical
+order: 8
+family: technical
+prompt_forms:
+  - "How would you explain an API to a non-technical stakeholder?"
+  - "What happens when you type a URL into a browser?"
+  - "Write a function that reverses a linked list."
+  - "How would you design the data model for this feature?"
+
+what_is_tested:
+  - "Whether engineers will respect you enough to be led by you"
+  - "Whether you can hold a real conversation about trade-offs and constraints"
+  - "Whether you can explain a technical concept to a non-technical audience"
+  - "For technical PM roles specifically: whether you can still write working code"
+
+approach:
+  - step: 1
+    title: Establish the bar for this specific role
+    detail: >-
+      Requirements vary enormously. Google and Microsoft PM loops have historically
+      included real coding; many other companies test only technical
+      conversation. Ask the recruiter directly what the technical bar is — this is
+      a normal question and the answer changes your preparation completely.
+  - step: 2
+    title: For explanation questions, choose the right altitude
+    detail: >-
+      Explaining an API to a non-technical stakeholder is not a test of API
+      knowledge. It is a test of whether you can pick an analogy that survives
+      follow-up questions and know which details to drop.
+  - step: 3
+    title: For system questions, reason about constraints
+    detail: >-
+      What has to be stored, what has to be fast, what happens at ten times the
+      scale, what breaks when the network fails. You are not designing the system;
+      you are showing you can participate in the conversation credibly.
+  - step: 4
+    title: For coding questions, narrate before you write
+    detail: >-
+      State the approach, confirm it, then write. Then walk through a concrete
+      example and name the edge cases — empty input, single element, duplicates.
+      The same rules as an engineering interview, at a lower difficulty bar.
+  - step: 5
+    title: Say what you do not know, precisely
+    detail: >-
+      "I do not know how consistent-hashing rebalances, but I understand why you
+      would shard here" is a strong answer. Bluffing is the failure mode, because
+      your interviewer builds this for a living and will notice immediately.
+
+time_guidance: >-
+  For coding, spend the first fifth on approach and clarification. For explanation
+  questions, keep the first pass short and let the follow-ups pull detail out of you.
+
+pitfalls:
+  - mistake: "Bluffing technical depth you do not have."
+    instead: >-
+      Name the boundary of your knowledge and reason from what you do know.
+      Engineers detect bluffing instantly, and it damages the one thing this
+      question is actually assessing: whether they can trust you.
+  - mistake: "Over-explaining to a technical interviewer, or under-explaining to a non-technical one."
+    instead: >-
+      Ask who the audience is meant to be. If the question is "explain X to a
+      stakeholder", the audience is the whole point of the question.
+  - mistake: "Assuming a PM role requires no coding."
+    instead: >-
+      Some do. Ask the recruiter. Discovering this in the room is an avoidable
+      and expensive surprise.
+  - mistake: "Treating technical questions as a hurdle rather than the job."
+    instead: >-
+      The reason this is tested is that you will spend years negotiating scope with
+      engineers. Credibility there is the difference between influencing a team
+      and being routed around.
+
+sample_questions:
+  - "Explain what an API is to someone non-technical."
+  - "What happens when you type a URL into a browser and press enter?"
+  - "How would you design the data model for a commenting system?"
+  - "What is the difference between a cache and a database?"
+  - "Why might an app be slow, and how would you find out?"
+
+teaching:
+  in_one_line: >-
+    Technical questions test whether engineers will follow you — not whether you
+    could do their job.
+
+  mechanism: >-
+    A PM has no formal authority over the engineers building the product, so
+    influence has to come from somewhere else, and credibility is the main
+    available source. An engineer who believes you understand the constraints will
+    tell you when an estimate is soft or a design is fragile; one who believes you
+    do not will simply give you a number and route around you. The interview is
+    checking for that credibility threshold, which is why precise honesty about
+    what you do not know scores better than confident vagueness.
+
+  in_interview:
+    how_to_deploy: >-
+      Ask the recruiter what the bar is before you prepare. In the room, treat
+      unknowns as boundaries to name rather than gaps to paper over.
+    strong_sounds_like: >-
+      I would store comments in their own table keyed by thread, rather than
+      nested in the post document, because the read pattern is paginated and the
+      write pattern is high-frequency. I do not know what your current database is,
+      so I am assuming something relational — if it is document-based my answer
+      changes, and the trade-off becomes read simplicity against write contention.
+    weak_sounds_like: >-
+      I would probably use a NoSQL database because they scale better, and add
+      caching to make it fast.
+
+  in_product_work: >-
+    It is what determines whether you find out about the risky dependency in week
+    two or week nine. Teams tell technically credible PMs things earlier.
+
+  in_daily_life: >-
+    Knowing enough about cars to have a useful conversation with a mechanic. You
+    are not going to do the repair; you want to be told the truth about it.
+
+  worked_example:
+    situation: "Explain an API to a non-technical stakeholder."
+    without: >-
+      A definition involving endpoints, requests, and responses. Accurate, and it
+      lands with the audience as noise.
+    with: >-
+      A restaurant: the menu is the contract of what you can order, the kitchen is
+      the system doing the work, and the waiter carries requests back and forth so
+      you never need to enter the kitchen. Then say where the analogy breaks —
+      unlike a waiter, an API will reject an order that is phrased wrongly.
+    takeaway: >-
+      Naming where your own analogy breaks is what separates explaining from
+      reciting, and it is the part almost nobody does.

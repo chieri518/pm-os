@@ -1,0 +1,78 @@
+id: goal-gradient-effect
+scope: experience
+name: Goal-Gradient Effect
+claim: >-
+  Effort toward a goal increases as perceived proximity to that goal increases.
+  Kivetz, Urminsky & Zheng (2006) found customers bought coffee faster the closer
+  they got to a completed loyalty card — and that giving a 12-stamp card with two
+  stamps pre-filled beat a 10-stamp empty card, despite requiring identical purchases.
+implication: >-
+  Show progress, and start it above zero where honest. Endowed progress converts
+  better than equivalent unstarted progress, and the acceleration is strongest in
+  the final stretch — so the last step should be the easiest one.
+evidence_strength: supported
+caveat: >-
+  Originally derived from Hull's 1932 runway experiments with rats; the human
+  consumer evidence comes largely from Kivetz et al. and subsequent loyalty-program
+  research. Effects are reliable in reward-program contexts but the magnitude
+  varies, and artificially inflated progress can backfire if users perceive it as
+  manipulation.
+common_misapplication: >-
+  Adding a progress bar to a flow that has no goal the user actually cares about.
+  The effect is driven by goal proximity, not by the presence of a bar.
+teaching:
+  in_one_line: >-
+    Effort accelerates as a goal gets closer — and progress that starts above
+    zero makes the goal feel closer than it is.
+
+  mechanism: >-
+    Motivation scales with PERCEIVED proximity to the reward rather than with
+    absolute distance remaining. That is why endowed progress works: two stamps
+    on a twelve-stamp card and zero on a ten-stamp card require identical
+    purchases, but the first reads as "already underway" and the second as "not
+    started". Shifting where the user believes they are on the path changes
+    effort without changing the path at all. The acceleration is strongest at the
+    end, which is a design instruction in itself.
+
+  in_interview:
+    how_to_deploy: >-
+      Deploy it in List Solutions for anything involving onboarding, streaks, or
+      multi-step completion. Citing the endowed-progress finding specifically is
+      what separates this from "add a progress bar".
+    strong_sounds_like: >-
+      I would keep all five onboarding steps but mark the first complete on
+      signup, since endowed progress outperformed an equivalent shorter path in
+      Kivetz's loyalty-card work — and I would move the cheapest step to last,
+      because that is where the acceleration is strongest.
+    weak_sounds_like: >-
+      I would add a progress bar so users can see how far along they are.
+
+  in_product_work: >-
+    It is why profile-completion meters work, why the final onboarding step
+    should be the easiest rather than the most valuable, and why abandoned-cart
+    recovery converts better when the cart is shown as already assembled.
+
+  in_daily_life: >-
+    Why the last mile of a run is faster than the third, and why a loyalty card
+    with two squares already stamped is the one you actually finish.
+
+  worked_example:
+    situation: "A five-step onboarding flow losing forty percent of users at step two."
+    without: >-
+      Cut the flow from five steps to four. Drop-off moves to the new step two,
+      because the problem was never the count.
+    with: >-
+      Keep all five, mark step one complete on signup, show progress, and move
+      the lightest remaining step to the end.
+    takeaway: >-
+      They did not need fewer steps. They needed to feel already underway. A
+      caveat worth holding: inflate the progress dishonestly and users read it as
+      manipulation, which costs more than the drop-off did.
+
+applies_when:
+  any:
+    - { dim: motivation, op: gte, value: medium }
+    - { dim: ability, op: gte, value: medium }
+source:
+  label: "Kivetz, Urminsky & Zheng (2006), Journal of Marketing Research 43(1); Hull, C. (1932)"
+  year: 2006

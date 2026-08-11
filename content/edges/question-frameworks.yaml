@@ -1,0 +1,88 @@
+# ANSWERED_WITH: question_type -> framework. Which structures actually fit.
+# This is the edge a candidate traverses first: "I've been asked to design a
+# product — what do I reach for?"
+
+- from: { type: question_type, id: product-design }
+  to: { type: framework, id: circles }
+  relation: ANSWERED_WITH
+  strength: 5
+  rationale: >-
+    Maps almost one-to-one onto the design approach, and supplies the stage names
+    to signpost with. The seven stages are the structure the interviewer is
+    listening for.
+
+- from: { type: question_type, id: product-improvement }
+  to: { type: framework, id: circles }
+  relation: ANSWERED_WITH
+  strength: 4
+  rationale: >-
+    Works, but compress the early stages — the product already exists, so
+    Comprehend and Identify are about picking a goal and segment rather than
+    defining the product from scratch.
+
+- from: { type: question_type, id: product-improvement }
+  to: { type: framework, id: rice }
+  relation: ANSWERED_WITH
+  strength: 4
+  rationale: >-
+    The scored part of an improvement question is the prioritisation. RICE gives
+    you an explicit criterion to rank against instead of asserting a favourite.
+
+- from: { type: question_type, id: behavioral }
+  to: { type: framework, id: star }
+  relation: ANSWERED_WITH
+  strength: 5
+  rationale: >-
+    The default structure for any "tell me about a time" question. Add a nugget
+    sentence before Situation so the listener has somewhere to file the details.
+
+- from: { type: question_type, id: strategy }
+  to: { type: framework, id: swot }
+  relation: ANSWERED_WITH
+  strength: 4
+  rationale: >-
+    Best used silently as a blind-spot check on a specific decision. The
+    internal-versus-external axis is what stops you treating a market trend as
+    though it were a company capability.
+
+- from: { type: question_type, id: strategy }
+  to: { type: framework, id: five-cs }
+  relation: ANSWERED_WITH
+  strength: 3
+  rationale: >-
+    Use it to catch Collaborators and Climate, the two factors candidates
+    reliably miss and the two that most often kill a product decision.
+
+- from: { type: question_type, id: strategy }
+  to: { type: framework, id: porters-five-forces }
+  relation: ANSWERED_WITH
+  strength: 4
+  rationale: >-
+    The right tool when the question is about entering or assessing a market,
+    because it explains why an industry is profitable before you argue about how
+    you would win in it.
+
+- from: { type: question_type, id: metrics-diagnosis }
+  to: { type: framework, id: aarrr }
+  relation: ANSWERED_WITH
+  strength: 5
+  rationale: >-
+    Locates which stage of the lifecycle is leaking before anyone proposes a fix.
+    Naming the stage first is what prevents spending acquisition budget on a
+    retention problem.
+
+- from: { type: question_type, id: metrics-diagnosis }
+  to: { type: framework, id: rice }
+  relation: ANSWERED_WITH
+  strength: 2
+  rationale: >-
+    Only relevant on the follow-up — once you have diagnosed the leak and have
+    several candidate fixes to rank against each other.
+
+- from: { type: question_type, id: favorite-product }
+  to: { type: framework, id: circles }
+  relation: ANSWERED_WITH
+  strength: 2
+  rationale: >-
+    Useful in reverse: walk the stages backwards to infer what decisions the
+    team must have made about users, needs, and trade-offs to arrive at this product.

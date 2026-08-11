@@ -1,0 +1,84 @@
+id: peak-end-rule
+scope: experience
+name: Peak-End Rule
+aka: ["duration neglect"]
+claim: >-
+  People judge a past experience almost entirely by its most intense moment and by
+  how it ended, and are largely insensitive to how long it lasted.
+implication: >-
+  Spend disproportionate design effort on the worst moment and the final moment of
+  a flow. Shortening total duration buys less remembered satisfaction than
+  softening the peak of pain or improving the ending.
+evidence_strength: replicated
+caveat: >-
+  Established for bounded, coherent episodes with a clear end. Redelmeier &
+  Kahneman (1996) rated 682 real colonoscopies: peak and final-minute pain
+  predicted the global rating, while duration — which ranged from 4 to 69 minutes
+  — barely did. The 2003 randomised follow-up confirmed it causally. It should NOT
+  be assumed to apply to open-ended streams or to a whole day, where no coherent
+  "end" exists.
+common_misapplication: >-
+  Using it to justify making an experience longer. The 2003 study did extend the
+  procedure, but only by appending a LESS painful ending — the average discomfort
+  fell. It is not a licence to pad a flow, and doing so deliberately to manipulate
+  recall raises real ethical objections in the medical literature.
+teaching:
+  in_one_line: >-
+    People remember an experience by its most intense moment and by how it ended,
+    almost regardless of how long it took.
+
+  mechanism: >-
+    Retrospective judgement does not integrate an experience moment by moment; it
+    takes a couple of samples and reports on those. So remembered utility and
+    experienced utility come apart — and it is the REMEMBERED version that decides
+    whether someone comes back, recommends you, or renews. Duration falls out
+    almost entirely, which is the genuinely counter-intuitive part: in the
+    colonoscopy study, procedures ranging from four to sixty-nine minutes showed
+    essentially no relationship between length and how bad patients said it was.
+
+  in_interview:
+    how_to_deploy: >-
+      Deploy it in Evaluate Trade-offs to argue that reducing peak pain beats
+      reducing average duration. That converts a prioritisation call from taste
+      into evidence.
+    strong_sounds_like: >-
+      The twenty-minute wait is not what they will remember — the peak was the
+      silence during it, and the ending was an unclear resolution. I would spend
+      on those two moments before optimising average handle time, because
+      remembered experience is what drives whether they contact us again.
+    weak_sounds_like: >-
+      We would add a delightful confirmation animation at the end to leave users
+      with a good feeling.
+
+  in_product_work: >-
+    It is why your error and recovery states matter more for retention than your
+    happy path, and why cancellation flows deserve real design attention: the
+    cancellation IS the ending, and it sets the memory that decides whether they
+    ever come back.
+
+  in_daily_life: >-
+    Why a brilliant final day rescues an otherwise mediocre holiday, and why a
+    dentist appointment that ends gently gets remembered as "fine" even when the
+    middle was not.
+
+  worked_example:
+    situation: >-
+      A customer support chat: twenty minutes of waiting, then a competent
+      resolution.
+    without: >-
+      The team optimises average handle time, shaving two minutes off the median.
+      Satisfaction does not move.
+    with: >-
+      Attack the worst moment — silence with no queue position or updates — and
+      end with an explicit confirmation of what was resolved and what happens next.
+    takeaway: >-
+      The twenty minutes barely registered. The silence during it did. Note the
+      ethical line too: the research supports softening the peak and improving the
+      ending, not padding an experience to manipulate recall.
+
+applies_when:
+  all:
+    - { dim: time_budget_sec, op: lte, value: 3600 }
+source:
+  label: "Redelmeier, D. A. & Kahneman, D. (1996), Pain 66(1); Redelmeier, Katz & Kahneman (2003)"
+  year: 1996

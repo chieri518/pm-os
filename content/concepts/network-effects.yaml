@@ -1,0 +1,125 @@
+id: network-effects
+name: Network Effects & Moats
+order: 11
+domain: strategy
+in_one_line: >-
+  A product gets more valuable to each user as more users join — which, when real,
+  is the most durable competitive advantage available.
+
+why_it_matters: >-
+  Strategy questions almost always reduce to "why will this still be winning in
+  five years?" Network effects are the strongest answer to that question, and also
+  the most over-claimed — most products described as having them do not.
+
+layers:
+  - level: orientation
+    title: Scale is not a network effect
+    body: >-
+      A network effect exists when each additional user makes the product more
+      valuable to the other users. A telephone is useless alone and valuable when
+      everyone has one. That is different from economies of scale, where more users
+      make the product cheaper for you to run — which is a cost advantage, not a
+      network effect, and is far easier to compete away. It is also different from
+      a large user base, which is a result rather than a mechanism. The test is
+      direct: if a new user joins and no existing user is better off, there is no
+      network effect, however many users you have.
+
+  - level: working
+    title: The varieties, and the chicken-and-egg problem
+    body: >-
+      Direct effects run within one group — more users of a messaging app benefit
+      other users of it. Indirect or cross-side effects run between groups: more
+      riders attract more drivers, which attracts more riders. Data network effects
+      claim that more usage improves the product through better models, which is
+      real but usually weaker than claimed, because most products hit diminishing
+      returns on data long before they hit competitive lock-in. Two-sided networks
+      face a cold-start problem, and the standard solutions are to subsidise the
+      harder side, to constrain geography so density arrives locally before it
+      arrives globally, or to launch single-player-useful — a product with
+      standalone value that becomes better with others, which sidesteps the problem
+      entirely. Density usually matters more than raw size: a ride-hailing service
+      with a million users spread thin is worse than one with fifty thousand in a
+      single city.
+
+  - level: expert
+    title: Where network effects decay, and the other moats
+    body: >-
+      Network effects are not permanent. They weaken with multi-homing — if users
+      can cheaply belong to two networks at once, as with food delivery apps and
+      freelance marketplaces, the advantage erodes badly. They weaken with
+      disintermediation, where the two sides meet and then transact off-platform.
+      They can invert: past a point, more users can reduce value through congestion,
+      noise, or declining quality, which is what happened to several open social
+      networks. And local density can beat global scale outright, which is why
+      incumbents with more total users still lose cities. The honest framing is that
+      network effects are one moat among several — the others being switching costs,
+      economies of scale, counter-positioning, brand, and control of a scarce
+      resource — and that most durable businesses run on a combination. In an
+      interview, being able to say why a claimed network effect is weak is a
+      stronger signal than being able to name the concept.
+
+worked_example:
+  situation: "Should a recipe app add social features to build a network effect?"
+  steps:
+    - "Apply the test: if one more user joins, is an existing user better off? For browsing recipes, no."
+    - "So the current product has none — it has content scale, which competitors can replicate by licensing."
+    - "Would follows and comments create one? Weakly: value would come from a handful of creators, not from the network."
+    - "That is a content marketplace, so the real constraint is creator supply, and the cold-start problem is on that side."
+    - "Multi-homing risk is severe — creators post everywhere, and readers follow creators rather than platforms."
+    - "Alternative moat: personalisation from a user's own cooking history creates switching costs without needing a network."
+  takeaway: >-
+    The honest answer is that the social feature would not produce a real network
+    effect, and that switching cost is the more achievable moat here. Naming that
+    distinction is worth more than asserting the effect exists.
+
+common_errors:
+  - mistake: "Calling any large user base a network effect."
+    instead: >-
+      Apply the test: does an additional user make existing users better off? If
+      not, you have scale, not a network effect.
+  - mistake: "Ignoring multi-homing."
+    instead: >-
+      If users can cheaply belong to both networks, the effect provides much less
+      protection than the model implies.
+  - mistake: "Assuming data volume creates lock-in."
+    instead: >-
+      Most models hit diminishing returns well before competitive lock-in. State
+      what specifically improves with data and at what scale it stops mattering.
+  - mistake: "Treating global scale as the goal."
+    instead: >-
+      For local networks, density beats size. A smaller, denser competitor can win
+      a market outright.
+
+in_interview:
+  how_to_deploy: >-
+    Use it in strategy and market-entry questions when asked why an advantage would
+    persist. The strongest version is usually sceptical — explaining why a claimed
+    network effect is weaker than it looks.
+  strong_sounds_like: >-
+    I would push back on calling this a network effect. Adding a user does not make
+    the product better for anyone else, so what we have is content scale, which is
+    licensable. If we added creator follows we would get a weak version, but
+    creators multi-home aggressively and readers follow people rather than
+    platforms, so it would not protect us. The more realistic moat here is a
+    switching cost built from each user's own history, which does not require a
+    network at all.
+  weak_sounds_like: >-
+    Adding social features would create a network effect, which would give us a
+    strong moat as more users join the platform.
+
+evidence:
+  strength: supported
+  note: >-
+    Network effects are a well-established phenomenon in economics, formalised in
+    the network-externality literature from the mid-1980s onward, and the
+    two-sided-market analysis is standard. What is far weaker is the casual
+    application: the claim that a given product has a meaningful network effect is
+    frequently asserted without the test being applied, and multi-homing effects
+    are routinely omitted. Treat the theory as solid and specific claims as
+    requiring evidence.
+
+sources:
+  - label: "Katz, M. & Shapiro, C. — Network Externalities, Competition, and Compatibility"
+    year: 1985
+  - label: "Rochet, J-C. & Tirole, J. — Platform Competition in Two-Sided Markets"
+    year: 2003

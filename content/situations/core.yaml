@@ -1,0 +1,41 @@
+# Situations are shared across archetypes on purpose — they are contexts, not people.
+# Heuristics bind to THESE, never to archetypes.
+
+- id: night-feed-checkout
+  label: "One-handed reorder, 2am"
+  narrative: >-
+    Holding an infant in one arm, phone in the other hand, in a dark room. Needs to
+    reorder a known item before forgetting. Any friction ends the session entirely.
+  device: mobile
+  hands_free: 1
+  time_budget_sec: 90
+  cognitive_load: high
+  motivation: high
+  ability: medium
+  stakes: medium
+
+- id: weekend-meal-planning
+  label: "Unhurried weekly planning"
+  narrative: >-
+    Sitting down with coffee to plan the week's shopping. Willing to browse,
+    compare, and discover. Genuinely enjoys the task.
+  device: tablet
+  hands_free: 2
+  time_budget_sec: 900
+  cognitive_load: low
+  motivation: high
+  ability: high
+  stakes: low
+
+- id: ward-handover-lookup
+  label: "Mid-shift clinical lookup"
+  narrative: >-
+    Standing at a ward workstation between patients, gloved, interrupted
+    constantly. Needs one specific fact and needs it to be correct.
+  device: mobile
+  hands_free: 1
+  time_budget_sec: 45
+  cognitive_load: high
+  motivation: high
+  ability: high
+  stakes: high

@@ -1,0 +1,100 @@
+id: porters-five-forces
+kind: taxonomic
+name: Porter's Five Forces
+summary: >-
+  An industry-structure analysis. It explains why some markets are profitable and
+  others are brutal, regardless of how well any individual company executes.
+best_for:
+  - "Should we enter this market?"
+  - "Why are margins in this industry so thin?"
+  - "Is this a good business to be in?"
+source:
+  label: "Porter, M. E. — Competitive Strategy"
+  year: 1980
+
+dimensions:
+  - id: porter.rivalry
+    name: Rivalry Among Existing Competitors
+    prompt: How many, how similar, and how desperate? Undifferentiated rivals in a flat market compete on price.
+    example_metrics: ["number of players", "differentiation", "market growth", "exit barriers"]
+  - id: porter.buyer-power
+    name: Buyer Power
+    prompt: Can customers dictate terms? Few buyers, or one buyer carrying most of your revenue, means they set the price.
+    example_metrics: ["revenue concentration", "switching cost for the buyer"]
+  - id: porter.supplier-power
+    name: Supplier Power
+    prompt: Are you dependent on someone you cannot replace? Sole-source components and platform gatekeepers both count.
+    example_metrics: ["single-source dependencies", "switching cost for you"]
+  - id: porter.substitutes
+    name: Threat of Substitutes
+    prompt: What else solves this problem, even badly? Substitutes cap your price even with zero direct competition.
+    example_metrics: ["alternative solutions", "price ceiling imposed"]
+  - id: porter.new-entrants
+    name: Threat of New Entrants
+    prompt: How hard is it for someone else to start doing this tomorrow? Barriers to entry are what let profits persist.
+    example_metrics: ["capital required", "network effects", "proprietary technology", "brand"]
+
+teaching:
+  in_one_line: >-
+    Five structural forces that determine how profitable an industry can be,
+    largely independent of how well you run your company.
+
+  why_this_structure: >-
+    The central claim is uncomfortable and useful: sustained profitability is
+    mostly a property of the industry, not of the operator. Excellent companies in
+    airlines struggle; mediocre ones in enterprise software do fine. Each force is
+    a different route by which value leaks out of your business — to rivals through
+    price competition, to buyers or suppliers through negotiating leverage, to
+    substitutes through a price ceiling, and to entrants who arrive once you prove
+    the market exists. Reading the five together tells you whether there is
+    durable profit to defend before you argue about how to compete.
+
+  when_to_use:
+    - "Market-entry questions, before discussing how you would win"
+    - "Explaining why an obviously large market is unattractive"
+    - "Arguing that a strategic move builds a barrier rather than just adding revenue"
+
+  when_not_to_use:
+    - "Anything about users or product design — the framework has nothing to say about them"
+    - "Fast-changing or newly created markets, where structure has not settled and the analysis is mostly guesswork"
+    - "Two-sided platforms and ecosystems, which the model handles poorly because participants occupy several roles at once"
+
+  worked_walkthrough:
+    question: "Is the consumer PC market a good business to enter?"
+    beats:
+      - part_id: porter.rivalry
+        say: >-
+          Many players shipping broadly similar machines into a flat market. That
+          combination reliably drives price competition.
+      - part_id: porter.buyer-power
+        say: >-
+          A large share of sales flows through a handful of retailers, so those
+          buyers exert real pressure on price and terms.
+      - part_id: porter.supplier-power
+        say: >-
+          Key components come from very few manufacturers, and switching is
+          costly. Suppliers hold meaningful leverage.
+      - part_id: porter.substitutes
+        say: >-
+          Tablets and phones now cover much of what people used a PC for, which
+          caps what anyone can charge.
+      - part_id: porter.new-entrants
+        say: >-
+          Moderate barriers — brand and distribution take years — which is the one
+          force offering any protection.
+
+  failure_modes:
+    - mistake: "Using it to analyse a company rather than an industry."
+      instead: >-
+        Five Forces describes the playing field. For the company on it, use SWOT
+        or the Five Cs.
+    - mistake: "Concluding 'this industry is bad, do not enter'."
+      instead: >-
+        Plenty of firms thrive in structurally poor industries by changing one
+        force — vertical integration to defuse supplier power, direct sales to
+        remove buyer concentration. The analysis should generate strategy, not
+        just a verdict.
+    - mistake: "Forgetting that platforms are suppliers."
+      instead: >-
+        If your product reaches users through an app store or a search engine,
+        that is supplier power, and it is often the strongest force acting on you.

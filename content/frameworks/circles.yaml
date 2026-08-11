@@ -1,0 +1,164 @@
+id: circles
+kind: procedural
+name: CIRCLES Method
+aka: ["CIRCLES"]
+summary: >-
+  A seven-stage procedure for product design questions. Its value is sequencing:
+  it forces user definition before solutioning, which is the single most common
+  place candidates fail.
+best_for:
+  - "Design a product for X"
+  - "Improve an existing product"
+  - "How would you redesign Y"
+source:
+  label: "Lewis C. Lin, Decode and Conquer"
+  year: 2013
+
+teaching:
+  in_one_line: >-
+    Seven stages that force you to define the user before you design anything —
+    which is the single most common place candidates fail.
+
+  why_this_structure: >-
+    The order is the whole value; the letters are a mnemonic. Almost every weak
+    product answer fails the same way: the candidate starts generating features in
+    minute two, and every later stage is then retrofitted to justify ideas that
+    came from their own taste. CIRCLES makes that impossible by putting three
+    user-definition stages ahead of the first solution stage. The prioritisation
+    stage matters for the same reason — it forces you to discard before you
+    elaborate, so you spend your remaining time on the option you chose rather
+    than on all of them.
+
+  when_to_use:
+    - "Design a product for X"
+    - "Improve an existing product"
+    - "Any open-ended product question where you need visible structure fast"
+
+  when_not_to_use:
+    - "Behavioral questions — use STAR; CIRCLES has no place to put your own actions"
+    - "Estimation, where the work is decomposition into an equation, not user definition"
+    - "Strategy questions about a company rather than a product; the user stages have nothing to bite on"
+    - "When the interviewer has already fixed the user and the goal — skip ahead and say you are skipping ahead"
+
+  worked_walkthrough:
+    question: "Design a grocery app feature for a busy new parent."
+    beats:
+      - part_id: circles.comprehend
+        say: >-
+          Before I start — are we optimising for order frequency or basket size,
+          and is this a new app or an existing one? I will assume existing, and
+          that we care about repeat frequency.
+      - part_id: circles.identify
+        say: >-
+          Three segments: bulk weekly planners, top-up shoppers, and
+          crisis-restockers. I will design for the crisis-restocker, because they
+          are the highest-frequency and worst-served — the planners are already
+          well handled by existing list features.
+      - part_id: circles.report
+        say: >-
+          Their job is replacing one specific item before they forget, often
+          one-handed, often at night. The tactical friction is the interface; the
+          underlying driver is not wanting to have failed at something basic.
+      - part_id: circles.cut
+        say: >-
+          Ranking by frequency times severity, the reorder path dominates.
+          I am dropping discovery and browsing entirely for this segment.
+      - part_id: circles.list
+        say: >-
+          Three genuinely different mechanisms: a one-tap reorder of the last
+          basket, a predictive restock reminder based on purchase cadence, and a
+          voice capture that adds to a pending order without opening the app.
+      - part_id: circles.evaluate
+        say: >-
+          Reminders risk becoming noise, and voice fails in a dark room with a
+          sleeping baby. One-tap reorder is the reversible, cheapest option and it
+          fits the ninety-second window.
+      - part_id: circles.summarize
+        say: >-
+          I would ship one-tap reorder first. Success is week-four repeat order
+          rate for that segment; the guardrail is order-correction rate, which
+          tells me if speed is producing mistakes.
+
+  failure_modes:
+    - mistake: "Announcing the acronym and marching through all seven stages evenly."
+      instead: >-
+        Signpost the transitions, not the letters. Spend your time where the
+        company's rubric spends its points — Meta weights user identification
+        heavily, Amazon weights the evaluation and recommendation.
+    - mistake: "Producing three solutions that are variations of one idea."
+      instead: >-
+        Solutions should differ in mechanism, not degree. If all three are
+        different button placements, you have one idea.
+    - mistake: "Treating Cut as optional and elaborating every need."
+      instead: >-
+        Say out loud what you are dropping. The discard is what makes the
+        remaining depth affordable, and it is explicitly scored.
+    - mistake: "Ending on a list rather than a recommendation."
+      instead: >-
+        Summarize means commit: one option, one metric, one named risk.
+
+stages:
+  - id: circles.comprehend
+    order: 1
+    name: Comprehend the Situation
+    prompt: Establish scope, goal, and constraints before anything else.
+    expected_duration_pct: 10
+    key_questions:
+      - "What is the business goal behind this question?"
+      - "What platform, market, and time horizon are we assuming?"
+      - "What is explicitly out of scope?"
+
+  - id: circles.identify
+    order: 2
+    name: Identify the Customer
+    prompt: Name specific user segments, then commit to one.
+    expected_duration_pct: 15
+    key_questions:
+      - "Which distinct segments exist here?"
+      - "Which one do I choose, and what makes it the highest-leverage bet?"
+      - "What life stage and role define them?"
+
+  - id: circles.report
+    order: 3
+    name: Report Customer Needs
+    prompt: State needs as jobs and pain points, separating tactical friction from underlying drivers.
+    expected_duration_pct: 15
+    key_questions:
+      - "What is the job they are hiring this product to do?"
+      - "Which frictions are tactical and which are value-level?"
+
+  - id: circles.cut
+    order: 4
+    name: Cut Through Prioritization
+    prompt: Rank the needs against an explicit criterion and say what you are dropping.
+    expected_duration_pct: 10
+    key_questions:
+      - "What criterion am I ranking by, and why that one?"
+      - "What am I consciously choosing not to solve?"
+
+  - id: circles.list
+    order: 5
+    name: List Solutions
+    prompt: Generate genuinely distinct solutions, not three flavours of the same idea.
+    expected_duration_pct: 25
+    key_questions:
+      - "Do these solutions differ in mechanism or only in degree?"
+      - "Is there a non-obvious option worth naming?"
+
+  - id: circles.evaluate
+    order: 6
+    name: Evaluate Trade-offs
+    prompt: Compare solutions on impact, effort, and risk — and take a position.
+    expected_duration_pct: 15
+    key_questions:
+      - "What breaks if I am wrong about the core assumption?"
+      - "Which of these is reversible and which is not?"
+
+  - id: circles.summarize
+    order: 7
+    name: Summarize Recommendation
+    prompt: Recommend one option, name the success metric, and state the biggest risk.
+    expected_duration_pct: 10
+    key_questions:
+      - "What single metric tells me this worked?"
+      - "What is my first validating step?"

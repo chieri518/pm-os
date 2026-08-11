@@ -1,0 +1,23 @@
+id: small-business-owner
+name: Solo Business Owner
+order: 3
+age_band: "30-55"
+life_stage: "Running a small business, no employees or very few"
+role: "Owner-operator — trades, retail, or a small service practice"
+tech_literacy: medium
+drivers:
+  - "Get paid, on time, without chasing"
+  - "Spend the evening not doing admin"
+  - "Look professional to customers who are comparing"
+values:
+  - "cashflow certainty > growth"
+  - "one tool that works > five that are better"
+  - "phone support > documentation"
+frictions:
+  - "Does admin standing up, between jobs"
+  - "Cannot afford to be wrong about tax or invoicing"
+  - "Every new tool is another subscription to justify"
+typical_situations:
+  - shop-floor-interrupt
+  - desk-deep-work
+  - evening-low-intent

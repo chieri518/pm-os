@@ -1,0 +1,84 @@
+id: hicks-law
+scope: experience
+name: Hick's Law
+aka: ["Hick-Hyman Law"]
+claim: >-
+  Decision time rises logarithmically with the number of equally-probable, known
+  alternatives: RT = a + b·log2(n + 1).
+implication: >-
+  When a user must choose under time pressure or high load, reduce the number of
+  simultaneously-presented options, or group them so the choice becomes a short
+  series of small decisions rather than one large scan.
+evidence_strength: supported
+caveat: >-
+  The logarithmic relationship holds for CHOICE REACTION TIME among options the
+  user already knows and can anticipate the position of. Landauer & Nachbar showed
+  that when users must scan and evaluate unfamiliar options one at a time, the
+  relationship is LINEAR, not logarithmic. Proctor & Schneider's 2018 review
+  further limits the law's scope. Hierarchical menus do show logarithmic search
+  times, but that comes from divide-and-conquer scanning, not from Hick's Law.
+common_misapplication: >-
+  "Hick's Law says keep menus under 7 items." It says no such thing. It does not
+  set a magic number, and for an unfamiliar list it does not even predict a
+  logarithmic curve. A candidate who cites Hick's Law to justify hiding useful
+  options in a menu the user scans serially is citing the wrong law — what they
+  want is an argument about visual search or chunking.
+teaching:
+  in_one_line: >-
+    More options means slower decisions — but only when the user already knows
+    what they are choosing between.
+
+  mechanism: >-
+    Choosing is an information-processing task. When options are known and
+    equally likely, people narrow by halves rather than inspecting one at a time,
+    so each DOUBLING of the option count adds a roughly constant increment of
+    time. That is what makes the curve logarithmic instead of linear. It also
+    tells you exactly when the law stops applying: if the user cannot anticipate
+    where the target sits, they fall back to scanning one option at a time, and
+    the cost becomes linear in the number of options.
+
+  in_interview:
+    how_to_deploy: >-
+      Deploy it in List Solutions to justify removing or deferring a choice
+      rather than adding a setting. Naming the known-versus-unfamiliar boundary
+      is what makes it read as understanding rather than recall.
+    strong_sounds_like: >-
+      This user has ninety seconds and one hand, so I would collapse the reorder
+      flow to a single default with an edit escape hatch. Worth flagging that
+      Hick's is about known options — it holds here only because this is a repeat
+      purchase. For a first-time buyer browsing unfamiliar products I would be
+      arguing about visual search instead.
+    weak_sounds_like: >-
+      Hick's Law says fewer options, so I would cut the menu down to seven items.
+
+  in_product_work: >-
+    It is the argument against the settings toggle that exists to resolve a
+    disagreement between two stakeholders. Every option added taxes every future
+    decision made in that surface, and the tax is paid by users who were not in
+    the room.
+
+  in_daily_life: >-
+    The reason a diner menu with two hundred items takes longer to order from
+    than an omakase counter — and the reason you order "the usual" when you are
+    tired. Same options, less capacity to process them.
+
+  worked_example:
+    situation: "A checkout page offering nine delivery windows as radio buttons."
+    without: >-
+      All nine shown, sorted by date. Users stall on a decision that barely
+      matters to them, and a measurable share abandon at that step.
+    with: >-
+      Default to the soonest window and collapse the rest behind "choose another
+      time". The nine options still exist and are one tap away.
+    takeaway: >-
+      The options did not disappear — they stopped being a decision. Reducing
+      choice and reducing capability are different things, and conflating them is
+      how this law gets misused.
+
+applies_when:
+  any:
+    - { dim: cognitive_load, op: gte, value: high }
+    - { dim: time_budget_sec, op: lt, value: 120 }
+source:
+  label: "Hick, W. E. (1952) On the rate of gain of information; Hyman, R. (1953)"
+  year: 1952

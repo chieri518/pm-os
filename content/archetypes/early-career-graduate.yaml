@@ -1,0 +1,23 @@
+id: early-career-graduate
+name: Early-Career Graduate
+order: 5
+age_band: "21-27"
+life_stage: "First or second job, sharing accommodation"
+role: "Junior individual contributor"
+tech_literacy: high
+drivers:
+  - "Be taken seriously at work"
+  - "Make the money last to the end of the month"
+  - "Not miss whatever everyone else already knows about"
+values:
+  - "free or cheap > comprehensive"
+  - "mobile > desktop"
+  - "social proof > official documentation"
+frictions:
+  - "Price-sensitive to the point of abandoning at checkout"
+  - "Does almost everything on a phone, often on transit"
+  - "Will not read anything longer than a screen"
+typical_situations:
+  - commute-hands-free
+  - evening-low-intent
+  - first-run-setup

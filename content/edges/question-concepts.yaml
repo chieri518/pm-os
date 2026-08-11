@@ -1,0 +1,153 @@
+# REQUIRES: question_type -> concept. Subject knowledge assumed, not taught, in
+# the room. This is the "what do I need to already know before I walk in" edge.
+
+# ---------------------------------------------------------------- product design
+- from: { type: question_type, id: product-design }
+  to: { type: concept, id: segmentation-stp }
+  relation: REQUIRES
+  strength: 5
+  rationale: >-
+    The Identify stage is segmentation, and "designing for everyone" is the most
+    common failure in this question type. The differentiability test is what stops
+    a demographic being mistaken for a segment.
+
+- from: { type: question_type, id: product-design }
+  to: { type: concept, id: jobs-to-be-done }
+  relation: REQUIRES
+  strength: 4
+  rationale: >-
+    Converts a list of complaints into a statement of progress the user is trying
+    to make, which is what turns the needs stage from description into diagnosis.
+
+- from: { type: question_type, id: product-design }
+  to: { type: concept, id: kano-model }
+  relation: REQUIRES
+  strength: 3
+  rationale: >-
+    Useful at the prioritisation stage to explain why you are not ranking purely
+    by requested frequency — must-be work has a ceiling, delighters have a floor.
+
+# ---------------------------------------------------------------- improvement
+- from: { type: question_type, id: product-improvement }
+  to: { type: concept, id: kano-model }
+  relation: REQUIRES
+  strength: 4
+  rationale: >-
+    The scored part of an improvement answer is prioritisation, and Kano gives you
+    a defensible criterion that is not just "what annoys me most".
+
+- from: { type: question_type, id: product-improvement }
+  to: { type: concept, id: north-star-metric }
+  relation: REQUIRES
+  strength: 4
+  rationale: >-
+    "Improve" is meaningless without a goal. Committing to one metric and naming
+    the guardrail is what makes an improvement claim checkable.
+
+# ---------------------------------------------------------------- estimation
+- from: { type: question_type, id: estimation }
+  to: { type: concept, id: mece-issue-trees }
+  relation: REQUIRES
+  strength: 5
+  rationale: >-
+    An estimation equation is a MECE decomposition with arithmetic attached.
+    Overlapping or incomplete terms are where these answers actually go wrong.
+
+- from: { type: question_type, id: estimation }
+  to: { type: concept, id: unit-economics }
+  relation: REQUIRES
+  strength: 3
+  rationale: >-
+    Revenue and market-sizing estimations frequently terminate in unit economics —
+    and knowing the gross-margin term exists prevents a common order-of-magnitude error.
+
+# ---------------------------------------------------------------- metrics
+- from: { type: question_type, id: metrics-diagnosis }
+  to: { type: concept, id: mece-issue-trees }
+  relation: REQUIRES
+  strength: 5
+  rationale: >-
+    Diagnosis is tree search. Splitting arithmetically before theorising is the
+    difference between a systematic answer and a list of guesses.
+
+- from: { type: question_type, id: metrics-diagnosis }
+  to: { type: concept, id: cohort-retention }
+  relation: REQUIRES
+  strength: 5
+  rationale: >-
+    Most metric movements are mix shift rather than behaviour change. Cutting by
+    cohort and channel is the first thing a competent analyst does.
+
+- from: { type: question_type, id: metrics-diagnosis }
+  to: { type: concept, id: north-star-metric }
+  relation: REQUIRES
+  strength: 4
+  rationale: >-
+    "How would you measure success" is half of this question type, and the
+    guardrail is what shows you understand your own metric's failure mode.
+
+- from: { type: question_type, id: metrics-diagnosis }
+  to: { type: concept, id: ab-testing }
+  relation: REQUIRES
+  strength: 4
+  rationale: >-
+    The follow-up to any diagnosis is "how would you confirm it". Naming a
+    pre-registered metric and a stopping rule is where the analytical signal lives.
+
+- from: { type: question_type, id: metrics-diagnosis }
+  to: { type: concept, id: survey-metrics-nps }
+  relation: REQUIRES
+  strength: 3
+  rationale: >-
+    Survey numbers are routinely offered as evidence in these questions.
+    Interrogating sampling and placement before accepting a movement is a strong signal.
+
+# ---------------------------------------------------------------- strategy
+- from: { type: question_type, id: strategy }
+  to: { type: concept, id: network-effects }
+  relation: REQUIRES
+  strength: 5
+  rationale: >-
+    Strategy questions reduce to why an advantage persists. The sceptical version —
+    explaining why a claimed network effect is weak — scores higher than asserting one.
+
+- from: { type: question_type, id: strategy }
+  to: { type: concept, id: product-market-fit }
+  relation: REQUIRES
+  strength: 4
+  rationale: >-
+    Determines whether the question is about scaling or about learning. Asking
+    which one you are in reframes the entire answer.
+
+- from: { type: question_type, id: strategy }
+  to: { type: concept, id: unit-economics }
+  relation: REQUIRES
+  strength: 4
+  rationale: >-
+    Market entry and expansion arguments terminate in whether a customer pays back.
+    Payback period is usually more decision-relevant than the LTV:CAC ratio.
+
+- from: { type: question_type, id: strategy }
+  to: { type: concept, id: pricing-strategy }
+  relation: REQUIRES
+  strength: 3
+  rationale: >-
+    Pricing appears as its own question and inside monetisation strategy. Refusing
+    the cost-plus framing is the move that separates a strong answer.
+
+# ---------------------------------------------------------------- favorite product
+- from: { type: question_type, id: favorite-product }
+  to: { type: concept, id: pricing-strategy }
+  relation: REQUIRES
+  strength: 3
+  rationale: >-
+    Explaining how a product you admire makes money — and why that model fits it —
+    is what separates a product answer from an enthusiastic user's answer.
+
+- from: { type: question_type, id: favorite-product }
+  to: { type: concept, id: jobs-to-be-done }
+  relation: REQUIRES
+  strength: 3
+  rationale: >-
+    Reverse-engineering the job a product was built to serve is how you infer the
+    decisions behind it rather than describing its surface.

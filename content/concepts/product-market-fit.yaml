@@ -1,0 +1,124 @@
+id: product-market-fit
+name: Product-Market Fit
+order: 10
+domain: strategy
+in_one_line: >-
+  The point at which the market pulls the product out of you, rather than you
+  pushing it into the market.
+
+why_it_matters: >-
+  PMF determines which questions are even worth asking. Before it, the job is
+  learning and the metric is evidence; after it, the job is scaling and the metric
+  is efficiency. Candidates who apply growth tactics to a pre-PMF product — or
+  discovery rituals to a post-PMF one — are answering the wrong question.
+
+layers:
+  - level: orientation
+    title: What it actually feels like
+    body: >-
+      Marc Andreessen's description remains the most useful: before fit, you are
+      pushing — sales cycles are long, users are polite but do not return, press
+      does nothing. After fit, you are being pulled — you cannot hire fast enough,
+      servers fall over, customers buy despite the product being rough. The
+      important claim underneath is binary-ish: PMF is not a gradual dial you turn
+      up, and teams usually know which side of it they are on, even when the
+      dashboard is ambiguous.
+
+  - level: working
+    title: How people try to measure it
+    body: >-
+      Three families of evidence, in ascending order of trustworthiness. Survey:
+      the Sean Ellis test asks how you would feel if you could no longer use the
+      product, and treats 40% or more answering "very disappointed" as the
+      threshold. Behavioural: a retention curve that flattens rather than decaying
+      to zero, which says a stable core exists — this is the strongest single
+      signal. Economic: customers pay a price that supports the business, and
+      referral happens without incentives. The behavioural evidence should dominate,
+      because it is the hardest to fake and the least sensitive to who happened to
+      answer the survey.
+
+  - level: expert
+    title: The 40% number, and why fit is a per-segment claim
+    body: >-
+      Sean Ellis derived 40% by comparing results across roughly a hundred startups
+      in the mid-2000s while working with companies including Dropbox and
+      Eventbrite, and the pattern-match is real: firms above the threshold
+      disproportionately reached scale. But the test is asymmetric in a way that
+      gets lost. Scoring below 40% is decent evidence you lack fit; scoring above it
+      is not proof you have it, because the survey systematically over-samples
+      engaged respondents and under-samples the lapsed users whose departure
+      actually defines the absence of fit. Early products also produce false
+      positives when enthusiasts respond to the promise rather than the product.
+      More fundamentally, PMF is not a global property — it is fit between a
+      specific segment and a specific product, so a 45% score can mean strong fit
+      with a narrow segment and none beyond it. That distinction determines whether
+      the right move is to scale or to keep narrowing, and it is the part most
+      candidates miss.
+
+worked_example:
+  situation: "A B2B tool scores 46% on the Sean Ellis survey. The team wants to raise a growth round."
+  steps:
+    - "Check who answered: 46% of 120 respondents from an active-user email list. Lapsed accounts were not contacted."
+    - "Segment the 'very disappointed' group — 80% of them are agencies, who are 15% of the customer base."
+    - "Check the behavioural evidence: agency cohorts flatten at 60% retention; everyone else decays toward zero."
+    - "So there is strong fit with agencies and no fit outside them. The 46% is an average across two different realities."
+    - "Economic check: agencies pay full price without discounting; other segments churn at renewal."
+    - "Conclusion: the growth round is premature as framed. Narrow the positioning to agencies first, then scale within that."
+  takeaway: >-
+    The aggregate score said 'you have fit'. The segmented view said 'you have fit
+    with 15% of your customers and should probably become an agency product'. The
+    survey was not wrong, it was just answering a question nobody should have asked
+    in aggregate.
+
+common_errors:
+  - mistake: "Quoting 40% as a validated threshold."
+    instead: >-
+      Cite it as a useful pattern-match from about a hundred startups, note that it
+      is asymmetric — below is informative, above is not conclusive — and lead with
+      retention evidence instead.
+  - mistake: "Measuring PMF in aggregate."
+    instead: >-
+      Cut by segment. Fit is a relationship between a product and a specific
+      market, and averages across segments describe neither.
+  - mistake: "Surveying only active users."
+    instead: >-
+      The people whose experience defines the absence of fit have already left.
+      Reaching them is harder and is precisely the point.
+  - mistake: "Applying growth playbooks pre-PMF."
+    instead: >-
+      Paid acquisition into a leaking product converts money into a faster leak.
+      Establish that a cohort stabilises before spending to fill it.
+
+in_interview:
+  how_to_deploy: >-
+    Use it to decide what kind of question you are in. If a prompt implies scaling,
+    check first whether fit is established — asking that is itself a strong signal,
+    and it reframes the whole answer.
+  strong_sounds_like: >-
+    Before I talk about growth I want to know whether we have fit, and I would
+    trust the retention curve over the survey — if cohorts flatten at some
+    non-trivial level, a stable core exists. The Sean Ellis 40% test is a
+    reasonable secondary check, though it is asymmetric: below 40 tells you
+    something, above 40 does not, partly because it surveys the people who stayed.
+    I would also cut by segment, because a 46% average can be strong fit with one
+    segment and none anywhere else.
+  weak_sounds_like: >-
+    I would run the Sean Ellis survey, and if we hit 40% we have product-market fit
+    and can move to scaling.
+
+evidence:
+  strength: contested
+  note: >-
+    The concept is universally used and has no formal definition, which alone
+    should temper confidence. The 40% threshold is an empirical pattern-match
+    across roughly a hundred startups, not a validated cutoff, and it suffers
+    documented self-selection problems — it over-samples engaged respondents and
+    under-samples lapsed users. Retention-curve flattening is the more defensible
+    behavioural indicator. Treat any single-number PMF claim as a prompt for
+    follow-up rather than as a verdict.
+
+sources:
+  - label: "Andreessen, M. — The Pmarca Guide to Startups, 'The only thing that matters'"
+    year: 2007
+  - label: "Ellis, S. — the 40% product-market fit survey"
+    year: 2010

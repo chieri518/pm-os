@@ -1,0 +1,134 @@
+id: metrics-diagnosis
+name: Metrics & Diagnosis
+order: 7
+family: analytical
+prompt_forms:
+  - "How would you measure the success of this feature?"
+  - "Daily active users dropped 8% last week. What happened?"
+  - "What is the one metric you would watch for this product?"
+  - "Engagement is up but revenue is flat. What is going on?"
+
+what_is_tested:
+  - "Whether you pick metrics that follow from a goal rather than from availability"
+  - "Whether you propose a counter-metric that could reveal failure"
+  - "Whether you can debug a metric movement systematically"
+  - "Whether you separate a real change from an instrumentation artefact"
+
+approach:
+  - step: 1
+    title: Establish the goal, then the metric
+    detail: >-
+      A metric is only meaningful relative to what the product is for. Say what
+      success means in words before naming any number.
+  - step: 2
+    title: Choose one primary metric and defend it
+    detail: >-
+      Name the single number you would put on the wall. Then explain why it beats
+      the obvious alternatives — that comparison is where the reasoning shows.
+  - step: 3
+    title: Add guardrails and counter-metrics
+    detail: >-
+      Every primary metric can be gamed. Session length rises when navigation gets
+      worse. Name what must NOT move, and you have demonstrated you understand
+      your own proposal's failure mode.
+  - step: 4
+    title: For a diagnosis, segment before you theorise
+    detail: >-
+      Cut by platform, geography, cohort, new-versus-existing, and time of day.
+      Most drops are concentrated in one slice, and the slice usually names the
+      cause.
+  - step: 5
+    title: Rule out the boring explanations first
+    detail: >-
+      Instrumentation broke, a release shipped, a public holiday, a competitor
+      campaign, seasonality, a bot filter change. Check these before reaching for
+      a behavioural story — they are far more common and far cheaper to confirm.
+  - step: 6
+    title: Say what you would do next
+    detail: >-
+      Name the specific query or experiment that would confirm your leading
+      hypothesis. Ending on a theory rather than a next step leaves the answer
+      unfinished.
+
+time_guidance: >-
+  For diagnosis questions, resist proposing a cause in the first minute. The
+  segmentation IS the answer; a cause named before segmenting is a guess.
+
+pitfalls:
+  - mistake: "Proposing a metric that cannot go down."
+    instead: >-
+      Cumulative totals — all-time users, total downloads — always rise and are
+      therefore useless for decisions. Measure change and rates, not volume.
+  - mistake: "Naming ten metrics to seem thorough."
+    instead: >-
+      Pick one primary, a small number of supporting, and a guardrail. A list of
+      ten signals you cannot prioritise.
+  - mistake: "Jumping to a behavioural explanation for a metric drop."
+    instead: >-
+      Check instrumentation and releases first. A logging change is a far more
+      common cause of a sudden 8% drop than a shift in what users want.
+  - mistake: "Ignoring cohorts."
+    instead: >-
+      An aggregate number can be flat while every cohort improves, if the mix is
+      shifting. Segment before concluding anything.
+
+sample_questions:
+  - "How would you measure the success of a new comments feature?"
+  - "DAU dropped 8% week over week. Walk me through how you would investigate."
+  - "What metric matters most for a ride-hailing marketplace?"
+  - "Engagement is up but revenue is flat. Diagnose it."
+  - "How would you know if a redesign was successful?"
+
+teaching:
+  in_one_line: >-
+    Metric questions are about judgement, not recall — which number you choose
+    says more than how many you can list.
+
+  mechanism: >-
+    Any product produces hundreds of measurable quantities, and almost all of them
+    are available precisely because they are easy to log rather than because they
+    matter. Choosing one to steer by is an act of commitment: it declares what the
+    product is for and what you are willing to trade away. That is why counter-metrics
+    carry so much weight in scoring — proposing one shows you understand that your
+    own metric creates an incentive, and that optimising it blindly has a
+    predictable failure mode.
+
+  in_interview:
+    how_to_deploy: >-
+      State the goal in words, commit to one primary metric, defend it against the
+      obvious alternative, then volunteer the guardrail unprompted. For diagnosis
+      questions, segment out loud before theorising.
+    strong_sounds_like: >-
+      Success here means people find comments worth returning for, so my primary
+      metric is the share of readers who return within seven days to a thread they
+      commented on. I prefer that to comment volume, which rises with argument as
+      easily as with value. My guardrail is report rate — if returns climb while
+      reports climb faster, we have built a fight, not a community.
+    weak_sounds_like: >-
+      I would look at daily active users, session length, comment count, retention,
+      NPS, and engagement rate.
+
+  in_product_work: >-
+    It is the difference between a dashboard and a decision. Teams with twenty
+    tracked metrics and no primary one tend to relitigate priorities every week,
+    because any position can be supported by some number on the wall.
+
+  in_daily_life: >-
+    Choosing to track one number when getting fit — resting heart rate, say —
+    rather than weight, calories, steps, and sleep at once. The single committed
+    metric changes behaviour; the dashboard mostly produces guilt.
+
+  worked_example:
+    situation: "Daily active users dropped 8% week over week."
+    without: >-
+      Speculate immediately: maybe a competitor launched, maybe users are bored,
+      maybe the new design is unpopular. Three plausible stories, no evidence.
+    with: >-
+      Segment first — by platform, region, app version, and new-versus-returning.
+      The drop turns out to be Android-only and confined to one app version, which
+      points at a release. Confirm by checking whether the analytics SDK changed in
+      that build before touching any product theory.
+    takeaway: >-
+      The 8% was an instrumentation change, not a behaviour change. Every
+      behavioural story offered in the first version would have been confidently
+      wrong.
