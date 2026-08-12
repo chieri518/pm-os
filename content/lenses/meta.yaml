@@ -1,14 +1,67 @@
 id: meta
 company: Meta
+order: 2
 round_types:
-  - "Product Sense"
-  - "Execution (Analytical)"
-  - "Leadership & Drive"
+  - "Initial screen: Product Sense + Analytical Thinking"
+  - "Full loop: Product Sense, Analytical Thinking, Leadership & Drive"
+
 philosophy: >-
-  Meta's product interview rewards a candidate who commits to a specific user
-  segment early and defends that choice, then connects the proposed solution back
-  to a measurable movement in a metric. Breadth of ideas matters less than the
-  quality of the segment choice and the honesty of the trade-off discussion.
+  Meta publishes its own PM interview prep guide, which makes this the
+  best-documented loop of the five. Its structure is unusually consistent: the
+  same two case-style interviews at screen and loop stage, plus a behavioural
+  round only at full loop. The guide is explicit that both the quality of the
+  solution and the thought process matter, and that neither is sufficient alone —
+  a distinction most preparation material collapses into "show your work".
+
+values_label: "Assessed focus areas, per Meta's published guide"
+values:
+  - name: Structure
+    description: "Solving the problem methodically using a framework of your choice."
+    in_answers: "State your structure up front and signpost transitions between stages."
+  - name: Ability to discuss trade-offs
+    description: "Weighing options explicitly, including using a prioritisation framework for complex choices."
+    in_answers: "Compare two candidate solutions on stated criteria, then commit to one."
+  - name: User empathy and segmentation
+    description: "Identifying different user segments and reasoning about them distinctly."
+    in_answers: "Name the segments, choose one, and track metrics specific to that segment."
+  - name: Creativity and innovation
+    description: "The uniqueness of the solution matters as much as the process used to reach it — weighted especially in Product Sense."
+    in_answers: "Include at least one non-obvious option, not three variants of the same idea."
+  - name: Articulating product rationale
+    description: "Explaining why a product exists before discussing how to measure it."
+  - name: Setting measurable, prioritised goals
+    description: "Goals that are reasonable, measurable, and explicitly ranked."
+  - name: Measuring impact and identifying metrics
+    description: "Choosing metrics that demonstrate whether the product's goals are being met — and describing precisely what each one measures."
+    in_answers: "Prioritise one to three metrics and articulate why those, per Meta's own guidance."
+  - name: Driving resourcefulness and results
+    description: "Leadership & Drive: initiative, ownership, accountability, and conflict resolution."
+    in_answers: "Use STAR — Meta's guide explicitly recommends it for this round."
+
+loop:
+  - stage: Recruiter screen
+    format: Phone
+    duration_min: 30
+    tests: "Role fit, level, and logistics."
+  - stage: Initial screen
+    format: Two virtual interviews
+    duration_min: 45
+    tests: "Product Sense and Analytical Thinking, as case studies with hypothetical questions."
+  - stage: "Full loop — Product Sense"
+    format: Case study
+    duration_min: 45
+    tests: "Product landscape and motivation, target audience, identifying and prioritising the problem, creative solutions, and intentional design choices."
+    note: "You may be asked to sketch an interface, so practise thinking out loud on a whiteboard or paper."
+  - stage: "Full loop — Analytical Thinking"
+    format: Case study
+    duration_min: 45
+    tests: "Articulating product rationale, setting prioritised measurable goals, identifying metrics, and evaluating trade-offs."
+  - stage: "Full loop — Leadership & Drive"
+    format: Behavioural
+    duration_min: 45
+    tests: "Initiative, self-awareness, openness about mistakes, and leading or supporting a team through conflict."
+    note: "Expect four to five behavioural questions. Meta's guide explicitly recommends the STAR format."
+
 rubric:
   - id: meta.product-sense
     name: Product Sense
@@ -16,29 +69,77 @@ rubric:
     description: >-
       Choosing a specific user, articulating a genuine unmet need, and proposing
       solutions that follow from that need rather than from a feature wish-list.
-    strong_signal: "Names one segment, says why the others were rejected, and never drifts back to 'all users'."
+    strong_signal: "Frames why the problem matters before proposing anything, then commits to a segment with stated reasoning."
   - id: meta.analytical
     name: Analytical Rigour
     weight: 25
     description: "Defining success metrics, guardrail metrics, and what would falsify the bet."
-    strong_signal: "Proposes a counter-metric that would reveal the idea failing, unprompted."
+    strong_signal: "Prioritises one to three metrics and says precisely what each measures."
   - id: meta.execution
     name: Execution & Prioritisation
     weight: 20
     description: "Ranking against an explicit criterion and stating what is being dropped."
-    strong_signal: "Says out loud what they are choosing NOT to build, and why."
+    strong_signal: "Brainstorms broadly, then prioritises explicitly rather than solving the first problem found."
   - id: meta.communication
     name: Structure & Communication
     weight: 12
     description: "Signposting the structure and keeping the interviewer oriented."
-    strong_signal: "States the framework up front and announces each transition."
+    strong_signal: "States the framework up front and brings the interviewer along the reasoning."
   - id: meta.drive
-    name: Drive
+    name: Leadership & Drive
     weight: 8
     description: "Ownership and momentum in behavioural answers."
-    strong_signal: "First-person singular ownership of a decision that went badly."
+    strong_signal: "First-person singular ownership of a decision that went badly, with what was learned."
+
 red_flags:
-  - "Designing for 'everyone' or refusing to pick a segment"
-  - "Listing solutions before establishing the user need"
-  - "Proposing a metric that cannot go down"
-  - "Spending most of the answer on brainstorming breadth with no prioritisation"
+  - "Diving straight into a solution without establishing what the problem is, why it matters, and who the users are"
+  - "Not brainstorming multiple problems before choosing one to solve"
+  - "Metrics that are not tied back to the product's goal or rationale"
+  - "Being unable to say precisely what a proposed metric actually measures"
+  - "Failing to prioritise proactively"
+
+sample_questions:
+  - "We have seen a 10% drop in newly registered users. What data would you look at to understand and fix it?"
+  - "If you were the product manager for a product you admire, what goals and metrics would you define?"
+  - "Pick a product you think is great. Why is it great, and what would you do as its PM?"
+  - "How would you evolve an existing consumer product in a social ecosystem?"
+  - "Tell me about a time you drove alignment across a team without formal authority."
+
+myths:
+  - common_advice: "You must pick the narrowest possible user segment or you will be marked down."
+    reality: >-
+      Meta's own guide addresses this directly: whether you choose a very specific
+      segment or a broader one depends on the product and the question, and what
+      matters is that you can articulate the reasoning behind the choice. The
+      commitment and the justification are scored, not the narrowness.
+    source_tier: official
+  - common_advice: "You need deep familiarity with every Meta product before the interview."
+    reality: >-
+      The guide states they do not expect you to know every product, but do expect
+      you to understand the broader area around the popular ones. You are
+      explicitly invited to ask the interviewer for context on an unfamiliar
+      product, and to check your understanding with them.
+    source_tier: official
+  - common_advice: "The process matters more than the answer — just show your thinking."
+    reality: >-
+      Meta's guide says both matter and neither is sufficient alone: the
+      interviewer needs to be brought along the reasoning, and the final solution
+      also has to be reasonable. Narrating a thought process that ends nowhere is
+      not a pass.
+    source_tier: official
+  - common_advice: "Ask as many clarifying questions as possible to show rigour."
+    reality: >-
+      Clarifying questions are encouraged, but the guide asks for a balance between
+      seeking clarification and making reasonable decisions yourself. With 45
+      minutes, questions that you could have answered with a stated assumption cost
+      you material you needed.
+    source_tier: official
+
+sources:
+  - label: "Meta — Product Management Interview Prep Guide (first-party, published by Meta for candidates)"
+    url: "https://d3no4ktch0fdq4.cloudfront.net/public/course/files/Meta_PM_interview_guide.pdf"
+    tier: official
+  - label: "Loop timing and stage sequencing corroborated across independent candidate accounts"
+    tier: corroborated
+  - label: "Rubric weightings above are our own inference; Meta publishes focus areas but not weights"
+    tier: estimate

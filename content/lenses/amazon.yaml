@@ -1,15 +1,89 @@
 id: amazon
 company: Amazon
+order: 1
 round_types:
+  - "Phone screen (1-2)"
+  - "Onsite loop (4-6 interviews)"
   - "Bar Raiser"
-  - "Leadership Principles (behavioural)"
-  - "Product / Technical depth"
+  - "Written exercise (some orgs)"
+
 philosophy: >-
-  Amazon's loop is explicitly Leadership-Principle-driven and evidence-hungry. The
-  distinguishing demand is DEPTH: an answer that stays at the level of strategy
-  will be probed downward until it reaches specific numbers, specific decisions,
-  and specific personal ownership. Working backwards from the customer is the
-  expected starting point, not a nice-to-have.
+  Amazon is the most explicitly rubric-driven loop of the major companies, and the
+  rubric is published. Every interviewer is assigned specific Leadership Principles
+  and scores you against them independently — there is no group deliberation during
+  the loop. The distinguishing demand is depth: an answer that stays at the level
+  of strategy will be probed downward until it reaches specific numbers, specific
+  decisions, and specific personal ownership. Working backwards from the customer
+  is the expected starting point, not a differentiator.
+
+values_label: "The 16 Leadership Principles"
+values:
+  - name: Customer Obsession
+    description: "Leaders start with the customer and work backwards, and work vigorously to earn and keep customer trust."
+    in_answers: "Open with the customer problem in the customer's own words, before any solution."
+  - name: Ownership
+    description: "Leaders think long term, act on behalf of the entire company, and never say 'that's not my job'."
+    in_answers: "Describe picking up work nobody owned, including what it cost you."
+  - name: Invent and Simplify
+    description: "Leaders expect and require innovation from their teams and always find ways to simplify."
+    in_answers: "Show the simpler solution you found after the obvious complex one."
+  - name: Are Right, A Lot
+    description: "Leaders have strong judgement and seek diverse perspectives to disconfirm their own beliefs."
+    in_answers: "Name a belief you actively tried to falsify, and what you did when you were wrong."
+  - name: Learn and Be Curious
+    description: "Leaders are never done learning and always seek to improve themselves."
+  - name: Hire and Develop the Best
+    description: "Leaders raise the performance bar with every hire and promotion, and develop others."
+  - name: Insist on the Highest Standards
+    description: "Leaders have relentlessly high standards that many people may think are unreasonably high."
+    in_answers: "A moment you refused to ship something that met the spec but not the bar."
+  - name: Think Big
+    description: "Thinking small is a self-fulfilling prophecy. Leaders create and communicate a bold direction."
+  - name: Bias for Action
+    description: "Speed matters in business. Many decisions are reversible and do not need extensive study."
+    in_answers: "Classify the decision as reversible, then set your rigour to match it."
+  - name: Frugality
+    description: "Accomplish more with less. Constraints breed resourcefulness, self-sufficiency and invention."
+  - name: Earn Trust
+    description: "Leaders listen attentively, speak candidly, treat others respectfully, and are vocally self-critical."
+    in_answers: "Be genuinely self-critical about a decision, not performatively humble."
+  - name: Dive Deep
+    description: "Leaders operate at all levels, stay connected to the details, audit frequently, and are sceptical when metrics and anecdote differ."
+    in_answers: "Volunteer the specific metric and its baseline before being asked twice."
+  - name: Have Backbone; Disagree and Commit
+    description: "Leaders must respectfully challenge decisions when they disagree, then commit wholly once a decision is determined."
+    in_answers: "A disagreement you lost, and how you then committed to executing it well."
+  - name: Deliver Results
+    description: "Leaders focus on the key inputs and deliver them with the right quality and in a timely fashion."
+    in_answers: "Give the number that missed alongside the one that hit."
+  - name: Strive to be Earth's Best Employer
+    description: "Leaders work to create a safer, more productive, higher performing, more diverse and more just work environment."
+  - name: Success and Scale Bring Broad Responsibility
+    description: "Leaders create more than they consume and always leave things better than how they found them."
+
+loop:
+  - stage: Recruiter screen
+    format: Phone
+    duration_min: 30
+    tests: "Role fit and logistics."
+  - stage: Phone screen
+    format: Video, with a hiring-team interviewer
+    duration_min: 45
+    tests: "Product sense plus two or three Leadership Principles."
+  - stage: Onsite loop
+    format: 4-6 back-to-back interviews
+    duration_min: 60
+    tests: "Product, analytical, and behavioural depth. Each interviewer is assigned specific Leadership Principles and scores independently."
+    note: "There is no group discussion during the loop — assessments are submitted separately."
+  - stage: Bar Raiser
+    format: One interview within the loop
+    duration_min: 60
+    tests: "Whether you raise the average bar, judged against the Leadership Principles."
+    note: "A trained interviewer from outside the hiring team, who does not report to the hiring manager and holds effective veto."
+  - stage: Written exercise
+    format: Narrative document, some orgs
+    tests: "Written clarity. Amazon runs on six-page narratives rather than slide decks."
+
 rubric:
   - id: amazon.customer-obsession
     name: Customer Obsession
@@ -38,8 +112,52 @@ rubric:
     weight: 12
     description: "Quantified outcomes, and honesty about what missed."
     strong_signal: "Gives the number that missed target alongside the one that hit."
+
 red_flags:
   - "Answering in 'we' when asked what you personally did"
   - "Strategy-level answers that never reach a specific number"
   - "Treating every decision as irreversible and over-analysing"
   - "No mechanism proposed to prevent the problem recurring"
+  - "Prepared answers that collapse under two follow-up questions"
+
+sample_questions:
+  - "Tell me about a time you had to make a decision with incomplete data."
+  - "Describe a time you disagreed with your manager and how you handled it."
+  - "Tell me about the most complex problem you have owned end to end."
+  - "How would you improve a product you use daily, and how would you measure it?"
+  - "Tell me about a time you had to simplify something that was over-engineered."
+
+myths:
+  - common_advice: "The Bar Raiser is a trick round or a stress test."
+    reality: >-
+      It is a trained interviewer from outside the hiring team whose role is to
+      keep the hiring bar consistent across the company. They do not report to the
+      hiring manager and hold effective veto. The behaviour to expect is
+      persistent follow-up questions past your prepared answer, which is the design
+      rather than hostility.
+    source_tier: corroborated
+  - common_advice: "Memorise all 16 Leadership Principles and reference them by name."
+    reality: >-
+      Each interviewer is assigned only two or three principles to assess. Naming
+      principles does not score; demonstrating the behaviour does. Preparing five
+      or six genuinely detailed stories that each cover several principles is a
+      better use of the time than memorising a list.
+    source_tier: corroborated
+  - common_advice: "Prepare polished stories and stick to them."
+    reality: >-
+      Bar Raisers are specifically trained to push past prepared answers with
+      probes like what you would do differently, who disagreed with you, and what
+      data you lacked. A story you cannot go three levels deep on will fail.
+    source_tier: corroborated
+
+sources:
+  - label: "Amazon — Leadership Principles (all 16, verbatim names)"
+    url: "https://www.amazon.jobs/content/en/our-workplace/leadership-principles"
+    tier: official
+  - label: "About Amazon — an interviewer explains what each Leadership Principle means"
+    url: "https://www.aboutamazon.com/news/workplace/what-do-each-of-amazons-leadership-principles-really-mean"
+    tier: official
+  - label: "Bar Raiser mechanics — outside the hiring team, holds veto; consistently reported across independent accounts"
+    tier: corroborated
+  - label: "Stage weightings in the rubric above are our own inference, not published by Amazon"
+    tier: estimate

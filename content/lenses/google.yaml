@@ -1,44 +1,131 @@
 id: google
 company: Google
+order: 3
 round_types:
-  - "Product Design / Product Sense"
-  - "Analytical / Estimation"
-  - "Technical"
-  - "Googleyness & Leadership"
+  - "Phone screens (1-2)"
+  - "Onsite loop (4-5 interviews)"
+  - "Hiring committee review"
+  - "Senior leader and compensation review"
+
 philosophy: >-
-  Google's loop leans harder on analytical and technical rounds than most product
-  interviews, and historically expected PMs to hold a real technical conversation.
-  Answers are expected to be structured and quantitative: a design idea that never
-  reaches a number, or an estimate that never reaches an equation, reads as
-  incomplete regardless of how creative it was.
+  The structurally distinctive fact about Google is that the people interviewing
+  you do not decide. Written feedback goes to a hiring committee of Googlers who
+  did not meet you and who reach a decision from the notes alone. That single
+  mechanism should change how you answer: your reasoning has to survive being
+  written down by someone else and read by a stranger. Google also assesses
+  against four published attributes rather than a long values list, and general
+  cognitive ability — how you break down an unfamiliar problem — carries real
+  weight independent of product knowledge.
+
+values_label: "The four hiring attributes"
+values:
+  - name: General Cognitive Ability
+    description: >-
+      How you approach an unfamiliar problem: structuring it, reasoning through
+      trade-offs, and learning as you go. Explicitly not an IQ measure.
+    in_answers: "Make your structure audible. State the decomposition before analysing anything."
+  - name: Role-Related Knowledge
+    description: "The functional and technical depth the specific role requires."
+    in_answers: "Enough technical fluency that engineers would follow you, without pretending to be one."
+  - name: Leadership
+    description: >-
+      How you operate with and through others — including, notably, the ability to
+      step back and relinquish control when someone else should lead.
+    in_answers: "An example where you deliberately handed leadership to someone better placed."
+  - name: Googleyness
+    description: >-
+      Intellectual humility, comfort with ambiguity, bias to action, collaborative
+      instinct, conscientiousness, and low ego.
+    in_answers: "Say clearly what you got wrong and what changed your mind — intellectual humility is the load-bearing part."
+
+loop:
+  - stage: Recruiter screen
+    format: Phone
+    duration_min: 30
+    tests: "Level, role fit, and logistics."
+  - stage: Phone screen
+    format: Video
+    duration_min: 45
+    tests: "Product sense and general cognitive ability."
+  - stage: Onsite loop
+    format: 4-5 interviews
+    duration_min: 45
+    tests: "Product design, analytical, technical, and behavioural, mapped across the four attributes."
+    note: "Google's own research concluded four interviews are usually sufficient to predict a hire — the 'rule of four'."
+  - stage: Hiring committee
+    format: Document review, no candidate present
+    tests: "The four attributes, judged from written interviewer feedback."
+    note: "Committee members did not interview you. Your answer is scored as someone else's notes about it."
+  - stage: Senior leader review
+    format: Approval
+    tests: "Final confirmation and compensation."
+
 rubric:
-  - id: google.analytical
-    name: Analytical Ability
-    weight: 28
-    description: "Decomposing ambiguous problems and reasoning quantitatively without data."
-    strong_signal: "Builds an explicit equation or structure before estimating anything."
+  - id: google.cognitive
+    name: General Cognitive Ability
+    weight: 30
+    description: "Structuring an unfamiliar problem and reasoning through it out loud."
+    strong_signal: "Names the decomposition before analysing, and prunes branches with stated reasons."
   - id: google.product-sense
-    name: Product Sense
-    weight: 26
-    description: "Identifying real user needs and designing against them."
-    strong_signal: "Names a specific user and traces every feature back to a stated need."
-  - id: google.technical
-    name: Technical Aptitude
-    weight: 20
-    description: "Holding a credible conversation about systems, constraints, and feasibility."
-    strong_signal: "Names the boundary of their knowledge precisely instead of bluffing past it."
+    name: Product Sense & Role Knowledge
+    weight: 28
+    description: "User insight, design judgement, and the functional depth the role needs."
+    strong_signal: "Connects a design choice to a specific user constraint rather than to taste."
+  - id: google.analytical
+    name: Analytical Rigour
+    weight: 22
+    description: "Metrics, estimation, and comfort reasoning with incomplete data."
+    strong_signal: "States assumptions explicitly and sanity-checks the magnitude of the answer."
   - id: google.googleyness
     name: Googleyness & Leadership
-    weight: 16
-    description: "Comfort with ambiguity, intellectual humility, collaborative instinct."
-    strong_signal: "Changes their position when given new information, and says why."
-  - id: google.communication
-    name: Structure & Communication
-    weight: 10
-    description: "Signposting a long answer so the interviewer can follow it."
-    strong_signal: "States the plan before executing it and announces transitions."
+    weight: 20
+    description: "Intellectual humility, comfort with ambiguity, collaboration, and low ego."
+    strong_signal: "Volunteers a case where they were wrong and changed course, without being asked."
+
 red_flags:
-  - "Refusing to estimate without data"
-  - "Bluffing technical depth"
-  - "Unstructured, associative answers to open-ended questions"
-  - "Defending a first answer after being shown a problem with it"
+  - "Defending a first answer after being given information that undermines it"
+  - "Reasoning that cannot be reconstructed from notes — conclusions with no visible path"
+  - "Claiming certainty on an estimate rather than stating assumptions"
+  - "Taking sole credit in a way that reads as high ego"
+  - "Freezing on an unfamiliar problem instead of structuring it"
+
+sample_questions:
+  - "How would you estimate the number of delivery vans needed to serve a mid-sized city?"
+  - "Design a product that helps people find a new place to live."
+  - "A key engagement metric dropped 8% last week. How would you investigate?"
+  - "Tell me about a time you changed your mind after receiving new information."
+  - "How would you decide whether to sunset a product with a small but loyal user base?"
+
+myths:
+  - common_advice: "Build rapport with the interviewer — they decide whether you get hired."
+    reality: >-
+      They do not. Feedback goes to a hiring committee of people who never met you
+      and who decide from written notes. The practical consequence is that clarity
+      and explicit reasoning beat charm: if your interviewer cannot write down why
+      your answer was good, the committee never sees it.
+    source_tier: corroborated
+  - common_advice: "Googleyness means being enthusiastic and culturally on-brand."
+    reality: >-
+      As published, it is a specific list — intellectual humility, comfort with
+      ambiguity, bias to action, collaboration, conscientiousness, low ego.
+      Intellectual humility in particular means being able to say what you got
+      wrong, which is closer to self-criticism than to enthusiasm.
+    source_tier: official
+  - common_advice: "More interviews mean a more thorough process, so expect many rounds."
+    reality: >-
+      Google's own internal analysis found the predictive value of additional
+      interviews falls off sharply after four, and it restructured toward that.
+      A shorter loop is not a sign of reduced interest.
+    source_tier: corroborated
+
+sources:
+  - label: "Google — four hiring attributes (general cognitive ability, role-related knowledge, leadership, Googleyness), published in Google careers guidance and re:Work"
+    url: "https://rework.withgoogle.com/"
+    tier: official
+  - label: "Bock, L. — Work Rules! (first-party account of Google's hiring research, including the rule of four)"
+    year: 2015
+    tier: official
+  - label: "Hiring committee independence and loop sequencing, consistently reported across independent candidate accounts"
+    tier: corroborated
+  - label: "Rubric weightings above are our own inference; Google publishes the attributes but not their weights"
+    tier: estimate

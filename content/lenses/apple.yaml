@@ -1,44 +1,137 @@
 id: apple
 company: Apple
+order: 5
 round_types:
-  - "Product / Craft"
-  - "Cross-functional collaboration"
-  - "Domain depth for the specific team"
+  - "Recruiter and hiring manager screens"
+  - "Team loop (5-8 interviews)"
+  - "Cross-functional and executive conversations"
+
 philosophy: >-
-  Apple's process is notably team-specific and secretive — you are hired into a
-  particular group rather than into a general PM pool, and you may learn little
-  about the actual product until late. Design is largely owned by a dedicated
-  design organisation, so the PM is judged less on generating interface ideas and
-  more on taste, craft, depth in the domain, and the ability to work across
-  functions without owning them.
+  Apple is the outlier of the five, and the reason is structural rather than
+  cultural. It is organised functionally rather than into business units — experts
+  lead experts, and there is a large dedicated design organisation — so a PM here
+  is judged less on generating interface ideas and more on taste, craft, domain
+  depth, and the ability to align functions you do not control. Hiring is
+  team-specific rather than centralised: you are hired into a particular group, by
+  that group, and there is no company-wide committee that can override them.
+  Secrecy is a genuine working condition, so expect to be assessed partly on
+  whether you can operate with less context than you are used to.
+
+values_label: "Operating principles and cultural expectations"
+values:
+  - name: Functional organisation
+    description: >-
+      The company is structured by expertise, not by product line. Design,
+      engineering, and marketing report up their own functions.
+    in_answers: "Show influence across functions you had no authority over, and comfort not owning the design."
+  - name: Directly Responsible Individual (DRI)
+    description: >-
+      A single named person is accountable for every meaningful deliverable, so
+      accountability is never diffuse.
+    in_answers: "Speak in first-person singular about what you owned, and name what you were accountable for that went wrong."
+  - name: Craft and taste
+    description: "Quality judged on detail and coherence rather than on feature count or velocity."
+    in_answers: "A moment you held something back because it was not good enough, and what that cost."
+  - name: Simplification
+    description: "Removing rather than adding; deciding what not to do."
+    in_answers: "The feature you cut and the argument you had to win to cut it."
+  - name: Confidentiality
+    description: >-
+      Teams frequently do not know what other teams are building. Discretion is a
+      working requirement, not an HR formality.
+    in_answers: "Discuss past work at a level of detail that respects previous employers' confidentiality — this is itself a signal."
+  - name: Hardware-software integration
+    description: "Thinking across the boundary between physical product and software experience."
+    in_answers: "Relevant where the role touches devices — show you understand constraints the other side imposes."
+
+loop:
+  - stage: Recruiter screen
+    format: Phone
+    duration_min: 30
+    tests: "Role fit and domain background."
+  - stage: Hiring manager screen
+    format: Video or phone
+    duration_min: 45
+    tests: "Depth in the specific product area. Expect little detail about what the team actually works on."
+  - stage: Team loop
+    format: 5-8 interviews, often across two days
+    duration_min: 45
+    tests: "Domain depth, craft judgement, cross-functional collaboration, and cultural fit with that specific team."
+    note: "Interviewers are drawn from the functions you would work with. There is no central committee — this team decides."
+  - stage: Cross-functional conversations
+    format: Design, engineering, operations
+    tests: "Whether the functions you must align would want to work with you."
+
 rubric:
-  - id: apple.taste
-    name: Product Taste & Craft
-    weight: 30
-    description: "Judgement about quality — why one execution is better than another."
-    strong_signal: "Explains why a design decision is right in terms of the user, not aesthetics."
-  - id: apple.depth
+  - id: apple.craft
+    name: Craft & Taste
+    weight: 28
+    description: "Judgement about quality and detail; knowing when something is not good enough."
+    strong_signal: "Describes holding work back for quality, and what that decision cost."
+  - id: apple.domain-depth
     name: Domain Depth
-    weight: 25
-    description: "Genuine knowledge of the specific product area, not general PM fluency."
-    strong_signal: "Discusses the category's real constraints, including the unglamorous ones."
-  - id: apple.collaboration
-    name: Cross-functional Collaboration
-    weight: 20
-    description: "Working with design, hardware, and engineering without formal authority."
-    strong_signal: "Describes influencing a decision owned by another function, respectfully."
-  - id: apple.focus
-    name: Focus & Restraint
-    weight: 15
-    description: "Willingness to cut, and to ship less in service of coherence."
-    strong_signal: "Names what they removed and why the product is better without it."
-  - id: apple.communication
-    name: Communication
+    weight: 26
+    description: "Genuine expertise in the specific area, since hiring is team-specific."
+    strong_signal: "Knows the domain's constraints well enough to say what is hard about it, not just what is desirable."
+  - id: apple.cross-functional
+    name: Cross-Functional Leadership
+    weight: 22
+    description: "Aligning design, engineering, and operations without owning any of them."
+    strong_signal: "Won a decision through argument and evidence rather than authority."
+  - id: apple.simplification
+    name: Simplification
+    weight: 14
+    description: "Deciding what not to build, and defending the removal."
+    strong_signal: "Names what was cut and why the product was better for it."
+  - id: apple.ownership
+    name: Ownership (DRI)
     weight: 10
-    description: "Precision and concision; comfort with detail."
-    strong_signal: "Answers the question actually asked, without padding."
+    description: "Personal accountability for a defined outcome."
+    strong_signal: "First-person singular throughout, including for failures."
+
 red_flags:
-  - "Feature-maximalism — solving disagreement by adding options"
-  - "Generic PM answers with no depth in the specific domain"
-  - "Treating design as something the PM directs rather than partners with"
-  - "Indiscretion about previous employers' unreleased work"
+  - "Positioning yourself as the person who generates the design — design is a separate organisation here"
+  - "Discussing a previous employer's confidential work too freely"
+  - "Generic answers that would fit any company, in a loop that is explicitly team-specific"
+  - "Discomfort with being given limited context"
+  - "Feature-count thinking rather than quality and coherence thinking"
+
+sample_questions:
+  - "Tell me about a product detail others considered finished that you insisted on changing."
+  - "How would you decide what to remove from a product that has become too complex?"
+  - "Describe aligning design and engineering when they disagreed and you owned neither."
+  - "What is a recent product decision by any company that you think was wrong, and why?"
+  - "Tell me about something you owned end to end where the outcome was your responsibility alone."
+
+myths:
+  - common_advice: "Prepare a general 'Apple answer' about loving the brand and design."
+    reality: >-
+      Hiring is team-specific and decided by the team you would join, so a generic
+      brand-affinity answer competes badly against demonstrated depth in that
+      team's actual domain. Enthusiasm for Apple is assumed, not scored.
+    source_tier: corroborated
+  - common_advice: "As a PM you should come in with strong interface proposals."
+    reality: >-
+      Apple's functional structure gives design to a dedicated organisation. A PM
+      who arrives positioning themselves as the design authority is misreading the
+      role; the scarce contribution is judgement, domain depth, and cross-functional
+      alignment.
+    source_tier: corroborated
+  - common_advice: "You should be told what you would be working on before the loop."
+    reality: >-
+      Often you will not be, and that is deliberate. Teams operate with restricted
+      information about each other, and your comfort with limited context is part
+      of what is being assessed.
+    source_tier: corroborated
+
+sources:
+  - label: "Podolny, J. & Hansen, M. — How Apple Is Organized for Innovation, Harvard Business Review (written by Apple's then-dean of Apple University; the authoritative account of the functional structure)"
+    url: "https://hbr.org/2020/11/how-apple-is-organized-for-innovation"
+    year: 2020
+    tier: official
+  - label: "The DRI convention — long-documented Apple management practice"
+    tier: corroborated
+  - label: "Team-specific hiring, loop size, and confidentiality expectations, corroborated across independent candidate accounts"
+    tier: corroborated
+  - label: "Rubric weightings above are our own inference; Apple publishes nothing about PM evaluation criteria"
+    tier: estimate

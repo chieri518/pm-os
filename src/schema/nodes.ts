@@ -368,12 +368,74 @@ export const RubricDimension = z.object({
   strong_signal: z.string(),
 });
 
+/**
+ * Where a claim came from. The whole point of this field is that the company
+ * lenses used to be labelled "researched estimates" wholesale, which was honest
+ * but useless — it gave a reader no way to tell Amazon's published Leadership
+ * Principles (verbatim, from amazon.jobs) apart from our own guess at how much a
+ * stage is weighted. Provenance is now per-source rather than per-page.
+ */
+export const SourceTier = z.enum([
+  /** The company says this itself, in public, in writing. */
+  "official",
+  /** Consistently reported across many independent accounts; not first-party. */
+  "corroborated",
+  /** Our inference from the above. Explicitly not fact. */
+  "estimate",
+]);
+
+export const LensSource = z.object({
+  label: z.string(),
+  url: z.string().url().optional(),
+  year: z.number().int().optional(),
+  tier: SourceTier,
+});
+
+/** A named value, principle, or attribute the company evaluates against. */
+export const CompanyValue = z.object({
+  name: z.string(),
+  description: z.string(),
+  /** What demonstrating it actually sounds like in an answer. */
+  in_answers: z.string().optional(),
+});
+
+/** One stage of the interview loop. */
+export const LoopStage = z.object({
+  stage: z.string(),
+  format: z.string(),
+  duration_min: z.number().int().positive().optional(),
+  tests: z.string(),
+  note: z.string().optional(),
+});
+
+/**
+ * Where widely repeated prep folklore disagrees with what the company actually
+ * publishes. This is the highest-value field on the whole node: it is the only
+ * place in the corpus where we can correct advice using a first-party source.
+ */
+export const LensMyth = z.object({
+  common_advice: z.string(),
+  reality: z.string(),
+  source_tier: SourceTier,
+});
+
 export const CompanyLens = z.object({
   id: Slug,
   company: z.string(),
+  order: z.number().int().default(100),
   round_types: z.array(z.string()).min(1),
   philosophy: z.string(),
+  /** What the company calls its evaluation criteria, in its own vocabulary. */
+  values_label: z.string().optional(),
+  values: z.array(CompanyValue).default([]),
+  loop: z.array(LoopStage).default([]),
   rubric: z.array(RubricDimension).min(1),
   red_flags: z.array(z.string()).default([]),
+  sample_questions: z.array(z.string()).default([]),
+  myths: z.array(LensMyth).default([]),
+  /** Required. A lens with no sources is exactly the problem this replaced. */
+  sources: z.array(LensSource).min(1),
 });
 export type CompanyLens = z.infer<typeof CompanyLens>;
+export type LensSource = z.infer<typeof LensSource>;
+export type LoopStage = z.infer<typeof LoopStage>;

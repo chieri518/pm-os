@@ -234,25 +234,31 @@ export default function LibraryPage() {
             Company lenses
           </h2>
           <span className="text-xs text-ink-400">
-            The same answer scores differently depending on who is listening.
+            The same answer scores differently depending on who is listening. Now sourced, with provenance graded per claim.
           </span>
         </div>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {lenses.map((l) => (
-            <div key={l.id} className="rounded-xl border border-ink-800 bg-ink-900/70 p-4">
-              <h3 className="text-[15px] font-medium text-ink-100">{l.company}</h3>
+            <Link
+              key={l.id}
+              href={`/company/${l.id}`}
+              className="rounded-xl border border-ink-800 bg-ink-900/70 p-4 transition-colors hover:border-ink-600 hover:bg-ink-850"
+            >
+              <div className="flex items-baseline justify-between gap-2">
+                <h3 className="text-[15px] font-medium text-ink-100">{l.company}</h3>
+                <span className="font-mono text-[10px] uppercase tracking-wider text-ink-400">
+                  {l.loop.length} rounds
+                </span>
+              </div>
               <p className="mt-1.5 text-[13px] leading-relaxed text-ink-300">
-                {l.rubric[0] && (
-                  <>
-                    Weights <span className="text-ink-100">{l.rubric[0].name}</span> highest (
-                    {l.rubric[0].weight}%).
-                  </>
-                )}
+                {l.values_label ?? "What they evaluate"} · {l.values.length} criteria
               </p>
-              <p className="mt-2 font-mono text-[10px] text-ink-400">
-                {l.round_types.length} round types · {l.red_flags.length} red flags
-              </p>
-            </div>
+              {l.myths.length > 0 && (
+                <p className="mt-2 font-mono text-[10px] text-warn-400">
+                  {l.myths.length} common myths corrected
+                </p>
+              )}
+            </Link>
           ))}
         </div>
         <p className="mt-3 text-[13px] text-ink-400">

@@ -1,44 +1,133 @@
 id: microsoft
 company: Microsoft
+order: 4
 round_types:
-  - "Product Design"
-  - "Technical / Coding"
-  - "As-appropriate (Behavioral + culture)"
+  - "Recruiter and hiring manager screens"
+  - "Onsite loop (4-5 interviews)"
+  - "As-Appropriate (AA) interview"
+
 philosophy: >-
-  Microsoft's program manager role has historically been the most
-  specification-driven of the major companies, particularly on shipped-software
-  teams where a feature cannot be quietly revised after release. That shapes the
-  interview: expect emphasis on completeness, edge cases, and cross-team
-  coordination. Enumerating the states a feature can be in is a strength here,
-  where at a faster-moving company it might read as over-specification.
+  Microsoft's culture was deliberately rebuilt around a single idea — growth
+  mindset, in Carol Dweck's sense — and Satya Nadella's formulation of it as
+  moving from a know-it-all to a learn-it-all culture is first-party and
+  frequently echoed by interviewers. The practical consequence for a candidate is
+  that how you talk about failure is load-bearing rather than a formality. The
+  loop is also collaborative in tone relative to Amazon's: expect to be probed on
+  how you work across teams, since the company's stated priorities put
+  one-Microsoft collaboration alongside customer obsession and inclusion.
+
+values_label: "Cultural attributes and stated core priorities"
+values:
+  - name: Growth mindset
+    description: >-
+      The belief that ability develops through effort and learning. Nadella's
+      framing: be a learn-it-all rather than a know-it-all.
+    in_answers: "Describe a failure, what you concluded from it, and what you did differently afterwards — without softening it into a non-failure."
+  - name: Customer obsession
+    description: "Starting from customer need and outcomes rather than from internal capability."
+    in_answers: "Ground the proposal in an observed customer problem, not a product gap."
+  - name: Diverse and inclusive
+    description: "Seeking out perspectives unlike your own and building for a broad range of users."
+    in_answers: "Show where you changed a decision because someone unlike you raised something."
+  - name: One Microsoft
+    description: "Working across organisational boundaries rather than optimising a local team's result."
+    in_answers: "An example of trading a local win for a better company-level outcome."
+  - name: Model, coach, care
+    description: "The stated expectation of managers: model the culture, coach the team, care about people."
+    in_answers: "Relevant if interviewing at manager level — talk about developing people, not just shipping."
+
+loop:
+  - stage: Recruiter screen
+    format: Phone
+    duration_min: 30
+    tests: "Role fit, level, and logistics."
+  - stage: Hiring manager screen
+    format: Video
+    duration_min: 45
+    tests: "Product thinking and team fit."
+  - stage: Onsite loop
+    format: 4-5 interviews
+    duration_min: 60
+    tests: "Product sense, execution and analytics, technical fluency, and behavioural depth against the cultural attributes."
+  - stage: As-Appropriate (AA)
+    format: Senior interviewer, late in the loop
+    duration_min: 60
+    tests: "Overall bar and cross-team judgement."
+    note: "Functionally similar to Amazon's Bar Raiser — a senior voice from outside the immediate team whose assessment carries disproportionate weight."
+
 rubric:
-  - id: microsoft.product-design
-    name: Product Design & Completeness
-    weight: 30
-    description: "Defining a feature thoroughly, including states, errors, and edge cases."
-    strong_signal: "Volunteers the failure states and the accessibility implications unprompted."
-  - id: microsoft.technical
-    name: Technical Depth
-    weight: 25
-    description: "Real technical fluency; historically including coding for some roles."
-    strong_signal: "Reasons about implementation cost when proposing a design."
-  - id: microsoft.collaboration
-    name: Cross-team Collaboration
-    weight: 20
-    description: "Driving work across teams you do not control, on long timelines."
-    strong_signal: "Describes managing a dependency on another org through to delivery."
-  - id: microsoft.customer-focus
-    name: Customer Focus
-    weight: 15
-    description: "Grounding decisions in customer scenarios rather than internal preference."
-    strong_signal: "Frames requirements as scenarios rather than as feature lists."
+  - id: microsoft.customer
+    name: Customer Obsession
+    weight: 26
+    description: "Grounding decisions in customer need and measurable outcomes."
+    strong_signal: "Starts from an observed customer problem rather than a competitive gap."
   - id: microsoft.growth-mindset
     name: Growth Mindset
-    weight: 10
-    description: "Learning posture; the culture explicitly rewards it."
-    strong_signal: "Describes a belief they changed, and what changed it."
+    weight: 24
+    description: "How you handle failure, seek disconfirming views, and learn from mistakes."
+    strong_signal: "Volunteers a real failure and the specific change in behaviour that followed."
+  - id: microsoft.collaboration
+    name: Collaboration Across Teams
+    weight: 22
+    description: "Working across organisational boundaries; influence without authority."
+    strong_signal: "Traded a local team win for a better company-level outcome, and says what it cost."
+  - id: microsoft.technical
+    name: Technical Fluency
+    weight: 16
+    description: "Enough depth to earn engineering trust; varies substantially by org."
+    strong_signal: "Discusses a technical trade-off accurately without overclaiming expertise."
+  - id: microsoft.execution
+    name: Execution & Results
+    weight: 12
+    description: "Shipping, prioritising, and quantifying outcomes."
+    strong_signal: "Names what was cut to make a date, and why that was the right cut."
+
 red_flags:
-  - "Vague requirements that leave decisions to engineers by accident"
-  - "Ignoring accessibility, internationalisation, or error states"
-  - "Know-it-all posture — explicitly counter-cultural here"
-  - "No plan for the teams you depend on but do not control"
+  - "A know-it-all posture, or inability to name anything you were wrong about"
+  - "Choosing a failure story that is not really a failure"
+  - "Optimising your own team's result at the expense of the company"
+  - "Overclaiming technical depth you cannot support under follow-up"
+  - "Treating diversity and inclusion as a compliance topic rather than a product input"
+
+sample_questions:
+  - "Tell me about a time you failed and what you took from it."
+  - "How would you improve a productivity product used by millions of enterprise workers?"
+  - "Describe a time you had to influence a partner team with no authority over them."
+  - "How would you decide which customer segment to prioritise for a new feature?"
+  - "Tell me about feedback that was hard to hear and what you did with it."
+
+myths:
+  - common_advice: "Microsoft PM interviews are mainly coding and technical puzzles."
+    reality: >-
+      Technical depth expected varies substantially by organisation, and product
+      management here has historically been closer to program management than to
+      software engineering. Confirm scope with your recruiter rather than assuming
+      an algorithm round.
+    source_tier: corroborated
+  - common_advice: "Growth mindset is soft filler — focus on the product answers."
+    reality: >-
+      It is the explicit centre of the company's stated culture and is assessed
+      directly through how you discuss failure. A candidate with strong product
+      answers who cannot name a real mistake is failing a scored dimension, not a
+      pleasantry.
+    source_tier: official
+  - common_advice: "The As-Appropriate round is a formality once you have done well."
+    reality: >-
+      It functions as a bar check by a senior interviewer outside the immediate
+      team, and it can change the outcome. Treat it as a full round.
+    source_tier: corroborated
+
+sources:
+  - label: "Nadella, S. — Hit Refresh (first-party account of the growth-mindset culture change)"
+    year: 2017
+    tier: official
+  - label: "Microsoft — published cultural attributes and core priorities (growth mindset, customer obsession, diverse and inclusive, one Microsoft; model-coach-care for managers)"
+    url: "https://www.microsoft.com/en-us/about"
+    tier: official
+  - label: "Dweck, C. — Mindset (the underlying psychological research Microsoft's framing draws on)"
+    year: 2006
+    tier: official
+  - label: "Loop structure and As-Appropriate round mechanics, corroborated across independent candidate accounts"
+    tier: corroborated
+  - label: "Rubric weightings above are our own inference; Microsoft does not publish weights"
+    tier: estimate

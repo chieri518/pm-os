@@ -737,3 +737,89 @@ likely to be challenged.
 **Known bug:** the site does not work on mobile. `/practice` overflows
 horizontally at 390px — question-type chips, company names, and heuristic traces
 are all cut off. Desktop-only until fixed.
+
+---
+
+## Milestone 7 — Company Lenses, Sourced
+
+**Goal:** replace "researched estimates" with actual provenance. Of everything in
+the repo, the company lenses were the content most likely to be challenged by
+someone who has actually interviewed at those companies — and the blanket estimate
+label, while honest, was useless.
+
+**Shipped:** all 5 lenses rewritten against researched sources, a `/company/[id]`
+page, and a provenance system that grades every claim.
+
+---
+
+### Decision 15 — Provenance is per-source, not per-page
+
+The old label was a single sentence at the bottom of the UI saying the weights
+were estimates. That made two very different kinds of claim look identical:
+Amazon's Leadership Principles, quoted verbatim from amazon.jobs, and our own
+guess at how heavily a CIRCLES stage is weighted.
+
+Every source now carries a `tier`:
+
+| Tier | Meaning |
+|---|---|
+| `official` | The company says this itself, in public, in writing |
+| `corroborated` | Consistently reported across independent accounts; not first-party |
+| `estimate` | Our inference. Explicitly not fact |
+
+Rendered as a coloured tag next to each source, with a legend. The stage
+weightings are still estimates — they are now *labelled* as estimates sitting next
+to claims that are not, which is the honest presentation.
+
+---
+
+### The find: Meta publishes its own PM interview guide
+
+Meta distributes a first-party PM interview prep guide to candidates. It did not
+parse through normal fetching, so I extracted the text directly from the PDF. It
+is by far the best source available for any of the five companies, and it
+**contradicts widely repeated prep advice on four points**:
+
+| Common advice | What Meta's own guide says |
+|---|---|
+| "Pick the narrowest possible segment or you'll be marked down" | Specific or broad **depends on the product and question** — what is scored is whether you can articulate the reasoning |
+| "Know every Meta product cold" | They **do not** expect it. Ask the interviewer for context on unfamiliar products, and verify your understanding with them |
+| "The process matters more than the answer" | **Both matter, neither is sufficient alone.** A thought process that ends nowhere is not a pass |
+| "Ask as many clarifying questions as possible" | Balance clarification against **making reasonable decisions yourself** — 45 minutes is not much |
+
+The guide also supplies the exact focus areas per round, the official pitfalls,
+and Meta's own answer on metrics (prioritise one to three, and articulate why).
+
+A new `myths` field carries these, and they render at the **top** of each company
+page — above the loop, above the rubric. Correcting bad advice with a first-party
+source is the single most valuable thing this project can do, so it goes first.
+
+---
+
+### What each lens gained
+
+`values` (their vocabulary, not ours), `loop` (stage, format, duration, what it
+tests), `sample_questions`, `myths`, and a required `sources` array.
+
+- **Amazon** — all 16 Leadership Principles with exact names, verified against
+  amazon.jobs. Bar Raiser mechanics: outside the hiring team, does not report to
+  the hiring manager, holds veto, trained to push past prepared answers.
+- **Meta** — the official guide above.
+- **Google** — the four published attributes (GCA, role-related knowledge,
+  leadership, Googleyness). The structural insight: **the interviewer does not
+  decide.** A hiring committee that never met you decides from written notes, so
+  clarity beats rapport — if your interviewer cannot write down why your answer
+  was good, the committee never sees it.
+- **Microsoft** — growth mindset as the explicit cultural centre (Nadella's
+  learn-it-all framing, drawing on Dweck), plus the As-Appropriate round, which
+  functions much like a Bar Raiser.
+- **Apple** — the functional-organisation structure, sourced to Podolny & Hansen's
+  HBR piece written by Apple University's then-dean. Design belongs to a separate
+  organisation, so a PM positioning themselves as the design authority is
+  misreading the role.
+
+---
+
+### Still open
+
+The mobile bug remains. `/practice` overflows horizontally at 390px.
