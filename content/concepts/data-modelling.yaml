@@ -1,0 +1,134 @@
+id: data-modelling
+name: Data Models & Storage
+order: 73
+domain: technical
+in_one_line: >-
+  What your product can ever do is bounded by what it records, and the shape of
+  that record is one of the hardest decisions to reverse.
+
+why_it_matters: >-
+  Feature requests routinely turn out to be data-model requests in disguise.
+  "Let users belong to more than one team" or "show me last quarter's version" are
+  product sentences that mean a migration. Recognising this before committing a
+  roadmap is a genuinely senior skill.
+
+layers:
+  - level: orientation
+    title: Entities, relationships, and the questions you can answer
+    body: >-
+      A data model names the things your product knows about — users, orders,
+      teams — and how they relate. Its practical meaning for a PM is that it
+      determines which questions are answerable. If you store only a customer's
+      current address, you cannot answer "where was this shipped last year",
+      because that information was overwritten rather than recorded. Analytics
+      requests that turn out to be impossible are almost always this: the data was
+      never modelled to support the question, and no dashboard can recover it.
+
+  - level: working
+    title: Cardinality, and why many-to-many is the expensive one
+    body: >-
+      Relationships come in three shapes and the difference is not academic.
+      One-to-one and one-to-many are cheap — an order belongs to one customer, a
+      customer has many orders. Many-to-many needs a join table and changes
+      queries, permissions, and interface everywhere the relationship appears. This
+      is why "can a user belong to multiple teams?" is such a consequential
+      question: if the answer was no at launch and becomes yes later, you are
+      migrating live data, backfilling defaults for existing rows, and revisiting
+      every permission check. Ask cardinality questions early, when they are free.
+      The second habit is separating the event from the current state: recording
+      that an order's status *changed to shipped at a timestamp* preserves history,
+      while a single status field overwrites it. Append-only event records are more
+      work up front and answer far more questions later.
+
+  - level: expert
+    title: Normalisation, soft deletes, and modelling time
+    body: >-
+      Normalisation stores each fact once so it cannot disagree with itself;
+      denormalisation deliberately duplicates it for read speed and accepts that
+      copies can drift. Transactional systems lean normalised, analytics systems
+      lean denormalised, and knowing which side a request sits on tells you which
+      complaint to expect. Three things bite repeatedly. Deletion is rarely
+      deletion: a hard delete destroys history and breaks references, so most
+      systems mark rows deleted instead — but that means every query must exclude
+      them, and forgetting is a common bug that surfaces as removed data
+      reappearing. Right-to-erasure obligations then collide with this directly,
+      which makes deletion a legal question as well as a technical one. Money
+      should be stored as integer minor units — pence, not pounds — because
+      floating point cannot represent 0.1 exactly and rounding errors accumulate
+      into reconciliation problems. And time is the most consistently underestimated
+      modelling problem: store timestamps in UTC with the original timezone
+      alongside, because "when did this happen" and "what did the user's clock say"
+      are different questions, and reporting that ignores the difference produces
+      figures that are wrong by a day at month boundaries.
+
+worked_example:
+  situation: >-
+    A B2B tool has users belonging to one company each. Sales asks for support for
+    consultants who work across several clients.
+  steps:
+    - "Recognise the shape: this changes user-to-company from one-to-many to many-to-many."
+    - "That means a membership join table, and a role per membership rather than per user."
+    - "Every permission check that assumed 'the user's company' now needs a company in context."
+    - "The UI gains a concept it never had — an active workspace, and a way to switch."
+    - "Existing rows need backfilling: one membership each, preserving current roles."
+    - "Analytics breaks subtly — 'users per company' now double-counts consultants unless the query changes."
+  takeaway: >-
+    A request phrased as one feature was a migration touching permissions,
+    interface, and every existing report. Had the cardinality question been asked
+    at launch, it would have cost nothing — which is exactly why it is worth asking
+    then.
+
+common_errors:
+  - mistake: "Not asking cardinality questions early."
+    instead: >-
+      "Can one X have many Y?" is free to answer at design time and expensive
+      later. Ask it for every relationship that might plausibly grow.
+  - mistake: "Storing only current state when history matters."
+    instead: >-
+      If anyone will ever ask "what was it then", record events rather than
+      overwriting a field. You cannot reconstruct history you did not keep.
+  - mistake: "Storing money as a floating-point number."
+    instead: >-
+      Use integer minor units. Floats cannot represent common decimal values
+      exactly, and the errors compound.
+  - mistake: "Treating deletion as simple."
+    instead: >-
+      Decide between soft and hard deletion deliberately, and check it against
+      erasure obligations — they pull in opposite directions.
+  - mistake: "Ignoring timezones until a bug report."
+    instead: >-
+      Store UTC plus the original zone. Daily and monthly reporting is wrong at
+      boundaries otherwise.
+
+in_interview:
+  how_to_deploy: >-
+    When given a feature request in a technical round, ask what has to be recorded
+    for it to work and what cardinality the relationships have. Spotting that a
+    feature is really a migration is a strong seniority signal.
+  strong_sounds_like: >-
+    This looks like one feature but it changes user-to-company from one-to-many to
+    many-to-many, which is the expensive shape — it means a membership table, roles
+    moving to the membership, a workspace concept in the UI, and every permission
+    check gaining a company in context. I would also flag that reporting breaks
+    quietly, since users-per-company starts double-counting. Worth deciding this
+    now rather than discovering it mid-migration.
+  weak_sounds_like: >-
+    We would update the database so that users can be associated with multiple
+    companies, and then update the interface to let them switch between them.
+
+evidence:
+  strength: replicated
+  note: >-
+    Relational modelling rests on Codd's relational algebra and normal forms —
+    formal results rather than opinions. Floating-point representation error is
+    specified in IEEE 754 and is not a matter of practice preference. The
+    normalisation-versus-denormalisation trade-off is well characterised in
+    database literature. What varies by context is where to sit on that trade,
+    which depends on read and write patterns rather than on principle.
+
+sources:
+  - label: "Codd, E. F. — A Relational Model of Data for Large Shared Data Banks, CACM"
+    year: 1970
+  - label: "IEEE 754 — Standard for Floating-Point Arithmetic"
+  - label: "Kleppmann, M. — Designing Data-Intensive Applications"
+    year: 2017

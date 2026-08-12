@@ -1,0 +1,149 @@
+id: ml-for-pms
+name: Machine Learning for PMs
+order: 72
+domain: technical
+in_one_line: >-
+  Knowing when a probabilistic system is the right tool, and how to specify what
+  "good enough" means when the system will definitely be wrong sometimes.
+
+why_it_matters: >-
+  Almost every product surface now has an ML or LLM proposal attached to it, and
+  the PM failure mode is specifying it like deterministic software. The
+  distinguishing skill is choosing the error you would rather make — which is a
+  product decision that no model can make for you.
+
+layers:
+  - level: orientation
+    title: Prediction from examples, and why that changes the spec
+    body: >-
+      Traditional software encodes rules a person wrote. Machine learning infers
+      patterns from labelled examples and outputs a prediction with an implicit
+      confidence. The consequence for a PM is that the system will be wrong some
+      of the time by design, and no amount of engineering makes that zero. So the
+      specification cannot be "detect spam". It has to say how often it may miss
+      spam, how often it may flag a legitimate message, and what happens in each
+      case — because those are different harms to different people. Reach for ML
+      when the rules are too numerous or too fuzzy to write and you have labelled
+      examples; use rules when the logic is knowable, because rules are cheaper,
+      debuggable, and explainable.
+
+  - level: working
+    title: Precision, recall, and why accuracy is usually a trap
+    body: >-
+      Precision is: of the things we flagged, what share were genuinely positive.
+      Recall is: of the things that genuinely were positive, what share did we
+      catch. They trade off — turning up sensitivity catches more true cases and
+      more false alarms. Accuracy, the share of all predictions that were correct,
+      is actively misleading whenever the classes are imbalanced: if 1 in 1,000
+      transactions is fraudulent, a model that always says "not fraud" is 99.9%
+      accurate and worthless. The product question is which error costs more.
+      Missing a fraudulent transaction costs money; falsely blocking a real
+      customer costs a customer, and possibly a complaint. Spam filtering usually
+      favours precision, because a legitimate email in the spam folder is worse
+      than a spam email in the inbox. Cancer screening favours recall, because a
+      false alarm leads to another test and a miss can be fatal. Naming which side
+      you are choosing and why is the whole job.
+
+  - level: expert
+    title: Cold start, feedback loops, drift — and what LLMs change
+    body: >-
+      Three failures recur. Cold start: a recommender with no interaction data has
+      nothing to recommend from, which is a product problem solved with
+      onboarding questions, editorial defaults, or content-based fallbacks — not a
+      modelling problem. Feedback loops: if you only ever show what the model
+      predicts people will like, the training data becomes a record of what you
+      showed, and the system narrows into a self-confirming loop. Deliberate
+      exploration is the counter, and it costs short-term engagement to buy
+      long-term quality. Drift: behaviour changes, so a model trained on last
+      year's data quietly degrades, which makes monitoring a launch requirement
+      rather than an afterthought. Generative models add their own: they are
+      fluent in a way that makes errors harder to spot than a wrong label, they
+      cannot reliably report their own uncertainty, and the same input need not
+      give the same output — so testing has to be statistical rather than
+      example-based. The product responses are mostly about interface: showing
+      sources, making the correction path cheap, and setting expectations so
+      confident wrongness is anticipated rather than shocking. Ask about training
+      data provenance and bias early, since a model trained on skewed data
+      reproduces the skew and this surfaces as a fairness problem after launch.
+
+formulas:
+  - name: Precision
+    expression: "Precision = true positives ÷ (true positives + false positives)"
+    notes: "Of what we flagged, how much was real. Optimise this when a false alarm is expensive."
+  - name: Recall
+    expression: "Recall = true positives ÷ (true positives + false negatives)"
+    notes: "Of what was real, how much we caught. Optimise this when a miss is expensive."
+  - name: F1 score
+    expression: "F1 = 2 × (precision × recall) ÷ (precision + recall)"
+    notes: "Harmonic mean of the two. A convenient single number, and a way to avoid making the trade-off decision explicitly — prefer stating the trade directly."
+
+worked_example:
+  situation: >-
+    A marketplace wants ML to automatically remove fraudulent listings. The
+    proposed success metric is 95% accuracy.
+  steps:
+    - "Check the base rate: roughly 2% of listings are fraudulent."
+    - "So a model that approves everything is already 98% accurate and catches nothing. The metric is broken."
+    - "Reframe as the two errors: a missed fraud harms a buyer; a wrongly removed listing harms a legitimate seller."
+    - "Talk to support: buyer harm generates refunds and reputational damage; seller harm generates churn among supply, which is the scarcer side."
+    - "So favour precision on the auto-remove action, and route the uncertain middle band to human review rather than forcing a binary."
+    - "Set the launch bar as precision above 95% on auto-removal at whatever recall that yields, and monitor drift monthly."
+  takeaway: >-
+    The original metric was satisfiable by doing nothing. The reframe turned an ML
+    spec into a product decision about which of two harms to prefer — and the
+    review queue exists precisely because the model does not have to decide alone.
+
+common_errors:
+  - mistake: "Specifying accuracy on an imbalanced problem."
+    instead: >-
+      Check the base rate first. If positives are rare, accuracy is satisfiable by
+      predicting the majority class every time.
+  - mistake: "Not choosing between precision and recall."
+    instead: >-
+      Say which error is worse for this product and why. That is the PM's decision,
+      not the model's.
+  - mistake: "Forcing every prediction into a binary action."
+    instead: >-
+      Use the confidence band. Auto-act where confident, route the middle to human
+      review — usually the highest-value product move available.
+  - mistake: "Treating launch as the finish line."
+    instead: >-
+      Models drift as behaviour changes. Monitoring and retraining are launch
+      requirements, not follow-ups.
+  - mistake: "Ignoring the feedback loop in recommenders."
+    instead: >-
+      If training data is only what you showed, the system narrows over time.
+      Budget for exploration deliberately.
+
+in_interview:
+  how_to_deploy: >-
+    When an ML solution is proposed, ask for the base rate and then name which
+    error you would rather make. Suggesting a confidence band with human review,
+    rather than a forced binary, is a strong and unusual product move.
+  strong_sounds_like: >-
+    Before agreeing to 95% accuracy I would ask what share of listings are actually
+    fraudulent — if it is 2%, then approving everything scores 98% and catches
+    nothing, so accuracy is the wrong target. The real question is which error
+    hurts more. A wrongly removed listing churns a seller, and supply is our scarce
+    side, so I would favour precision on auto-removal and send the uncertain band
+    to human review rather than forcing every case into a decision.
+  weak_sounds_like: >-
+    We would train a machine learning model on our historical fraud data and aim
+    for high accuracy, then improve it over time as we collect more data.
+
+evidence:
+  strength: replicated
+  note: >-
+    Precision, recall, and the base-rate problem are mathematical definitions, not
+    contested claims — the accuracy paradox on imbalanced data is arithmetic.
+    Feedback loops in recommender systems and distribution drift are well
+    documented in the machine-learning literature. The guidance on generative
+    models is newer and less settled: the tendency toward fluent, confident errors
+    and poor self-reported calibration is widely observed and actively researched,
+    so treat specific mitigation practices as current best guess rather than
+    established method.
+
+sources:
+  - label: "Standard classification metrics; the accuracy paradox on imbalanced classes"
+  - label: "Sculley, D. et al. — Hidden Technical Debt in Machine Learning Systems, NeurIPS"
+    year: 2015

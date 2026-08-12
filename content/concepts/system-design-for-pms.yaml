@@ -1,0 +1,139 @@
+id: system-design-for-pms
+name: System Design Basics
+order: 71
+domain: technical
+in_one_line: >-
+  Enough understanding of latency, caching, and scale to know which product
+  requirements are cheap and which quietly cost a quarter of engineering.
+
+why_it_matters: >-
+  PMs are not asked to design systems, but they are constantly asked to make
+  requirements that have architectural consequences. "Show it in real time",
+  "make it searchable", "keep it consistent across devices" are each innocuous
+  sentences that can mean a week or a year, and knowing which is the difference
+  between a credible roadmap and a fictional one.
+
+layers:
+  - level: orientation
+    title: Everything is a trade against latency, cost, or correctness
+    body: >-
+      Almost every architectural decision moves along three axes: how fast it
+      responds, how much it costs to run, and how correct or fresh the data is. You
+      can usually have two. A cache makes reads fast and cheap and makes the data
+      slightly stale. Strong consistency across regions keeps data correct and
+      makes writes slower. Reading a request as a position on those three axes is
+      most of what a PM needs, because it converts an argument about technology
+      into a conversation about what the product actually requires.
+
+  - level: working
+    title: The numbers and mechanisms worth carrying
+    body: >-
+      Rough orders of magnitude are more useful than precision: memory access is
+      nanoseconds, an SSD read is microseconds to low milliseconds, a database
+      query on a warm index is single-digit milliseconds, and a network round trip
+      across the Atlantic is around 100–150ms — bounded by the speed of light, so
+      no engineering removes it. That last one is why regional deployment and CDNs
+      exist at all. Caching is the first lever for read-heavy products, and the
+      only hard part is invalidation: deciding when cached data is too stale to
+      serve. Read replicas scale reads; sharding splits data across machines to
+      scale writes and is much more disruptive. Queues decouple slow work from the
+      request — when a user clicks "export", the response should be "we started
+      that", not thirty seconds of waiting. Recognising which requirements are
+      read-heavy versus write-heavy tells you which lever applies.
+
+  - level: expert
+    title: Consistency, the cost of "real time", and a caution about famous numbers
+    body: >-
+      The CAP theorem's practical form: when a network partition happens — and at
+      scale it does — a distributed system must choose between remaining available
+      and remaining consistent. Most consumer products choose availability with
+      eventual consistency, which is why your like count can differ between
+      devices for a few seconds. That is a product decision, not a bug, and it
+      should be made deliberately: eventual consistency is fine for a like count
+      and unacceptable for an account balance. "Real time" deserves particular
+      scrutiny, because it usually means one of three very different things —
+      sub-second push, updated-when-you-look, or within-a-few-minutes — and the
+      cost difference between them is enormous. Finally, a caution worth carrying
+      into any performance argument: the famous latency figures — Amazon finding
+      100ms cost 1% of sales, Google finding 500ms cost 20% of traffic — both come
+      from internal 2006 experiments that were never published or independently
+      replicated. They are quoted everywhere as if settled. The direction is almost
+      certainly right and the specific coefficients should not be treated as
+      transferable to your product, which has different users, different
+      alternatives, and twenty years of changed expectations.
+
+formulas:
+  - name: Little's Law
+    expression: "L = λ × W"
+    notes: "Items in the system = arrival rate × average time each spends there. Works for queues, support backlogs, and sprint work-in-progress alike — halve the time in system and you halve the queue."
+  - name: Availability from nines
+    expression: "99.9% ≈ 8.8 hours downtime/year; 99.99% ≈ 53 minutes"
+    notes: "Each additional nine costs roughly an order of magnitude more. Ask what the business actually needs before writing an SLA."
+
+worked_example:
+  situation: >-
+    Product asks for a live dashboard showing order counts updating in real time
+    for enterprise customers.
+  steps:
+    - "Interrogate 'real time': push within a second, or refresh-on-view, or within five minutes?"
+    - "Stakeholder answer: they check it a few times a day and want it 'current'. That is refresh-on-view, not push."
+    - "That single clarification removes the need for a streaming pipeline and websockets."
+    - "Read-heavy and tolerant of slight staleness, so cache the aggregate with a 60-second TTL."
+    - "Heavy aggregate queries would hit the primary database, so serve them from a read replica to protect writes."
+    - "Expensive CSV exports move to a queue: respond immediately, email when ready."
+  takeaway: >-
+    The requirement as written implied a streaming architecture. The requirement as
+    meant was a cached query on a replica. The entire cost difference came from one
+    clarifying question about what 'real time' meant.
+
+common_errors:
+  - mistake: "Writing 'real time' in a requirement without defining it."
+    instead: >-
+      Say the tolerance explicitly — sub-second, on-view, or within N minutes. The
+      cost between them differs by orders of magnitude.
+  - mistake: "Treating eventual consistency as a bug."
+    instead: >-
+      It is a deliberate trade. Decide per feature: fine for a like count,
+      unacceptable for a balance.
+  - mistake: "Quoting the Amazon 100ms figure as established fact."
+    instead: >-
+      Note that it is an unpublished 2006 internal result. Argue the direction, and
+      measure your own coefficient if it matters.
+  - mistake: "Asking for more nines than the business needs."
+    instead: >-
+      Each nine costs roughly ten times the previous one. Tie the target to real
+      consequences of downtime.
+
+in_interview:
+  how_to_deploy: >-
+    In technical rounds, translate product requirements into their architectural
+    cost and ask the clarifying question that changes it. You are not designing
+    the system; you are showing you know which requests are expensive.
+  strong_sounds_like: >-
+    Before I scope this I want to pin down what real time means here, because
+    sub-second push and refresh-on-view are completely different systems. If they
+    check it a few times a day, this is a read-heavy problem with tolerance for
+    slight staleness — a cached aggregate on a read replica, so the heavy queries
+    do not sit on the primary. I would push the CSV export onto a queue rather than
+    hold the request open.
+  weak_sounds_like: >-
+    I would work with engineering to build a real-time dashboard that updates
+    instantly and can scale to handle all of our enterprise customers.
+
+evidence:
+  strength: supported
+  note: >-
+    The mechanisms are established computer science: CAP is a proven theorem,
+    Little's Law is a proven queueing result, and network latency is bounded by
+    physics. The order-of-magnitude figures are standard engineering rules of
+    thumb, stable enough to reason with but not precise. Explicitly NOT settled are
+    the famous latency-to-revenue coefficients — the Amazon 100ms/1% and Google
+    500ms/20% claims both trace to unpublished internal experiments from 2006 that
+    have never been independently replicated, despite near-universal citation.
+
+sources:
+  - label: "Brewer, E. — CAP theorem; Gilbert & Lynch formal proof"
+    year: 2002
+  - label: "Linden, G. — Amazon latency experiments (internal, 2006, unpublished)"
+    year: 2006
+  - label: "Dean, J. — Latency numbers every programmer should know"

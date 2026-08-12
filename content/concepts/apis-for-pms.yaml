@@ -1,0 +1,132 @@
+id: apis-for-pms
+name: APIs & Integration
+order: 70
+domain: technical
+in_one_line: >-
+  A contract between two systems about what one will do when asked — and the
+  contract, not the code, is the product decision.
+
+why_it_matters: >-
+  Technical rounds do not test whether you can write code; they test whether
+  engineers can have a real conversation with you. APIs are where most PM
+  technical questions land, because almost every product decision eventually turns
+  into a question about what data can be fetched, how fast, and by whom.
+
+layers:
+  - level: orientation
+    title: A request, a response, and a promise
+    body: >-
+      An API is an agreement: send a request in this shape, and you will get a
+      response in that shape. The reason PMs care is that the agreement is
+      effectively permanent. Once other teams or customers depend on your response
+      format, changing it breaks them — which makes API design one of the clearest
+      Type 1, one-way doors in software. A field you add is nearly impossible to
+      remove later. Naming that is often the single strongest thing a PM can
+      contribute to an API discussion.
+
+  - level: working
+    title: The vocabulary you need to follow the conversation
+    body: >-
+      REST organises the API around resources, addressed by URL, acted on with
+      HTTP verbs — GET to read, POST to create, PUT or PATCH to update, DELETE to
+      remove. Status codes carry meaning: 200 success, 201 created, 400 the caller
+      sent something invalid, 401 not authenticated, 403 authenticated but not
+      allowed, 404 not found, 429 rate-limited, 500 the server failed. The 401
+      versus 403 distinction matters in product terms because they are different
+      user experiences — "log in" versus "you cannot do this". GraphQL is the main
+      alternative: the client specifies exactly which fields it wants in one
+      request, which solves over-fetching and the "N+1 round trips" problem on
+      mobile, at the cost of harder caching and easier accidental expensive
+      queries. Webhooks invert the direction — instead of you polling for changes,
+      the other system calls you when something happens, which is how you build
+      anything near-real-time without hammering an endpoint. Pagination, rate
+      limits, idempotency keys, and versioning are the four operational details
+      that most often become product constraints.
+
+  - level: expert
+    title: Why versioning and idempotency are product problems
+    body: >-
+      Versioning is a business decision disguised as a technical one. Once you
+      publish v1, you own it roughly forever, because deprecating it means asking
+      every integrator to do work they did not plan. The practical consequences
+      are: additive change is cheap and removal is expensive, so design for adding
+      fields; and any breaking change needs a migration window measured in quarters
+      with real customer communication. Idempotency is the other one worth
+      understanding properly. If a client sends "charge this card" and the network
+      drops before the response arrives, the client does not know whether it
+      worked, and retrying might double-charge. An idempotency key — a unique token
+      the client generates and reuses on retry — lets the server recognise the
+      repeat and return the original result. Anywhere money, messages, or bookings
+      are involved, this is a product requirement rather than an implementation
+      detail, and asking about it in a technical round is a strong signal. Also
+      worth knowing: rate limits shape what partners can build on you, so they are
+      a strategic lever, not a knob for the infrastructure team to pick alone.
+
+worked_example:
+  situation: >-
+    A partner wants near-real-time access to order status. The obvious answer is
+    "give them an endpoint".
+  steps:
+    - "Ask about volume and freshness: 50k orders/day, and they want updates within a minute."
+    - "Polling every minute across all orders means ~1,400 requests a day per partner, almost all returning nothing changed."
+    - "So: webhooks. We call them on status change, they do not poll."
+    - "Webhooks introduce delivery risk — their endpoint will be down sometimes, so we need retries with backoff and a replay window."
+    - "Retries mean they may receive the same event twice, so every event carries a unique id and they must handle duplicates."
+    - "Keep a narrow polling endpoint as a reconciliation path for when webhooks were missed entirely."
+  takeaway: >-
+    The product decision was not "build an endpoint" but "who initiates, and what
+    happens when delivery fails". At-least-once delivery is the normal guarantee,
+    which makes duplicate handling the partner's contract, and that belongs in the
+    documentation rather than in a support ticket six months later.
+
+common_errors:
+  - mistake: "Treating API shape as an engineering detail."
+    instead: >-
+      It is a one-way door with external dependants. Adding a field is cheap;
+      removing one is a migration with customer comms.
+  - mistake: "Proposing polling for anything near-real-time."
+    instead: >-
+      Webhooks invert the direction and remove most wasted requests — at the cost
+      of retries, duplicates, and a reconciliation path.
+  - mistake: "Ignoring failure states in the happy-path spec."
+    instead: >-
+      Define what happens on timeout, on rate limit, and on retry. For payments and
+      bookings, idempotency is a product requirement.
+  - mistake: "Saying 'the API is slow' without asking where."
+    instead: >-
+      Ask whether it is round trips, payload size, or a slow query behind it. The
+      three have completely different fixes.
+
+in_interview:
+  how_to_deploy: >-
+    In technical rounds, move the conversation from "can we build it" to "what is
+    the contract and what happens when it fails". Asking about idempotency or
+    versioning unprompted is a disproportionately strong signal.
+  strong_sounds_like: >-
+    Before designing the endpoint I would ask about volume and freshness, because
+    at fifty thousand orders a day with a one-minute expectation, polling burns
+    most requests returning nothing. Webhooks fit better, but they move the problem
+    to delivery — so I would want retries with backoff, a unique event id so
+    partners can deduplicate, and a reconciliation endpoint for gaps. And I would
+    treat the payload shape as a one-way door, since we cannot remove a field once
+    partners depend on it.
+  weak_sounds_like: >-
+    I would ask the engineers to build an API endpoint that returns the order
+    status so the partner can call it whenever they need the latest data.
+
+evidence:
+  strength: replicated
+  note: >-
+    This is settled engineering practice rather than an empirical claim. HTTP
+    semantics and status codes are specified in RFC standards; REST originates in
+    Roy Fielding's 2000 dissertation; idempotency and at-least-once delivery are
+    well-defined properties of distributed systems, not opinions. The only soft
+    parts are the design conventions — REST versus GraphQL, versioning strategy —
+    where reasonable engineers genuinely disagree and the right answer is
+    context-dependent.
+
+sources:
+  - label: "Fielding, R. — Architectural Styles and the Design of Network-based Software Architectures (REST)"
+    year: 2000
+  - label: "RFC 9110 — HTTP Semantics"
+    year: 2022

@@ -680,3 +680,60 @@ Corpus: 8 question types · 12 concepts · 7 frameworks · 8 heuristics · 6 arc
 
 **Next:** the practice session is the natural host for the AI feedback engine — it already
 has the prompt, the scaffold, the timing, and the rubric. What it lacks is a transcript.
+
+---
+
+## Milestone 6 — Process & Technical Concepts
+
+**Goal:** close the two widest gaps in the curriculum — how the work gets decided
+and shipped, and the technical depth an engineer expects a PM to hold.
+
+**Shipped:** 7 concepts across two new domains, 12 new `REQUIRES` edges. The
+`technical` question type went from almost no assumed-knowledge support to four
+concepts.
+
+- **process** — OKRs & Goal Setting, Product Discovery & Dual-Track, Prioritisation Frameworks
+- **technical** — APIs & Integration, System Design Basics, Machine Learning for PMs, Data Models & Storage
+
+Corpus: 8 question types · **19 concepts** · 7 frameworks · 8 heuristics · 5 lenses · **101 edges**.
+
+---
+
+### Fact-checking changed the content again
+
+Two findings that altered what the pages say rather than merely decorating them.
+
+**OKRs are a split verdict, and the halves point in opposite directions.** The
+underlying psychology — Locke & Latham's goal-setting theory — is among the most
+replicated frameworks in organisational psychology, built over a 35-year research
+programme. OKRs as a *practice* have no controlled evidence at all. More
+interesting: **OKRs contradict parts of the theory used to justify them.**
+Goal-setting theory requires commitment and timely feedback; the 70% attainment
+norm explicitly tells people not to expect to hit the target, and a quarterly
+cadence is slow against most product loops. That tension is now the `expert` layer.
+
+**The famous latency numbers are 2006 hearsay.** "Amazon found 100ms cost 1% of
+sales" and "Google found 500ms cost 20% of traffic" are quoted everywhere as
+settled. Both trace to unpublished internal experiments from 2006 — Greg Linden at
+Amazon, Google's search-latency test — never published, never independently
+replicated, and now twenty years old against different users with different
+alternatives. The direction is almost certainly right; the coefficients are not
+transferable. `system-design-for-pms` says so, and "quoting the Amazon 100ms
+figure as established fact" is listed as a common error.
+
+That is now **six** widely-taught claims this project labels contested with
+citations, alongside LTV:CAC 3:1, NPS, the 40% PMF test, and loss aversion.
+
+---
+
+### What is still missing
+
+The career layer — PM vs TPM vs PMM, levels and ladders, resume and referral
+strategy. Design thinking and Agile delivery mechanics. And company lenses are
+still labelled "researched estimates"; upgrading them to officially-sourced
+citations from published candidate-prep pages would strengthen the content most
+likely to be challenged.
+
+**Known bug:** the site does not work on mobile. `/practice` overflows
+horizontally at 390px — question-type chips, company names, and heuristic traces
+are all cut off. Desktop-only until fixed.

@@ -1,0 +1,108 @@
+# REQUIRES edges for the process and technical concepts. The technical question
+# type had almost no assumed-knowledge support before these.
+
+# ---------------------------------------------------------------- technical
+- from: { type: question_type, id: technical }
+  to: { type: concept, id: apis-for-pms }
+  relation: REQUIRES
+  strength: 5
+  rationale: >-
+    Most PM technical questions land on APIs, because product decisions become
+    questions about what data can be fetched, how fast, and by whom. Asking about
+    idempotency or versioning unprompted is a disproportionately strong signal.
+
+- from: { type: question_type, id: technical }
+  to: { type: concept, id: system-design-for-pms }
+  relation: REQUIRES
+  strength: 5
+  rationale: >-
+    The scored skill is translating a product requirement into its architectural
+    cost. Pinning down what "real time" means is often the single clarification
+    that changes the answer by an order of magnitude.
+
+- from: { type: question_type, id: technical }
+  to: { type: concept, id: data-modelling }
+  relation: REQUIRES
+  strength: 4
+  rationale: >-
+    Feature requests are frequently migrations in disguise. Spotting that a
+    one-to-many relationship is becoming many-to-many before committing a roadmap
+    is a genuine seniority signal.
+
+- from: { type: question_type, id: technical }
+  to: { type: concept, id: ml-for-pms }
+  relation: REQUIRES
+  strength: 4
+  rationale: >-
+    Almost every surface now has an ML proposal attached. Choosing which error you
+    would rather make is a product decision no model can make for you.
+
+# ---------------------------------------------------------------- metrics & diagnosis
+- from: { type: question_type, id: metrics-diagnosis }
+  to: { type: concept, id: okrs }
+  relation: REQUIRES
+  strength: 3
+  rationale: >-
+    Goal-setting questions sit next to measurement questions. Rejecting your own
+    first draft for being a task rather than an outcome demonstrates the discipline
+    rather than describing it.
+
+- from: { type: question_type, id: metrics-diagnosis }
+  to: { type: concept, id: ml-for-pms }
+  relation: REQUIRES
+  strength: 3
+  rationale: >-
+    When a metric question involves a model, the base rate usually breaks the
+    proposed success criterion — accuracy on an imbalanced problem is satisfiable
+    by doing nothing.
+
+# ---------------------------------------------------------------- improvement & design
+- from: { type: question_type, id: product-improvement }
+  to: { type: concept, id: prioritisation }
+  relation: REQUIRES
+  strength: 5
+  rationale: >-
+    The scored part of an improvement answer is the ranking. Applying a model and
+    then naming what it structurally cannot see beats a clean score every time.
+
+- from: { type: question_type, id: product-improvement }
+  to: { type: concept, id: product-discovery }
+  relation: REQUIRES
+  strength: 4
+  rationale: >-
+    "How would you know this is worth building" is the natural follow-up.
+    Distinguishing value risk from usability risk is what reads as experience.
+
+- from: { type: question_type, id: product-design }
+  to: { type: concept, id: product-discovery }
+  relation: REQUIRES
+  strength: 3
+  rationale: >-
+    Naming the riskiest assumption and the cheapest test that could kill it turns
+    a design proposal into a plan the interviewer can believe.
+
+- from: { type: question_type, id: product-design }
+  to: { type: concept, id: prioritisation }
+  relation: REQUIRES
+  strength: 3
+  rationale: >-
+    The Cut stage needs an explicit criterion. Saying what you are dropping, and
+    why, carries most of the signal in that stage.
+
+# ---------------------------------------------------------------- behavioural & strategy
+- from: { type: question_type, id: behavioral }
+  to: { type: concept, id: okrs }
+  relation: REQUIRES
+  strength: 2
+  rationale: >-
+    Stories about goal-setting and missed targets are common. Knowing that OKRs
+    conflict with parts of goal-setting theory gives a more interesting answer than
+    reciting the ceremony.
+
+- from: { type: question_type, id: strategy }
+  to: { type: concept, id: prioritisation }
+  relation: REQUIRES
+  strength: 3
+  rationale: >-
+    Strategy questions end in a resource-allocation decision. Scoring models
+    undervalue exactly the strategic bets these questions are usually about.

@@ -327,6 +327,7 @@ export const Concept = z.object({
     "experimentation",
     "metrics",
     "process",
+    "technical",
     "analytical",
   ]),
   in_one_line: z.string(),

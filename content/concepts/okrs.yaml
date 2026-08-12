@@ -1,0 +1,136 @@
+id: okrs
+name: OKRs & Goal Setting
+order: 60
+domain: process
+in_one_line: >-
+  An ambitious objective paired with a few measurable results that prove you got
+  there — and a widely adopted practice resting on much thinner evidence than the
+  goal-setting research it borrows from.
+
+why_it_matters: >-
+  Execution rounds ask how you would set and track goals for a team, and OKRs are
+  the vocabulary most companies use. The differentiating move is knowing which
+  part is well-evidenced (specific challenging goals work) and which part is
+  management fashion (the 70% rule, quarterly cadence, the whole ceremony).
+
+layers:
+  - level: orientation
+    title: Objective, key results, and the separation from tasks
+    body: >-
+      An Objective is a qualitative statement of what you want to be true —
+      "new users reach value on their first visit". Key Results are the two to
+      four measurements that would prove it — "activation within 24 hours rises
+      from 22% to 35%". The distinction that matters most is between key results
+      and tasks. "Ship the new onboarding flow" is a task; you can complete it and
+      change nothing. A key result describes an outcome, so it can fail even when
+      all the work is finished. That single discipline is most of the value.
+
+  - level: working
+    title: Setting them so they do not become a status report
+    body: >-
+      Keep them few — three objectives with three key results each is already at
+      the limit for a team. Make key results outcome-shaped and independently
+      measurable, and state the baseline: "from 22% to 35%" is a goal, "improve
+      activation" is a wish. The convention is to set them ambitiously enough that
+      roughly 70% attainment counts as success, which exists to prevent
+      sandbagging. That convention only works if OKRs are genuinely decoupled from
+      performance reviews and compensation — the moment they affect someone's pay,
+      every rational person sets targets they know they can hit, and the system
+      inverts. Pair aspirational OKRs with committed ones for work that genuinely
+      must land, like a compliance deadline, because 70% of a legal obligation is
+      not a partial success.
+
+  - level: expert
+    title: What the research actually supports, and where OKRs contradict it
+    body: >-
+      There is strong evidence for the underlying psychology and almost none for
+      the specific practice. Locke and Latham's goal-setting theory, built over
+      thirty-five years and one of the most replicated frameworks in
+      organisational psychology, finds that specific and challenging goals
+      outperform vague "do your best" goals — conditional on commitment, feedback,
+      and the person having the ability to do the task. Even there the picture is
+      not uniform: a systematic review in sport found over a third of studies
+      showed no advantage for specific goals. Crucially, OKRs violate parts of the
+      theory they are usually justified by. Goal-setting theory requires
+      commitment, but the 70% norm explicitly tells people not to expect to hit the
+      target; the theory requires timely feedback, but quarterly cycles are slow
+      relative to most product loops. Goodhart's law applies with full force —
+      a key result under incentive pressure gets gamed exactly where the proxy and
+      the value come apart. And OKRs are demonstrably weak for genuinely
+      exploratory work, where the honest objective is "find out whether this is
+      viable" and any numeric key result is invented.
+
+worked_example:
+  situation: "A team is asked to set quarterly OKRs for a checkout experience."
+  steps:
+    - "First draft objective: 'Improve checkout.' Rejected — not a statement of what would be true."
+    - "Second: 'Buying feels effortless enough that people finish what they started.' Qualitative, directional, memorable."
+    - "Draft KR: 'Ship one-click payments.' Rejected — that is a task; it can ship and change nothing."
+    - "Replace with outcomes: cart-to-purchase conversion 61% → 68%; checkout support tickets down 30%; median time-to-purchase under 90s."
+    - "Add a guardrail so the goal cannot be met by harming something else: refund rate must not rise."
+    - "Classify: these are aspirational, so 70% is a good quarter. The PCI compliance work is committed — 100% or it failed."
+  takeaway: >-
+    The rewrite changed nothing about the work and everything about what counts as
+    success. Note the guardrail: without it, the fastest route to a conversion
+    number is dark patterns that raise refunds next quarter.
+
+common_errors:
+  - mistake: "Writing key results that are really tasks."
+    instead: >-
+      Test it: can this be fully completed while the objective remains false? If
+      yes, it is a task. Outcomes can fail with all the work done.
+  - mistake: "Omitting the baseline."
+    instead: >-
+      "From X to Y". Without a starting number nobody can tell afterwards whether
+      it moved, and the goal quietly becomes unfalsifiable.
+  - mistake: "Tying OKRs to compensation while keeping the 70% norm."
+    instead: >-
+      Pick one. Linked to pay, people set targets they can hit, and ambition
+      collapses — which defeats the entire mechanism.
+  - mistake: "Setting OKRs for exploratory work."
+    instead: >-
+      Use a learning goal instead: what question will we answer, and what evidence
+      would settle it. Inventing a number for a discovery project is theatre.
+  - mistake: "Too many OKRs."
+    instead: >-
+      Three objectives is a lot. A list of fifteen key results is a status report
+      with different formatting, and it prioritises nothing.
+
+in_interview:
+  how_to_deploy: >-
+    Use it in execution and goal-setting questions. The strongest single move is
+    rejecting your own first draft out loud for being a task rather than an
+    outcome — it demonstrates the discipline rather than describing it.
+  strong_sounds_like: >-
+    My first instinct was "ship one-click payments", but that is a task — we could
+    ship it and change nothing, so it fails as a key result. The outcome I actually
+    want is cart-to-purchase moving from 61% to 68%, with refund rate as a
+    guardrail so we cannot hit it with pressure tactics. I would treat that as
+    aspirational at around 70% attainment, and keep the compliance work as a
+    separate committed goal, since 70% of a legal deadline is just a miss.
+  weak_sounds_like: >-
+    I would set an objective to improve the checkout experience, with key results
+    around shipping the new payment flow, improving conversion, and increasing
+    customer satisfaction.
+
+evidence:
+  strength: contested
+  note: >-
+    A split verdict worth stating precisely. The underlying psychology — Locke and
+    Latham's goal-setting theory — is one of the most empirically supported models
+    in organisational psychology, developed over a thirty-five-year research
+    programme, though even there a systematic review found more than a third of
+    studies showing no advantage for specific over "do your best" goals in some
+    contexts. OKRs as a specific management practice have no controlled evidence
+    of efficacy; the 70% norm, the quarterly cadence, and the objective/key-result
+    format are convention traceable to Intel and popularised via Google, not
+    findings. Some OKR conventions actively conflict with goal-setting theory's
+    own preconditions around commitment and feedback timeliness.
+
+sources:
+  - label: "Locke, E. & Latham, G. — Building a practically useful theory of goal setting and task motivation: a 35-year odyssey, American Psychologist"
+    year: 2002
+  - label: "Grove, A. — High Output Management (the Intel origin of the practice)"
+    year: 1983
+  - label: "Doerr, J. — Measure What Matters (popularised the Google adoption)"
+    year: 2018

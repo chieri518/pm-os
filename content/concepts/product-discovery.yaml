@@ -1,0 +1,132 @@
+id: product-discovery
+name: Product Discovery & Dual-Track
+order: 61
+domain: process
+in_one_line: >-
+  Deciding what to build is continuous work that runs alongside building, not a
+  phase that finishes before engineering starts.
+
+why_it_matters: >-
+  Execution questions frequently reduce to "how would you know this is worth
+  building?" Discovery is the answer, and the strong version distinguishes the
+  four risks a product idea faces — most candidates only address one of them.
+
+layers:
+  - level: orientation
+    title: Two tracks, running at once
+    body: >-
+      Delivery is building the thing correctly. Discovery is working out whether it
+      is the right thing at all. Waterfall ran these in sequence: a long
+      requirements phase, then a long build phase, with the cost of a wrong answer
+      discovered at the end. Dual-track runs them in parallel and continuously —
+      the discovery track is always a few weeks ahead, validating what the delivery
+      track will pick up next. The key point is that both tracks are the same team,
+      not a research group throwing findings over a wall.
+
+  - level: working
+    title: The four risks, and matching the test to the risk
+    body: >-
+      Marty Cagan's decomposition is the most useful working tool here. Any idea
+      carries four risks: value — will anyone want it; usability — can they figure
+      it out; feasibility — can we build it; and business viability — does it work
+      for legal, sales, finance, and brand. They need different tests, and most
+      teams only run one. Usability risk is answered by a prototype test with five
+      users. Value risk is not — people will happily use a prototype they would
+      never pay for or return to, so value needs a demand test: a fake door, a
+      concierge run, a pre-order, a live A/B. Feasibility is a conversation with
+      engineers and sometimes a spike. Viability is a conversation with the
+      functions that can veto you late and expensively. The habit worth building is
+      naming the riskiest assumption first and choosing the cheapest test that
+      could kill it.
+
+  - level: expert
+    title: Where discovery theatre creeps in, and its real limits
+    body: >-
+      The most common failure is running discovery that cannot produce a negative
+      result. Interviews where you describe your idea and ask whether people like
+      it will always return encouragement, because people are polite and bad at
+      predicting their own behaviour — this is the stated-versus-revealed
+      preference problem, and it is why demand tests beat opinion tests for value
+      risk. Continuous discovery in Teresa Torres's formulation asks for a weekly
+      touchpoint with customers precisely to keep this honest and habitual rather
+      than episodic. Two real limits. First, discovery is weak where the user
+      cannot evaluate the proposition from description — genuinely novel categories
+      and deep infrastructure, where you often must build to learn. Second,
+      small-sample qualitative work is good at finding problems and bad at
+      estimating magnitude: five users will reliably surface a usability failure
+      and will tell you nothing trustworthy about what share of your base hits it.
+      Pairing qualitative discovery with quantitative confirmation is the mature
+      version, and saying so distinguishes a candidate who has run this from one
+      who has read about it.
+
+worked_example:
+  situation: >-
+    A team wants to build an AI summary feature. Leadership is enthusiastic and
+    wants a quarter committed to it.
+  steps:
+    - "List the assumptions, then rank by what would be most expensive to be wrong about."
+    - "Riskiest is value: will anyone actually use a summary, or does it just sound good in a roadmap review?"
+    - "Wrong test: show people a mockup and ask if they would find it useful. Everyone says yes; this cannot fail."
+    - "Right test: a fake door — ship the entry point, measure real click-through against a baseline, and be explicit that this is a demand test."
+    - "Click-through is 3% against an 11% hypothesis. That is a value-risk failure found in a week rather than a quarter."
+    - "Follow up qualitatively with the 3% who did click: they share a job the team had not considered, which becomes the next thing to test."
+  takeaway: >-
+    The fake door cost days and saved a quarter. Note that the qualitative work
+    still earned its place — but as the follow-up that explains the number, not as
+    the evidence that the number would be good.
+
+common_errors:
+  - mistake: "Running discovery that cannot return a negative."
+    instead: >-
+      Before testing, state what result would kill the idea. If no realistic result
+      would, you are gathering encouragement rather than evidence.
+  - mistake: "Using a usability test to answer value risk."
+    instead: >-
+      A prototype test tells you whether people can use it, not whether they want
+      it. Value needs a demand signal — a fake door, a pre-order, a live test.
+  - mistake: "Treating discovery as a phase that finishes."
+    instead: >-
+      It runs continuously alongside delivery. A discovery phase that ends is just
+      a requirements phase with a new name.
+  - mistake: "Generalising magnitude from five interviews."
+    instead: >-
+      Small samples find problems; they do not size them. Pair with quantitative
+      confirmation before committing a roadmap.
+  - mistake: "Ignoring viability until launch."
+    instead: >-
+      Legal, security, and sales can veto late and expensively. Bring them in while
+      the idea is still cheap to change.
+
+in_interview:
+  how_to_deploy: >-
+    Whenever you propose building something, name the riskiest assumption and the
+    cheapest test that could disprove it. Distinguishing value risk from usability
+    risk is the specific move that reads as experience.
+  strong_sounds_like: >-
+    Before committing a quarter I would ask which of the four risks is largest
+    here, and I think it is value rather than feasibility — we know we can build
+    it. So a prototype test would be the wrong instrument, because people will tell
+    us a summary sounds useful whether or not they would use one. I would run a
+    fake door for a week and treat under 5% click-through as a kill signal, then
+    interview whoever did click to understand what job they brought to it.
+  weak_sounds_like: >-
+    I would do user research to validate the idea, talk to some customers about
+    whether they would find it useful, and then build an MVP to test it.
+
+evidence:
+  strength: heuristic
+  note: >-
+    Practitioner methodology rather than validated theory. The dual-track framing
+    and the four-risk decomposition come from product-management practice — Cagan,
+    Torres, and Patton — and have no controlled trials behind them. What IS well
+    established is the underlying problem they address: the gap between stated and
+    revealed preference is a robust finding across psychology and economics, and it
+    is the real reason opinion-based validation misleads. Treat the process as
+    sensible craft and the stated-preference problem as the solid part.
+
+sources:
+  - label: "Cagan, M. — Inspired: How to Create Tech Products Customers Love (the four risks)"
+    year: 2017
+  - label: "Torres, T. — Continuous Discovery Habits"
+    year: 2021
+  - label: "Patton, J. — dual-track development"

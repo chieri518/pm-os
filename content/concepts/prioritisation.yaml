@@ -1,0 +1,132 @@
+id: prioritisation
+name: Prioritisation Frameworks
+order: 62
+domain: process
+in_one_line: >-
+  Scoring models do not make the decision for you — they make your assumptions
+  explicit enough to argue about, which is the entire benefit.
+
+why_it_matters: >-
+  "How would you prioritise?" appears in nearly every execution round, and the
+  scored behaviour is not naming RICE. It is stating a criterion, applying it
+  consistently, and saying out loud what you are choosing not to do.
+
+layers:
+  - level: orientation
+    title: The common models and what each is for
+    body: >-
+      RICE scores each item on Reach, Impact, Confidence and Effort, and ranks by
+      the first three multiplied and divided by the last. Weighted scoring
+      generalises that to whatever criteria you choose. The impact/effort matrix is
+      the two-by-two version and is usually enough for a quick call. Kano sorts by
+      the kind of satisfaction a feature produces rather than its size. MoSCoW —
+      must, should, could, won't — is a scoping tool for a fixed deadline rather
+      than a ranking tool. The important thing is that they answer different
+      questions, so choosing the model is itself part of the answer.
+
+  - level: working
+    title: Running RICE without fooling yourself
+    body: >-
+      Reach is how many users are affected per time period, in real units — 4,000
+      users per quarter, not "high". Impact is how much it moves the thing you care
+      about per user, usually on a coarse scale like 0.25 to 3, and coarse is
+      correct because precision here is imaginary. Confidence is the discount for
+      how much you actually know, and it is where the model earns its keep: an
+      idea with great reach and impact but 20% confidence should lose to a
+      well-evidenced smaller bet. Effort is person-months. Divide and rank. Two
+      disciplines make it honest: normalise units before comparing anything, and
+      write down the assumption behind each number so the argument is about the
+      assumption rather than the score. The output is a starting order for a
+      conversation, never a verdict.
+
+  - level: expert
+    title: Why the score is not the answer
+    body: >-
+      Scoring models share a structural weakness: multiplying uncertain estimates
+      compounds their error, and the result is presented with a false precision
+      that a spreadsheet makes look authoritative. A RICE score of 47.3 against
+      42.1 is noise being read as signal. They also systematically undervalue three
+      things. Sequencing and dependencies — a low-scoring item that unblocks three
+      high-scoring ones is worth more than its score. Strategic bets, where reach
+      is currently zero because the market does not exist yet; scored honestly,
+      every new category loses to an incremental fix. And compounding work like
+      platform investment, whose payoff is in future velocity rather than this
+      quarter's impact. This is why serious teams use scores to structure the
+      debate and then override them deliberately and on the record. In an
+      interview, applying a model and then naming what it fails to capture is a
+      much stronger answer than a clean ranking.
+
+formulas:
+  - name: RICE score
+    expression: "RICE = (Reach × Impact × Confidence) ÷ Effort"
+    notes: "Reach in users per period, Impact on a coarse 0.25–3 scale, Confidence as a percentage, Effort in person-months. Rank by the result; never read small differences as meaningful."
+
+worked_example:
+  situation: "Four candidates for next quarter, and capacity for roughly two."
+  steps:
+    - "Search fix — Reach 20k/qtr, Impact 1, Confidence 80%, Effort 2 → 8,000."
+    - "Onboarding redesign — Reach 8k/qtr, Impact 2, Confidence 50%, Effort 4 → 2,000."
+    - "Enterprise SSO — Reach 300/qtr, Impact 3, Confidence 100%, Effort 3 → 300."
+    - "Score order: search, onboarding, SSO. But stop before accepting it."
+    - "SSO is a sales blocker on £2m of pipeline — the reach number counts users, not deals, so the model is measuring the wrong unit."
+    - "Onboarding's 50% confidence is the honest signal: run the cheap discovery test before spending 4 person-months."
+    - "Decision: ship search, unblock SSO on the strategic override, and buy down onboarding uncertainty first."
+  takeaway: >-
+    The model produced a useful order and the wrong decision. Its failure was
+    structural rather than arithmetic — RICE counts users, and some value arrives
+    in deals. Saying that out loud is the answer, not the score.
+
+common_errors:
+  - mistake: "Presenting the score as the decision."
+    instead: >-
+      It is an input. Say what the model cannot see — dependencies, strategic bets,
+      compounding platform work — and then decide.
+  - mistake: "Treating small score differences as real."
+    instead: >-
+      Multiplied estimates compound error. 47 versus 42 is a tie; rank into bands
+      rather than a strict order.
+  - mistake: "Skipping Confidence, or setting everything to 100%."
+    instead: >-
+      Confidence is the field doing the most work. It is what stops a
+      well-told story outranking a well-evidenced one.
+  - mistake: "Mixing units across items."
+    instead: >-
+      Same reach period, same impact scale, same effort unit. Otherwise you are
+      ranking incomparable numbers.
+  - mistake: "Never naming what you dropped."
+    instead: >-
+      The rejection carries most of the signal in an interview. Prioritisation is
+      a statement about what you will not do.
+
+in_interview:
+  how_to_deploy: >-
+    Pick a model, state your criterion before scoring anything, apply it
+    consistently, then explicitly override it where it fails — and say why. That
+    sequence demonstrates judgement rather than recall.
+  strong_sounds_like: >-
+    I would score these on RICE to get a starting order, but I want to flag what it
+    will get wrong before I run it. It counts users, so anything whose value
+    arrives as deals rather than usage will be undervalued — the SSO work will
+    score last and is a blocker on real pipeline. And I would treat the onboarding
+    item's 50% confidence as the finding rather than a discount: cheaper to buy
+    down that uncertainty than to spend four person-months against it.
+  weak_sounds_like: >-
+    I would use the RICE framework to score each feature and then work on the ones
+    with the highest scores first.
+
+evidence:
+  strength: heuristic
+  note: >-
+    Prioritisation frameworks are decision aids, not empirically validated models,
+    and there is no evidence that any particular one produces better outcomes.
+    RICE originated at Intercom as an internal working method. The genuine
+    supporting insight is from decision science: making criteria and weights
+    explicit before evaluating options reduces the influence of recency, vividness,
+    and whoever spoke last — that debiasing effect is real, and it is the honest
+    case for using any of them. Precision beyond that is illusory.
+
+sources:
+  - label: "McBride, S. — RICE: Simple prioritization for product managers, Intercom"
+    year: 2016
+  - label: "Kano, N. et al. — Attractive Quality and Must-Be Quality"
+    year: 1984

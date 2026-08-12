@@ -23,6 +23,8 @@ const DOMAINS = [
   "experimentation",
   "metrics",
   "analytical",
+  "process",
+  "technical",
 ] as const;
 
 const DOMAIN_COPY: Record<string, string> = {
@@ -32,6 +34,8 @@ const DOMAIN_COPY: Record<string, string> = {
   experimentation: "Making a causal claim you can defend.",
   metrics: "Choosing what to measure, and reading it without fooling yourself.",
   analytical: "Structuring a problem so the answer is findable.",
+  process: "How the work gets decided, goaled, and shipped.",
+  technical: "Enough depth that engineers will follow you — and you will follow them.",
 };
 
 const SCOPE_COPY: Record<string, { label: string; blurb: string }> = {
