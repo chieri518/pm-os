@@ -18,8 +18,8 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const t = graph.get<Term>("term", (await params).id);
-  if (!t) return { title: "Not found · pm-os" };
-  return { title: `${t.name} · pm-os`, description: t.one_line };
+  if (!t) return { title: "Not found" };
+  return { title: `${t.name}`, description: t.one_line };
 }
 
 export default async function TermPage({ params }: { params: Promise<{ id: string }> }) {
@@ -39,7 +39,7 @@ export default async function TermPage({ params }: { params: Promise<{ id: strin
     .filter((t): t is NonNullable<typeof t> => Boolean(t));
 
   return (
-    <main className="mx-auto max-w-[720px] px-6 py-8">
+    <main className="mx-auto max-w-[720px] px-4 py-6 sm:px-6 sm:py-8">
       <Nav crumb={{ label: "Glossary", href: "/glossary" as Route }} />
 
       <header className="mb-7">

@@ -5,7 +5,7 @@ import { Nav } from "../../nav";
 import { Section } from "../../teaching";
 
 export const metadata = {
-  title: "Running a session · pm-os",
+  title: "Running a session",
   description:
     "The shape of a PM interview, how to act as a collaborative partner, and how to debrief.",
 };
@@ -28,7 +28,7 @@ const LOOK_FOR = [
 export default function RunningASessionPage() {
   const guides = graph.guides();
   return (
-    <main className="mx-auto max-w-[820px] px-6 py-8">
+    <main className="mx-auto max-w-[820px] px-4 py-6 sm:px-6 sm:py-8">
       <Nav crumb={{ label: "Running a session", href: "/interviewer" as Route }} />
 
       <header className="mb-8 max-w-2xl">

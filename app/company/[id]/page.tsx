@@ -14,9 +14,9 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const l = graph.get<CompanyLens>("company_lens", (await params).id);
-  if (!l) return { title: "Not found · pm-os" };
+  if (!l) return { title: "Not found" };
   return {
-    title: `${l.company} · pm-os`,
+    title: `${l.company}`,
     description: `How ${l.company} runs its PM loop, what it evaluates, and where common prep advice is wrong.`,
   };
 }
@@ -67,7 +67,7 @@ export default async function CompanyPage({ params }: { params: Promise<{ id: st
   const maxWeight = Math.max(...stages.map((s) => s.weight), 1);
 
   return (
-    <main className="mx-auto max-w-[880px] px-6 py-8">
+    <main className="mx-auto max-w-[880px] px-4 py-6 sm:px-6 sm:py-8">
       <Nav crumb={{ label: lens.company }} />
 
       <header className="mb-8">

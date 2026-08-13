@@ -1027,3 +1027,65 @@ because they tell you which question to pair it with.
   invent so it stays identical for the next candidate.
 
 **Now: 9 guides · 58 probes · 129 signals · all 9 structural elements covered in all 9 guides.**
+
+---
+
+## Milestone 11 — Mobile, and a Mark
+
+### A correction: I reported a bug I could not actually see
+
+For several milestones I logged "the site does not work on mobile — `/practice`
+overflows at 390px", based on headless screenshots at `--window-size=390`.
+
+**Chrome headless clamps the viewport to a 500px minimum.** Those screenshots were
+a 500px layout cropped to a 390px image, so content that simply extended past the
+crop looked like overflow. Measuring from inside the page — `scrollWidth` against
+`clientWidth` — returned `SW=500 VW=500`, i.e. clean, on every page I had called
+broken.
+
+I tried two ways around the clamp (new headless mode, then a same-origin iframe
+harness) and neither produced a true narrow viewport. So the honest position is:
+**I could not reproduce the bug I had been reporting, and I should have verified it
+before logging it three times.**
+
+### There was still a real defect, found by reading rather than screenshotting
+
+The nav held four links plus the search button in a single non-wrapping flex row —
+roughly 450px of intrinsic width. Because `<Nav>` sits above every page, any
+viewport under ~450px would have inherited that overflow site-wide, which is
+exactly the symptom I had been describing. Structural, verifiable by reading the
+CSS, and independent of whether I could screenshot it.
+
+**Fixed:** the nav is now two rows on small screens — brand and search on the
+first, links on the second in a horizontally-scrollable strip. The strip cannot
+re-break the layout when a fifth destination is added later, which the old flex row
+would have.
+
+Also fixed along the way:
+
+- Page gutters are now `px-4` on mobile, `px-6` from `sm` up.
+- Long URLs and identifiers get `overflow-wrap`, the one overflow source a
+  `max-width` genuinely cannot contain.
+- `Segmented`, `Panel`, and `Chip` deleted — dead since the playground was removed,
+  and `Segmented` carried a fixed `grid-cols-[7.5rem_1fr]` that would itself have
+  overflowed a narrow viewport.
+
+### Two unrelated bugs surfaced while in there
+
+**The root metadata title still advertised the deleted playground** — every page
+served `pm-os · Archetype & Heuristic Playground` in its tab and in link previews,
+two milestones after that page was removed. Replaced with a proper
+`default` + `template` pair.
+
+Then I broke it myself: the de-duplication pass that stripped `· pm-os` from child
+page titles also matched inside the template string `"%s · pm-os"`, silently
+reducing it to `"%s"` and removing the suffix from every page. Caught by checking
+the rendered titles rather than trusting the edit.
+
+### The mark
+
+Three nodes and two edges — the product is a knowledge graph, so the logo is one.
+Deliberately two-tone and geometric so it survives being rendered at 16px in a
+browser tab, with its own dark rounded-square background so it reads against a
+light tab strip. `app/icon.svg` (Next generates the favicon link) plus a
+`currentColor` React component for the nav.

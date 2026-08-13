@@ -59,7 +59,7 @@ export default function LibraryPage() {
   const families = ["product", "analytical", "behavioral", "technical"] as const;
 
   return (
-    <main className="mx-auto max-w-[1100px] px-6 py-8">
+    <main className="mx-auto max-w-[1100px] px-4 py-6 sm:px-6 sm:py-8">
       <Nav />
 
       <header className="mb-10 max-w-3xl">

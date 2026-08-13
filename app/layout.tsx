@@ -2,9 +2,12 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "pm-os · Archetype & Heuristic Playground",
+  title: {
+    default: "pm-os · PM Interview & Career OS",
+    template: "%s · pm-os",
+  },
   description:
-    "A live constraint solver for product heuristics. Move a user's situation and watch which behavioural rules switch on, which switch off, and which conflict.",
+    "Question types, concepts, frameworks and company rubrics for PM interviews — with the research checked and the caveats attached. Plus interviewer guides: probes, signal checklists and bias guards.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

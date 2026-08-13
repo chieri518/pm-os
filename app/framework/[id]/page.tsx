@@ -14,8 +14,8 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const f = graph.get<Framework>("framework", (await params).id);
-  if (!f) return { title: "Not found · pm-os" };
-  return { title: `${f.name} · pm-os`, description: f.teaching?.in_one_line ?? f.summary };
+  if (!f) return { title: "Not found" };
+  return { title: `${f.name}`, description: f.teaching?.in_one_line ?? f.summary };
 }
 
 /**
@@ -86,7 +86,7 @@ export default async function FrameworkPage({ params }: { params: Promise<{ id: 
     graph.get<FrameworkPart>("framework_part", pid)?.name ?? pid;
 
   return (
-    <main className="mx-auto max-w-[860px] px-6 py-8">
+    <main className="mx-auto max-w-[860px] px-4 py-6 sm:px-6 sm:py-8">
       <Nav crumb={{ label: f.name }} />
 
       <header className="mb-8">

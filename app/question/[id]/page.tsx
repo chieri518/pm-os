@@ -13,8 +13,8 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const q = graph.get<QuestionType>("question_type", (await params).id);
-  if (!q) return { title: "Not found · pm-os" };
-  return { title: `${q.name} questions · pm-os`, description: q.teaching?.in_one_line };
+  if (!q) return { title: "Not found" };
+  return { title: `${q.name} questions`, description: q.teaching?.in_one_line };
 }
 
 export default async function QuestionPage({ params }: { params: Promise<{ id: string }> }) {
@@ -46,7 +46,7 @@ export default async function QuestionPage({ params }: { params: Promise<{ id: s
     .sort((a, b) => b.edge.strength - a.edge.strength);
 
   return (
-    <main className="mx-auto max-w-[860px] px-6 py-8">
+    <main className="mx-auto max-w-[860px] px-4 py-6 sm:px-6 sm:py-8">
       <Nav crumb={{ label: q.name }} />
 
       <header className="mb-8">

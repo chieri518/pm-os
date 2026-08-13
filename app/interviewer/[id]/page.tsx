@@ -16,14 +16,17 @@ const COMPETENCIES = [
   { id: "metrics-guardrails", label: "Metrics & guardrails" },
 ] as const;
 
+const qtName = (id: string) =>
+  graph.get<QuestionType>("question_type", id)?.name ?? id;
+
 export function generateStaticParams() {
   return graph.guides().map((g) => ({ id: g.id }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const g = graph.get<InterviewGuide>("interview_guide", (await params).id);
-  if (!g) return { title: "Not found · pm-os" };
-  return { title: `${g.question} · Interviewer guide`, description: g.intent.slice(0, 155) };
+  if (!g) return { title: "Not found" };
+  return { title: `${qtName(g.question_type)} interviewer guide`, description: g.intent.slice(0, 155) };
 }
 
 export default async function GuidePage({ params }: { params: Promise<{ id: string }> }) {
@@ -35,7 +38,7 @@ export default async function GuidePage({ params }: { params: Promise<{ id: stri
   const qt = graph.get<QuestionType>("question_type", g.question_type);
 
   return (
-    <main className="mx-auto max-w-[1200px] px-6 py-8">
+    <main className="mx-auto max-w-[1200px] px-4 py-6 sm:px-6 sm:py-8">
       <Nav crumb={{ label: "Interviewer guides", href: "/interviewer" as Route }} />
 
       <p className="mb-4 text-[13px] text-ink-400">

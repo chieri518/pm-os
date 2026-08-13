@@ -5,7 +5,7 @@ import type { QuestionType } from "@/src/schema/nodes";
 import { Nav } from "../nav";
 
 export const metadata = {
-  title: "Interviewer guides · pm-os",
+  title: "Interviewer guides",
   description:
     "What the person on the other side of the table is holding: probe ladders, rescue lines, signal checklists and bias guards.",
 };
@@ -16,7 +16,7 @@ export default function InterviewerIndex() {
   const signals = guides.reduce((n, g) => n + g.signal_groups.flatMap((s) => s.signals).length, 0);
 
   return (
-    <main className="mx-auto max-w-[1000px] px-6 py-8">
+    <main className="mx-auto max-w-[1000px] px-4 py-6 sm:px-6 sm:py-8">
       <Nav crumb={{ label: "Interviewer guides" }} />
 
       <header className="mb-8 max-w-2xl">

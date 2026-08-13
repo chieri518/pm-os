@@ -28,3 +28,14 @@ body {
   color: var(--color-ink-100);
   -webkit-font-smoothing: antialiased;
 }
+
+/* Long URLs, ids and formulas are the one thing a max-width cannot contain, so
+   break them rather than letting a single token widen the whole document. */
+body {
+  overflow-wrap: break-word;
+}
+
+a,
+code {
+  overflow-wrap: anywhere;
+}

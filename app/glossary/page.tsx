@@ -4,7 +4,7 @@ import { graph } from "@/src/graph/bundle";
 import { Nav } from "../nav";
 
 export const metadata = {
-  title: "Glossary · pm-os",
+  title: "Glossary",
   description: "The vocabulary the rest of the material assumes you already have.",
 };
 
@@ -22,7 +22,7 @@ export default function GlossaryPage() {
   const terms = graph.terms();
 
   return (
-    <main className="mx-auto max-w-[900px] px-6 py-8">
+    <main className="mx-auto max-w-[900px] px-4 py-6 sm:px-6 sm:py-8">
       <Nav crumb={{ label: "Glossary" }} />
 
       <header className="mb-8 max-w-2xl">

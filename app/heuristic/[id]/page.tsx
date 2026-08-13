@@ -15,8 +15,8 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const h = graph.get<Heuristic>("heuristic", (await params).id);
-  if (!h) return { title: "Not found · pm-os" };
-  return { title: `${h.name} · pm-os`, description: h.teaching?.in_one_line ?? h.claim };
+  if (!h) return { title: "Not found" };
+  return { title: `${h.name}`, description: h.teaching?.in_one_line ?? h.claim };
 }
 
 export default async function HeuristicPage({ params }: { params: Promise<{ id: string }> }) {
@@ -37,7 +37,7 @@ export default async function HeuristicPage({ params }: { params: Promise<{ id: 
     .filter((x): x is { edge: (typeof x)["edge"]; other: Heuristic } => Boolean(x.other));
 
   return (
-    <main className="mx-auto max-w-[820px] px-6 py-8">
+    <main className="mx-auto max-w-[820px] px-4 py-6 sm:px-6 sm:py-8">
       <Nav crumb={{ label: h.name }} />
 
       <header className="mb-8">

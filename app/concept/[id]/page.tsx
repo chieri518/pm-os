@@ -14,8 +14,8 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const c = graph.get<Concept>("concept", (await params).id);
-  if (!c) return { title: "Not found · pm-os" };
-  return { title: `${c.name} · pm-os`, description: c.in_one_line };
+  if (!c) return { title: "Not found" };
+  return { title: `${c.name}`, description: c.in_one_line };
 }
 
 /** Progressive depth. Read top to bottom and the subject gets harder on purpose. */
@@ -51,7 +51,7 @@ export default async function ConceptPage({ params }: { params: Promise<{ id: st
     .sort((a, b) => b.edge.strength - a.edge.strength);
 
   return (
-    <main className="mx-auto max-w-[860px] px-6 py-8">
+    <main className="mx-auto max-w-[860px] px-4 py-6 sm:px-6 sm:py-8">
       <Nav crumb={{ label: c.name }} />
 
       <header className="mb-8">
