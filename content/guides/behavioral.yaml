@@ -1,0 +1,177 @@
+id: guide-behavioral
+question_type: behavioral
+order: 4
+question: "Tell me about a time you influenced a decision without having authority over the people involved."
+variants:
+  - "Tell me about a time you failed."
+  - "Describe a conflict with a stakeholder and how it resolved."
+difficulty: standard
+duration_min: 30
+
+intent: >-
+  Two things are being scored independently and most interviewers conflate them:
+  what the candidate actually did, and whether they can tell it so it can be
+  assessed. A fifteen-word resume line is uninterpretable — "drove alignment across
+  three teams" could mean sending an email or rebuilding a roadmap — so this
+  question is verification as much as evaluation. Your job is to get past the
+  rehearsed version to the specifics underneath.
+
+delivery:
+  script: >-
+    Ask the question plainly and let them choose the story. Do not offer a
+    framework or mention STAR — if they need scaffolding to be coherent, that is
+    itself information. Take visible notes; it signals that specifics matter. Warn
+    them once at the start that you will interrupt with follow-ups, so it does not
+    read as hostility when you do.
+  setup:
+    - "Decide beforehand which two attributes this question is assessing, and probe those consistently."
+    - "Have a timer visible — these answers run long and you need room for at least three follow-ups."
+    - "Prepare to ask for a second story if the first is unusable, rather than scoring them on one bad pick."
+
+clarifying:
+  - asks: "Do you want a work example or can it be from outside work?"
+    answer: "\"Work is easier to calibrate, but take whatever is strongest.\""
+    why: "Non-work examples can be excellent, especially early-career. Do not artificially narrow."
+  - asks: "How much detail do you want?"
+    answer: "\"Start with a couple of minutes and I'll dig in where I'm curious.\""
+    why: "Sets the contract for interruption up front so follow-ups do not feel adversarial."
+  - asks: "Can I use an example where it didn't work out?"
+    answer: "\"Absolutely.\""
+    why: >-
+      Encourage it. A candidate volunteering a failure for an influence question is
+      usually about to give you better material than a success.
+
+checkpoints:
+  - at_min: 3
+    expect: "The shape of the story is clear — you know what it is about before the details."
+  - at_min: 10
+    expect: "Into specific actions, in first person singular. You should be asking follow-ups by now."
+  - at_min: 20
+    expect: "Outcome given with a number, and at least two probes answered without collapsing."
+  - at_min: 27
+    expect: "Reflection: what they would do differently, offered rather than extracted."
+
+probes:
+  - trigger: "They say 'we' when describing an action."
+    ask: "What did you personally do there?"
+    looking_for: >-
+      Whether they can separate their contribution from the team's. Amazon names
+      this as a leading behavioural red flag; it costs strong candidates offers.
+  - trigger: "The story stays at summary level."
+    ask: "Take me to a specific conversation. What did you actually say?"
+    looking_for: >-
+      Whether the specifics exist. Invented or heavily borrowed stories thin out
+      fast at this level of detail.
+  - trigger: "They describe winning someone over."
+    ask: "What was their actual objection, and was any of it right?"
+    looking_for: >-
+      Whether they understood the opposing case or merely outlasted it. Steelmanning
+      the other side is a strong signal.
+  - trigger: "They give an outcome."
+    ask: "What was the number before, and after?"
+    looking_for: "Quantification, and honesty when they do not know or cannot say."
+  - trigger: "The story is going well."
+    ask: "What would you do differently?"
+    looking_for: >-
+      A real answer, not a humblebrag. 'I'd have moved faster' is the tell for a
+      rehearsed non-answer.
+  - trigger: "They claim a large outcome from a small action."
+    ask: "How much of that was you, honestly?"
+    looking_for: >-
+      Calibration. Candidates who scale their claim down under gentle pressure are
+      usually more trustworthy on everything else they said.
+  - trigger: "First story is unusable — too small, or not actually about influence."
+    ask: "Let's try another one — a time someone disagreed with you and you had to win them over."
+    looking_for: "Give them a second chance. One bad story choice is not a signal about their work."
+
+rescues:
+  - when: "They cannot think of an example."
+    offer: "\"Take a moment. It doesn't have to be a big project — a small disagreement works.\""
+    hold_back: "Do not suggest a scenario. Supplying the situation contaminates the answer."
+  - when: "Rambling chronologically with no shape."
+    offer: "\"Let me jump in — what was the outcome? Then we can work backwards.\""
+    hold_back: >-
+      Do not name STAR or tell them how to structure it. Redirecting to the outcome
+      is a fair intervention; teaching them the format mid-interview is not.
+  - when: "Visibly anxious and losing the thread."
+    offer: "\"There's no wrong answer here — I'm just interested in what happened.\""
+    hold_back: "Do not lower the bar. Reduce the anxiety, keep the standard."
+
+signal_groups:
+  - dimension: Ownership
+    signals:
+      - observable: "Used 'I' for their own actions and 'we' only for genuinely shared work."
+      - observable: "Named a decision they made, not just work they participated in."
+      - observable: "Took responsibility for a part that went badly without deflecting."
+  - dimension: Specificity
+    signals:
+      - observable: "Named actual people, roles, or conversations rather than abstractions."
+      - observable: "Detail held up under two or more follow-up questions."
+      - observable: "Gave a number for the outcome, with a baseline."
+      - observable: "Said 'I don't know' or 'I can't share that' rather than inventing."
+        note: "Honesty under probing is worth more than a complete answer."
+  - dimension: Judgement
+    signals:
+      - observable: "Understood the opposing position well enough to state it fairly."
+      - observable: "Adapted their approach per person rather than repeating one tactic."
+      - observable: "Offered what they would do differently, unprompted."
+  - dimension: Communication
+    signals:
+      - observable: "The point of the story was clear within the first minute."
+      - observable: "You could follow it without knowing their company or product."
+  - dimension: Working with you
+    signals:
+      - observable: "Answered the question you asked rather than the one they had prepared for."
+      - observable: "Let you interrupt without losing the thread or becoming defensive."
+      - observable: "Adjusted the level of detail when you signalled you wanted more or less."
+        note: "Behavioural answers run long. Reading that signal is itself evidence of the influence skill being tested."
+
+anti_signals:
+  - observable: "Answered in 'we' throughout and could not be moved off it."
+    note: "The single most cited behavioural red flag, and it sinks otherwise strong candidates."
+  - observable: "Chose a 'failure' that was not a failure."
+    note: "Reads as evasive or inexperienced. Distinguish from genuine early-career limits."
+  - observable: "Story thinned out under follow-up instead of deepening."
+  - observable: "Blamed others for the outcome with no self-examination."
+  - observable: "No number anywhere in the result."
+
+bias_guards:
+  - >-
+    Do not score charisma or storytelling polish as if it were judgement. A
+    well-told story from a mediocre decision is still a mediocre decision.
+  - >-
+    Do not reward scale you recognise. A hard call at a twelve-person startup can
+    be stronger evidence than a routine one at a company whose name you know.
+  - >-
+    Do not penalise cultural differences in self-presentation. In several cultures
+    claiming individual credit is discouraged; ask directly what they did rather
+    than treating modesty as absence of ownership.
+  - >-
+    Probe strong and weak candidates equally hard. Probing only the ones you doubt
+    manufactures the evidence that confirms your first impression.
+  - >-
+    Do not let one unusable story decide the outcome. Ask for a second.
+
+competencies:
+  core: [ambiguity-scoping]
+  light: [prioritisation-tradeoffs]
+  not_tested: [segmentation, jtbd-pain-points, metrics-guardrails]
+
+debrief:
+  plus:
+    - "You stayed in first-person singular throughout, so I could tell exactly what you did versus what the team did."
+    - "Your story got deeper under follow-up rather than thinner, which is the clearest sign it was real."
+  delta:
+    - "You answered in 'we' and I had to ask three times what you personally did. This is the most commonly cited behavioural red flag and it sinks strong candidates."
+    - "There was no number anywhere in the result. Quantify it, and give the one that missed alongside the one that hit."
+    - "Your 'failure' was not a failure. A safe non-answer reads as either evasive or inexperienced."
+  most_common: >-
+    Lead with the point of the story in one sentence before telling it. Most
+    candidates narrate chronologically and lose the interviewer before the action.
+
+basis: >-
+  Constructed from publicly published evaluation criteria — Meta's guide names its
+  Leadership and Drive focus areas and recommends STAR explicitly; Amazon's
+  Leadership Principles and its documented emphasis on first-person ownership are
+  public. The probe ladder, rescue lines, and signal wording are ours. Not a
+  reproduction of any company's internal interviewer material.

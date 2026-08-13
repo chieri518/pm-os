@@ -18,7 +18,7 @@ const MENTIONS = inbound as Record<string, string[]>;
  * relation type AND an authored rationale, so an incoming link can say what the
  * relationship IS and what to do about it — "TENSIONS_WITH: resolve toward Hick's
  * when the user is under load". That rationale was written once on the edge and is
- * read here, on the concept page, and in the practice builder.
+ * read here, on the concept page, and in the interviewer guides.
  *
  * Two kinds of inbound link are shown separately and deliberately:
  *   authored edges  — curated, typed, carry reasoning

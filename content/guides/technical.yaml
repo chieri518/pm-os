@@ -1,0 +1,167 @@
+id: guide-technical
+question_type: technical
+order: 5
+question: "A partner wants order-status updates from us in near real time. How would you scope it?"
+variants:
+  - "How would you explain our recommendation system to a non-technical executive?"
+  - "We want to add search. What questions would you ask engineering?"
+difficulty: standard
+duration_min: 30
+
+intent: >-
+  This is not a test of whether the candidate can build it. It is a test of whether
+  engineers would want them in the room: can they interrogate a requirement, spot
+  the expensive words, and reason about failure states? The strongest signal in the
+  whole question is usually a clarifying question about volume and freshness, asked
+  before any solution appears.
+
+delivery:
+  script: >-
+    Give the requirement exactly as a stakeholder would — vague, with "near real
+    time" left undefined. That vagueness is the test. Play the partner or the
+    stakeholder, not the engineer: if they ask you technical questions, redirect
+    with "I'd defer to you on that." Answer business and volume questions fully.
+  setup:
+    - "Fix the real numbers in advance: 50,000 orders/day, partner wants updates within about a minute."
+    - "Decide your answer for 'what happens if it's late' — a few minutes is tolerable; an hour is not."
+    - "Be ready to push back once, so you can see how they handle disagreement."
+
+clarifying:
+  - asks: "What volume are we talking about?"
+    answer: "About fifty thousand orders a day."
+    why: "The single most important question here. Answer immediately and fully."
+  - asks: "What does near real time mean to them?"
+    answer: "\"They said within a minute or so. Is that a problem?\""
+    why: >-
+      The expensive word. A candidate who interrogates it is doing the job; one who
+      accepts it is scoping a system nobody needs.
+  - asks: "What happens if an update is delayed?"
+    answer: "\"A few minutes is fine. An hour and their support team is calling ours.\""
+    why: "Tolerance for staleness determines the architecture. Reward the question."
+  - asks: "How many partners will need this?"
+    answer: "\"Three today, maybe twenty next year.\""
+    why: "Changes whether this is a bespoke integration or a platform decision."
+  - asks: "Can they poll us?"
+    answer: "\"They'd rather not, but what are you thinking?\""
+    why: "Do not endorse or reject. Let them reason to it."
+
+checkpoints:
+  - at_min: 5
+    expect: "Has asked about volume and pinned down what 'near real time' means."
+  - at_min: 12
+    expect: "A direction chosen — push versus pull — with reasoning tied to the numbers."
+  - at_min: 20
+    expect: "Failure states raised: retries, duplicates, or reconciliation."
+  - at_min: 27
+    expect: "Named what they would confirm with engineering and what they would decide themselves."
+
+probes:
+  - trigger: "They accept 'near real time' without questioning it."
+    ask: "What does real time mean here — a second, or a few minutes?"
+    looking_for: >-
+      Whether they recognise the cost difference. This one question separates most
+      candidates in this format.
+  - trigger: "They propose polling."
+    ask: "At your volume, how many of those requests return nothing new?"
+    looking_for: "Whether they can do the arithmetic and revise toward webhooks."
+  - trigger: "They propose webhooks."
+    ask: "What happens when the partner's endpoint is down for an hour?"
+    looking_for: >-
+      Retries, backoff, and a replay or reconciliation path. Strong candidates
+      raise this before you do.
+  - trigger: "They mention retries."
+    ask: "So they might get the same event twice. Whose problem is that?"
+    looking_for: >-
+      Recognising at-least-once delivery, and that duplicate handling belongs in the
+      contract and the documentation rather than in a later support ticket.
+  - trigger: "They are strong and the design is holding."
+    ask: "If twenty partners want this next year, does your answer change?"
+    looking_for: "Whether they distinguish a bespoke integration from a platform investment."
+  - trigger: "They overclaim technical certainty."
+    ask: "How confident are you in that, and who would you check with?"
+    looking_for: >-
+      Calibration. Knowing the edge of their knowledge is worth more than pretending
+      there isn't one.
+
+rescues:
+  - when: "They freeze on the technical framing."
+    offer: "\"You're not being asked to design it — what would you need to know to scope it?\""
+    hold_back: "Do not offer push versus pull. Listing unknowns is a legitimate route in."
+  - when: "Deep in implementation detail and losing the product thread."
+    offer: "\"Bring me back to the partner — what do they actually experience?\""
+    hold_back: "Do not tell them they went too deep; redirect and see if they self-correct."
+  - when: "They say they don't have the technical background."
+    offer: "\"That's fine — ask me what you'd ask an engineer.\""
+    hold_back: >-
+      Do not lower the bar. The question is whether they know what to ask, and this
+      reframe lets them show it.
+
+signal_groups:
+  - dimension: Interrogating the requirement
+    signals:
+      - observable: "Asked about volume before proposing anything."
+      - observable: "Questioned what 'near real time' actually means."
+        note: "The highest-value single question in this format."
+      - observable: "Asked what happens if an update is late."
+      - observable: "Asked how many partners, i.e. bespoke versus platform."
+  - dimension: Reasoning
+    signals:
+      - observable: "Chose push or pull with reasoning tied to the actual numbers."
+      - observable: "Did rough arithmetic out loud rather than asserting."
+      - observable: "Separated what they would decide from what they would confirm with engineering."
+  - dimension: Failure states
+    signals:
+      - observable: "Raised delivery failure, retries, or backoff unprompted."
+      - observable: "Recognised that retries imply duplicates."
+      - observable: "Proposed a reconciliation path for missed events."
+      - observable: "Treated the payload shape as hard to change later."
+  - dimension: Working with engineers
+    signals:
+      - observable: "Said 'I don't know' where appropriate rather than bluffing."
+      - observable: "Used technical vocabulary accurately, or plainly avoided it."
+
+anti_signals:
+  - observable: "Proposed a solution before asking a single question about volume or freshness."
+  - observable: "Used technical terms incorrectly while sounding confident."
+    note: "More damaging than not using them. Engineers notice, and trust does not recover."
+  - observable: "Described only the happy path."
+  - observable: "Deferred every decision to engineering."
+    note: "The mirror failure of overclaiming — a PM who owns nothing technical is also a problem."
+  - observable: "Accepted 'real time' as a requirement without interrogating the cost."
+
+bias_guards:
+  - >-
+    Do not score whether they can code. It is not the job, and using it as a proxy
+    for technical judgement selects for the wrong thing.
+  - >-
+    Do not reward vocabulary over reasoning. A candidate explaining a trade-off in
+    plain language is stronger than one using terms correctly but shallowly.
+  - >-
+    Do not penalise a non-CS background if the reasoning is sound. Ask what they
+    would check rather than what they already know.
+  - >-
+    Hold your prepared numbers constant across candidates. Volume drives the whole
+    answer, and changing it changes the question.
+
+competencies:
+  core: [ambiguity-scoping, prioritisation-tradeoffs]
+  light: [metrics-guardrails]
+  not_tested: [segmentation, jtbd-pain-points]
+
+debrief:
+  plus:
+    - "You asked about volume and freshness before proposing anything, which is the highest-value question in this format."
+    - "You separated what you would decide from what you would confirm with engineering, without either bluffing or deferring everything."
+  delta:
+    - "You accepted 'near real time' as a requirement. It can mean three very different systems, and the cost difference between them is enormous."
+    - "You described only the happy path. Ask what happens when the other side is down for an hour."
+    - "You used a term slightly wrong while sounding confident. Engineers notice, and it costs more trust than saying you do not know."
+  most_common: >-
+    You are not being asked to design it. You are being asked whether engineers
+    would want you in the room, and that is mostly about what you interrogate.
+
+basis: >-
+  Constructed from this repository's own technical concepts — API contracts,
+  idempotency, at-least-once delivery, and latency budgets — which are drawn from
+  published standards and engineering literature rather than any company's
+  interview material. The scenario, probe ladder, and signal wording are ours.

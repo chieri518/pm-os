@@ -12,7 +12,7 @@
     "build": "npm run build:graph && next build",
     "start": "next start",
     "build:graph": "tsx src/scripts/build-graph.ts",
-    "check": "tsx src/scripts/check-practice.ts"
+    "check": "tsx src/scripts/check-guides.ts"
   },
   "dependencies": {
     "next": "^16.3.0",

@@ -5,6 +5,7 @@ import type {
   Framework,
   Heuristic,
   QuestionType,
+  InterviewGuide,
   Situation,
   Term,
 } from "../schema/nodes";
@@ -39,6 +40,7 @@ type AnyNode =
   | QuestionType
   | Concept
   | Term
+  | InterviewGuide
   | FrameworkPart;
 
 export interface HeuristicHit {
@@ -60,6 +62,7 @@ export interface GraphBundle {
   questionTypes: QuestionType[];
   concepts: Concept[];
   terms: Term[];
+  guides: InterviewGuide[];
   edges: Edge[];
 }
 
@@ -72,6 +75,7 @@ const DIR_TO_TYPE = {
   questions: "question_type",
   concepts: "concept",
   terms: "term",
+  guides: "interview_guide",
 } as const satisfies Record<string, NodeType>;
 
 /**
@@ -146,6 +150,8 @@ export class GraphIndex {
     this.all<QuestionType>("question_type").sort((a, b) => a.order - b.order);
   concepts = (): Concept[] => this.all<Concept>("concept").sort((a, b) => a.order - b.order);
   terms = (): Term[] => this.all<Term>("term").sort((a, b) => a.name.localeCompare(b.name));
+  guides = (): InterviewGuide[] =>
+    this.all<InterviewGuide>("interview_guide").sort((a, b) => a.order - b.order);
   edgeEntries = (): { edge: Edge; file: string }[] => this.edges;
 
   edgesFrom(ref: NodeRef, relation?: RelationType): Edge[] {
@@ -182,6 +188,7 @@ export class GraphIndex {
       questionTypes: this.questionTypes(),
       concepts: this.concepts(),
       terms: this.terms(),
+      guides: this.guides(),
       edges: this.edges.map(({ edge }) => edge),
     };
   }
@@ -196,6 +203,7 @@ export class GraphIndex {
     for (const q of bundle.questionTypes ?? []) graph.addNode("questions", q, "<bundle>");
     for (const c of bundle.concepts ?? []) graph.addNode("concepts", c, "<bundle>");
     for (const t of bundle.terms ?? []) graph.addNode("terms", t, "<bundle>");
+    for (const g of bundle.guides ?? []) graph.addNode("guides", g, "<bundle>");
     for (const p of bundle.parts) graph.addPart(p);
     for (const e of bundle.edges) graph.addEdge(e, "<bundle>");
     return graph;
@@ -212,6 +220,7 @@ export class GraphIndex {
       question_types: this.questionTypes().length,
       concepts: this.concepts().length,
       terms: this.terms().length,
+      guides: this.guides().length,
       edges: this.edges.length,
     };
   }

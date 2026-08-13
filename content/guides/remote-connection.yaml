@@ -1,0 +1,212 @@
+id: guide-remote-connection
+question_type: product-design
+order: 2
+question: "Design a feature or product that helps remote co-workers build stronger personal connections and social rapport with one another."
+variants:
+  - "Design something that helps a new hire feel part of a distributed team."
+  - "How would you reduce loneliness for people who work from home full time?"
+difficulty: standard
+duration_min: 35
+
+intent: >-
+  The broadest-coverage product-sense prompt available, which is why it is worth
+  keeping in rotation: it exercises all five core competencies in one pass. It is
+  also unusually good at catching design-for-yourself, because almost every
+  candidate is themselves a remote worker with strong opinions. Watch for whether
+  they build for a segment or for their own experience — the tell is whether the
+  solution would suit an introverted engineer as readily as it suits them.
+
+delivery:
+  script: >-
+    Give the prompt once and stop. It is deliberately vague about company, scale,
+    and platform, and that vagueness is the first test — a candidate who starts
+    pitching a virtual coffee bot has skipped the whole opening. Play a
+    collaborative colleague rather than a silent examiner: invent reasonable
+    constraints when asked, and push back at least once on whatever they land on.
+  setup:
+    - "Decide your company context in advance so answers stay consistent: assume a 900-person software company on a Slack-like suite."
+    - "Have a business goal ready if they ask: retention of new hires in their first year."
+    - "Plan to push back once on their chosen solution — see how they defend without getting defensive."
+    - "Watch the clock at 20 minutes; if they are still on segments, move them on."
+
+clarifying:
+  - asks: "What kind of company is this — a startup or an enterprise suite?"
+    answer: >-
+      "Assume around 900 people, fully distributed, already on a Slack-like tool."
+      Grant it immediately.
+    why: >-
+      Context, not judgement. Withholding it wastes their clock and tests nothing.
+      Inventing a concrete constraint is the right interviewer behaviour here.
+  - asks: "What's the business goal — culture, retention, productivity?"
+    answer: >-
+      "You tell me which you'd optimise for and why, then I'll confirm." If they
+      reason it through, say retention of first-year hires is what leadership cares
+      about.
+    why: >-
+      Choosing the objective is a scored move. Make them commit first, then supply
+      the real constraint so they can adapt — that adaptation is worth watching.
+  - asks: "Is this a standalone product or a feature in the existing tool?"
+    answer: "\"Your call — say which and why.\""
+    why: "The build-versus-embed decision has real consequences they should reason about."
+  - asks: "Do we have data on how many people feel disconnected?"
+    answer: >-
+      Invent something reasonable and specific: "Engagement survey says 40% of
+      people hired in the last year report having no work friend."
+    why: >-
+      Supplying a plausible data point tests whether they can use it. Candidates who
+      ignore a number you just handed them are telling you something.
+  - asks: "Any technical or privacy constraints?"
+    answer: "\"Nothing unusual, but legal is sensitive about anything that reads as surveillance.\""
+    why: "Seeds a constraint that should shape the solution. Watch whether they pick it up."
+
+checkpoints:
+  - at_min: 4
+    expect: "Company context and goal established. Should not be pitching features yet."
+  - at_min: 11
+    expect: "Segments named and one chosen, with the others explicitly rejected."
+  - at_min: 18
+    expect: "A specific moment of friction described, not a general observation about remote work."
+  - at_min: 26
+    expect: "Three genuinely distinct solutions on the table."
+  - at_min: 32
+    expect: "One chosen against a stated criterion, with trade-offs, a success metric and a guardrail."
+
+probes:
+  - trigger: "They start pitching features in the first two minutes."
+    ask: "Hold on — before we talk solutions, what kind of company is this for, and what's our primary goal?"
+    looking_for: >-
+      Whether they can stop and reconstruct the framing, or whether they treat the
+      interruption as an obstacle and return to their pitch.
+  - trigger: "They design for 'remote workers' as one group."
+    ask: >-
+      "If we build something that pleases both the burnt-out engineer and the
+      executive team, we may please neither. Who are we prioritising first, and why?"
+    looking_for: >-
+      Whether they can slice the population meaningfully — introverted individual
+      contributors versus managers, new hires versus tenured teams — and commit.
+  - trigger: "They stay abstract about the problem."
+    ask: "Walk me through the exact moment in their week when this friction happens. What are they feeling?"
+    looking_for: >-
+      A concrete scene rather than a category. Naming the emotional dimension —
+      awkwardness, fatigue, fear of interrupting — is the strong version.
+  - trigger: "They offer only one idea."
+    ask: "That's a reasonable start. What's a wilder, more out-of-the-box way to solve this?"
+    looking_for: >-
+      Whether they can generate on a different axis — asynchronous rather than
+      synchronous, ambient rather than scheduled, opt-out rather than opt-in.
+  - trigger: "They propose scheduled social time."
+    ask: "Your chosen segment said they're exhausted by video calls. Does that still work?"
+    looking_for: >-
+      Whether the solution actually follows from the stated need, or whether the
+      need was decoration on a pre-formed idea. Very common failure on this prompt.
+  - trigger: "They have chosen a solution."
+    ask: "How do we know people actually want this? Wouldn't it feel forced, or like surveillance?"
+    looking_for: >-
+      Defending with reasoning rather than conviction, conceding the fair part, and
+      proposing a cheap way to test it before committing.
+  - trigger: "They name a success metric."
+    ask: "What must NOT go up while we chase that?"
+    looking_for: >-
+      A guardrail. The good answer here is usually meeting hours or notification
+      volume — a social feature that adds to the calendar has failed on its own terms.
+
+rescues:
+  - when: "They cannot get past 'remote workers' as a segment."
+    offer: "\"Think about two people on the same team who'd want very different things.\""
+    hold_back: "Do not name the segments. Slicing the population is the scored behaviour."
+  - when: "Stuck generating a third solution."
+    offer: "\"What would this look like if it required no scheduled time at all?\""
+    hold_back: >-
+      Constraining an axis is a fair nudge; handing them asynchronous audio or
+      interest-matching is not.
+  - when: "They have a solution but cannot measure it."
+    offer: "\"If this worked perfectly, what would be different in three months?\""
+    hold_back: "Do not name a metric. Translating an outcome into a measure is the skill."
+
+signal_groups:
+  - dimension: Ambiguity and scoping
+    signals:
+      - observable: "Asked about company context or business goal before proposing anything."
+      - observable: "Stated what is out of scope."
+      - observable: "Used a constraint you invented rather than ignoring it."
+  - dimension: Segmentation
+    signals:
+      - observable: "Named three or more distinct segments of remote worker."
+      - observable: "Committed to one and said why the others were rejected."
+      - observable: "The segment implies different product decisions, not just a different label."
+      - observable: "Designed for someone unlike themselves."
+        note: "Almost every candidate is a remote worker. Building for their own preferences is the trap this prompt sets."
+  - dimension: Jobs and pain points
+    signals:
+      - observable: "Described a specific moment of friction rather than a general condition."
+      - observable: "Named an emotional dimension — awkwardness, fatigue, fear of intruding."
+      - observable: "Explained why existing tools fail rather than asserting that they do."
+  - dimension: Solutions and trade-offs
+    signals:
+      - observable: "Three solutions differing in mechanism, not three variants of one."
+      - observable: "Ranked against a criterion they named, such as impact versus effort."
+      - observable: "Named a real cost — notification fatigue, privacy, forced fun."
+      - observable: "Said explicitly what they were not building."
+  - dimension: Metrics
+    signals:
+      - observable: "Success metric tied to the stated goal rather than to raw usage."
+      - observable: "Named a guardrail that must not move."
+        note: "Meeting hours or notification volume is the good answer. A social feature that fills the calendar has failed."
+  - dimension: Working with you
+    signals:
+      - observable: "Brought you along the reasoning rather than monologuing."
+      - observable: "Held a defensible position under push-back without becoming defensive."
+
+anti_signals:
+  - observable: "Proposed virtual happy hours or a coffee-pairing bot within the first three minutes."
+    note: "The reflex answer. Not wrong, but arriving before any user definition means it was not derived from anything."
+  - observable: "Designed for their own preferences and called it the user."
+  - observable: "Treated 'remote workers' as one homogeneous group throughout."
+  - observable: "Chose a synchronous solution for a segment they described as call-fatigued."
+    note: "The clearest sign the stated need was decoration on a pre-formed idea."
+  - observable: "Success metric was adoption with no guardrail."
+  - observable: "Ignored the privacy constraint after you seeded it."
+
+bias_guards:
+  - >-
+    Do not reward answers that match your own experience of remote work. You are one
+    segment, and the point of this question is whether they can design for another.
+  - >-
+    Do not score extroversion. A candidate proposing quiet, asynchronous, opt-in
+    mechanisms may be reading their segment correctly rather than lacking ambition.
+  - >-
+    Do not penalise a solution you find unexciting. Score whether it follows from
+    the segment and the friction they named.
+  - >-
+    Push back exactly once, on whichever solution they choose. Challenging only the
+    ideas you dislike turns your taste into the rubric.
+  - >-
+    Keep the invented data points identical across candidates. If you tell one
+    candidate 40% report having no work friend and another nothing, you have run two
+    different interviews.
+
+competencies:
+  core: [ambiguity-scoping, segmentation, jtbd-pain-points, prioritisation-tradeoffs, metrics-guardrails]
+  light: []
+  not_tested: []
+
+debrief:
+  plus:
+    - "You sliced remote workers into segments that implied genuinely different products, then committed to one."
+    - "You described a specific moment rather than a general condition, and you named what the person was feeling in it."
+    - "Your guardrail was meeting hours — exactly right for a social feature, and most candidates never name one."
+  delta:
+    - "You proposed a virtual coffee bot in minute two. It may well be the right answer, but arriving before any user definition means it was not derived from anything."
+    - "You described your chosen segment as exhausted by video calls and then designed a scheduled video ritual. Check each solution back against the need you stated."
+    - "You designed for yourself. Almost everyone does on this prompt — ask who on your team would hate your solution, and design for them instead."
+  most_common: >-
+    This prompt catches design-for-yourself more reliably than any other. The single
+    most useful habit to leave with: after choosing a solution, read it back against
+    the stated friction and check it actually addresses that person.
+
+basis: >-
+  Constructed as a broad-coverage product-sense prompt exercising all five core
+  competencies, using publicly published product-sense evaluation criteria and this
+  repository's concepts on segmentation, jobs-to-be-done, prioritisation, and
+  guardrail metrics. The scenario, probe ladder, invented data points, and signal
+  wording are ours. Not a reproduction of any company's internal interviewer material.

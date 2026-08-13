@@ -395,6 +395,137 @@ export const Term = z.object({
 });
 export type Term = z.infer<typeof Term>;
 
+
+/* ------------------------------------------------------------------ *
+ * INTERVIEW GUIDE — the interviewer's side of the table.
+ *
+ * Every prep site publishes questions and model answers. Almost none publish what
+ * the person opposite you is holding, because real calibration guides are internal
+ * and confidential. That absence is the gap this node fills.
+ *
+ * IMPORTANT, and rendered on the page rather than buried: these guides are
+ * CONSTRUCTED from published evaluation criteria. They are not reproductions of
+ * any company's internal material, and they carry `estimate` provenance. A repo
+ * whose whole argument is honesty about sourcing cannot then present invented
+ * scoring sheets as though they were leaked ones.
+ *
+ * Scoring is a SIGNAL CHECKLIST rather than a 1-4 scale with anchors. Observable
+ * behaviours — "named a guardrail metric", "classified the decision as reversible"
+ * — are things two interviewers would agree happened or did not. Inventing level
+ * anchors would imply a calibration we have no basis for.
+ * ------------------------------------------------------------------ */
+
+/**
+ * The five competencies a product interview is trying to observe. Named centrally
+ * so guides can declare coverage against a shared vocabulary rather than each
+ * inventing its own.
+ */
+export const Competency = z.enum([
+  "ambiguity-scoping",
+  "segmentation",
+  "jtbd-pain-points",
+  "prioritisation-tradeoffs",
+  "metrics-guardrails",
+]);
+export type Competency = z.infer<typeof Competency>;
+
+/** A follow-up the interviewer holds in reserve, and what it is meant to reveal. */
+export const Probe = z.object({
+  /** When to reach for it. */
+  trigger: z.string(),
+  ask: z.string(),
+  looking_for: z.string(),
+});
+
+/** Helping a stuck candidate without handing them the answer. */
+export const Rescue = z.object({
+  when: z.string(),
+  offer: z.string(),
+  /** Why this much help and no more — the line that keeps the signal intact. */
+  hold_back: z.string(),
+});
+
+export const SignalGroup = z.object({
+  dimension: z.string(),
+  signals: z
+    .array(
+      z.object({
+        /** Phrased so two interviewers would agree whether it happened. */
+        observable: z.string(),
+        note: z.string().optional(),
+      })
+    )
+    .min(1),
+});
+
+export const InterviewGuide = z.object({
+  id: Slug,
+  /** The question type this guide instantiates. */
+  question_type: Slug,
+  order: z.number().int().default(100),
+  question: z.string(),
+  variants: z.array(z.string()).default([]),
+  /** What signal the question is designed to elicit. */
+  intent: z.string(),
+  difficulty: z.enum(["warm-up", "standard", "stretch"]).default("standard"),
+  duration_min: z.number().int().positive(),
+
+  delivery: z.object({
+    script: z.string(),
+    setup: z.array(z.string()).default([]),
+  }),
+
+  /** Prepared answers to likely clarifying questions: what to reveal, what to withhold. */
+  clarifying: z
+    .array(z.object({ asks: z.string(), answer: z.string(), why: z.string().optional() }))
+    .default([]),
+
+  /** Where a candidate should be by when. Uses the framework's own pacing. */
+  checkpoints: z.array(z.object({ at_min: z.number(), expect: z.string() })).default([]),
+
+  probes: z.array(Probe).min(1),
+  rescues: z.array(Rescue).default([]),
+
+  signal_groups: z.array(SignalGroup).min(1),
+  anti_signals: z
+    .array(z.object({ observable: z.string(), note: z.string().optional() }))
+    .default([]),
+
+  /** What NOT to score on. Interview guides without these produce biased loops. */
+  bias_guards: z.array(z.string()).min(1),
+
+  /**
+   * Which of the five core PM competencies this question actually exercises.
+   *
+   * Recorded honestly, including what it does NOT test. An estimation question
+   * will not show you user segmentation, and pretending otherwise would pad the
+   * guide and mislead someone planning a practice loop — the absences are what
+   * tell you which second question to run.
+   */
+  competencies: z.object({
+    core: z.array(Competency).default([]),
+    light: z.array(Competency).default([]),
+    not_tested: z.array(Competency).default([]),
+  }),
+
+  /**
+   * Feedback prompts for the last five minutes. A mock interview whose value ends
+   * at scoring has wasted most of its point — the debrief is the deliverable.
+   * Plus/Delta rather than "strengths and weaknesses" because delta names a
+   * specific change rather than a deficiency.
+   */
+  debrief: z.object({
+    plus: z.array(z.string()).min(2),
+    delta: z.array(z.string()).min(2),
+    /** The single most common thing to tell someone after this question. */
+    most_common: z.string(),
+  }),
+
+  /** How this guide was constructed, shown on the page. */
+  basis: z.string(),
+});
+export type InterviewGuide = z.infer<typeof InterviewGuide>;
+
 /* ------------------------------------------------------------------ *
  * COMPANY LENS — what a given company's rubric actually rewards.
  * ------------------------------------------------------------------ */

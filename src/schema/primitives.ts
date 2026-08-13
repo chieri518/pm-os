@@ -99,6 +99,7 @@ export const NodeType = z.enum([
   "question_type",
   "concept",
   "term",
+  "interview_guide",
 ]);
 export type NodeType = z.infer<typeof NodeType>;
 

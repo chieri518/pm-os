@@ -1,0 +1,166 @@
+id: guide-strategy
+question_type: strategy
+order: 6
+question: "Should a global grocery retailer enter the Indian market? How would you decide?"
+variants:
+  - "Why do you think one large platform acquired another for a billion dollars?"
+  - "If you ran this company, what would you stop doing?"
+difficulty: stretch
+duration_min: 35
+
+intent: >-
+  You are testing willingness to decide under permanent uncertainty. Candidates
+  with consulting training often try to gather data first and stall when none
+  arrives — that instinct is the thing being surfaced. What earns the score is a
+  named decomposition, a position taken, and an explicit statement of what would
+  change their mind.
+
+delivery:
+  script: >-
+    Give the prompt and say nothing else. When they ask for market data, decline
+    warmly and consistently: "I don't have that — what would you assume?" Do this
+    every time, without apology, because the discomfort is the test. Push back once
+    on their conclusion regardless of quality, to see whether they defend with
+    reasoning or fold.
+  setup:
+    - "Decide in advance that you will supply no market figures at all, and hold it."
+    - "Prepare one counter-argument to deploy against whichever side they choose."
+    - "Note whether they drive the conversation or wait to be prompted — that is a scored behaviour."
+
+clarifying:
+  - asks: "What's the retailer's current footprint and strategy?"
+    answer: >-
+      "Assume a large Western grocery chain, strong in physical stores, limited
+      international experience." Grant this — it is context, not judgement.
+    why: "Withholding orienting context wastes clock without testing anything."
+  - asks: "Do we have market-size data for India?"
+    answer: "\"I don't have numbers with me. What would you assume, and how would you get there?\""
+    why: >-
+      This is the pivotal exchange. Nobody expects the right answer; refusing to
+      proceed without data is the failure mode being detected.
+  - asks: "Is there a specific timeframe?"
+    answer: "\"Assume a five-year horizon.\""
+    why: "Reasonable to grant; it changes the analysis materially and is not the skill under test."
+  - asks: "Should I consider a partnership or only organic entry?"
+    answer: "\"Whatever you think is right — tell me why.\""
+    why: "Mode of entry is part of the answer. Handing it over removes a decision worth watching."
+
+checkpoints:
+  - at_min: 4
+    expect: "A decomposition named out loud — components of the decision, not a list of thoughts."
+  - at_min: 14
+    expect: "Working components systematically. Should have stopped asking for data."
+  - at_min: 24
+    expect: "Both product-level and company-level reasoning present."
+  - at_min: 31
+    expect: "A position taken, the strongest counter-argument named, and a falsifying condition given."
+
+probes:
+  - trigger: "They ask for data a second time."
+    ask: "You won't have it. What would you assume and how would you sanity-check it?"
+    looking_for: >-
+      Whether they can proceed. Repeated requests after this point are the clearest
+      negative signal this question produces.
+  - trigger: "They list considerations without structure."
+    ask: "How are you breaking this decision up?"
+    looking_for: "Whether a decomposition exists that they failed to narrate, or none at all."
+  - trigger: "They analyse only unit economics."
+    ask: "What does entering India do for the company's position overall?"
+    looking_for: >-
+      Movement between the micro and macro levels. Answering only at one level is
+      the difference between a business answer and a strategic one.
+  - trigger: "They reach a recommendation."
+    ask: "What would have to be true for the opposite to be right?"
+    looking_for: "Falsifiability. Strong candidates volunteer this before being asked."
+  - trigger: "They have taken a position."
+    ask: "I think you're wrong — the market's too price-sensitive and local incumbents own supply."
+    looking_for: >-
+      Whether they engage with the substance, concede what is genuinely right, and
+      hold what they can defend. Both immediate capitulation and stubbornness are bad.
+  - trigger: "They are strong and time remains."
+    ask: "What's the smallest version of this you could do to learn the most?"
+    looking_for: "Whether they can convert a strategic bet into a sequenced, reversible test."
+
+rescues:
+  - when: "Stalled waiting for information."
+    offer: "\"Treat this as a judgement call with what you already know.\""
+    hold_back: "Do not supply data. Relieving the discomfort would remove the test."
+  - when: "Analysing endlessly without concluding, near time."
+    offer: "\"We've got five minutes — where do you land?\""
+    hold_back: "Do not accept 'it depends' as final. Push once for a position."
+  - when: "Visibly out of depth on Indian grocery specifically."
+    offer: "\"Domain knowledge isn't what I'm after — how would you reason about any unfamiliar market?\""
+    hold_back: >-
+      Do not supply market facts. Reframing to the general case is fair; teaching
+      them the market is not.
+
+signal_groups:
+  - dimension: Structure
+    signals:
+      - observable: "Named a decomposition before analysing anything."
+      - observable: "Components do not overlap and cover the question."
+      - observable: "Used a business framework selectively rather than reciting it."
+  - dimension: Judgement under uncertainty
+    signals:
+      - observable: "Proceeded without data after one request, using stated assumptions."
+      - observable: "Sanity-checked an assumption against something they did know."
+      - observable: "Distinguished what they were confident about from what they were guessing."
+  - dimension: Altitude
+    signals:
+      - observable: "Reasoned at both the unit-economics level and the company-position level."
+      - observable: "Considered what the move does to competitors' options, not only to ours."
+  - dimension: Taking a position
+    signals:
+      - observable: "Gave a clear recommendation rather than a balanced summary."
+      - observable: "Named the strongest argument against their own conclusion."
+      - observable: "Said what evidence would change their mind."
+      - observable: "Held ground on substance when pushed, and conceded what was fair."
+        note: "Watch both directions. Folding instantly and refusing to move are both failures."
+
+anti_signals:
+  - observable: "Said the question cannot be answered without more information."
+    note: "Close to an automatic fail. Nobody expects the right answer; the process is the point."
+  - observable: "Recited a framework end to end regardless of relevance."
+  - observable: "Never left the product level."
+  - observable: "Gave a balanced summary with no recommendation."
+  - observable: "Waited to be prompted at each step rather than driving."
+    note: "If you are asking many follow-ups to short answers, they are riding rather than driving."
+
+bias_guards:
+  - >-
+    Do not reward agreement with your own view. You prepared a counter-argument;
+    deploy it against whichever side they took, not only against the side you think
+    is wrong.
+  - >-
+    Do not penalise unfamiliarity with the specific market. Reasoning about an
+    unfamiliar market is the skill; knowing Indian grocery retail is not.
+  - >-
+    Do not treat confidence as correctness. Some candidates assert fluently with
+    thin reasoning; ask for the reasoning every time.
+  - >-
+    Supply the same context to every candidate. Granting orienting facts to one and
+    withholding them from another makes the answers incomparable.
+
+competencies:
+  core: [ambiguity-scoping, prioritisation-tradeoffs]
+  light: [segmentation, metrics-guardrails]
+  not_tested: [jtbd-pain-points]
+
+debrief:
+  plus:
+    - "You proceeded on stated assumptions after one request for data, which is exactly the instinct this question is looking for."
+    - "You named the strongest argument against your own recommendation before I could raise it."
+  delta:
+    - "You asked for data three times. Nobody expects the right answer here — the willingness to decide is the thing being measured."
+    - "You stayed at the product level. Always ask what the move does for the company's position, not just its own economics."
+    - "You gave a balanced summary and no recommendation. Declining to conclude is the most common way this question is failed."
+  most_common: >-
+    Consulting-trained candidates stall waiting for information. Say what you would
+    assume, why, and what would change your mind — that is the whole answer shape.
+
+basis: >-
+  Constructed from publicly documented differences between PM and consulting
+  interview norms, and from this repository's concepts on network effects, unit
+  economics, and structured decomposition. The scenario, probe ladder, rescue
+  lines, and signal wording are ours. Not a reproduction of any company's internal
+  interviewer material.

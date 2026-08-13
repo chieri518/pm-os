@@ -18,7 +18,7 @@ Framework(CIRCLES) → Stage(Identify) → Archetype(new parent)
 npm install
 npm run dev        # the app at localhost:3000
 npm run validate   # schema + referential integrity across all content
-npm run check      # smoke-tests the live query path against ad-hoc vectors
+npm run check      # integrity checks on the interviewer guides
 npm run demo       # answers the milestone-1 query in the terminal
 ```
 
@@ -48,21 +48,22 @@ content/            canonical knowledge, validated YAML — the source of truth
   concepts/         the taught curriculum, written at three depths
   frameworks/       procedural, narrative, taxonomic, and calculative kinds
   heuristics/       one file each, with caveats and common misapplications
-  situations/       the 7-dimension context vectors — practice scenario inputs
+  terms/            the glossary — words you need to parse a sentence
+  guides/           interviewer guides: probes, signals, bias guards
+  situations/       the 7-dimension context vectors
   archetypes/       identity layer; points at typical situations
-  lenses/           company rubrics with weighted dimensions
+  lenses/           company loops, values, and where prep folklore is wrong
   edges/            typed relations — every one carries a rationale
 
 src/
   schema/           Zod schemas; the contract for all content
-  graph/            predicate evaluator, loader, in-memory queryable index
-  practice/         view model for the practice builder — what the client receives
-  scripts/          validate + demo entry points
+  graph/            loader, in-memory queryable index, predicate evaluator, auto-linker
+  scripts/          validate, build-graph, check, demo
 ```
 
 ## Data model
 
-Seven node types and eight typed, directional edge relations:
+Nine node types and nine typed, directional edge relations:
 
 ```
 ANSWERED_WITH  question_type → framework      (which structures fit this question)
@@ -131,17 +132,39 @@ The `mechanism` field comes before any application on purpose: knowing *why* som
 works is what lets you judge when it doesn't. Without it, this would be a flashcard deck
 with citations.
 
-## The playground (`/playground`)
+## Interviewer guides (`/interviewer`)
 
-Seven live controls over the situational layer. Every change recomputes which heuristics
-fire, the exact comparison that fired them, which pairs are now in tension, and where each
-lands in a company rubric.
+The part nobody else publishes. Every prep site has questions and model answers; almost
+none have the other side of the table — how to deliver the prompt, **which clarifications
+to grant and which to hand back**, when to probe deeper, how to unstick a candidate
+without giving it away, and what to refuse to score on.
 
-Predicates evaluate **in the browser** — the content compiles to a 65 kB client bundle
-(teaching prose and question types stripped out) and the same `GraphIndex` class rehydrates
-client-side, so a slider drag is instant and there is
-only one implementation of every query. The dormant list shows what *didn't* fire and the
-exact conditions that would switch it on, which turns a lookup table into an explorer.
+Eight guides, one per question type: **48 probes, 99 observable signals, 34 bias guards.**
+Scoring is a tickable checklist of observable behaviours rather than a 1–4 scale with
+anchors — we have no basis for a calibration scale, and inventing one would imply a
+precision we cannot support.
+
+These are **constructed** from published criteria, not reproduced from anyone's internal
+material. Each guide states how it was assembled, in a banner above the fold.
+
+If you are the candidate, read them anyway. Studying the checklist tells you more about
+what earns a score than practising blind ever will.
+
+## Linking, glossary and graph
+
+The corpus used to read fluently only to people who already had the vocabulary —
+"segment" appeared 95 times, "cohort" 40, "guardrail" 22, all undefined. So there is now
+a **46-term glossary** (`/glossary`), and prose is **auto-linked on first mention** with
+hover previews, which retrofits hypertext onto content written before the glossary existed.
+
+**Backlinks are typed.** A wiki can only say "these two notes mention each other". Because
+every edge carries a relation and an authored rationale, an inbound link here says what
+the relationship *is* — *"TENSIONS_WITH: resolve toward Hick's when the user is under
+load"*. Authored edges and discovered prose mentions render separately, because only one
+of them carries a claim.
+
+`/graph` draws the whole corpus — 93 nodes, 351 edges — with a hand-written force
+simulation rather than a dependency. ⌘K searches everything.
 
 ## Licence and sourcing
 

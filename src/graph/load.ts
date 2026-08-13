@@ -9,6 +9,7 @@ import {
   Framework,
   Heuristic,
   QuestionType,
+  InterviewGuide,
   Situation,
   Term,
 } from "../schema/nodes";
@@ -31,6 +32,7 @@ const COLLECTIONS = {
   questions: QuestionType,
   concepts: Concept,
   terms: Term,
+  guides: InterviewGuide,
 } as const;
 
 function yamlFiles(dir: string): string[] {

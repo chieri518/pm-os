@@ -264,10 +264,10 @@ export default function LibraryPage() {
         <p className="mt-3 text-[13px] text-ink-400">
           Practise against any of them — the{" "}
           <Link
-            href="/practice"
+            href="/interviewer"
             className="text-ink-100 underline decoration-ink-600 underline-offset-4 hover:decoration-ink-400"
           >
-            practice builder
+            interviewer guides
           </Link>{" "}
           times your answer to the company&apos;s stage weights rather than the framework&apos;s.
         </p>

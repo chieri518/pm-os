@@ -158,7 +158,7 @@ export default async function HeuristicPage({ params }: { params: Promise<{ id: 
             <p className="mt-3 text-[13px] text-ink-400">
               See this fire against a real user context in a{" "}
               <Link
-                href="/practice"
+                href="/interviewer"
                 className="text-ink-100 underline decoration-ink-600 underline-offset-4 hover:decoration-ink-400"
               >
                 practice session

@@ -891,3 +891,139 @@ content, so none of it is computed per request.
 **Graph totals: 93 nodes, 351 edges** (101 authored + 250 discovered mentions).
 
 **Still open:** the mobile overflow bug at 390px.
+
+---
+
+## Milestone 9 — The Other Side of the Table
+
+**Goal:** the practice page was confusing and only marginally useful. Replace it
+with the thing nobody else publishes.
+
+**Shipped:** `/interviewer` — 8 guides, one per question type, written to be used
+live by someone running a mock interview. **48 probes, 99 observable signals,
+34 bias guards.** The 715-line practice builder is deleted.
+
+---
+
+### Decision 18 — Interviewer-first, candidates welcome
+
+Every prep site publishes questions and model answers. Almost none publish the
+interviewer's side, because real calibration guides are internal and confidential.
+That absence is the whole opportunity.
+
+The second-order benefit is what makes this one product rather than two: **reading
+the rubric is better candidate preparation than practising blind.** Knowing that
+Meta scores *"articulated the reasoning for the segment choice"* rather than
+*"picked a narrow segment"* changes what you practise. One voice, one artefact,
+two audiences.
+
+Each guide carries: what the question is *for*, a delivery script, prepared
+answers to likely clarifying questions (**what to grant, what to hand back**),
+time checkpoints, a probe ladder, rescue lines with an explicit *hold-back*, the
+signal checklist, anti-signals, and bias guards.
+
+---
+
+### Decision 19 — Signal checklist, not levels with anchors
+
+I proposed a 4-level scale with behavioural anchors. **The better call was the
+checklist**, and for the reason this project keeps returning to: we have no basis
+for a calibration scale. Inventing what a "3" versus a "4" sounds like would imply
+a precision we cannot support.
+
+Observable behaviours — *"named a guardrail metric"*, *"matched timing to a
+rollout curve rather than a release date"* — are things two interviewers would
+agree either happened or did not. That is honest, and it is more usable live.
+
+---
+
+### Decision 20 — Provenance in the banner, not the footer
+
+These guides are **constructed** from published criteria. A repo whose entire
+argument is honesty about sourcing cannot then present invented interviewer
+material as though it were leaked. Every guide has a required `basis` field
+explaining how it was assembled, rendered in an amber `constructed` banner above
+the fold, and the validator rejects a guide whose basis is under 40 characters.
+
+---
+
+### Bias guards are a first-class field, minimum two
+
+Real interviewer training spends significant time on what *not* to score, and no
+public prep material covers it at all. Each guide names its own: don't score
+fluency or accent; don't reward familiarity with your own product; don't let a
+strong opening halo the later dimensions; probe strong and weak candidates equally
+hard, because probing only the ones you doubt manufactures the evidence that
+confirms your first impression.
+
+That last one is, I think, the single most useful sentence in the whole feature.
+
+---
+
+### What was deleted
+
+`app/practice/` and `src/practice/model.ts` — 715 lines. The timer and stage-pacing
+scaffold went with it; `expected_duration_pct` now feeds the `checkpoints` field
+instead, which serves the same purpose for a real session rather than a solo drill.
+
+**Still open:** the mobile overflow bug. The guide pages use a two-column layout
+that collapses correctly, but the earlier pages have not been checked at 390px.
+
+---
+
+## Milestone 10 — Auditing the Guides Against a Spec
+
+**Goal:** verify the interviewer guides actually cover the PM competencies and
+session mechanics they claim to, rather than assuming they do.
+
+### The audit found two universal gaps
+
+I wrote a script to check all eight guides against five core competencies and five
+structural elements, instead of reasoning from memory. Two columns came back **0/8**:
+
+| Gap | Before |
+|---|---|
+| **Session arc** — intro, core, candidate Q&A | 0/8 |
+| **Debrief / Plus-Delta** | 0/8 |
+| Stress-test push-back | 5/8 |
+| Collaboration as a scored signal | 4/8 |
+
+The debrief absence was the worst of them. A mock interview whose value ends at
+scoring has wasted most of its point — the feedback *is* the deliverable, and
+nothing in the product produced any.
+
+### Decision 21 — Shared mechanics live once, not nine times
+
+The session arc, what you are grading, how to act as a collaborative partner, and
+the Plus/Delta format are the same whichever question you run. They now live at
+`/interviewer/running-a-session` rather than being repeated in every guide. What
+*is* question-specific — pre-written Plus and Delta lines, and the single most
+common thing to tell someone after that question — sits on each guide.
+
+Plus/Delta rather than strengths/weaknesses on purpose: **delta names a change,
+weakness names a deficiency.** "Name the criterion before you rank" is actionable;
+"weak on prioritisation" is a label they can do nothing with.
+
+### Decision 22 — Record what a question does NOT test
+
+The obvious move was to force all five competencies into all nine guides. That
+would have been padding: an estimation question genuinely does not exercise user
+segmentation, and pretending otherwise misleads someone planning a practice loop.
+
+Each guide now declares `core`, `light`, and `not_tested` competencies, rendered as
+chips with the untested ones struck through — *"this question will not show you
+segmentation, run a second one that does."* **The absences are the useful part**,
+because they tell you which question to pair it with.
+
+### Added
+
+- **A ninth guide** — the remote-coworker connection prompt, which exercises all
+  five competencies in one pass and is unusually good at catching design-for-yourself,
+  since nearly every candidate is themselves a remote worker with strong opinions.
+- Stress-test probes for estimation, metrics diagnosis, and product improvement.
+- "Working with you" signal groups covering whether the candidate treats you as a
+  partner or monologues at you.
+- Guidance on **inventing constraints when asked** — and writing down whatever you
+  invent so it stays identical for the next candidate.
+
+**Now: 9 guides · 58 probes · 129 signals · all 9 structural elements covered in all 9 guides.**

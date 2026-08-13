@@ -1,0 +1,185 @@
+id: guide-metrics-diagnosis
+question_type: metrics-diagnosis
+order: 2
+question: "Weekly orders on a food-delivery marketplace fell 12% week over week. Find out why."
+variants:
+  - "Daily active users dropped 8% overnight. What happened?"
+  - "Signups are flat but revenue is down 15%. Diagnose it."
+difficulty: standard
+duration_min: 35
+
+intent: >-
+  This is a search problem wearing a metrics costume. You are watching for whether
+  the candidate structures before theorising — an unstructured answer becomes a
+  list of plausible causes with no way to choose between them, and that list looks
+  superficially competent. The tell is whether they decompose arithmetically and
+  prune, or whether they free-associate about seasonality and competitors.
+
+delivery:
+  script: >-
+    Give the number and the timeframe, then stop. Do not volunteer the platform,
+    the geography, or anything about a release — those are the facts a good
+    candidate will ask for, and volunteering them removes the search. Answer
+    factual questions honestly and immediately; you are simulating a dashboard,
+    not withholding evidence. The skill is knowing what to query, not extracting
+    it from you.
+  setup:
+    - "Decide the true cause in advance and hold it consistently: an Android release regression, four days ago, one app version."
+    - "Prepare the numbers you will hand over so your answers stay consistent under branching."
+    - "Have flat/unchanged answers ready too — most branches must be dead ends or the search is trivial."
+
+clarifying:
+  - asks: "Is this across all platforms?"
+    answer: "Answer honestly if they ask this way: iOS and web flat, Android down 34%."
+    why: "This is the correct query. Reward it by answering fully and immediately."
+  - asks: "Are users down or orders per user down?"
+    answer: "Active users flat; orders per active user down 12%."
+    why: >-
+      The arithmetic split. A candidate who opens here is doing the thing the
+      question is for.
+  - asks: "Did anything ship recently?"
+    answer: >-
+      "There are releases most weeks." Do not confirm a specific one until they
+      have narrowed to Android.
+    why: >-
+      Answering yes immediately hands them the answer. Make them earn the last
+      step, but do not lie.
+  - asks: "Is it seasonal, or a holiday?"
+    answer: "No holiday. Same week last year showed no comparable dip."
+    why: "A reasonable check. Close it cleanly so they move on rather than lingering."
+  - asks: "Which markets?"
+    answer: "All markets similarly affected."
+    why: "A dead end by design — most branches must be, or the search is not a search."
+
+checkpoints:
+  - at_min: 3
+    expect: "Has clarified the metric definition and timeframe. Should not be theorising yet."
+  - at_min: 8
+    expect: "An arithmetic decomposition stated out loud — users x orders per user, or similar."
+  - at_min: 16
+    expect: "Narrowed to platform. Dead branches explicitly pruned with reasons."
+  - at_min: 25
+    expect: "Reached app version or an equally specific cause, and proposed a confirming check."
+  - at_min: 32
+    expect: "Said what they would do about it, and how they would prevent recurrence."
+
+probes:
+  - trigger: "They start listing possible causes without decomposing."
+    ask: "Before we go through causes — how would you split this metric up?"
+    looking_for: "Whether they can produce an arithmetic decomposition when pointed at one."
+  - trigger: "They have a hypothesis."
+    ask: "What's the cheapest thing you could check that would prove you wrong?"
+    looking_for: >-
+      Falsification rather than confirmation. Strong candidates volunteer the
+      disconfirming check without being asked.
+  - trigger: "They find the Android drop."
+    ask: "What else would produce exactly this pattern?"
+    looking_for: >-
+      Whether they consider alternatives — a tracking change, a store outage, a
+      partner integration — before committing to a release regression.
+  - trigger: "They reach the release."
+    ask: "How confident are you, and what would raise it?"
+    looking_for: "Matching the timing of the drop to the rollout curve rather than to the release date."
+  - trigger: "They are moving fast and correctly."
+    ask: "Suppose every cut you make comes back flat. Now what?"
+    looking_for: >-
+      Whether they can recognise mix shift, or a definition change, rather than
+      repeating the same cuts harder.
+  - trigger: "Time remains after the cause is found."
+    ask: "What mechanism stops this reaching users next time?"
+    looking_for: "Process thinking — staged rollout, automated metric alerting on release."
+
+  - trigger: "They have landed on a cause."
+    ask: "I'm not convinced — couldn't this just be a tracking change that shipped the same week?"
+    looking_for: >-
+      Whether they can distinguish their evidence from a competing explanation and
+      say what would separate the two. Folding immediately and refusing to consider
+      it are both weak; naming the distinguishing check is the strong answer.
+
+rescues:
+  - when: "Free-associating causes with no structure after four minutes."
+    offer: "\"What does this metric equal, arithmetically?\""
+    hold_back: "Do not supply the decomposition. Prompting toward the form of an answer is enough."
+  - when: "Stuck after finding the platform split."
+    offer: "\"What else varies within Android?\""
+    hold_back: "Do not say 'app version'. That is the step being scored."
+  - when: "Asking you for the answer directly."
+    offer: "\"What would you query if you had the warehouse open?\""
+    hold_back: >-
+      Do not confirm or deny their guess. Redirect to the query — the reasoning is
+      the artefact, not the conclusion.
+
+signal_groups:
+  - dimension: Before theorising
+    signals:
+      - observable: "Clarified how the metric is defined before analysing."
+      - observable: "Asked whether the drop is a step change or a gradual decline."
+      - observable: "Checked whether the measurement itself changed."
+        note: "Instrumentation and definition changes produce the same shape as real drops. Rare and strong."
+  - dimension: Structure
+    signals:
+      - observable: "Decomposed the metric arithmetically rather than listing causes."
+      - observable: "Split into branches that do not overlap and leave nothing out."
+      - observable: "Pruned dead branches explicitly, with a stated reason."
+      - observable: "Ranked which branch to check first, and said why."
+  - dimension: Evidence
+    signals:
+      - observable: "Named a specific query rather than a vague 'look at the data'."
+      - observable: "Sought disconfirming evidence for their own hypothesis."
+      - observable: "Considered an alternative cause producing the same pattern."
+      - observable: "Matched timing to a rollout curve rather than a release date."
+        note: "Distinguishes a real diagnosis from a plausible story."
+  - dimension: Closing
+    signals:
+      - observable: "Stated a confidence level and what would raise it."
+      - observable: "Proposed a mechanism to prevent recurrence, not just a fix."
+
+anti_signals:
+  - observable: "Named seasonality or competitors as a cause with no evidence."
+    note: "The classic unstructured opening. Both are unfalsifiable without data they never requested."
+  - observable: "Asked to 'look at the data' without saying which cut."
+    note: "Sounds analytical, commits to nothing."
+  - observable: "Committed to the first hypothesis and stopped searching."
+  - observable: "Treated a segment-level finding as an aggregate explanation without checking the mix."
+  - observable: "Never asked what 'orders' actually counts."
+
+bias_guards:
+  - >-
+    Do not reward speed to the right answer. A candidate who guesses 'release
+    regression' in minute two and is correct has shown less than one who
+    decomposes for fifteen minutes and arrives there.
+  - >-
+    Do not penalise unfamiliarity with food delivery. Domain knowledge is not the
+    skill under test, and rewarding it selects for people already in your industry.
+  - >-
+    Do not let a confident narrative substitute for evidence. Ask what query
+    supports each claim, consistently, for strong and weak candidates alike.
+  - >-
+    Keep your answers consistent across candidates. If you volunteer the platform
+    split to one candidate and withhold it from another, you have run two
+    different interviews and cannot compare them.
+
+competencies:
+  core: [ambiguity-scoping, segmentation, prioritisation-tradeoffs, metrics-guardrails]
+  light: []
+  not_tested: [jtbd-pain-points]
+
+debrief:
+  plus:
+    - "You split the metric arithmetically before theorising, which is what turned this into a search rather than a list of guesses."
+    - "You pruned dead branches out loud with reasons, so I could follow why you were not chasing them."
+  delta:
+    - "You opened with seasonality and competitors. Both are unfalsifiable without data you had not requested — structure first, causes second."
+    - "You committed to your first hypothesis and stopped searching. Ask what else would produce exactly this pattern."
+    - "You never asked what 'orders' actually counts. Definition changes produce the same shape as real drops."
+  most_common: >-
+    Speed to the right answer is not the signal. A candidate who decomposes for
+    fifteen minutes and arrives has shown more than one who guessed correctly in two.
+
+basis: >-
+  Constructed from published evaluation criteria and from the analytical-thinking
+  focus areas Meta names in its own candidate prep guide, combined with standard
+  diagnostic practice — arithmetic decomposition, MECE pruning, and mix-shift
+  checks — as documented in this repository's concepts. The scenario, the probe
+  ladder, and the signal wording are ours. Not a reproduction of any company's
+  internal interviewer material.

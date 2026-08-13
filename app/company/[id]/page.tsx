@@ -227,10 +227,10 @@ export default async function CompanyPage({ params }: { params: Promise<{ id: st
             </ul>
             <p className="mt-3">
               <Link
-                href="/practice"
+                href="/interviewer"
                 className="text-[13px] text-live-400 underline-offset-2 hover:underline"
               >
-                Practise one against this lens →
+                See the interviewer guides →
               </Link>
             </p>
           </Section>

@@ -1,0 +1,158 @@
+id: guide-favorite-product
+question_type: favorite-product
+order: 8
+question: "What's a product you think is exceptionally well made, and why?"
+variants:
+  - "What's your favourite product and what would you change about it?"
+  - "Tell me about a product decision you disagree with."
+difficulty: warm-up
+duration_min: 20
+
+intent: >-
+  Almost always an opener, and it is measuring one thing: can this person reason
+  about a product as a set of decisions rather than describe it as a satisfied
+  user? Enthusiasm is not the signal. The tell is whether they can infer why the
+  product is the way it is, name a trade-off its makers accepted, and say who it
+  is not for.
+
+delivery:
+  script: >-
+    Ask casually — it is an opener and should relax them, not raise the stakes. Let
+    them talk for two minutes before intervening. If they choose your company's
+    product, allow it but plan to probe harder for independent judgement, since the
+    incentive to flatter is obvious.
+  setup:
+    - "Have one follow-up ready that works for any product: who is it not for?"
+    - "Decide how long you will let a pure description run before redirecting — two minutes is generous."
+
+clarifying:
+  - asks: "Does it have to be software?"
+    answer: "\"Anything at all.\""
+    why: >-
+      Physical products often produce better answers because craft trade-offs are
+      more visible.
+  - asks: "Can it be your own company's product?"
+    answer: "\"If you like.\""
+    why: "Allow it, then probe for independent judgement rather than ruling it out."
+  - asks: "Do you want what I like about it, or a full analysis?"
+    answer: "\"Start with why you think it's well made.\""
+    why: >-
+      'Well made' invites reasoning about decisions; 'what you like' invites
+      preference. The wording matters.
+
+checkpoints:
+  - at_min: 3
+    expect: "Product named, and a reason given that is about the product rather than about them."
+  - at_min: 8
+    expect: "At least one specific design or business decision identified and explained."
+  - at_min: 14
+    expect: "A trade-off named — something the product is deliberately bad at."
+  - at_min: 18
+    expect: "A critique or a change they would make, with reasoning."
+
+probes:
+  - trigger: "They describe features they enjoy."
+    ask: "What decision did the team make that most people wouldn't have?"
+    looking_for: "Movement from user experience to inferred decision-making."
+  - trigger: "They name a strength."
+    ask: "What did they give up to get that?"
+    looking_for: >-
+      Whether they understand that product quality is bought with trade-offs. Almost
+      the whole question lives in this probe.
+  - trigger: "The answer is uniformly positive."
+    ask: "Who is this product actively bad for?"
+    looking_for: >-
+      Segment thinking, and whether they can hold admiration alongside criticism
+      rather than defending.
+  - trigger: "They suggest an improvement."
+    ask: "Why do you think they haven't already done that?"
+    looking_for: >-
+      Charitable reasoning about constraints they cannot see — the difference
+      between a critic and a product person.
+  - trigger: "They chose your company's product."
+    ask: "What's the weakest part of it?"
+    looking_for: "Willingness to criticise in the room. Flattery here is a real negative."
+  - trigger: "They are strong and time remains."
+    ask: "How does it make money, and does that fit the product?"
+    looking_for: "Whether they connect the experience to a business model rather than treating them separately."
+
+rescues:
+  - when: "They cannot choose."
+    offer: "\"What's something you'd be annoyed to lose tomorrow?\""
+    hold_back: "Do not name a product."
+  - when: "Stuck in description and not analysing."
+    offer: "\"What would you have got wrong if you'd built this?\""
+    hold_back: "Do not name a decision for them."
+  - when: "Reluctant to criticise anything."
+    offer: "\"Nothing's perfect — what irritates you about it?\""
+    hold_back: "Do not supply a criticism. Willingness to critique is being observed."
+
+signal_groups:
+  - dimension: Decisions, not features
+    signals:
+      - observable: "Identified a specific decision rather than listing features."
+      - observable: "Inferred why that decision was made."
+      - observable: "Named a constraint the team was probably working under."
+  - dimension: Trade-offs
+    signals:
+      - observable: "Named something the product is deliberately bad at."
+      - observable: "Said who the product is not for."
+      - observable: "Connected the experience to a business model."
+  - dimension: Independent judgement
+    signals:
+      - observable: "Offered a genuine criticism unprompted."
+      - observable: "Reasoned charitably about why a flaw might still exist."
+      - observable: "Criticised your own company's product when they chose it."
+  - dimension: Communication
+    signals:
+      - observable: "Explained an unfamiliar product clearly and briefly."
+      - observable: "Stayed concise — this is an opener, not the main event."
+
+  - dimension: Working with you
+    signals:
+      - observable: "Read the room and kept it brief — this is an opener, not the main event."
+      - observable: "Engaged with your follow-up rather than returning to their prepared point."
+
+anti_signals:
+  - observable: "Described features and benefits as a satisfied customer would."
+  - observable: "Uniformly positive with no trade-off or criticism anywhere."
+  - observable: "Chose the interviewer's product and only praised it."
+    note: "Reads as flattery and costs credibility for the rest of the loop."
+  - observable: "Could not explain the product to someone who had not used it."
+  - observable: "Suggested an improvement without considering why it does not exist."
+
+bias_guards:
+  - >-
+    Do not score product taste that matches your own. A well-argued case for a
+    product you dislike is a strong answer.
+  - >-
+    Do not reward choosing your company's product, and do not punish it either.
+    Probe it harder and score the reasoning.
+  - >-
+    Do not let enthusiasm read as product sense. Energy and analysis are different
+    things, and this question makes them easy to confuse.
+  - >-
+    This is a warm-up. Weight it accordingly rather than letting a strong opener
+    colour the rest of the loop.
+
+competencies:
+  core: [segmentation, jtbd-pain-points]
+  light: [ambiguity-scoping, prioritisation-tradeoffs]
+  not_tested: [metrics-guardrails]
+
+debrief:
+  plus:
+    - "You identified a decision the team made rather than listing features you enjoy."
+    - "You named something the product is deliberately bad at, which showed you understand quality is bought with trade-offs."
+  delta:
+    - "You described the product as a happy user rather than as a product person. Ask yourself what decision produced each thing you liked."
+    - "Everything you said was positive. Being unable to criticise a product you admire reads as a lack of independent judgement."
+  most_common: >-
+    Enthusiasm is not product sense. The move that separates candidates here is
+    naming the trade-off — what did they give up to get that?
+
+basis: >-
+  Constructed from publicly published product-sense criteria — Meta's guide names
+  questions of this shape directly, asking candidates why a product is great and
+  what they would do as its PM — plus this repository's concepts on segmentation
+  and business models. The probe ladder and signal wording are ours.

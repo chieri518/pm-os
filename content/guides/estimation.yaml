@@ -1,0 +1,175 @@
+id: guide-estimation
+question_type: estimation
+order: 3
+question: "How many public electric-vehicle charging points are needed in London?"
+variants:
+  - "How many piano tuners are there in Chicago?"
+  - "Estimate the annual revenue of a single airport coffee shop."
+difficulty: standard
+duration_min: 25
+
+intent: >-
+  Nobody expects the right number, and saying so early relaxes candidates enough
+  that you see their actual reasoning. What is being scored is whether the
+  decomposition is sound, whether assumptions are stated and sanity-checked, and
+  whether they notice when their own answer is implausible. An unstated assumption
+  is the failure; a wrong-but-inspectable assumption is fine.
+
+delivery:
+  script: >-
+    Give the question and add one sentence: "I'm not looking for the right answer,
+    I'm interested in how you get there — and feel free to think out loud." That
+    sentence is not politeness, it changes what you observe. Then let them work.
+    Offer paper. Do not correct arithmetic in real time unless they ask.
+  setup:
+    - "Have a rough answer of your own so you can judge whether their magnitude is defensible."
+    - "Decide which real figures you will supply if asked, and stay consistent."
+
+clarifying:
+  - asks: "Should I include private home chargers?"
+    answer: "\"Public only\" — grant it. It is a genuine ambiguity in the prompt."
+    why: "Scoping ambiguity is fair to resolve. It does not test anything to withhold it."
+  - asks: "Do you want today's number or for full EV adoption?"
+    answer: "\"You choose, but tell me which and why.\""
+    why: >-
+      The choice changes the whole model. Making them state it is the point; making
+      it for them removes a decision worth observing.
+  - asks: "Can I have London's population?"
+    answer: >-
+      "What would you assume?" If they offer roughly nine million, confirm it and
+      move on rather than making them squirm.
+    why: >-
+      Deriving a known figure is part of the exercise, but stalling over a fact
+      they nearly have wastes the clock.
+  - asks: "Can I round aggressively?"
+    answer: "\"Please do.\""
+    why: "Round numbers are correct practice here. Encourage it explicitly."
+
+checkpoints:
+  - at_min: 3
+    expect: "Scope pinned down and the interpretation chosen and stated."
+  - at_min: 8
+    expect: "An equation written out before any numbers are substituted."
+  - at_min: 16
+    expect: "Assumptions populated, each one stated as an assumption rather than a fact."
+  - at_min: 21
+    expect: "A number produced, then sanity-checked against something independent."
+
+probes:
+  - trigger: "They start multiplying numbers immediately."
+    ask: "Can you show me the equation before we put numbers in?"
+    looking_for: "Whether a structure exists that they skipped narrating, or no structure at all."
+  - trigger: "They state a figure with unusual confidence."
+    ask: "Where does that number come from?"
+    looking_for: >-
+      Whether they distinguish something they know from something they are
+      assuming. Both are fine; conflating them is not.
+  - trigger: "They produce a final number."
+    ask: "Does that feel right to you? Sanity-check it another way."
+    looking_for: >-
+      An independent cross-check — per-capita, or against a known comparable — not
+      a re-run of the same arithmetic.
+  - trigger: "The answer is off by an order of magnitude and they have not noticed."
+    ask: "That works out at roughly one charger per X people. Plausible?"
+    looking_for: >-
+      Whether they can catch and repair the error, and which input they suspect
+      first. Recovery here is a strong signal, not a rescue.
+  - trigger: "They finish early and cleanly."
+    ask: "Which assumption is your answer most sensitive to?"
+    looking_for: >-
+      Sensitivity reasoning — identifying the input where being wrong by 2x moves
+      the answer most. Genuinely distinguishing.
+
+  - trigger: "They have committed to a number."
+    ask: "I'd have guessed that's about five times too high. Talk me through why you disagree."
+    looking_for: >-
+      Whether they re-inspect their assumptions rather than either collapsing or
+      digging in. The right response is to find the input most likely to be wrong
+      and re-derive it — not to defend the total.
+
+rescues:
+  - when: "Frozen at the start."
+    offer: "\"What would you need to know to work this out?\""
+    hold_back: "Do not offer the decomposition axis. Listing unknowns is a legitimate way in."
+  - when: "Lost in arithmetic and losing the thread."
+    offer: "\"Round it — I care about the magnitude, not the digits.\""
+    hold_back: "Do not do the arithmetic for them."
+  - when: "They have an equation but no confidence in a number."
+    offer: "\"Pick something and label it an assumption — we can revisit it.\""
+    hold_back: "Do not supply the value. Committing under uncertainty is the behaviour being scored."
+
+signal_groups:
+  - dimension: Setup
+    signals:
+      - observable: "Pinned down scope before starting."
+      - observable: "Chose an interpretation explicitly and said why."
+      - observable: "Wrote the equation before substituting numbers."
+  - dimension: Assumptions
+    signals:
+      - observable: "Labelled each assumption as an assumption."
+      - observable: "Used round, workable numbers rather than false precision."
+      - observable: "Derived a figure from something they knew rather than inventing it."
+      - observable: "Distinguished what they knew from what they were guessing."
+  - dimension: Sanity
+    signals:
+      - observable: "Cross-checked the result a second, independent way."
+      - observable: "Noticed implausibility without being prompted."
+      - observable: "Identified which assumption the answer is most sensitive to."
+        note: "Rare, and the clearest separator between competent and strong."
+  - dimension: Manner
+    signals:
+      - observable: "Narrated continuously enough to be followed."
+      - observable: "Committed to a number rather than trailing off."
+
+  - dimension: Working with you
+    signals:
+      - observable: "Checked in at least once rather than monologuing for the full time."
+      - observable: "Adjusted their approach when you offered a figure or a correction."
+
+anti_signals:
+  - observable: "Asked the interviewer for figures they could reasonably assume."
+    note: "Reads as offloading. One or two is fine; a pattern is not."
+  - observable: "Produced a number to three significant figures from guessed inputs."
+    note: "False precision — indicates they do not understand what the estimate is worth."
+  - observable: "Never sanity-checked the result."
+  - observable: "Went silent for long stretches, leaving nothing to assess."
+  - observable: "Abandoned the estimate when told the magnitude looked off."
+    note: "Distinguish repair from collapse. Repair is a strong signal."
+
+bias_guards:
+  - >-
+    Do not score mental-arithmetic speed. It correlates with practice and anxiety,
+    not with product judgement, and penalising slow arithmetic selects against
+    people who are careful.
+  - >-
+    Do not reward a lucky number. A well-structured estimate that lands 3x off is
+    worth more than an unstructured one that lands close.
+  - >-
+    Do not penalise unfamiliarity with the local context. A candidate who has never
+    lived in London can still model the problem; supply facts they lack.
+  - >-
+    Keep supplied figures identical across candidates, or you have changed the
+    difficulty between them.
+
+competencies:
+  core: [ambiguity-scoping, prioritisation-tradeoffs]
+  light: [segmentation]
+  not_tested: [jtbd-pain-points, metrics-guardrails]
+
+debrief:
+  plus:
+    - "You wrote the equation before substituting numbers, which kept the reasoning inspectable throughout."
+    - "You sanity-checked the result a second, independent way rather than re-running the same arithmetic."
+  delta:
+    - "You gave a figure to three significant figures from guessed inputs. Round hard — false precision signals you do not know what the estimate is worth."
+    - "You did not label your assumptions as assumptions, so I could not tell what you knew from what you were guessing."
+    - "You never checked whether the answer was plausible. One per-capita cross-check would have caught it."
+  most_common: >-
+    Nobody is scoring the number. Say which input the answer is most sensitive to
+    and you have shown more than a candidate who landed closer.
+
+basis: >-
+  Constructed from standard estimation-interview practice and from this
+  repository's own concepts on structured decomposition and market sizing. The
+  scenario, probe ladder, rescue lines, and signal wording are ours. Not a
+  reproduction of any company's internal interviewer material.

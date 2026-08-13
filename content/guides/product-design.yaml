@@ -1,0 +1,208 @@
+id: guide-product-design
+question_type: product-design
+order: 1
+question: "Design a way for someone with limited hand mobility to control their television."
+variants:
+  - "Design a kitchen tool for someone with arthritis."
+  - "Design a banking app for someone who has never used one."
+difficulty: standard
+duration_min: 40
+
+intent: >-
+  This question exists to find out whether the candidate can resist solving. The
+  accessible-design framing is deliberate: it is a domain almost nobody has lived
+  experience of, so a candidate who jumps to features is guessing, and one who
+  slows down to establish who and why is showing you their actual process. What
+  you are scoring is whether user definition precedes solution generation, not
+  whether they produce a clever remote control.
+
+delivery:
+  script: >-
+    Give the prompt in one sentence and then stop talking. Do not add constraints,
+    do not suggest a framework, and do not fill the silence — the first thirty
+    seconds are diagnostic. A candidate who starts asking about scope and goals is
+    already showing you something; a candidate who starts listing features has
+    told you just as much. If they ask whether they can take a moment to think,
+    say yes and mean it.
+  setup:
+    - "Have a shared whiteboard or paper ready — you may ask them to sketch later."
+    - "Decide in advance which clarifications you will grant and which you will push back on."
+    - "Note the clock at the moment they finish the prompt, not when you started speaking."
+
+clarifying:
+  - asks: "What kind of limited mobility? Is this one condition or a range?"
+    answer: >-
+      Turn it back once: "What would you assume, and how would that change your
+      design?" If they give a reasoned assumption, confirm it and move on.
+    why: >-
+      Choosing a specific user IS the exercise. Handing them the segment removes
+      the thing you are trying to observe.
+  - asks: "Is this a physical remote, an app, or voice?"
+    answer: >-
+      "That's yours to decide — tell me what you're assuming and why." Do not
+      constrain the form factor.
+    why: "Form factor should fall out of the user's constraints, not precede them."
+  - asks: "What's the business goal? Are we selling hardware?"
+    answer: >-
+      Give them this one: "Assume a TV manufacturer wanting to broaden its
+      addressable market." It is genuinely ambiguous and withholding it just
+      wastes their clock.
+    why: >-
+      Withhold what tests judgement; grant what is merely missing context. Business
+      framing is context, not the skill under test.
+  - asks: "Should I pick one specific person or design broadly?"
+    answer: >-
+      "Whichever you can justify." Then listen for whether they justify it.
+    why: >-
+      Meta's own guidance is explicit that specific versus broad depends on the
+      question, and that what is scored is the articulated reasoning.
+
+checkpoints:
+  - at_min: 4
+    expect: "Scope and goal established. Should not still be asking clarifying questions."
+  - at_min: 12
+    expect: "A specific user committed to, with the rejected alternatives named."
+  - at_min: 20
+    expect: "Needs stated as jobs or frictions, prioritised, with a stated criterion."
+  - at_min: 30
+    expect: "Two or three genuinely distinct solutions on the table, not variants of one."
+  - at_min: 37
+    expect: "A recommendation, a success metric, and the biggest risk named."
+
+probes:
+  - trigger: "They list features within the first two minutes."
+    ask: "Before we go further — who is this for, specifically?"
+    looking_for: >-
+      Whether they can recover and reconstruct the user, or whether they defend
+      the features. Recovery is a good signal; defending is the failure mode.
+  - trigger: "They pick a segment but describe it demographically."
+    ask: "What about that group changes what you'd build?"
+    looking_for: >-
+      The differentiability test. If nothing follows from the segment, it is a
+      demographic rather than a segment and they have not actually chosen.
+  - trigger: "They propose three solutions that are all the same mechanism."
+    ask: "What's an option you've deliberately not considered yet?"
+    looking_for: "Whether they can generate on a different axis, or only vary a parameter."
+  - trigger: "They have a solution and are describing it in detail."
+    ask: "What breaks if your core assumption about this user is wrong?"
+    looking_for: >-
+      Whether they hold their assumption loosely enough to inspect it. Strong
+      candidates name the assumption unprompted before you ask.
+  - trigger: "They name a success metric."
+    ask: "What would that metric look like if the feature were failing?"
+    looking_for: >-
+      A counter-metric or guardrail. Candidates who cannot answer usually chose a
+      metric that cannot go down.
+  - trigger: "They are strong and you have time left."
+    ask: "Now the same user, but they're in hospital and a nurse sets it up. What changes?"
+    looking_for: >-
+      Whether the design was actually derived from constraints — in which case
+      changing the constraints changes the design in predictable ways.
+
+rescues:
+  - when: "Silent for more than about forty seconds after the prompt."
+    offer: "\"Feel free to think out loud — I'm interested in how you're approaching it.\""
+    hold_back: >-
+      Do not suggest a structure or name a framework. If they cannot generate an
+      approach, that is the finding.
+  - when: "They have a user but cannot generate needs."
+    offer: "\"Walk me through a specific moment in this person's day.\""
+    hold_back: >-
+      Do not supply a need. Narrowing to a concrete moment is a legitimate nudge;
+      handing over content is not.
+  - when: "Stuck between two solutions and looping."
+    offer: "\"What would help you decide between them?\""
+    hold_back: >-
+      Do not tell them which criterion to use. Naming the criterion is the scored
+      behaviour.
+
+signal_groups:
+  - dimension: Framing
+    signals:
+      - observable: "Asked about the goal or business context before generating solutions."
+      - observable: "Stated explicitly what is out of scope."
+      - observable: "Named their assumptions out loud rather than leaving them implicit."
+        note: "Meta's guide asks candidates to call out assumptions to keep moving; treat it as a positive, not stalling."
+  - dimension: User definition
+    signals:
+      - observable: "Named more than one candidate segment before choosing."
+      - observable: "Committed to one segment and said why the others were rejected."
+      - observable: "The segment implies something specific about what to build."
+        note: "The differentiability test. 'People aged 30-50' fails it."
+  - dimension: Needs and prioritisation
+    signals:
+      - observable: "Distinguished tactical friction from underlying driver."
+      - observable: "Ranked the needs against a criterion they named."
+      - observable: "Said explicitly what they were choosing not to solve."
+  - dimension: Solutions
+    signals:
+      - observable: "Solutions differ in mechanism, not just in degree."
+      - observable: "At least one non-obvious option offered."
+      - observable: "Each solution traceable to a stated need."
+  - dimension: Judgement
+    signals:
+      - observable: "Named a success metric AND something that must not get worse."
+      - observable: "Stated the biggest risk or the assumption most likely to be wrong."
+      - observable: "Took a position rather than presenting options and stopping."
+
+  - dimension: Working with you
+    signals:
+      - observable: "Brought you along the reasoning rather than narrating at you."
+        note: "Meta's guide says the interviewer must be brought along the journey, not handed a conclusion."
+      - observable: "Paused for reaction at natural transitions rather than monologuing."
+      - observable: "Incorporated a constraint you supplied instead of continuing on their original path."
+
+anti_signals:
+  - observable: "Designed for 'everyone' or refused to choose a segment."
+    note: "The most common failure in this question type across every company."
+  - observable: "Listed solutions before establishing the need."
+    note: "Meta names this explicitly as the most common Product Sense pitfall."
+  - observable: "Proposed a metric that cannot go down."
+    note: "Usually a volume count with no guardrail — indicates they have not thought about failure."
+  - observable: "Kept asking clarifying questions past the four-minute mark."
+    note: "Reads as avoidance. The guidance is to balance clarification against reasonable assumptions."
+  - observable: "Defended their first idea after you surfaced a problem with it."
+
+bias_guards:
+  - >-
+    Do not score fluency or accent. A candidate who thinks slowly in a second
+    language and structures well is stronger than one who talks quickly and does not.
+  - >-
+    Do not reward familiarity with your product. Knowing your company's TV lineup is
+    not product sense, and rewarding it selects for people already inside the industry.
+  - >-
+    Do not penalise a design you personally dislike. Score whether it follows from
+    the stated user and need — taste is not the rubric.
+  - >-
+    Do not credit confidence as judgement. Assertions delivered firmly and
+    assertions supported by reasoning are different things.
+  - >-
+    Watch for the halo of a strong opening. Score each dimension on what actually
+    happened in it, not on your impression from the first five minutes.
+
+competencies:
+  core: [ambiguity-scoping, segmentation, jtbd-pain-points, prioritisation-tradeoffs, metrics-guardrails]
+  light: []
+  not_tested: []
+
+debrief:
+  plus:
+    - "You committed to one segment and said why you rejected the others — that is the single most-scored move in this question type."
+    - "Your solutions differed in mechanism rather than being three versions of one idea."
+    - "You named a guardrail without being asked, which showed you had thought about how it could fail."
+  delta:
+    - "You spent nine minutes on clarifying questions. Two is usually enough — after that, state an assumption and move."
+    - "Your needs were phrased as feature requests. Try phrasing each as the job the user is trying to get done."
+    - "You gave three solutions and no recommendation. Deciding is the part being scored; ranking without choosing reads as avoidance."
+  most_common: >-
+    Most candidates generate well and prioritise badly. If they left with one thing,
+    it should be to name the criterion they ranked against and say out loud what
+    they chose not to build.
+
+basis: >-
+  Constructed from published evaluation criteria — Meta's own PM interview prep
+  guide names the Product Sense focus areas and its two most common pitfalls
+  directly, and the pacing follows the CIRCLES stage budgets in this repository.
+  The probe ladder, rescue lines, and signal wording are ours. This is not a
+  reproduction of any company's internal interviewer material, which is
+  confidential and not public.

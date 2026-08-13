@@ -26,7 +26,7 @@ export function Nav({ crumb }: { crumb?: { label: string; href?: Route } }) {
         <NavLink href="/">Library</NavLink>
         <NavLink href="/glossary">Glossary</NavLink>
         <NavLink href="/graph">Graph</NavLink>
-        <NavLink href="/practice">Practice</NavLink>
+        <NavLink href="/interviewer">Interviewer</NavLink>
         <span className="ml-1.5">
           <SearchPalette />
         </span>

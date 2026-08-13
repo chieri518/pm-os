@@ -1,0 +1,165 @@
+id: guide-product-improvement
+question_type: product-improvement
+order: 7
+question: "Pick a product you use often. How would you improve it?"
+variants:
+  - "How would you improve our onboarding?"
+  - "What's the one change you'd make to a product you admire?"
+difficulty: warm-up
+duration_min: 30
+
+intent: >-
+  The trap in this question is that it feels easy, so candidates skip straight to
+  ideas. What is actually being scored is whether they establish a goal before
+  proposing improvements — "improve" is meaningless without saying improve toward
+  what. The second scored thing is prioritisation: many candidates generate well
+  and then refuse to rank.
+
+delivery:
+  script: >-
+    Let them pick the product; the choice itself is informative. If they pick
+    something you do not know, ask them to describe it in thirty seconds and hold
+    them to that — a candidate who cannot explain their favourite product concisely
+    has told you something about communication. Do not suggest a goal.
+  setup:
+    - "Be ready to ask them to switch if they pick something with no meaningful room to improve."
+    - "Decide whether you will let them pick your own company's product — it changes what you can assess."
+
+clarifying:
+  - asks: "Can I pick any product, or should it be in your industry?"
+    answer: "\"Anything you know well.\""
+    why: "Depth of knowledge matters more than domain adjacency here."
+  - asks: "Improve for the business or for users?"
+    answer: "\"You decide — but say which and why.\""
+    why: >-
+      Choosing the objective is the scored move. Handing it over removes the whole
+      first stage.
+  - asks: "Should I assume any engineering constraint?"
+    answer: "\"Assume a normal team and a quarter of work.\""
+    why: "Fair to grant; unbounded scope makes prioritisation meaningless."
+  - asks: "Do you want one idea or several?"
+    answer: "\"Several, then tell me which one you'd do.\""
+    why: "Signals up front that ranking is expected, which is the part most candidates skip."
+
+checkpoints:
+  - at_min: 4
+    expect: "Product chosen and its purpose stated. A goal for 'improvement' named."
+  - at_min: 10
+    expect: "A user segment and a specific problem identified, not a general complaint."
+  - at_min: 20
+    expect: "Three or more distinct improvements generated."
+  - at_min: 27
+    expect: "Ranked against a stated criterion, one chosen, with a success metric."
+
+probes:
+  - trigger: "They begin listing improvements immediately."
+    ask: "Improve it toward what? What's the goal?"
+    looking_for: "Whether a goal exists that they skipped stating, or whether they are just riffing."
+  - trigger: "They name a problem."
+    ask: "How do you know that's a real problem and not just your own annoyance?"
+    looking_for: >-
+      Whether they distinguish their own experience from the segment's, and can
+      propose a way to check.
+  - trigger: "They have several ideas."
+    ask: "Which one, and what criterion are you using?"
+    looking_for: >-
+      An explicit ranking criterion. 'Impact versus effort' is acceptable if they
+      actually apply it rather than naming it.
+  - trigger: "They pick one."
+    ask: "What are you consciously not doing, and why is that acceptable?"
+    looking_for: "Prioritisation as a statement about what is dropped, not just what is chosen."
+  - trigger: "They propose a metric."
+    ask: "What would move that metric in the wrong direction if you got this wrong?"
+    looking_for: "A guardrail. Reveals whether they have considered how the change could fail."
+  - trigger: "They are strong and time remains."
+    ask: "Your improvement ships and the metric doesn't move. What do you conclude?"
+    looking_for: >-
+      Whether they can distinguish a bad idea from bad execution from a bad metric.
+      Genuinely separating.
+
+  - trigger: "They have chosen an improvement."
+    ask: "How do you know users actually want that? Wouldn't it add friction for everyone else?"
+    looking_for: >-
+      Whether they defend with reasoning rather than conviction, concede the part
+      that is fair, and can say how they would test it cheaply before committing.
+
+rescues:
+  - when: "They cannot pick a product."
+    offer: "\"What did you use this morning?\""
+    hold_back: "Do not name a product. The choice carries signal."
+  - when: "Ideas are all cosmetic."
+    offer: "\"What's the hardest thing about using this product?\""
+    hold_back: "Do not supply a problem. Redirecting toward difficulty is a fair nudge."
+  - when: "They refuse to rank."
+    offer: "\"If you could only ship one this quarter?\""
+    hold_back: "Do not offer a criterion. Choosing one is the behaviour being scored."
+
+signal_groups:
+  - dimension: Goal before ideas
+    signals:
+      - observable: "Stated what the product is for before improving it."
+      - observable: "Named an explicit goal for the improvement."
+      - observable: "Chose whether they were optimising for users or the business, and said why."
+  - dimension: Problem identification
+    signals:
+      - observable: "Named a specific user segment rather than 'users'."
+      - observable: "Distinguished their own annoyance from an evidenced problem."
+      - observable: "Proposed how they would verify the problem is real."
+  - dimension: Generation and ranking
+    signals:
+      - observable: "Ideas differ in mechanism, not just in degree."
+      - observable: "Applied a named criterion to rank them."
+      - observable: "Said explicitly what they were not doing."
+  - dimension: Measurement
+    signals:
+      - observable: "Named a success metric tied to the stated goal."
+      - observable: "Named a guardrail or counter-metric."
+
+  - dimension: Working with you
+    signals:
+      - observable: "Checked their chosen goal with you before building on it."
+      - observable: "Took your push-back seriously without abandoning a defensible position."
+
+anti_signals:
+  - observable: "Started listing features before naming a goal."
+  - observable: "Improvements were all visual or cosmetic."
+  - observable: "Generated many ideas and refused to rank them."
+  - observable: "Chose a product they could not explain concisely."
+  - observable: "Success metric was a volume count with no guardrail."
+
+bias_guards:
+  - >-
+    Do not reward picking your own company's product. It signals preparation, not
+    product sense, and it advantages candidates who guessed your team.
+  - >-
+    Do not penalise an unfamiliar product choice. Ask them to explain it and assess
+    the reasoning, not your own recognition.
+  - >-
+    Do not score whether you agree the improvement is good. Score whether it
+    follows from the goal and the problem they named.
+  - >-
+    This question is a warm-up for many loops. Do not let an easy question inflate
+    your overall impression of a candidate who struggled elsewhere.
+
+competencies:
+  core: [ambiguity-scoping, segmentation, prioritisation-tradeoffs, metrics-guardrails]
+  light: [jtbd-pain-points]
+  not_tested: []
+
+debrief:
+  plus:
+    - "You established what the product is for before improving it — most candidates skip straight to ideas."
+    - "You applied a named criterion rather than just asserting which idea was best."
+  delta:
+    - "You improved toward no stated goal. 'Improve' is meaningless until you say improve toward what."
+    - "Your ideas were all cosmetic. Ask what the hardest thing about using the product is, and start there."
+    - "You ranked but never said what you were dropping. The rejection carries most of the signal."
+  most_common: >-
+    The easy-feeling question where candidates skip the goal. Naming the objective
+    in the first two minutes changes everything downstream.
+
+basis: >-
+  Constructed from publicly published product-sense evaluation criteria and this
+  repository's concepts on prioritisation, segmentation, and metric design. The
+  probe ladder, rescue lines, and signal wording are ours. Not a reproduction of
+  any company's internal interviewer material.
