@@ -823,3 +823,71 @@ tests), `sample_questions`, `myths`, and a required `sources` array.
 ### Still open
 
 The mobile bug remains. `/practice` overflows horizontally at 390px.
+
+---
+
+## Milestone 8 — The Graph, Made Navigable
+
+**Goal:** Obsidian-style interlinking, PM-focused.
+
+### The measurement that reframed it
+
+Before building, I counted. 68 linkable entities, but only **35** exact-name
+cross-references in prose — against **50 jargon terms used 540 times** that were
+not entities at all. "Segment" 95 times, "cohort" 40, "guardrail" 22, defined
+nowhere.
+
+So the problem was not that pages failed to link. It was that **there was almost
+nothing to link to.** The corpus read fluently to someone who already had the
+vocabulary and was opaque to everyone else — exactly the failure the learning
+layer was meant to fix.
+
+### Decision 16 — `Term` is a fourth kind of node, deliberately lighter than `Concept`
+
+A concept is a subject you study: three depth layers, formulas, evidence verdict,
+worked example. A term is a word you need to parse a sentence. Conflating them
+would either bloat the glossary into 50 more study pages or dilute what a concept
+means. **46 terms** authored, each with a definition, optional formula, a
+`watch_out`, and see-also links.
+
+### Decision 17 — Auto-link on first mention, rather than hand-authoring wiki-links
+
+Retrofitting `[[wiki-links]]` across 540 mentions was the alternative. Instead the
+linker matches names and aliases at render time and links the **first mention per
+page only**, so prose does not turn blue. Longest-match-first ordering means
+"loss aversion" wins over "loss". A deny-list covers surface forms that are also
+ordinary English here — "recall", "precision", "structure" — where a confident
+wrong link is worse than none.
+
+Pure matching lives in `src/graph/linker.ts` and returns segments; React rendering
+lives in `app/linked.tsx`. That split keeps the matching testable in plain Node.
+
+### Why the backlinks beat a wiki's
+
+Obsidian can only say *"these two notes mention each other."* Our edges carry a
+relation type **and an authored rationale**, so an inbound link says what the
+relationship is and what to do about it — *"TENSIONS_WITH: resolve toward Hick's
+when the user is under load."* Written once on the edge, read on the concept page,
+in backlinks, and in the practice builder.
+
+Two kinds of inbound link render separately and on purpose: **authored edges**
+(curated, typed, reasoned) and **prose mentions** (discovered at build time, no
+claim beyond co-occurrence).
+
+### Shipped
+
+- **46 terms**, `/glossary` index, `/term/[id]` pages
+- **Auto-linking with CSS-only hover previews** — no per-link JS, no hydration cost
+- **Typed backlinks** on every concept, heuristic, framework, question, company, and term page
+- **⌘K search palette** — subsequence matching, keyboard-driven, 93 entries
+- **`/graph`** — force-directed map, ~130 lines of hand-written simulation rather
+  than a dependency. Deterministic seeding, so the same corpus always draws the
+  same picture, which matters when a screenshot goes in a case study.
+
+Three derived indexes are now emitted at build time — `search.json` (18.7 kB),
+`mentions.json` (8 kB), `graphview.json` (34.4 kB) — all pure functions of the
+content, so none of it is computed per request.
+
+**Graph totals: 93 nodes, 351 edges** (101 authored + 250 discovered mentions).
+
+**Still open:** the mobile overflow bug at 390px.

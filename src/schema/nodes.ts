@@ -355,6 +355,46 @@ export const Concept = z.object({
 });
 export type Concept = z.infer<typeof Concept>;
 
+
+/* ------------------------------------------------------------------ *
+ * TERM — the glossary layer.
+ *
+ * Deliberately NOT a Concept. A concept is a subject you study — it earns three
+ * depth layers, formulas, an evidence verdict, and a worked example. A term is a
+ * word you need in order to parse a sentence. Conflating them would either bloat
+ * the glossary into fifty more study pages or dilute what a concept means.
+ *
+ * The corpus needs this because it was written fluently for someone who already
+ * had the vocabulary: "segment" appears 95 times, "cohort" 40, "guardrail" 22 —
+ * roughly 540 uses of ~50 undefined terms. Terms are also what make dense inline
+ * linking possible at all; without them there are only 68 link targets.
+ * ------------------------------------------------------------------ */
+
+export const Term = z.object({
+  id: Slug,
+  name: z.string(),
+  /** Alternate spellings and abbreviations. Used by the auto-linker. */
+  aka: z.array(z.string()).default([]),
+  domain: z.enum([
+    "customer",
+    "strategy",
+    "economics",
+    "experimentation",
+    "metrics",
+    "process",
+    "technical",
+    "analytical",
+  ]),
+  /** One sentence. This is what a hover preview shows. */
+  one_line: z.string(),
+  definition: z.string(),
+  formula: z.string().optional(),
+  /** The confusion this term most often causes. */
+  watch_out: z.string().optional(),
+  see_also: z.array(Slug).default([]),
+});
+export type Term = z.infer<typeof Term>;
+
 /* ------------------------------------------------------------------ *
  * COMPANY LENS — what a given company's rubric actually rewards.
  * ------------------------------------------------------------------ */

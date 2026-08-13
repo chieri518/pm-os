@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { graph } from "@/src/graph/bundle";
 import { describe } from "@/src/graph/predicate";
 import type { Heuristic } from "@/src/schema/nodes";
+import { Backlinks } from "@/app/backlinks";
+import { createLinker } from "@/app/linked";
 import { Nav } from "../../nav";
 import { EvidenceTag } from "../../ui";
 import { Prose, Quote, Section, WorkedExampleCards } from "../../teaching";
@@ -21,6 +23,8 @@ export default async function HeuristicPage({ params }: { params: Promise<{ id: 
   const { id } = await params;
   const h = graph.get<Heuristic>("heuristic", id);
   if (!h) notFound();
+
+  const L = createLinker(`heuristic:${h.id}`);
 
   const t = h.teaching;
   const surfaces = graph.surfacesAt(h.id);
@@ -64,7 +68,7 @@ export default async function HeuristicPage({ params }: { params: Promise<{ id: 
       {t && (
         <div className="space-y-8">
           <Section title="The mechanism" note="Why it works — which is what tells you when it doesn't.">
-            <Prose>{t.mechanism}</Prose>
+            <Prose>{L(t.mechanism)}</Prose>
           </Section>
 
           <Section title="In an interview">
@@ -95,11 +99,11 @@ export default async function HeuristicPage({ params }: { params: Promise<{ id: 
           </Section>
 
           <Section title="In product work">
-            <Prose>{t.in_product_work}</Prose>
+            <Prose>{L(t.in_product_work)}</Prose>
           </Section>
 
           <Section title="In daily life" note="The retrieval hook — what you'll actually recall under pressure.">
-            <Prose>{t.in_daily_life}</Prose>
+            <Prose>{L(t.in_daily_life)}</Prose>
           </Section>
 
           <Section title="Worked example">
@@ -111,13 +115,13 @@ export default async function HeuristicPage({ params }: { params: Promise<{ id: 
       <div className="mt-8 space-y-8">
         {(h.caveat || h.common_misapplication) && (
           <Section title="Where the evidence stops" tone="warn">
-            {h.caveat && <Prose className="mb-3">{h.caveat}</Prose>}
+            {h.caveat && <Prose className="mb-3">{L(h.caveat)}</Prose>}
             {h.common_misapplication && (
               <div className="rounded-lg border border-warn-400/25 bg-warn-400/[0.04] p-3">
                 <div className="mb-1 font-mono text-[10px] uppercase tracking-wider text-warn-400">
                   Common misapplication
                 </div>
-                <Prose>{h.common_misapplication}</Prose>
+                <Prose>{L(h.common_misapplication)}</Prose>
               </div>
             )}
           </Section>
@@ -163,6 +167,7 @@ export default async function HeuristicPage({ params }: { params: Promise<{ id: 
             </p>
           )}
         </Section>
+        <Backlinks type="heuristic" id={h.id} />
       </div>
     </main>
   );

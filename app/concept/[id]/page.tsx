@@ -2,6 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { graph } from "@/src/graph/bundle";
 import type { Concept, QuestionType } from "@/src/schema/nodes";
+import { Backlinks } from "@/app/backlinks";
+import { createLinker } from "@/app/linked";
 import { Nav } from "../../nav";
 import { EvidenceTag } from "../../ui";
 import { MistakeList, Prose, Quote, Section } from "../../teaching";
@@ -40,6 +42,8 @@ export default async function ConceptPage({ params }: { params: Promise<{ id: st
   const c = graph.get<Concept>("concept", id);
   if (!c) notFound();
 
+  const L = createLinker(`concept:${c.id}`);
+
   const askedFrom = graph
     .edgesTo({ type: "concept", id: c.id }, "REQUIRES")
     .map((edge) => ({ edge, q: graph.get<QuestionType>("question_type", edge.from.id) }))
@@ -63,7 +67,7 @@ export default async function ConceptPage({ params }: { params: Promise<{ id: st
 
       <div className="space-y-8">
         <Section title="Why it matters">
-          <Prose>{c.why_it_matters}</Prose>
+          <Prose>{L(c.why_it_matters)}</Prose>
         </Section>
 
         {/* ---------------------------------------------- progressive depth */}
@@ -88,7 +92,7 @@ export default async function ConceptPage({ params }: { params: Promise<{ id: st
                     <span className="text-[10px] text-ink-600">{meta.note}</span>
                   </div>
                   <h3 className="text-[16px] font-medium text-ink-100">{layer.title}</h3>
-                  <p className="mt-1.5 text-[15px] leading-relaxed text-ink-300">{layer.body}</p>
+                  <p className="mt-1.5 text-[15px] leading-relaxed text-ink-300">{L(layer.body)}</p>
                 </div>
               );
             })}
@@ -123,17 +127,17 @@ export default async function ConceptPage({ params }: { params: Promise<{ id: st
                 <span className="mt-0.5 w-5 shrink-0 text-right font-mono text-[11px] text-ink-600">
                   {i + 1}
                 </span>
-                <span className="text-[14px] leading-relaxed text-ink-300">{s}</span>
+                <span className="text-[14px] leading-relaxed text-ink-300">{L(s)}</span>
               </li>
             ))}
           </ol>
           <p className="mt-3 border-l-2 border-ink-600 pl-3 text-[15px] leading-relaxed text-ink-100">
-            {c.worked_example.takeaway}
+            {L(c.worked_example.takeaway)}
           </p>
         </Section>
 
         <Section title="In an interview">
-          <Prose className="mb-4">{c.in_interview.how_to_deploy}</Prose>
+          <Prose className="mb-4">{L(c.in_interview.how_to_deploy)}</Prose>
           <div className="space-y-3">
             <Quote tone="strong" label="Strong sounds like">
               {c.in_interview.strong_sounds_like}
@@ -153,7 +157,7 @@ export default async function ConceptPage({ params }: { params: Promise<{ id: st
             <div className="mb-1.5">
               <EvidenceTag strength={c.evidence.strength} />
             </div>
-            <Prose>{c.evidence.note}</Prose>
+            <Prose>{L(c.evidence.note)}</Prose>
             {c.sources.length > 0 && (
               <ul className="mt-3 space-y-1 border-t border-ink-800 pt-3">
                 {c.sources.map((s) => (
@@ -188,6 +192,7 @@ export default async function ConceptPage({ params }: { params: Promise<{ id: st
             </div>
           </Section>
         )}
+      <Backlinks type="concept" id={c.id} />
       </div>
     </main>
   );

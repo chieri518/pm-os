@@ -6,6 +6,7 @@ import type {
   Heuristic,
   QuestionType,
   Situation,
+  Term,
 } from "../schema/nodes";
 import { isExperienceHeuristic } from "../schema/nodes";
 import type { Edge, RelationType } from "../schema/edges";
@@ -37,6 +38,7 @@ type AnyNode =
   | CompanyLens
   | QuestionType
   | Concept
+  | Term
   | FrameworkPart;
 
 export interface HeuristicHit {
@@ -57,6 +59,7 @@ export interface GraphBundle {
   lenses: CompanyLens[];
   questionTypes: QuestionType[];
   concepts: Concept[];
+  terms: Term[];
   edges: Edge[];
 }
 
@@ -68,6 +71,7 @@ const DIR_TO_TYPE = {
   lenses: "company_lens",
   questions: "question_type",
   concepts: "concept",
+  terms: "term",
 } as const satisfies Record<string, NodeType>;
 
 /**
@@ -141,6 +145,7 @@ export class GraphIndex {
   questionTypes = (): QuestionType[] =>
     this.all<QuestionType>("question_type").sort((a, b) => a.order - b.order);
   concepts = (): Concept[] => this.all<Concept>("concept").sort((a, b) => a.order - b.order);
+  terms = (): Term[] => this.all<Term>("term").sort((a, b) => a.name.localeCompare(b.name));
   edgeEntries = (): { edge: Edge; file: string }[] => this.edges;
 
   edgesFrom(ref: NodeRef, relation?: RelationType): Edge[] {
@@ -176,6 +181,7 @@ export class GraphIndex {
       lenses: this.lenses(),
       questionTypes: this.questionTypes(),
       concepts: this.concepts(),
+      terms: this.terms(),
       edges: this.edges.map(({ edge }) => edge),
     };
   }
@@ -189,6 +195,7 @@ export class GraphIndex {
     for (const l of bundle.lenses) graph.addNode("lenses", l, "<bundle>");
     for (const q of bundle.questionTypes ?? []) graph.addNode("questions", q, "<bundle>");
     for (const c of bundle.concepts ?? []) graph.addNode("concepts", c, "<bundle>");
+    for (const t of bundle.terms ?? []) graph.addNode("terms", t, "<bundle>");
     for (const p of bundle.parts) graph.addPart(p);
     for (const e of bundle.edges) graph.addEdge(e, "<bundle>");
     return graph;
@@ -204,6 +211,7 @@ export class GraphIndex {
       lenses: this.lenses().length,
       question_types: this.questionTypes().length,
       concepts: this.concepts().length,
+      terms: this.terms().length,
       edges: this.edges.length,
     };
   }

@@ -1,0 +1,105 @@
+- id: ltv
+  name: LTV
+  aka: ["lifetime value", "CLV", "customer lifetime value"]
+  domain: economics
+  one_line: "The gross profit a customer generates over their whole relationship with you."
+  definition: >-
+    Average revenue per user multiplied by gross margin, divided by churn. The
+    gross-margin term is the one most often dropped, and dropping it inflates the
+    figure by whatever it costs you to serve — which turns a comparison against
+    acquisition cost into a comparison of two incompatible quantities.
+  formula: "LTV = ARPU × gross margin % ÷ churn rate"
+  watch_out: >-
+    Early-stage LTV is extrapolated, not observed. With eighteen months of data you
+    have a churn assumption, and assuming 3% monthly instead of 5% inflates LTV by
+    roughly 1.7× on identical revenue.
+  see_also: [cac, churn, gross-margin, unit-economics]
+
+- id: cac
+  name: CAC
+  aka: ["customer acquisition cost", "acquisition cost"]
+  domain: economics
+  one_line: "The fully loaded cost of acquiring one customer."
+  definition: >-
+    All sales and marketing spend in a period — including salaries and tooling,
+    not just media — divided by customers acquired in that period.
+  formula: "CAC = (total sales + marketing spend) ÷ new customers acquired"
+  watch_out: >-
+    Blended CAC mixes organic and paid, so it falls automatically when organic
+    grows and makes paid acquisition look like it is improving when it is not.
+    Segment them. Marginal CAC also rises with scale as the cheapest channel saturates.
+  see_also: [ltv, payback-period, unit-economics]
+
+- id: payback-period
+  name: Payback period
+  aka: ["CAC payback"]
+  domain: economics
+  one_line: "How many months of gross profit it takes to recover what a customer cost to acquire."
+  definition: >-
+    Usually more decision-relevant than the LTV:CAC ratio, because it measures cash
+    risk rather than eventual return. A business with a healthy ratio and a
+    thirty-month payback can still run out of money before the ratio pays out.
+  formula: "Payback (months) = CAC ÷ (monthly ARPU × gross margin %)"
+  see_also: [cac, ltv, unit-economics]
+
+- id: gross-margin
+  name: Gross margin
+  domain: economics
+  one_line: "Revenue left after the direct cost of delivering the product."
+  definition: >-
+    The share of each pound of revenue that survives the cost of serving it —
+    hosting, payment fees, support, cost of goods. Software typically runs 75-85%;
+    services 50-65%. It is the term that makes revenue comparable to cost.
+  formula: "Gross margin % = (revenue − cost of goods sold) ÷ revenue"
+  see_also: [contribution-margin, ltv, unit-economics]
+
+- id: contribution-margin
+  name: Contribution margin
+  domain: economics
+  one_line: "What each additional sale contributes toward covering fixed costs."
+  definition: >-
+    Revenue minus variable costs. If it is negative, every extra sale makes the
+    business worse — which means growth is actively harmful until the unit
+    economics are fixed.
+  formula: "Contribution margin = revenue − variable costs"
+  see_also: [gross-margin, unit-economics]
+
+- id: tam
+  name: TAM / SAM / SOM
+  aka: ["TAM", "total addressable market", "addressable market"]
+  domain: economics
+  one_line: "Total addressable market, the serviceable slice of it, and the share you could realistically win."
+  definition: >-
+    TAM is everyone who could conceivably buy this. SAM narrows to those you can
+    actually reach with your model and geography. SOM is the portion you could
+    plausibly capture. Interviewers ask for these to see whether you build the
+    number from the bottom up rather than quoting an analyst report.
+  watch_out: >-
+    Top-down TAM ("the market is £40bn, we need 1%") is the classic weak answer.
+    Build it from units and price instead — number of buyers times purchase
+    frequency times price.
+  see_also: [estimation, willingness-to-pay]
+
+- id: willingness-to-pay
+  name: Willingness to pay
+  aka: ["WTP"]
+  domain: economics
+  one_line: "The most a customer would actually pay before walking away."
+  definition: >-
+    The upper bound of value as the buyer perceives it, and the correct starting
+    point for pricing in software where marginal cost is near zero. It cannot be
+    measured by asking directly — stated intent consistently overstates behaviour —
+    so it is inferred from choices via conjoint analysis or a live price test.
+  see_also: [pricing-strategy, price-elasticity]
+
+- id: price-elasticity
+  name: Price elasticity
+  aka: ["elasticity", "elastic", "inelastic"]
+  domain: economics
+  one_line: "How much demand changes when price changes."
+  definition: >-
+    The percentage change in quantity sold divided by the percentage change in
+    price. Below 1 in absolute terms is inelastic, meaning a price rise increases
+    revenue; above 1 is elastic, meaning it reduces it.
+  formula: "E = % change in quantity ÷ % change in price"
+  see_also: [pricing-strategy, willingness-to-pay]

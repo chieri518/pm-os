@@ -10,6 +10,7 @@ import {
   Heuristic,
   QuestionType,
   Situation,
+  Term,
 } from "../schema/nodes";
 import { Edge, RELATION_DOMAINS, SYMMETRIC_RELATIONS } from "../schema/edges";
 import { NodeRef, NodeType, refKey } from "../schema/primitives";
@@ -29,6 +30,7 @@ const COLLECTIONS = {
   lenses: CompanyLens,
   questions: QuestionType,
   concepts: Concept,
+  terms: Term,
 } as const;
 
 function yamlFiles(dir: string): string[] {

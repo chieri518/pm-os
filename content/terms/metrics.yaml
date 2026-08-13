@@ -1,0 +1,145 @@
+- id: churn
+  name: Churn
+  aka: ["churn rate", "attrition"]
+  domain: metrics
+  one_line: "The share of customers who stop using or paying in a given period."
+  definition: >-
+    Customers lost during a period divided by customers at the start of it.
+    Churn is the single most consequential number in a subscription business
+    because lifetime value is inversely proportional to it — halving churn
+    roughly doubles the value of every customer, which no amount of acquisition
+    efficiency can match.
+  formula: "Churn = customers lost in period ÷ customers at start of period"
+  watch_out: >-
+    Customer churn and revenue churn differ sharply. Losing ten small accounts and
+    one enterprise account can be the same customer churn and wildly different
+    revenue churn. Net revenue churn can even be negative if expansion within
+    remaining accounts exceeds what left.
+  see_also: [retention, unit-economics, cohort]
+
+- id: retention
+  name: Retention
+  aka: ["retained", "N-day retention"]
+  domain: metrics
+  one_line: "The share of a group still active after a given amount of time."
+  definition: >-
+    The complement of churn, and usually the more diagnostic of the two because
+    it is measured over a cohort's own lifetime rather than the calendar. A
+    retention curve that flattens rather than decaying to zero is the strongest
+    single behavioural indicator that a product has found a stable core.
+  watch_out: >-
+    Meaningless without stating what counts as active. Retention of "opened the
+    app" and retention of "completed the core action" can differ by a factor of
+    two, and only one of them predicts revenue.
+  see_also: [cohort, churn, activation, product-market-fit]
+
+- id: cohort
+  name: Cohort
+  aka: ["cohort analysis"]
+  domain: metrics
+  one_line: "A group defined by when they joined, tracked over their own lifetime rather than the calendar."
+  definition: >-
+    Grouping users by their start period — the January cohort, the February
+    cohort — so each group's behaviour can be read independently of how many
+    people joined when. This is what makes product change visible: aggregate
+    numbers mix everyone together, so growth in acquisition can mask a product
+    that is getting worse.
+  watch_out: >-
+    Never compare cohorts of different maturity. A three-week-old cohort has no
+    day-30 number, and putting it next to a mature cohort silently compares
+    different things.
+  see_also: [retention, cohort-retention, churn]
+
+- id: activation
+  name: Activation
+  aka: ["activated"]
+  domain: metrics
+  one_line: "Reaching first real value quickly enough to come back."
+  definition: >-
+    The moment a new user experiences the thing the product is for — sending a
+    first message, completing a first booking, seeing a first useful result. It
+    sits between acquisition and retention in the funnel and is usually the
+    highest-leverage stage, because everything downstream is conditional on it.
+  watch_out: >-
+    Teams often define activation as a setup step they control rather than a value
+    moment the user feels. Completing onboarding is not activation if the user
+    still has not got anything out of it.
+  see_also: [funnel, retention, north-star-metric]
+
+- id: guardrail-metric
+  name: Guardrail metric
+  aka: ["guardrail", "counter-metric", "countermetric"]
+  domain: metrics
+  one_line: "A metric that must not get worse while you optimise something else."
+  definition: >-
+    Every metric is gameable, and the fastest route to moving one is often to
+    damage something you were not measuring. A guardrail names that something
+    explicitly and makes it a launch condition. Raising checkout conversion with
+    refund rate as a guardrail prevents winning through pressure tactics that cost
+    more next quarter.
+  watch_out: >-
+    A guardrail with no threshold is decoration. Say what movement would stop the
+    launch, before the experiment runs.
+  see_also: [north-star-metric, ab-testing]
+
+- id: funnel
+  name: Funnel
+  domain: metrics
+  one_line: "The sequence of steps between first contact and the outcome you want, with drop-off at each."
+  definition: >-
+    A model of a user journey as ordered stages, each losing some share of the
+    people who entered it. Its value is locating where loss concentrates, which is
+    usually far more actionable than the overall conversion number.
+  watch_out: >-
+    Funnels assume a linear path that many products do not have. Users loop back,
+    arrive mid-way, and leave and return — forcing that into a strict sequence can
+    invent a problem or hide one.
+  see_also: [conversion-rate, activation, aarrr]
+
+- id: conversion-rate
+  name: Conversion rate
+  aka: ["conversion"]
+  domain: metrics
+  one_line: "The share of people who complete a step out of those who started it."
+  definition: >-
+    A ratio, which means it moves when either the numerator or the denominator
+    changes. Conversion can rise because the experience improved or because a
+    marketing change stopped sending unqualified traffic — and those call for
+    opposite responses.
+  formula: "Conversion = completions ÷ eligible starts"
+  watch_out: >-
+    Always ask what the denominator is. Conversion measured from sessions, from
+    users, and from qualified users produce three different numbers from the same
+    behaviour.
+  see_also: [funnel, cohort]
+
+- id: arpu
+  name: ARPU
+  aka: ["average revenue per user", "ARPA"]
+  domain: metrics
+  one_line: "Average revenue per user in a period."
+  definition: >-
+    Total revenue divided by active users. Useful as an input to lifetime value
+    and as a rough measure of monetisation, but it is an average and therefore
+    hides distribution.
+  formula: "ARPU = revenue in period ÷ active users in period"
+  watch_out: >-
+    In products with heavy revenue skew — most marketplaces and freemium apps —
+    ARPU can describe almost nobody. A median or a segment breakdown is usually
+    more informative.
+  see_also: [unit-economics, ltv]
+
+- id: dau-mau
+  name: DAU / MAU
+  aka: ["DAU", "MAU", "stickiness"]
+  domain: metrics
+  one_line: "Daily actives over monthly actives — a crude proxy for habit."
+  definition: >-
+    The share of a month's users who show up on a given day. A ratio near 1 means
+    people use the product nearly every day; near 0.1 means roughly monthly. Often
+    called stickiness.
+  watch_out: >-
+    Meaningless for products with legitimately episodic use. Nobody books flights
+    or files taxes daily, and a low ratio there measures the category rather than
+    the product.
+  see_also: [retention, north-star-metric]

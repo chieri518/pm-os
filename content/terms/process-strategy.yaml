@@ -1,0 +1,134 @@
+- id: roadmap
+  name: Roadmap
+  domain: process
+  one_line: "A statement of intent about what a team will work on and roughly when."
+  definition: >-
+    Best understood as a communication artefact rather than a plan of record. Its
+    real job is aligning expectations across teams who need to make their own
+    decisions based on yours, which is why the confidence attached to each item
+    matters more than the dates.
+  watch_out: >-
+    A roadmap of features with dates invites being held to both. Outcome-shaped
+    roadmaps with confidence bands survive contact with reality better.
+  see_also: [prioritisation, okrs]
+
+- id: stakeholder
+  name: Stakeholder
+  domain: process
+  one_line: "Anyone whose work is affected by your decision, or who can block it."
+  definition: >-
+    In practice the set is larger than it first appears: engineering and design
+    obviously, but also support, sales, legal, security, finance, and often
+    another product team. The ones who can veto you late — legal, security,
+    compliance — are the expensive ones to discover at the end.
+  see_also: [product-discovery, roadmap]
+
+- id: mvp
+  name: MVP
+  aka: ["minimum viable product"]
+  domain: process
+  one_line: "The smallest thing that produces a real learning signal."
+  definition: >-
+    Originally a learning instrument rather than a small version of the product:
+    the least work required to test the riskiest assumption. A fake door or a
+    concierge service can be a better MVP than a functioning but thin build.
+  watch_out: >-
+    The term has drifted to mean "version one with fewer features", which loses the
+    point. If it cannot return a negative result, it is not testing anything.
+  see_also: [product-discovery, prioritisation]
+
+- id: prd
+  name: PRD
+  aka: ["product requirements document", "spec"]
+  domain: process
+  one_line: "The written artefact defining what is being built and why."
+  definition: >-
+    Formats vary widely — Amazon famously uses a six-page narrative and a
+    working-backwards press release instead of slides. The consistent value is that
+    writing prose forces the reasoning to be complete in a way bullet points do not.
+  see_also: [roadmap, stakeholder]
+
+- id: dogfooding
+  name: Dogfooding
+  aka: ["dogfood", "eat your own dog food"]
+  domain: process
+  one_line: "Using your own product in earnest, as a real user would."
+  definition: >-
+    Cheap, continuous exposure to your own friction. Its limitation is that you are
+    an unrepresentative user with unusual expertise and motivation, so it finds
+    obvious breakage well and genuine usability problems poorly.
+  see_also: [product-discovery]
+
+- id: moat
+  name: Moat
+  aka: ["competitive advantage", "defensibility"]
+  domain: strategy
+  one_line: "The reason a competitor cannot simply copy you and win."
+  definition: >-
+    Durable sources include network effects, switching costs, economies of scale,
+    counter-positioning, brand, and control of a scarce resource. Most real
+    businesses run on a combination rather than one.
+  watch_out: >-
+    A large user base is a result, not a moat. Ask what specifically stops a
+    well-funded competitor from replicating the position.
+  see_also: [network-effects, multi-homing]
+
+- id: multi-homing
+  name: Multi-homing
+  domain: strategy
+  one_line: "Users belonging to several competing platforms at once."
+  definition: >-
+    When switching or duplication is cheap — food delivery apps, freelance
+    marketplaces, ride-hailing — users simply use both, and the network effect
+    protects far less than the model implies.
+  see_also: [network-effects, moat]
+
+- id: cold-start
+  name: Cold start
+  aka: ["chicken and egg problem"]
+  domain: strategy
+  one_line: "A network product is worthless until enough people are on it, but nobody joins something worthless."
+  definition: >-
+    The standard escapes are subsidising the harder side, constraining geography so
+    density arrives locally before globally, or launching single-player-useful — a
+    product with standalone value that gets better with others.
+  see_also: [network-effects, product-market-fit]
+
+- id: goodharts-law
+  name: Goodhart's law
+  aka: ["Goodhart"]
+  domain: metrics
+  one_line: "When a measure becomes a target, it ceases to be a good measure."
+  definition: >-
+    Not cynicism about incentives but a structural observation. A proxy is chosen
+    because it correlates with what you care about, and optimisation pressure
+    attacks exactly the part of that correlation that was incidental. Session
+    length rises when navigation gets worse.
+  see_also: [north-star-metric, guardrail-metric]
+
+- id: stated-vs-revealed-preference
+  name: Stated vs revealed preference
+  aka: ["stated preference", "revealed preference"]
+  domain: customer
+  one_line: "What people say they would do, versus what they actually do."
+  definition: >-
+    The gap is large, robust, and the reason opinion-based validation misleads.
+    People are polite, poor at predicting their own future behaviour, and
+    responsive to how a question is framed. Demand tests beat opinion tests for
+    anything touching willingness to pay or use.
+  see_also: [product-discovery, willingness-to-pay, survey-metrics-nps]
+
+- id: segment
+  name: Segment
+  aka: ["segmentation"]
+  domain: customer
+  one_line: "A group of users who behave differently enough that you would build differently for them."
+  definition: >-
+    A useful segment is measurable, substantial, reachable, and — the test that
+    kills most segmentations — differentiable, meaning membership actually changes
+    what you should build. "Users aged 25-34" usually fails; "users who need it to
+    work offline" passes.
+  watch_out: >-
+    Demographic segments are easy to measure and rarely predictive. Behaviour,
+    need, and context almost always cut better.
+  see_also: [segmentation-stp, jobs-to-be-done, archetype]

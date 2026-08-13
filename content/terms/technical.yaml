@@ -1,0 +1,114 @@
+- id: api
+  name: API
+  aka: ["APIs", "endpoint"]
+  domain: technical
+  one_line: "A contract between two systems about what one will do when asked."
+  definition: >-
+    A defined request and response shape that lets software talk to software. The
+    product-relevant part is that the contract is effectively permanent once
+    anyone depends on it, which makes API design one of the clearest one-way doors
+    in software.
+  see_also: [apis-for-pms, webhook, idempotency]
+
+- id: webhook
+  name: Webhook
+  domain: technical
+  one_line: "The other system calls you when something happens, instead of you repeatedly asking."
+  definition: >-
+    An inversion of the usual direction. Rather than polling an endpoint for
+    changes, you register a URL and receive a call when an event occurs. This is
+    how near-real-time integrations avoid burning most of their requests on
+    responses that say nothing changed.
+  watch_out: >-
+    Delivery can fail, so webhooks need retries, which means the receiver may get
+    the same event twice and must handle duplicates. Usually paired with a polling
+    endpoint for reconciliation.
+  see_also: [api, idempotency, apis-for-pms]
+
+- id: idempotency
+  name: Idempotency
+  aka: ["idempotent", "idempotency key"]
+  domain: technical
+  one_line: "Doing the same operation twice has the same effect as doing it once."
+  definition: >-
+    If a client sends "charge this card" and the network drops before the response
+    arrives, it does not know whether the charge happened, and retrying might
+    double-charge. An idempotency key — a token the client generates and reuses on
+    retry — lets the server recognise the repeat and return the original result.
+  watch_out: >-
+    Anywhere money, messages, or bookings are involved this is a product
+    requirement, not an implementation detail.
+  see_also: [api, webhook, apis-for-pms]
+
+- id: latency
+  name: Latency
+  domain: technical
+  one_line: "How long something takes to respond, as distinct from how much it can handle."
+  definition: >-
+    Distinct from throughput. A network round trip across the Atlantic is roughly
+    100-150ms and is bounded by the speed of light, which is why regional
+    deployment and CDNs exist — no amount of engineering removes that floor.
+  watch_out: >-
+    "The API is slow" is not a diagnosis. Ask whether it is round trips, payload
+    size, or a slow query behind it; the three have entirely different fixes.
+  see_also: [system-design-for-pms, cache]
+
+- id: cache
+  name: Cache
+  aka: ["caching", "cached"]
+  domain: technical
+  one_line: "Keeping a copy of a result so you do not have to recompute or refetch it."
+  definition: >-
+    The first lever for read-heavy products, trading a little staleness for a lot
+    of speed and cost. The hard part is invalidation — deciding when a cached copy
+    is too old to serve, which is a product judgement about tolerable staleness.
+  see_also: [latency, system-design-for-pms]
+
+- id: precision
+  name: Precision
+  domain: technical
+  one_line: "Of the things you flagged, what share were genuinely right."
+  definition: >-
+    Optimise precision when a false alarm is expensive — wrongly removing a
+    legitimate seller's listing, or filing a real email as spam.
+  formula: "Precision = true positives ÷ (true positives + false positives)"
+  see_also: [recall, ml-for-pms, base-rate]
+
+- id: recall
+  name: Recall
+  domain: technical
+  one_line: "Of the things that were genuinely right, what share you caught."
+  definition: >-
+    Optimise recall when a miss is expensive — cancer screening, fraud that reaches
+    a customer, a safety issue. It trades off against precision: turning up
+    sensitivity catches more true cases and more false alarms.
+  formula: "Recall = true positives ÷ (true positives + false negatives)"
+  see_also: [precision, ml-for-pms, base-rate]
+
+- id: technical-debt
+  name: Technical debt
+  aka: ["tech debt"]
+  domain: technical
+  one_line: "Work deferred to ship sooner, which charges interest in slower future changes."
+  definition: >-
+    The metaphor is deliberate: like debt, some of it is a sensible instrument and
+    some is reckless. Deliberate debt taken to hit a date and repaid is healthy;
+    accumulated unacknowledged debt compounds into a team that cannot ship.
+  watch_out: >-
+    Not all messy code is debt. Debt implies a conscious trade made for speed, and
+    calling everything debt makes the concept useless for prioritisation.
+  see_also: [prioritisation, roadmap]
+
+- id: working-memory
+  name: Working memory
+  aka: ["chunk", "chunks", "short-term memory"]
+  domain: technical
+  one_line: "The small number of items a person can actively hold in mind at once."
+  definition: >-
+    The limit is on chunks rather than raw items, because long-term memory supplies
+    the grouping — "CIA FBI NSA" is three chunks, not nine letters. The defensible
+    modern estimate is about four chunks, not the popularly cited seven.
+  watch_out: >-
+    Anything visible on screen imposes no memory load at all. The limit applies to
+    what a user must carry between steps.
+  see_also: [millers-law, hicks-law]

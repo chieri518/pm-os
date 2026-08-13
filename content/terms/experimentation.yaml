@@ -1,0 +1,113 @@
+- id: statistical-significance
+  name: Statistical significance
+  aka: ["significant", "p-value", "p value"]
+  domain: experimentation
+  one_line: "How surprising your result would be if the change actually did nothing."
+  definition: >-
+    A p-value is the probability of seeing a result at least this extreme assuming
+    there is no real effect. Below a threshold — conventionally 0.05 — the result
+    is called significant. It is a statement about surprise under a null
+    assumption, not about how likely your hypothesis is to be true.
+  watch_out: >-
+    Significance is not importance. With enough traffic a 0.01% change becomes
+    significant and still is not worth shipping. And a non-significant result is
+    not proof of no effect — report the confidence interval.
+  see_also: [statistical-power, confidence-interval, ab-testing]
+
+- id: statistical-power
+  name: Statistical power
+  aka: ["power", "underpowered"]
+  domain: experimentation
+  one_line: "The chance your test detects a real effect if one exists."
+  definition: >-
+    Conventionally targeted at 80%. Power depends on sample size, the size of the
+    effect, and variance — which is why detecting smaller effects requires
+    dramatically more traffic. An underpowered test that returns nothing has told
+    you almost nothing.
+  see_also: [mde, statistical-significance, ab-testing]
+
+- id: mde
+  name: Minimum detectable effect
+  aka: ["MDE"]
+  domain: experimentation
+  one_line: "The smallest change worth detecting — a product decision, not a statistical one."
+  definition: >-
+    You set the MDE by asking what size of improvement would actually change what
+    you do. That choice then determines sample size and runtime, because required
+    sample scales with roughly the inverse square of the effect: halving the
+    detectable effect quadruples the traffic needed.
+  see_also: [statistical-power, ab-testing]
+
+- id: confidence-interval
+  name: Confidence interval
+  domain: experimentation
+  one_line: "The range of effects your data is consistent with."
+  definition: >-
+    Far more informative than a single point estimate or a yes/no significance
+    verdict, because it shows both direction and precision. An interval spanning
+    −1% to +9% and one spanning +3.9% to +4.1% can share the same midpoint and
+    justify completely different decisions.
+  see_also: [statistical-significance, ab-testing]
+
+- id: sample-ratio-mismatch
+  name: Sample ratio mismatch
+  aka: ["SRM"]
+  domain: experimentation
+  one_line: "The traffic split did not come out as intended, which invalidates the experiment."
+  definition: >-
+    If a 50/50 assignment arrives as 52/48, randomisation itself is broken — often
+    by a redirect, a bot filter, or logging that drops one arm selectively. Because
+    the groups are no longer comparable, the result should be discarded before it
+    is interpreted rather than explained away.
+  watch_out: >-
+    Check it before reading any result. An SRM failure often produces a large,
+    exciting effect that is entirely an artefact.
+  see_also: [ab-testing, selection-bias]
+
+- id: novelty-effect
+  name: Novelty effect
+  aka: ["primacy effect"]
+  domain: experimentation
+  one_line: "A change looks good at first simply because it is new."
+  definition: >-
+    Users engage with an unfamiliar interface out of curiosity, inflating early
+    results, while existing users temporarily slowed by relearning can depress
+    them. Both fade over one to two weeks, which is why short tests mislead in both
+    directions.
+  see_also: [ab-testing, statistical-significance]
+
+- id: base-rate
+  name: Base rate
+  aka: ["prevalence", "class imbalance"]
+  domain: experimentation
+  one_line: "How common the thing is before you do anything."
+  definition: >-
+    The underlying frequency of an event in the population. Ignoring it produces
+    some of the most common analytical errors — most notably the accuracy paradox,
+    where a model that always predicts the majority class scores highly and is
+    useless.
+  watch_out: >-
+    Always ask for the base rate before accepting a success criterion. If 2% of
+    listings are fraudulent, 98% accuracy is achieved by approving everything.
+  see_also: [ml-for-pms, precision, recall]
+
+- id: selection-bias
+  name: Selection bias
+  aka: ["sampling bias", "self-selection"]
+  domain: experimentation
+  one_line: "The people you measured are not representative of the people you care about."
+  definition: >-
+    Any process where who ends up in your data depends on the thing you are trying
+    to measure. Surveys over-sample the engaged; opt-in betas over-sample
+    enthusiasts; support tickets over-sample the frustrated and the persistent.
+  see_also: [survivorship-bias, survey-metrics-nps]
+
+- id: survivorship-bias
+  name: Survivorship bias
+  domain: experimentation
+  one_line: "Studying only what remains, and mistaking it for the whole population."
+  definition: >-
+    A specific and very common form of selection bias. Asking current users why
+    people churn asks precisely the people who did not, so the answers describe
+    what kept them rather than what drove others away.
+  see_also: [selection-bias, cohort, retention]

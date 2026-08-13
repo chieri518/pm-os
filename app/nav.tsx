@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Route } from "next";
+import { SearchPalette } from "./search";
 
 export function Nav({ crumb }: { crumb?: { label: string; href?: Route } }) {
   return (
@@ -23,13 +24,18 @@ export function Nav({ crumb }: { crumb?: { label: string; href?: Route } }) {
       </div>
       <div className="flex items-center gap-1">
         <NavLink href="/">Library</NavLink>
+        <NavLink href="/glossary">Glossary</NavLink>
+        <NavLink href="/graph">Graph</NavLink>
         <NavLink href="/practice">Practice</NavLink>
+        <span className="ml-1.5">
+          <SearchPalette />
+        </span>
       </div>
     </nav>
   );
 }
 
-function NavLink({ href, children }: { href: "/" | "/practice"; children: React.ReactNode }) {
+function NavLink({ href, children }: { href: Route; children: React.ReactNode }) {
   return (
     <Link
       href={href}

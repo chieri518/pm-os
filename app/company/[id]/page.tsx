@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { graph } from "@/src/graph/bundle";
 import type { CompanyLens, LensSource, LoopStage } from "@/src/schema/nodes";
 import type { FrameworkPart } from "@/src/graph/index";
+import { Backlinks } from "@/app/backlinks";
+import { createLinker } from "@/app/linked";
 import { Nav } from "../../nav";
 import { Prose, Section } from "../../teaching";
 
@@ -59,6 +61,8 @@ export default async function CompanyPage({ params }: { params: Promise<{ id: st
   const lens = graph.get<CompanyLens>("company_lens", id);
   if (!lens) notFound();
 
+  const L = createLinker(`company_lens:${lens.id}`);
+
   const stages = graph.weightedParts(lens.id, "circles");
   const maxWeight = Math.max(...stages.map((s) => s.weight), 1);
 
@@ -68,7 +72,7 @@ export default async function CompanyPage({ params }: { params: Promise<{ id: st
 
       <header className="mb-8">
         <h1 className="text-3xl font-semibold tracking-tight text-ink-100">{lens.company}</h1>
-        <p className="mt-3 text-[15px] leading-relaxed text-ink-300">{lens.philosophy}</p>
+        <p className="mt-3 text-[15px] leading-relaxed text-ink-300">{L(lens.philosophy)}</p>
       </header>
 
       <div className="space-y-8">
@@ -87,7 +91,7 @@ export default async function CompanyPage({ params }: { params: Promise<{ id: st
                     </p>
                     <TierTag tier={m.source_tier} />
                   </div>
-                  <p className="text-[14px] leading-relaxed text-ink-100">{m.reality}</p>
+                  <p className="text-[14px] leading-relaxed text-ink-100">{L(m.reality)}</p>
                 </div>
               ))}
             </div>
@@ -110,7 +114,7 @@ export default async function CompanyPage({ params }: { params: Promise<{ id: st
                         {s.duration_min ? ` · ${s.duration_min}m` : ""}
                       </span>
                     </div>
-                    <p className="mt-1 text-[14px] leading-relaxed text-ink-300">{s.tests}</p>
+                    <p className="mt-1 text-[14px] leading-relaxed text-ink-300">{L(s.tests)}</p>
                     {s.note && (
                       <p className="mt-1.5 border-l-2 border-ink-700 pl-2.5 text-[13px] leading-relaxed text-ink-400">
                         {s.note}
@@ -132,7 +136,7 @@ export default async function CompanyPage({ params }: { params: Promise<{ id: st
               {lens.values.map((v) => (
                 <div key={v.name} className="rounded-lg border border-ink-800 bg-ink-900/60 p-3">
                   <div className="text-[14px] font-medium text-ink-100">{v.name}</div>
-                  <p className="mt-0.5 text-[13.5px] leading-relaxed text-ink-300">{v.description}</p>
+                  <p className="mt-0.5 text-[13.5px] leading-relaxed text-ink-300">{L(v.description)}</p>
                   {v.in_answers && (
                     <p className="mt-1.5 text-[13px] leading-relaxed text-live-400/90">
                       <span className="font-mono text-[10px] uppercase tracking-wider text-ink-400">
@@ -272,6 +276,7 @@ export default async function CompanyPage({ params }: { params: Promise<{ id: st
           Not affiliated with, sponsored by, or endorsed by {lens.company}. Trademarks belong to
           their owners. See NOTICE.md.
         </Prose>
+        <Backlinks type="company_lens" id={lens.id} />
       </div>
     </main>
   );

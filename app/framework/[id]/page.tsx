@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { graph } from "@/src/graph/bundle";
 import type { Framework, QuestionType } from "@/src/schema/nodes";
 import type { FrameworkPart } from "@/src/graph/index";
+import { Backlinks } from "@/app/backlinks";
+import { createLinker } from "@/app/linked";
 import { Nav } from "../../nav";
 import { MistakeList, Prose, Section } from "../../teaching";
 
@@ -57,6 +59,8 @@ export default async function FrameworkPage({ params }: { params: Promise<{ id: 
   const { id } = await params;
   const f = graph.get<Framework>("framework", id);
   if (!f) notFound();
+
+  const L = createLinker(`framework:${f.id}`);
 
   const t = f.teaching;
   const parts = partsOf(f);
@@ -158,7 +162,7 @@ export default async function FrameworkPage({ params }: { params: Promise<{ id: 
         {t && (
           <>
             <Section title="Why this structure" note="The decomposition is the argument.">
-              <Prose>{t.why_this_structure}</Prose>
+              <Prose>{L(t.why_this_structure)}</Prose>
             </Section>
 
             <div className="grid gap-4 sm:grid-cols-2">
@@ -258,6 +262,7 @@ export default async function FrameworkPage({ params }: { params: Promise<{ id: 
             </div>
           </Section>
         )}
+        <Backlinks type="framework" id={f.id} />
       </div>
     </main>
   );

@@ -2,6 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { graph } from "@/src/graph/bundle";
 import type { CompanyLens, Concept, Framework, QuestionType } from "@/src/schema/nodes";
+import { Backlinks } from "@/app/backlinks";
+import { createLinker } from "@/app/linked";
 import { Nav } from "../../nav";
 import { MistakeList, Prose, Quote, Section, WorkedExampleCards } from "../../teaching";
 
@@ -19,6 +21,8 @@ export default async function QuestionPage({ params }: { params: Promise<{ id: s
   const { id } = await params;
   const q = graph.get<QuestionType>("question_type", id);
   if (!q) notFound();
+
+  const L = createLinker(`question_type:${q.id}`);
 
   const t = q.teaching;
   const ref = { type: "question_type" as const, id: q.id };
@@ -102,7 +106,7 @@ export default async function QuestionPage({ params }: { params: Promise<{ id: s
               <div className="mb-1 font-mono text-[10px] uppercase tracking-wider text-ink-400">
                 Time guidance
               </div>
-              <Prose>{q.time_guidance}</Prose>
+              <Prose>{L(q.time_guidance)}</Prose>
             </div>
           )}
         </Section>
@@ -213,6 +217,7 @@ export default async function QuestionPage({ params }: { params: Promise<{ id: s
             ))}
           </ul>
         </Section>
+        <Backlinks type="question_type" id={q.id} />
       </div>
     </main>
   );
