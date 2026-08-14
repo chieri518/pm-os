@@ -4,7 +4,7 @@ import { SearchPalette } from "./search";
 import { Logo } from "./logo";
 
 const LINKS: { href: Route; label: string }[] = [
-  { href: "/" as Route, label: "Library" },
+  { href: "/library" as Route, label: "Library" },
   { href: "/glossary" as Route, label: "Glossary" },
   { href: "/graph" as Route, label: "Graph" },
   { href: "/interviewer" as Route, label: "Interviewer" },

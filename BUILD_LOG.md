@@ -1244,3 +1244,58 @@ where "don't give them this" genuinely needs a reason or it gets overridden at
 minute twenty. Freely-granted facts carry none. Both directions are asserted in
 `check-guides`, along with an upper bound on premise length, because the first draft
 of every one of these drifted into rationale and the next one will too.
+
+---
+
+## Milestone 13 — A Front Door, Not a Catalogue
+
+The homepage was 4,400px of **47 identical cards** across six sections, grouped by
+taxonomy, with no filtering and no collapsing. Its own headline promised "start
+from the question you'll actually be asked" — and then question types turned out to
+be the first of six equal-weight sections, so the promise did not survive the first
+scroll.
+
+The diagnosis worth recording: it was a perfectly good **catalogue** doing the job
+of a **front door**. A catalogue answers "what is in here". Someone arriving at a
+PM prep site is not asking that. They are asking "where do I start", and the page
+had no opinion about it — 47 cards at identical visual weight is a page with no
+opinion by construction.
+
+### Decisions
+
+Four calls, all of them the user's:
+
+- **Audience above the fold:** someone actually preparing, not a portfolio reviewer.
+  So no pitch — assume they know why they are here.
+- **Structure:** short landing page, catalogue moves to `/library`.
+- **Organising principle:** task and timeline, not taxonomy.
+- **Density:** compact rows.
+
+The organising principle is the one that changed the design. The four doors are the
+four reasons anyone opens this site — *an interview is coming up*, *learning it
+properly*, *targeting a specific company*, *you are running the interview* — and
+each one names the reason before it names the content, because the visitor knows
+their situation and does not yet know our vocabulary.
+
+The first door resolves **inline** rather than linking away. It covers most
+arrivals, and there are only eight question types — sending someone to another page
+to find eight items is a navigation step that buys nothing.
+
+### Rows instead of cards
+
+Cards are for things you choose between; rows are for things you scan. 47 items is
+firmly the second case, so the library trades the description's full text for
+seeing twenty at once — truncated on wide screens for a clean column edge, wrapped
+in full on narrow ones where there is no column to keep. The catalogue went from
+4,400px to about 3,200px carrying the same content, and the homepage from 4,400px
+to roughly 950px.
+
+Section jumps on `/library` are plain anchors, not a client-side filter. Five
+destinations across 47 items does not justify shipping JavaScript, and anchors stay
+linkable from the homepage doors and from anywhere else.
+
+### Consequences elsewhere
+
+`/` stopped being the library, so the nav's "Library" link moved to `/library` and
+the glossary's "see the concepts" pointer was repointed. The brand mark still goes
+home. Verified that nothing else assumed `/` was the catalogue — only those two.

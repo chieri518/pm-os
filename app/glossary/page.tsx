@@ -30,7 +30,10 @@ export default function GlossaryPage() {
         <p className="mt-3 text-[15px] leading-relaxed text-ink-300">
           {terms.length} terms the rest of the material uses freely. These are words you need to
           parse a sentence, not subjects to study — for those, see the{" "}
-          <Link href="/" className="text-live-400 underline-offset-2 hover:underline">
+          <Link
+            href={"/library#concepts" as Route}
+            className="text-live-400 underline-offset-2 hover:underline"
+          >
             concepts
           </Link>
           .

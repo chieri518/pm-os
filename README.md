@@ -116,7 +116,14 @@ caveat. Knowing where the evidence stops is the differentiated value here.
 Company lens weights are researched estimates from published rubrics and public
 interview guidance — not insider information.
 
-## The library (`/`)
+## Getting in (`/`) and the library (`/library`)
+
+The homepage routes by **intent**, not by taxonomy: an interview is coming up, you are
+learning the material, you are targeting a company, or you are the one running the
+interview. It used to be the catalogue itself — 47 equal-weight cards over 4,400px — which
+answered "what is in here" when the visitor's question was "where do I start". The
+catalogue now lives at `/library` as compact scannable rows, and the homepage resolves its
+most common door inline.
 
 **Question types are the entry point.** Nobody walks into an interview thinking "I need a
 procedural framework" — they think "I've been asked to design a product". Each question
