@@ -25,20 +25,60 @@ delivery:
     - "Have one follow-up ready that works for any product: who is it not for?"
     - "Decide how long you will let a pure description run before redirecting — two minutes is generous."
 
-clarifying:
-  - asks: "Does it have to be software?"
-    answer: "\"Anything at all.\""
-    why: >-
-      Physical products often produce better answers because craft trade-offs are
-      more visible.
-  - asks: "Can it be your own company's product?"
-    answer: "\"If you like.\""
-    why: "Allow it, then probe for independent judgement rather than ruling it out."
-  - asks: "Do you want what I like about it, or a full analysis?"
-    answer: "\"Start with why you think it's well made.\""
-    why: >-
-      'Well made' invites reasoning about decisions; 'what you like' invites
-      preference. The wording matters.
+brief:
+  premise: >-
+    An opener, and the shortest brief here because the candidate brings everything.
+    What you hold is one follow-up that works against any product ever named — who is
+    it not for? — and the restraint not to reveal that a critique is what you are
+    waiting for.
+  facts:
+    - asks: "Does it have to be software?"
+      fact: "Anything at all. Physical products often produce better answers — the craft trade-offs show."
+      release: stated
+    - asks: "Can it be your own company's product?"
+      fact: "Yes. Allow it, then probe harder for independent judgement."
+      release: on_request
+    - asks: "Do you want what I like about it, or a full analysis?"
+      fact: "\"Start with why you think it's well made.\""
+      release: on_request
+    - asks: "What do you mean by well made?"
+      fact: "\"Made well for whoever it's for\" — and stop there."
+      release: on_earned_ask
+      why: "Defining it further hands them the structure."
+    - fact: "Your own opinion of the product they picked."
+      release: withheld
+      why: >-
+        Especially if you dislike it. This is the easiest place in the loop for taste to
+        masquerade as judgement.
+    - fact: "That you are waiting for a critique."
+      release: withheld
+      why: "An unprompted critique is a strong signal; one you asked for is worth much less."
+  open:
+    - unknown: "Whether to analyse the product or explain why they enjoy it."
+      reasonable: "Analysis — the wording already points there."
+      why_open: "Which one they default to, before you redirect, is most of what this gives you."
+  keys:
+    - insight: >-
+        The question is not about the product. It is whether they can infer the decisions
+        behind it, where most people only ever see the result.
+      unlocked_by: "Naming a choice the team made that a reasonable team might not have."
+      if_missed: >-
+        "What decision did the team make that most people wouldn't have?" Still returning
+        features means describing, not analysing.
+    - insight: >-
+        Every well-made product is deliberately bad at something. Quality is bought with
+        trade-offs.
+      unlocked_by: "Naming a trade-off unprompted."
+      if_missed: >-
+        "What did they give up to get that?" Almost nobody offers it unasked, so treat the
+        unprompted version as genuinely strong.
+    - insight: >-
+        "Who is it not for" is the highest-yield follow-up available and works against any
+        product a candidate can name.
+      unlocked_by: "Excluding a group of users, comfortably."
+      if_missed: >-
+        Ask it. "Everyone" is the finding — the same failure as designing for everyone,
+        surfacing ten minutes into the loop instead of thirty.
 
 checkpoints:
   - at_min: 3

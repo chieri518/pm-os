@@ -1089,3 +1089,158 @@ Deliberately two-tone and geometric so it survives being rendered at 16px in a
 browser tab, with its own dark rounded-square background so it reads against a
 light tab strip. `app/icon.svg` (Next generates the favicon link) plus a
 `currentColor` React component for the nav.
+
+---
+
+## Milestone 12 — The Half of the Question the Candidate Never Sees
+
+**The gap.** The guides told an interviewer how to deliver a prompt, what to probe
+and what to score — but not what was *true*. Asked "what's the business goal?" or
+"did anything ship recently?", the interviewer had a scattering of answers in the
+clarifying list and otherwise had to improvise. Which means two people running the
+same question improvise two different worlds, and a candidate's score ends up
+partly determined by which world they happened to draw.
+
+That is not a content gap, it is a measurement failure, and it has a name in the
+literature. Correcting a long-standing range-restriction overcorrection in the
+older meta-analyses, Sackett et al. (2022) put structured interviews at ρ = .42
+against job performance and unstructured ones at .19 — same hour, same people, more
+than double the signal, and the difference is almost entirely procedural. Two of
+the fifteen structure components Campion, Palmer & Campion (1997) catalogued are
+asking every candidate the same questions and *limiting improvised prompting*. A
+guide that leaves the world to improvisation is failing the second one by
+construction.
+
+### Where the format came from
+
+I went looking for how interviewers are actually trained to hold information back,
+and the answer is that the discipline is solved — just not in product management.
+Consulting casebooks have carried it for decades: in the Ross School of Business
+casebook (2010), every single case ships a page headed **"Guidance for interviewer
+and information provided upon request"** facing the problem statement, containing
+lines like *"if asked anything about the other gas station, the answer is 'we don't
+know, but assume they are identical'"* and *"don't let the candidate start asking
+for numbers yet"* and *"candidate should recognize that each gas station serves 500
+people."*
+
+Facts with a release condition, and a planted insight with a trigger. That is
+exactly the missing document, and it has never been written down for PM interviews.
+
+Google's re:Work guide gets at the same thing from the other end — same questions,
+standardised rubrics, **predetermined** follow-ups — and Amazon's Bar Raiser
+programme is months of shadowing before certification. What none of them publish is
+the per-question artefact, because that is the confidential part.
+
+### What got built
+
+A required `brief` on every `InterviewGuide`, with four parts:
+
+- **`premise`** — the backdrop, held identically for every candidate.
+- **`facts`** — each tagged with a `release`: `stated` (you volunteer it),
+  `on_request` (grant it the moment they ask), `on_earned_ask` (only if they ask
+  the specific question), `withheld` (you hold it).
+- **`open`** — what the prompt deliberately does not settle, with what a defensible
+  assumption sounds like and why you never resolve it.
+- **`keys`** — the pivots the question turns on, each with the move that unlocks it
+  and what to do when nobody finds it.
+
+Across nine guides: 60 facts, 26 open questions, 27 pivots.
+
+**The distinction that carries the feature** is `on_request` versus
+`on_earned_ask`. Granting missing context costs nothing and saves the candidate's
+clock; granting the fact they were supposed to go looking for deletes the exercise.
+An interviewer who has not drawn that line in advance gives everything to whoever
+asks most confidently — which scores assertiveness, not reasoning. The rule the
+corpus now states in one line: **withhold what tests judgement, grant what is
+merely missing context.**
+
+### Two decisions worth recording
+
+**`ground_truth` is optional, and only three guides have one.** The temptation was
+to give every question a hidden answer, because it makes the panel feel more
+substantial. But only diagnosis, estimation and the technical scoping question have
+one. Product-sense prompts do not, and inventing one would be worse than leaving it
+blank: it would license an interviewer to grade toward their own preferred solution
+while believing they were grading against a key. So `estimation` carries the
+opposite instruction — *there isn't one, and you should say so out loud rather than
+implying you are withholding a key* — and product-design carries no field at all.
+
+**The strategy guide's brief is mostly empty on purpose.** Every other guide grants
+context freely. That one holds every market figure, warmly and identically, because
+the candidate's discomfort *is* the measurement and one sympathetic invented
+statistic ends it permanently. Worth noting explicitly so it does not read as an
+unfinished brief.
+
+Two related honesty guards ended up in the content rather than the code. Every
+invented figure is labelled as invented in its own premise, so an interviewer never
+passes one to a candidate as real research. And where a genuine insight would be
+unfair to require — the strategy guide's regulatory pivot rests on Indian
+foreign-investment rules — `if_missed` says outright: *do not penalise not knowing
+this; ask the general version instead.* Domain trivia scored as insight selects for
+people who already worked in the region, which is the bias the guides exist to
+guard against.
+
+### The integrity checks are the interesting part
+
+Zod can enforce the shape. It cannot enforce that the brief is *useful*, so
+`check-guides` now asserts:
+
+- Something is held back — a brief where every fact is freely given is a summary of
+  the prompt with extra steps.
+- Something is granted — an interviewer who can only refuse is not running a case.
+- Every `withheld` or `on_earned_ask` fact states *why*. "Withhold this" with no
+  reason is the kind of instruction people quietly override at minute twenty.
+- Every pivot has a real `if_missed`, not a stub. The fallback is what makes a
+  pivot usable by someone who did not write it.
+
+### UI
+
+The brief sits above the signal checklist in the right rail, which is what the rail
+is for — one is read before the session, the other ticked during it. The aside owns
+scrolling now as a single sticky column; the checklist's own `max-h-[70vh]` came
+out, because nesting a scroll region inside a sticky one traps the wheel.
+
+Release badges sit above each fact rather than beside it: inline, the longest label
+("only if asked precisely") ate half of a 380px rail and squeezed the fact into a
+four-word column. `ground_truth` is the one collapsed element — a `<details>`, so
+it needs no JavaScript, and it is the only thing on the page you must not read by
+accident.
+
+### Verified
+
+Build clean, typecheck clean, all nine briefs pass the new integrity checks, routes
+200, spoiler renders only on the three guides that have a `ground_truth`, and
+auto-linking works inside the panel.
+
+### Addendum — cutting it back
+
+First review of the panel, and it was right: too many words for something you read
+while a candidate is waiting. Two specific problems, both mine.
+
+**"If they ask" and "What you know" were the same content twice on one page.** The
+main column listed *"Is this across all platforms?" → "iOS and web flat, Android
+down 34%"*, and the rail listed the same fact with a release tag. I had added a
+better version of an existing section instead of replacing it.
+
+Fixed by merging: `clarifying` is gone from the schema, and `BriefFact` and
+`OpenQuestion` gained an optional `asks` — the phrasing the question usually
+arrives in. Each entry is now *one* place: the question, what you say, and how hard
+they have to work for it. 47 of 63 facts carry an `asks`. Which side of the line
+something falls on decides where it lives — hand over a fact and it is a fact, hand
+it back and it is an open question. The main column lost a whole section.
+
+**The premises argued instead of orienting.** *"Every figure below is invented for
+the exercise: say them with confidence, write them down, and hold them identically
+across candidates, because the moment two candidates get different worlds their
+scores stop being comparable"* — that is the case for briefs existing, restated in
+all nine of them, in the place where someone is looking for the business goal. The
+argument is already made once on the running-a-session page, and the guide's
+`constructed` banner already says the figures are not real. Premises are now two or
+three sentences of backdrop and nothing else.
+
+Same cut applied to the `why` on every fact. Justifying all sixty was the same
+mistake at a smaller scale, so `why` is now allowed *only* on facts you hold back —
+where "don't give them this" genuinely needs a reason or it gets overridden at
+minute twenty. Freely-granted facts carry none. Both directions are asserted in
+`check-guides`, along with an upper bound on premise length, because the first draft
+of every one of these drifted into rationale and the next one will too.

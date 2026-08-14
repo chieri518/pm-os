@@ -25,21 +25,70 @@ delivery:
     - "Be ready to ask them to switch if they pick something with no meaningful room to improve."
     - "Decide whether you will let them pick your own company's product — it changes what you can assess."
 
-clarifying:
-  - asks: "Can I pick any product, or should it be in your industry?"
-    answer: "\"Anything you know well.\""
-    why: "Depth of knowledge matters more than domain adjacency here."
-  - asks: "Improve for the business or for users?"
-    answer: "\"You decide — but say which and why.\""
-    why: >-
-      Choosing the objective is the scored move. Handing it over removes the whole
-      first stage.
-  - asks: "Should I assume any engineering constraint?"
-    answer: "\"Assume a normal team and a quarter of work.\""
-    why: "Fair to grant; unbounded scope makes prioritisation meaningless."
-  - asks: "Do you want one idea or several?"
-    answer: "\"Several, then tell me which one you'd do.\""
-    why: "Signals up front that ranking is expected, which is the part most candidates skip."
+brief:
+  premise: >-
+    The candidate supplies the product, so you hold one piece of discipline: never
+    supply the goal. "Improve" is meaningless until someone says improve toward what,
+    and the whole question is watching whether they notice that unprompted. Note which
+    product they pick before they start talking.
+  facts:
+    - asks: "Can I pick any product, or should it be in your industry?"
+      fact: "Anything they know well. Depth beats domain adjacency."
+      release: stated
+    - asks: "Should I assume an engineering constraint?"
+      fact: "A normal team and about a quarter of work."
+      release: on_request
+    - asks: "Do you want one idea or several?"
+      fact: "Several, then a recommendation."
+      release: on_request
+    - asks: "Improve for the business or for users?"
+      fact: >-
+        "You decide — but say which and why." If they reason it through and ask you to
+        confirm, pick one and hold it for the session.
+      release: on_earned_ask
+      why: "Committing first is the scored move; confirming after gives them something to adapt to."
+    - fact: "The goal. What 'improvement' means here."
+      release: withheld
+      why: >-
+        Never hand this over, however directly they ask. Given a goal, every candidate
+        produces a competent answer and you learn nothing.
+    - fact: "Your own opinion of the product they picked."
+      release: withheld
+      why: >-
+        Familiarity biases both ways — you over-credit critiques you agree with and
+        dismiss ones you have argued about internally.
+  open:
+    - unknown: "What the improvement aims at — growth, retention, revenue, a broken experience."
+      reasonable: "Any of them, named explicitly before ideas start."
+      why_open: "The first stage of the answer, and the one most often skipped."
+    - unknown: "Which user segment is being improved for."
+      reasonable: "A segment that implies something specific about what to build."
+      why_open: "Improving 'the product' for 'users' produces suggestions that cannot be ranked."
+    - unknown: "Whether to deepen the core experience or extend to a new use case."
+      reasonable: "Either, if they name what the choice costs."
+      why_open: "A rare chance to see opportunity-cost thinking in a warm-up."
+  keys:
+    - insight: >-
+        "Improve" is undefined until a goal is named, and the goal is what makes the list
+        rankable. Candidates who skip it end up unable to choose rather than unwilling.
+      unlocked_by: "Stating a goal in the first four minutes, unprompted."
+      if_missed: >-
+        Probe at minute six: "improve it toward what?" Whether a goal existed and went
+        unsaid, or never existed, are different findings.
+    - insight: >-
+        The product they choose constrains what you can observe. Something used casually
+        produces surface answers however good they are.
+      unlocked_by: "You, in the first two minutes — check they know it well enough to have opinions."
+      if_missed: >-
+        Ask them to switch. Three minutes lost beats thirty spent scoring product
+        knowledge when you meant to score reasoning.
+    - insight: >-
+        Generating is easy; the score is in the cut. The common failure is refusing to
+        choose, disguised as sequencing all three across a roadmap.
+      unlocked_by: "Naming the ranking criterion before ranking against it."
+      if_missed: >-
+        "Which one, and why that one?" If they sequence rather than choose, ask what they
+        would drop if they could ship only one.
 
 checkpoints:
   - at_min: 4

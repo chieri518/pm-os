@@ -89,7 +89,8 @@ export function SignalChecklist({
         </div>
       </header>
 
-      <div className="max-h-[70vh] overflow-y-auto p-3">
+      {/* The sticky aside owns scrolling now — a nested scroll region here would trap the wheel. */}
+      <div className="p-3">
         {groups.map((g) => (
           <div key={g.dimension} className="mb-4 last:mb-0">
             <div className="mb-1 px-2 font-mono text-[10px] uppercase tracking-wider text-ink-400">

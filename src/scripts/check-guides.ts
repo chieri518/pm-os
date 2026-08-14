@@ -38,6 +38,63 @@ for (const g of guides as InterviewGuide[]) {
 
   // Provenance is not optional here. These are constructed, not leaked.
   assert.ok(g.basis.length > 40, `${g.id}: basis must explain how the guide was constructed`);
+
+  /* -------------------------------------------------------------- *
+   * Situation brief. Zod guarantees the shape; these are the rules that
+   * make a brief usable by someone who has not read it before.
+   * -------------------------------------------------------------- */
+  const b = g.brief;
+
+  // A brief with nothing held back is a summary of the prompt. The withhold/grant
+  // line is the entire product, so both sides of it have to actually exist.
+  const releases = new Set(b.facts.map((f) => f.release));
+  assert.ok(
+    releases.has("withheld") || releases.has("on_earned_ask"),
+    `${g.id}: brief holds nothing back — every fact is freely given, so there is no line to hold`
+  );
+  assert.ok(
+    releases.has("stated") || releases.has("on_request"),
+    `${g.id}: brief grants nothing — an interviewer who can only refuse is not running a case`
+  );
+
+  // Anything tightly held needs its reason on the page. "Withhold this" without a
+  // why is the kind of instruction people quietly override mid-session.
+  //
+  // The inverse is enforced too: a fact you are handing over needs no defence, and
+  // justifying all sixty of them is how a panel you glance at during a live session
+  // turns back into an essay. Rationale belongs on running-a-session, once.
+  for (const f of b.facts) {
+    const held = f.release === "withheld" || f.release === "on_earned_ask";
+    if (held) {
+      assert.ok(
+        f.why && f.why.length > 20,
+        `${g.id}: "${f.fact.slice(0, 48)}…" is held back but does not say why`
+      );
+    } else {
+      assert.ok(
+        !f.why,
+        `${g.id}: "${f.fact.slice(0, 48)}…" is freely given and does not need a justification`
+      );
+    }
+  }
+
+  // The pivots are what distinguish a brief from a fact sheet.
+  assert.ok(b.keys.length >= 2, `${g.id}: needs at least 2 keys, has ${b.keys.length}`);
+  for (const k of b.keys) {
+    assert.ok(
+      k.if_missed.length > 30,
+      `${g.id}: key "${k.insight.slice(0, 48)}…" needs a real fallback, not a stub`
+    );
+  }
+
+  // Bounded at both ends. The upper bound is the one that matters: a premise is
+  // orientation, not the argument for why briefs exist, and the first draft of every
+  // one of these drifted into the latter.
+  assert.ok(b.premise.length > 120, `${g.id}: premise too thin to orient an interviewer`);
+  assert.ok(
+    b.premise.length < 420,
+    `${g.id}: premise is ${b.premise.length} chars — trim to orientation, the rationale lives on running-a-session`
+  );
 }
 
 const missing = [...types].filter((t) => !covered.has(t));

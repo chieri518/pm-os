@@ -49,7 +49,7 @@ content/            canonical knowledge, validated YAML — the source of truth
   frameworks/       procedural, narrative, taxonomic, and calculative kinds
   heuristics/       one file each, with caveats and common misapplications
   terms/            the glossary — words you need to parse a sentence
-  guides/           interviewer guides: probes, signals, bias guards
+  guides/           interviewer guides: situation briefs, probes, signals, bias guards
   situations/       the 7-dimension context vectors
   archetypes/       identity layer; points at typical situations
   lenses/           company loops, values, and where prep folklore is wrong
@@ -139,10 +139,30 @@ none have the other side of the table — how to deliver the prompt, **which cla
 to grant and which to hand back**, when to probe deeper, how to unstick a candidate
 without giving it away, and what to refuse to score on.
 
-Eight guides, one per question type: **48 probes, 99 observable signals, 34 bias guards.**
-Scoring is a tickable checklist of observable behaviours rather than a 1–4 scale with
-anchors — we have no basis for a calibration scale, and inventing one would imply a
-precision we cannot support.
+Nine guides: **58 probes, 129 observable signals, 39 bias guards.** Scoring is a tickable
+checklist of observable behaviours rather than a 1–4 scale with anchors — we have no basis
+for a calibration scale, and inventing one would imply a precision we cannot support.
+
+Each guide also carries a **situation brief**: the world the one-sentence prompt was cut
+out of. **63 facts, each tagged with how hard it is to get** — say it, give it if asked,
+give it only if they ask precisely, hold it — and 47 of them carry the phrasing the question
+usually arrives in, so the brief doubles as the answer sheet for clarifying questions. Plus
+**21 things left deliberately open** with what a defensible assumption looks like, and
+**27 pivots** the question turns on, with the move that unlocks each and what to do when
+nobody finds it. Three questions have a hidden right answer and carry it; the rest say
+plainly that they do not, because inventing one would license grading toward a preferred
+solution.
+
+Only held-back facts carry a justification — a fact you are handing over needs no defence,
+and this is enforced in `npm run check` rather than left to discipline. A panel you glance
+at mid-session cannot also be an essay.
+
+The format is borrowed from consulting casebooks, where every case ships a *guidance for
+interviewer and information provided upon request* page facing the problem statement. The
+reason to bother: correcting a range-restriction error in the older meta-analyses, Sackett
+et al. (2022) put structured interviews at ρ = .42 against job performance and unstructured
+ones at .19. Two people improvising two different worlds from the same prompt are running
+an unstructured interview whether they mean to or not.
 
 These are **constructed** from published criteria, not reproduced from anyone's internal
 material. Each guide states how it was assembled, in a banner above the fold.

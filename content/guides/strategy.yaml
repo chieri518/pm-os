@@ -27,23 +27,75 @@ delivery:
     - "Prepare one counter-argument to deploy against whichever side they choose."
     - "Note whether they drive the conversation or wait to be prompted — that is a scored behaviour."
 
-clarifying:
-  - asks: "What's the retailer's current footprint and strategy?"
-    answer: >-
-      "Assume a large Western grocery chain, strong in physical stores, limited
-      international experience." Grant this — it is context, not judgement.
-    why: "Withholding orienting context wastes clock without testing anything."
-  - asks: "Do we have market-size data for India?"
-    answer: "\"I don't have numbers with me. What would you assume, and how would you get there?\""
-    why: >-
-      This is the pivotal exchange. Nobody expects the right answer; refusing to
-      proceed without data is the failure mode being detected.
-  - asks: "Is there a specific timeframe?"
-    answer: "\"Assume a five-year horizon.\""
-    why: "Reasonable to grant; it changes the analysis materially and is not the skill under test."
-  - asks: "Should I consider a partnership or only organic entry?"
-    answer: "\"Whatever you think is right — tell me why.\""
-    why: "Mode of entry is part of the answer. Handing it over removes a decision worth watching."
+brief:
+  premise: >-
+    A large Western grocery chain — strong in physical stores, limited international
+    experience — over a five-year horizon. This brief is deliberately almost empty:
+    you hold orienting context and no market data at all, and that scarcity is the
+    instrument.
+  facts:
+    - asks: "What's the retailer's footprint and strategy?"
+      fact: "Large Western grocery chain, strong physical retail, little international experience."
+      release: on_request
+    - asks: "Is there a timeframe?"
+      fact: "Five years."
+      release: on_request
+    - asks: "Partnership, acquisition, or organic entry?"
+      fact: "Theirs to choose. Say it is open; do not choose."
+      release: on_request
+    - asks: "Do we have market-size data for India?"
+      fact: >-
+        No market size, growth, income or competition figure. "I don't have that —
+        what would you assume?", warmly, identically, every time.
+      release: withheld
+      why: >-
+        The pivotal exchange. Refusing to proceed without data is the failure mode being
+        detected, and one sympathetic invented statistic ends it permanently.
+    - asks: "Aren't there restrictions on foreign retailers?"
+      fact: >-
+        India has long restricted foreign investment in multi-brand retail, with caps
+        and state-level approval — which is why Western grocers entered via joint
+        ventures, cash-and-carry or online marketplaces.
+      release: on_earned_ask
+      why: "Confirm if they raise it; never supply it. See the second pivot below."
+    - fact: "Which side you personally think is right."
+      release: withheld
+      why: >-
+        You push back once on whatever they conclude. Pushing back only on conclusions
+        you dislike makes your opinion the rubric.
+  open:
+    - unknown: "What 'should they enter' measures — profit, growth, or strategic optionality."
+      reasonable: "Naming the objective and the bar that clears it."
+      why_open: "An entry call with no objective cannot be wrong, which is why candidates hide there."
+    - unknown: "Which India — thirty million affluent urban households, or 1.4 billion people."
+      reasonable: "Choosing a segment and sizing that one."
+      why_open: "Treating a country as one market is the commonest strategy error there is."
+  keys:
+    - insight: >-
+        "Should we enter India" stays unanswerable until it becomes "which India,
+        entered how, and by when would we know we were wrong." The reframe is the
+        deliverable.
+      unlocked_by: "Decomposing before theorising, and naming a falsifying condition unasked."
+      if_missed: >-
+        Ask what would have to be true for this to work. Listing considerations without
+        ever deciding is the commonest failure here.
+    - insight: >-
+        The binding constraint may be regulatory rather than commercial. A market can be
+        huge, growing, under-served and still unenterable in the form you had in mind.
+      unlocked_by: "Asking what could make this impossible regardless of how attractive the market is."
+      if_missed: >-
+        Do NOT penalise not knowing Indian retail law — scoring domain trivia selects for
+        people who already worked in the region. Ask the general version: "what could
+        stop this even if the market is perfect?" Generating a category of blocker is the
+        real signal.
+    - insight: >-
+        Grocery is close to the hardest category to export. It runs on local supply
+        chains, cold storage and local taste, so scale buying power at home does not
+        travel.
+      unlocked_by: "Asking what the company is good at, then whether it transfers."
+      if_missed: >-
+        "What would they bring that a local incumbent doesn't have?" Analysing the market
+        and never the company is half an answer.
 
 checkpoints:
   - at_min: 4

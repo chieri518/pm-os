@@ -28,18 +28,70 @@ delivery:
     - "Have a timer visible — these answers run long and you need room for at least three follow-ups."
     - "Prepare to ask for a second story if the first is unusable, rather than scoring them on one bad pick."
 
-clarifying:
-  - asks: "Do you want a work example or can it be from outside work?"
-    answer: "\"Work is easier to calibrate, but take whatever is strongest.\""
-    why: "Non-work examples can be excellent, especially early-career. Do not artificially narrow."
-  - asks: "How much detail do you want?"
-    answer: "\"Start with a couple of minutes and I'll dig in where I'm curious.\""
-    why: "Sets the contract for interruption up front so follow-ups do not feel adversarial."
-  - asks: "Can I use an example where it didn't work out?"
-    answer: "\"Absolutely.\""
-    why: >-
-      Encourage it. A candidate volunteering a failure for an influence question is
-      usually about to give you better material than a success.
+brief:
+  premise: >-
+    The candidate supplies the world here, so what you hold is the standard of
+    evidence: how much detail counts as an answer, which claims you verify, and which
+    tells you never name. "Drove alignment across three teams" could mean rebuilding a
+    roadmap or sending an email — this question is verification as much as evaluation.
+  facts:
+    - fact: "You will interrupt with follow-ups. Say so before they start."
+      release: stated
+    - asks: "Work example, or can it be from outside work?"
+      fact: "Whichever is strongest. Non-work examples are often excellent, especially early-career."
+      release: stated
+    - asks: "How much detail do you want?"
+      fact: "\"A couple of minutes, then I'll dig in where I'm curious.\""
+      release: on_request
+    - asks: "Can I use one where it didn't work out?"
+      fact: "Yes — encourage it. A failure usually produces better material than a success."
+      release: on_request
+    - asks: "What are you looking for?"
+      fact: "Name the competency — \"how you influence, and how you handle disagreement.\""
+      release: on_earned_ask
+      why: "Naming the competency is fair. Naming the signals is not."
+    - fact: >-
+        The signal list — that you are listening for first-person singular, for whether
+        they can state the other side's argument, for a number on the outcome.
+      release: withheld
+      why: >-
+        The most reliable tells in the question, and each evaporates the moment it is
+        named. Told you are counting "I" versus "we", they will say "I" for thirty minutes.
+    - fact: "Whether the story is landing."
+      release: withheld
+      why: >-
+        Keep your reactions flat and your note-taking constant. Visible enthusiasm at
+        minute four biases everything after it.
+  open:
+    - unknown: "How recent the example has to be."
+      reasonable: "Any age, if they can still recall specifics under two follow-ups."
+      why_open: "Requiring recency selects for people already in large-scope jobs."
+    - unknown: "How much of the outcome must be theirs personally."
+      reasonable: "Separating contribution from result without being told to."
+      why_open: "It is the central signal — supplying the standard lets them meet it artificially."
+  keys:
+    - insight: >-
+        The question turns on pronouns. "We aligned the roadmap" and "I built the model
+        that changed the VP's mind" are different claims, and only one is assessable.
+      unlocked_by: "\"What did you personally do there?\" — every time, without irritation."
+      if_missed: >-
+        Three attempts still returning "we" is the finding — but check yourself first.
+        Collective phrasing is a strong cultural norm in many places, and penalising it
+        unexamined is a real bias.
+    - insight: >-
+        Influence without authority shows in what changed in the other person, not in
+        what the candidate did.
+      unlocked_by: "\"What was their argument, and was any of it right?\""
+      if_missed: >-
+        Ask it. Someone who cannot steelman the person they persuaded probably wore them
+        down or escalated — a real skill, but a different one.
+    - insight: >-
+        Rehearsed stories are smooth at summary level and thin one layer beneath. Depth
+        is a verification tool, not scepticism.
+      unlocked_by: "Staying on one moment: \"what did you actually say?\", then \"what did they say back?\""
+      if_missed: >-
+        Say it in the debrief. "The story stayed at summary level" is the most common and
+        most fixable delta in behavioural rounds.
 
 checkpoints:
   - at_min: 3

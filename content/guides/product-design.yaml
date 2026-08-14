@@ -29,33 +29,75 @@ delivery:
     - "Decide in advance which clarifications you will grant and which you will push back on."
     - "Note the clock at the moment they finish the prompt, not when you started speaking."
 
-clarifying:
-  - asks: "What kind of limited mobility? Is this one condition or a range?"
-    answer: >-
-      Turn it back once: "What would you assume, and how would that change your
-      design?" If they give a reasoned assumption, confirm it and move on.
-    why: >-
-      Choosing a specific user IS the exercise. Handing them the segment removes
-      the thing you are trying to observe.
-  - asks: "Is this a physical remote, an app, or voice?"
-    answer: >-
-      "That's yours to decide — tell me what you're assuming and why." Do not
-      constrain the form factor.
-    why: "Form factor should fall out of the user's constraints, not precede them."
-  - asks: "What's the business goal? Are we selling hardware?"
-    answer: >-
-      Give them this one: "Assume a TV manufacturer wanting to broaden its
-      addressable market." It is genuinely ambiguous and withholding it just
-      wastes their clock.
-    why: >-
-      Withhold what tests judgement; grant what is merely missing context. Business
-      framing is context, not the skill under test.
-  - asks: "Should I pick one specific person or design broadly?"
-    answer: >-
-      "Whichever you can justify." Then listen for whether they justify it.
-    why: >-
-      Meta's own guidance is explicit that specific versus broad depends on the
-      question, and that what is scored is the articulated reasoning.
+brief:
+  premise: >-
+    A television manufacturer wanting to broaden its addressable market. Nothing
+    accessibility-related has shipped in this product line before. There is no
+    research, no persona and no company deck behind the prompt — whatever you
+    improvise becomes the question, so hold this backdrop for everyone.
+  facts:
+    - asks: "What's the business goal? Are we selling hardware?"
+      fact: "A TV manufacturer broadening its addressable market."
+      release: on_request
+    - asks: "Is there existing accessibility work to build on?"
+      fact: "None in this product line."
+      release: on_request
+    - asks: "What engineering constraint should I assume?"
+      fact: "A normal product team and about a year — enough for hardware if justified."
+      release: on_request
+    - asks: "What kind of limited mobility? One condition or a range?"
+      fact: >-
+        The range spans tremor, weakness, limited reach, a single reliable finger,
+        and no reliable hand movement.
+      release: on_earned_ask
+      why: >-
+        Give the range only if they ask what the range is. Never pick from it — choosing
+        is the exercise.
+    - fact: "Any user research, interviews or persona."
+      release: withheld
+      why: "You have none. Say so, then ask what they would assume."
+    - fact: "How many people this affects."
+      release: withheld
+      why: >-
+        You genuinely do not know. Inventing a prevalence figure rewards arithmetic on
+        a number you made up.
+  open:
+    - unknown: "Which specific user, out of everyone the phrase covers."
+      asks: "Should I pick one person or design broadly?"
+      reasonable: "Either — committed to, with the rejected alternatives named."
+      why_open: "The single most-scored move in this question type."
+    - unknown: "Form factor — remote, app, voice, wearable, or built into the set."
+      asks: "Is this a physical remote, an app, or voice?"
+      reasonable: "Whatever falls out of the capability profile they chose."
+      why_open: "Form factor is a consequence of constraints, not an input."
+    - unknown: "What 'control the television' covers — power and volume, channels, or content discovery."
+      reasonable: "Narrowing to the jobs that matter for their user."
+      why_open: "Scoping the job is part of scoping the problem."
+  keys:
+    - insight: >-
+        The design is driven by what the user CAN reliably produce — one dependable
+        switch press, a steady gaze, speech, a large tremor-tolerant target — not by
+        what they cannot do.
+      unlocked_by: >-
+        Asking what this person can still do, or walking through one evening in their
+        living room.
+      if_missed: >-
+        Probe once: "what can they do reliably with their hands?" If it still does not
+        land, that is the finding.
+    - insight: >-
+        A television is a shared device. A design that works only for this user breaks
+        it for the rest of the household — and one that needs a carer to set up has
+        removed the independence that was the job.
+      unlocked_by: "Naming a second person in the room unprompted."
+      if_missed: "Use the hospital-and-nurse probe. Noticing it when handed over still counts, for less."
+    - insight: >-
+        Voice is the obvious answer and fails where it is most needed: speech
+        impairment often co-occurs with these motor conditions, and voice is unusable
+        with other people in the room.
+      unlocked_by: "Proposing voice and stress-testing it before you do."
+      if_missed: >-
+        Ask when voice does not work. The failure follows from the user they chose, not
+        from medical knowledge, so it is a fair probe.
 
 checkpoints:
   - at_min: 4

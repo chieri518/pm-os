@@ -7,6 +7,7 @@ import { Nav } from "../../nav";
 import { Section } from "../../teaching";
 import { createLinker } from "../../linked";
 import { SignalChecklist } from "../checklist";
+import { SituationBriefPanel } from "../brief";
 
 const COMPETENCIES = [
   { id: "ambiguity-scoping", label: "Ambiguity & scoping" },
@@ -143,27 +144,6 @@ export default async function GuidePage({ params }: { params: Promise<{ id: stri
             )}
           </Section>
 
-          {g.clarifying.length > 0 && (
-            <Section
-              title="If they ask"
-              note="What to grant, what to hand back. Keep it identical across candidates."
-            >
-              <div className="space-y-2.5">
-                {g.clarifying.map((c) => (
-                  <div key={c.asks} className="rounded-lg border border-ink-800 bg-ink-900/60 p-3">
-                    <div className="text-[14px] font-medium text-ink-100">“{c.asks}”</div>
-                    <p className="mt-1 text-[13.5px] leading-relaxed text-ink-300">{L(c.answer)}</p>
-                    {c.why && (
-                      <p className="mt-1.5 border-l-2 border-ink-700 pl-2.5 text-[12.5px] leading-relaxed text-ink-400">
-                        {L(c.why)}
-                      </p>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </Section>
-          )}
-
           {g.checkpoints.length > 0 && (
             <Section title="Pacing" note="Where they should be, and when.">
               <ol className="relative space-y-2 border-l border-ink-800 pl-5">
@@ -269,7 +249,13 @@ export default async function GuidePage({ params }: { params: Promise<{ id: stri
           </Section>
         </div>
 
-        <aside className="lg:sticky lg:top-6 lg:self-start">
+        {/*
+          One scroll container, not two. The brief and the checklist are both live
+          reference during a session, so they stick together and scroll as a unit —
+          nesting a second scrollable region inside a sticky one traps the wheel.
+        */}
+        <aside className="space-y-4 lg:sticky lg:top-6 lg:max-h-[calc(100vh-3rem)] lg:self-start lg:overflow-y-auto">
+          <SituationBriefPanel brief={g.brief} linker={L} />
           <SignalChecklist groups={g.signal_groups} antiSignals={g.anti_signals} />
         </aside>
       </div>

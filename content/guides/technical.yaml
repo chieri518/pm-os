@@ -26,24 +26,78 @@ delivery:
     - "Decide your answer for 'what happens if it's late' — a few minutes is tolerable; an hour is not."
     - "Be ready to push back once, so you can see how they handle disagreement."
 
-clarifying:
-  - asks: "What volume are we talking about?"
-    answer: "About fifty thousand orders a day."
-    why: "The single most important question here. Answer immediately and fully."
-  - asks: "What does near real time mean to them?"
-    answer: "\"They said within a minute or so. Is that a problem?\""
-    why: >-
-      The expensive word. A candidate who interrogates it is doing the job; one who
-      accepts it is scoping a system nobody needs.
-  - asks: "What happens if an update is delayed?"
-    answer: "\"A few minutes is fine. An hour and their support team is calling ours.\""
-    why: "Tolerance for staleness determines the architecture. Reward the question."
-  - asks: "How many partners will need this?"
-    answer: "\"Three today, maybe twenty next year.\""
-    why: "Changes whether this is a bespoke integration or a platform decision."
-  - asks: "Can they poll us?"
-    answer: "\"They'd rather not, but what are you thinking?\""
-    why: "Do not endorse or reject. Let them reason to it."
+brief:
+  premise: >-
+    You are the stakeholder who brought the request, not the engineer who would build
+    it. Answer business and volume questions fully; deflect technical ones with "I'd
+    defer to you on that." Deliver the requirement exactly as vaguely as it is
+    written, with "near real time" left undefined.
+  facts:
+    - fact: "A partner wants order-status updates from us in near real time."
+      release: stated
+    - asks: "What volume are we talking about?"
+      fact: "About fifty thousand orders a day."
+      release: on_request
+    - asks: "What does near real time mean to them?"
+      fact: "\"They said within a minute or so. Is that a problem?\""
+      release: on_request
+    - asks: "What happens if an update is late?"
+      fact: "A few minutes is fine. An hour and their support team is calling ours."
+      release: on_request
+    - asks: "How many partners need this?"
+      fact: "Three today, maybe twenty next year."
+      release: on_request
+    - asks: "How often does an order change status?"
+      fact: "About four times — so roughly two hundred thousand events a day, not fifty thousand."
+      release: on_earned_ask
+      why: >-
+        The number the design is actually sized on, and the least-asked question in the
+        guide. Never volunteer it early.
+    - asks: "What happens if we can't reach them?"
+      fact: "Their system goes down for maintenance most weeks, usually briefly."
+      release: on_earned_ask
+      why: "Makes retries and queueing necessary rather than theoretical. Only surface it on request."
+    - asks: "Can they poll us?"
+      fact: "\"They'd rather not — but what are you thinking?\""
+      release: withheld
+      why: >-
+        You are the stakeholder. Do not endorse or reject push versus pull; let them
+        reason to it.
+  open:
+    - unknown: "What 'near real time' actually means."
+      reasonable: "Interrogating it — what the partner does with the update, what breaks if it is late."
+      why_open: "The whole question compressed into two words."
+    - unknown: "Whether this is a one-off integration or a platform capability."
+      reasonable: "Either, tied to the three-today-twenty-next-year number."
+      why_open: "One of the few places you see someone think past the immediate request."
+    - unknown: "What they would decide themselves versus take to engineering."
+      reasonable: "Cost and trade-off calls theirs, implementation engineering's."
+      why_open: "Telling them where the line sits removes the only evidence you would get."
+  keys:
+    - insight: >-
+        "Near real time" is the expensive word and it is undefined. The first job is to
+        turn it into a number with a reason attached.
+      unlocked_by: "Interrogating the requirement before proposing anything."
+      if_missed: >-
+        Ask directly at minute twelve. Accepting an undefined latency requirement is the
+        difference between scoping a system and taking an order.
+    - insight: >-
+        The design is sized on status events, not orders — fifty thousand orders is
+        about four times that many state changes.
+      unlocked_by: "Asking how often an order changes status."
+      if_missed: >-
+        Offer the multiplier near the end. Absorbing a 4× volume revision without
+        revisiting the design is describing a system, not reasoning about one.
+    - insight: >-
+        The interesting engineering is in the failure states — the partner down, an event
+        delivered twice, the two systems disagreeing about an order.
+      unlocked_by: "Raising retries, duplicates or reconciliation unprompted."
+      if_missed: "Mention the weekly maintenance window and see whether they pick it up."
+  ground_truth: >-
+    There is a defensible shape — push events with retries and idempotency keys, plus a
+    polling endpoint to reconcile against — but treat it as one good answer, not the
+    key. At this volume and freshness almost any competently reasoned design works; the
+    score lives in whether the numbers drove the choice.
 
 checkpoints:
   - at_min: 5

@@ -29,35 +29,74 @@ delivery:
     - "Plan to push back once on their chosen solution — see how they defend without getting defensive."
     - "Watch the clock at 20 minutes; if they are still on segments, move them on."
 
-clarifying:
-  - asks: "What kind of company is this — a startup or an enterprise suite?"
-    answer: >-
-      "Assume around 900 people, fully distributed, already on a Slack-like tool."
-      Grant it immediately.
-    why: >-
-      Context, not judgement. Withholding it wastes their clock and tests nothing.
-      Inventing a concrete constraint is the right interviewer behaviour here.
-  - asks: "What's the business goal — culture, retention, productivity?"
-    answer: >-
-      "You tell me which you'd optimise for and why, then I'll confirm." If they
-      reason it through, say retention of first-year hires is what leadership cares
-      about.
-    why: >-
-      Choosing the objective is a scored move. Make them commit first, then supply
-      the real constraint so they can adapt — that adaptation is worth watching.
-  - asks: "Is this a standalone product or a feature in the existing tool?"
-    answer: "\"Your call — say which and why.\""
-    why: "The build-versus-embed decision has real consequences they should reason about."
-  - asks: "Do we have data on how many people feel disconnected?"
-    answer: >-
-      Invent something reasonable and specific: "Engagement survey says 40% of
-      people hired in the last year report having no work friend."
-    why: >-
-      Supplying a plausible data point tests whether they can use it. Candidates who
-      ignore a number you just handed them are telling you something.
-  - asks: "Any technical or privacy constraints?"
-    answer: "\"Nothing unusual, but legal is sensitive about anything that reads as surveillance.\""
-    why: "Seeds a constraint that should shape the solution. Watch whether they pick it up."
+brief:
+  premise: >-
+    A nine-hundred-person, fully distributed software company already on a Slack-like
+    suite. Leadership cares about first-year retention. Invent constraints
+    confidently when asked — refusing to answer tests nothing — but keep whatever you
+    invent identical for the next candidate.
+  facts:
+    - asks: "What kind of company is this — a startup or an enterprise?"
+      fact: "Around nine hundred people, fully distributed, already on a Slack-like tool."
+      release: on_request
+    - asks: "What's the business goal — culture, retention, productivity?"
+      fact: >-
+        Retention of first-year hires. Make them pick an objective first, then supply
+        this and watch them adapt.
+      release: on_request
+    - asks: "Do we have data on how many people feel disconnected?"
+      fact: "The engagement survey says 40% of last year's hires report having no work friend."
+      release: on_request
+    - asks: "Any technical or privacy constraints?"
+      fact: "Nothing unusual, but legal is sensitive about anything that reads as surveillance."
+      release: on_request
+    - asks: "Does this problem actually cost anything?"
+      fact: "First-year attrition runs about double the company average, and exit interviews mention isolation."
+      release: on_earned_ask
+      why: >-
+        Only if they question the premise. Asking whether loneliness is worth a quarter
+        of engineering is a strong signal in itself.
+    - fact: "Which segment to build for, and whether this is a feature or a standalone product."
+      release: withheld
+      why: >-
+        Both are the candidate's calls. Almost every candidate is a remote worker with
+        opinions, which is what makes this prompt good at catching design-for-yourself.
+  open:
+    - unknown: >-
+        Who is disconnected — new hires, cross-team collaborators, or long-tenured
+        people whose teams dispersed.
+      reasonable: "Two or three segments with different causes, then committing to one."
+      why_open: "'Remote workers' is not a segment, it is the whole company."
+    - unknown: "What 'connection' means and how you would know it improved."
+      reasonable: >-
+        Something observable — repeat conversations outside a team, cross-team threads —
+        with the proxy's limits admitted.
+      why_open: "Skipping it produces an unfalsifiable proposal."
+    - unknown: "Whether the answer is a product at all, rather than a ritual or a policy."
+      reasonable: "Either, if they say why software is or is not the right lever."
+      why_open: "Noticing the best intervention may not be shippable is better judgement, not worse."
+  keys:
+    - insight: >-
+        Connection is an outcome, not a job. The prompt becomes designable only once it
+        is specific moments — a new hire's first week, a collaborator you only meet in
+        meetings, someone whose team dispersed around them.
+      unlocked_by: "Naming segments whose connection problems have different causes."
+      if_missed: >-
+        Ask them to walk you through one person's Tuesday. Narrowing to a concrete moment
+        is a fair nudge; supplying the segment is not.
+    - insight: >-
+        Almost every candidate is a remote worker with strong opinions. The tell is
+        whether the solution suits an introverted engineer as readily as it suits them.
+      unlocked_by: "Naming a segment whose needs run opposite to their own."
+      if_missed: "Ask who would hate this. No answer means they designed for one person, themselves."
+    - insight: >-
+        Everything here is voluntary and the people who most need it opt out — so
+        adoption by the disconnected is the metric, and satisfaction among users is a
+        vanity number.
+      unlocked_by: "Raising an adoption risk or guardrail before you ask."
+      if_missed: >-
+        Ask what happens if only the already-connected use it. Every product in this
+        category hits that.
 
 checkpoints:
   - at_min: 4

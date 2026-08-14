@@ -28,28 +28,81 @@ delivery:
     - "Prepare the numbers you will hand over so your answers stay consistent under branching."
     - "Have flat/unchanged answers ready too — most branches must be dead ends or the search is trivial."
 
-clarifying:
-  - asks: "Is this across all platforms?"
-    answer: "Answer honestly if they ask this way: iOS and web flat, Android down 34%."
-    why: "This is the correct query. Reward it by answering fully and immediately."
-  - asks: "Are users down or orders per user down?"
-    answer: "Active users flat; orders per active user down 12%."
-    why: >-
-      The arithmetic split. A candidate who opens here is doing the thing the
-      question is for.
-  - asks: "Did anything ship recently?"
-    answer: >-
-      "There are releases most weeks." Do not confirm a specific one until they
-      have narrowed to Android.
-    why: >-
-      Answering yes immediately hands them the answer. Make them earn the last
-      step, but do not lie.
-  - asks: "Is it seasonal, or a holiday?"
-    answer: "No holiday. Same week last year showed no comparable dip."
-    why: "A reasonable check. Close it cleanly so they move on rather than lingering."
-  - asks: "Which markets?"
-    answer: "All markets similarly affected."
-    why: "A dead end by design — most branches must be, or the search is not a search."
+brief:
+  premise: >-
+    A food-delivery marketplace — consumers, restaurants, couriers. They can see one
+    number; you hold the whole dashboard. Answer any query they know how to
+    formulate, fully and immediately. The difficulty is knowing what to ask for, not
+    prising it out of you.
+  facts:
+    - fact: "Weekly orders fell 12% week over week."
+      release: stated
+    - asks: "What's normal week-to-week variance?"
+      fact: "Swings beyond about 3% are unusual."
+      release: on_request
+    - asks: "Are users down, or orders per user?"
+      fact: "Active users flat. Orders per active user down 12%."
+      release: on_request
+    - asks: "Is this across all platforms?"
+      fact: "iOS and web flat. Android down 34%."
+      release: on_request
+    - asks: "Which markets?"
+      fact: "All markets affected similarly."
+      release: on_request
+    - asks: "Is it seasonal, or a holiday?"
+      fact: "No holiday. Same week last year shows no comparable dip."
+      release: on_request
+    - asks: "Has anything changed on the supply side?"
+      fact: "Restaurant supply, courier supply and delivery times all unchanged."
+      release: on_request
+    - asks: "Did anything ship recently?"
+      fact: "Android 5.4.0 shipped four days before the drop; the decline sits in that version."
+      release: on_earned_ask
+      why: >-
+        Only once they have narrowed to Android. Asked cold, the honest answer is
+        "there are releases most weeks" — true, and it hands them nothing.
+    - asks: "Where in the funnel are Android users dropping?"
+      fact: "Checkout completion fell from 71% to 48% in 5.4.0. Cart adds flat."
+      release: on_earned_ask
+      why: "Converts a correlation into a mechanism. Never offer it unprompted."
+    - fact: "The underlying bug — a payment-sheet regression on one OS version."
+      release: withheld
+      why: >-
+        "Checkout is broken in this release" is a complete answer. Root cause is an
+        engineer's job.
+  open:
+    - unknown: "What 'orders' counts — placed, paid, or delivered."
+      reasonable: "Any definition, picked explicitly and held."
+      why_open: "Definitional discipline is the thing being observed."
+    - unknown: "When to stop diagnosing and say what to do about it."
+      reasonable: "Naming a stopping point and an action."
+      why_open: "Most candidates diagnose and never recommend."
+  keys:
+    - insight: >-
+        Users are flat and orders per user are down. That one split kills every
+        acquisition, marketing and competitor hypothesis at once.
+      unlocked_by: "Decomposing arithmetically before theorising."
+      if_missed: >-
+        By minute eight ask "fewer people ordering, or the same people ordering
+        less?" Record that you supplied it — doing it unprompted is most of the score.
+    - insight: >-
+        Seasonality, competition and demand shocks hit every platform. Android down
+        34% against flat iOS cannot be any of them; the asymmetry is the diagnosis.
+      unlocked_by: >-
+        Segmenting on a dimension where a technical and a demand cause predict
+        different patterns.
+      if_missed: >-
+        "Is it happening everywhere equally?" Working geography-first is still correct
+        reasoning, just slower.
+    - insight: "Intent is unchanged and execution broke — cart adds flat, checkout collapsed."
+      unlocked_by: "Asking where in the funnel Android users drop out."
+      if_missed: >-
+        Not a prerequisite. Reaching "an Android release regression" without it is a
+        complete answer; do not dock a step they no longer needed.
+  ground_truth: >-
+    A checkout regression in Android 5.4.0, shipped four days before the drop. Demand
+    never fell — the same people opened the app and filled the same carts, then could
+    not pay. Every other dimension is flat by construction.
 
 checkpoints:
   - at_min: 3

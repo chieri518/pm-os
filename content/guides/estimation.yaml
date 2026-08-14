@@ -25,25 +25,78 @@ delivery:
     - "Have a rough answer of your own so you can judge whether their magnitude is defensible."
     - "Decide which real figures you will supply if asked, and stay consistent."
 
-clarifying:
-  - asks: "Should I include private home chargers?"
-    answer: "\"Public only\" — grant it. It is a genuine ambiguity in the prompt."
-    why: "Scoping ambiguity is fair to resolve. It does not test anything to withhold it."
-  - asks: "Do you want today's number or for full EV adoption?"
-    answer: "\"You choose, but tell me which and why.\""
-    why: >-
-      The choice changes the whole model. Making them state it is the point; making
-      it for them removes a decision worth observing.
-  - asks: "Can I have London's population?"
-    answer: >-
-      "What would you assume?" If they offer roughly nine million, confirm it and
-      move on rather than making them squirm.
-    why: >-
-      Deriving a known figure is part of the exercise, but stalling over a fact
-      they nearly have wastes the clock.
-  - asks: "Can I round aggressively?"
-    answer: "\"Please do.\""
-    why: "Round numbers are correct practice here. Encourage it explicitly."
+brief:
+  premise: >-
+    Public charge points in Greater London. You are not holding a hidden answer —
+    you are holding a plausibility band and a few anchors. Say in the first thirty
+    seconds that you are not looking for the right number; candidates who think they
+    are graded on accuracy optimise for confidence instead of reasoning.
+  facts:
+    - asks: "Should I include private home chargers?"
+      fact: "Public only, and Greater London rather than the UK."
+      release: stated
+    - asks: "Can I have London's population?"
+      fact: "Roughly nine million."
+      release: on_request
+    - asks: "How many cars are there?"
+      fact: "Car ownership is well below the UK average — around half of households."
+      release: on_request
+    - asks: "Can I round aggressively?"
+      fact: "Yes, and say so warmly. Round numbers are correct practice here."
+      release: on_request
+    - asks: "Today's number, or full EV adoption?"
+      fact: "Their choice — but they have to say which and why."
+      release: on_request
+    - asks: "Is that anywhere near right?"
+      fact: "London had on the order of twenty thousand public charge points in the mid-2020s."
+      release: on_earned_ask
+      why: >-
+        Only after they produce their own number. Early it is the answer; late it is a
+        sanity check, which is the scored behaviour.
+    - fact: "Any charge-points-per-vehicle ratio you happen to know."
+      release: withheld
+      why: "The ratio is the model. Supplying it replaces the decomposition with a lookup."
+    - fact: "Your own decomposition, including in the debrief."
+      release: withheld
+      why: >-
+        "Here's how I'd have done it" teaches your habits, not their gaps. Ask which
+        assumption they trust least instead.
+  open:
+    - unknown: "What 'needed' means — today's demand, full adoption, or a policy target."
+      reasonable: "Any of the three, stated before the model is built."
+      why_open: "Three questions hide inside one word; noticing that is the first thing tested."
+    - unknown: "Whether to segment drivers, and on which axis."
+      reasonable: "Home-charging access is the highest-yield cut; vehicle type also works."
+      why_open: "The choice of axis is the most informative move they make."
+  keys:
+    - insight: >-
+        The equation exists before any number goes into it — charge points = vehicles
+        depending on public charging × charges per week ÷ charges one point delivers
+        per week.
+      unlocked_by: "Saying the structure out loud before substituting anything."
+      if_missed: >-
+        Ask for it at minute eight. Multiplying for five minutes without being able to
+        state the equation is guessing in steps.
+    - insight: >-
+        Supply is throughput, not headcount. One point serves many vehicles a week, so
+        the answer turns on charge duration and usable hours per day.
+      unlocked_by: "Dividing by something time-based rather than by a number of drivers."
+      if_missed: >-
+        "How many cars can one point serve in a week?" Missing this usually lands an
+        order of magnitude high.
+    - insight: >-
+        London is not a generic city. Low car ownership pushes the number down; flats
+        without driveways push public-charging dependence sharply up.
+      unlocked_by: "Segmenting drivers by whether they can charge at home."
+      if_missed: >-
+        Ask what fraction has a driveway. It is the assumption the estimate is most
+        sensitive to, and noticing that beats the number.
+  ground_truth: >-
+    There isn't one, and say so rather than implying you are withholding a key. Judge
+    the band: any answer within roughly an order of magnitude, reached by a
+    decomposition you could audit line by line, is a pass. Landing near the real
+    figure through unstated guesses is a worse performance than missing by five times
+    with every assumption visible.
 
 checkpoints:
   - at_min: 3

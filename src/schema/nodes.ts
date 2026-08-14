@@ -429,6 +429,100 @@ export const Competency = z.enum([
 ]);
 export type Competency = z.infer<typeof Competency>;
 
+/* ------------------------------------------------------------------ *
+ * SITUATION BRIEF — the half of the question the candidate never sees.
+ *
+ * A case question is two documents. The candidate gets one sentence; the
+ * interviewer gets the world that sentence was cut out of — what is true, what
+ * may be handed over, what must be earned, and what is deliberately left open.
+ * Publishing only the first half is why most prep material cannot be practised
+ * against: two people running the same question improvise two different worlds,
+ * and the candidate's score ends up depending on which world they drew.
+ *
+ * The shape is borrowed from the interviewer-facing half of a consulting
+ * casebook, where every case carries a "guidance for interviewer and information
+ * provided upon request" page alongside the problem statement. That convention
+ * exists because standardisation is what makes an interview predictive at all —
+ * asking every candidate the same questions and limiting improvised prompting are
+ * two of the fifteen structure components in Campion, Palmer & Campion (1997), and
+ * structured interviews out-predict unstructured ones by roughly two to one
+ * (ρ = .42 vs .19; Sackett et al., 2022).
+ * ------------------------------------------------------------------ */
+
+/**
+ * How hard a candidate has to work to get a fact out of you.
+ *
+ * The distinction that matters is `on_request` versus `on_earned_ask`. Granting
+ * missing context costs nothing and saves their clock; granting the fact they were
+ * supposed to go looking for deletes the exercise. Interviewers who have not
+ * decided which is which in advance tend to give everything to whoever asks most
+ * confidently, which scores assertiveness rather than reasoning.
+ */
+export const Release = z.enum([
+  /** You volunteer it, unprompted, to every candidate. Part of the prompt. */
+  "stated",
+  /** Grant it plainly the moment they ask. Missing context, not the skill under test. */
+  "on_request",
+  /** Only when they ask the specific question. Never volunteer, never hint. */
+  "on_earned_ask",
+  /** You hold it. Working without it is the exercise. */
+  "withheld",
+]);
+export type Release = z.infer<typeof Release>;
+
+export const BriefFact = z.object({
+  fact: z.string(),
+  release: Release,
+  /** The form the question usually arrives in, if there is one. */
+  asks: z.string().optional(),
+  /**
+   * Only ever set on facts you hold back — see the check in `check-guides`. A
+   * granted fact needs no defence, and writing one for every entry is how a
+   * reference panel turns into an essay nobody reads mid-session.
+   */
+  why: z.string().optional(),
+});
+
+/** Something the prompt deliberately does not settle. */
+export const OpenQuestion = z.object({
+  unknown: z.string(),
+  /** The form the question usually arrives in, if there is one. */
+  asks: z.string().optional(),
+  /** What a defensible assumption sounds like — so you can tell one from a guess. */
+  reasonable: z.string(),
+  /** Why you do not resolve it, even when asked directly. Keep it to a clause. */
+  why_open: z.string(),
+});
+
+/** The pivot the whole question turns on, and the move that reaches it. */
+export const KeyInsight = z.object({
+  insight: z.string(),
+  unlocked_by: z.string(),
+  /** What to do when they never get there — including whether to hand it over. */
+  if_missed: z.string(),
+});
+
+export const SituationBrief = z.object({
+  /**
+   * The backdrop you hold, identical for every candidate. Two or three sentences of
+   * orientation — NOT an argument for why briefs are a good idea. That case is made
+   * once, on the running-a-session page, and repeating it nine times puts rationale
+   * between an interviewer and the fact they are looking for.
+   */
+  premise: z.string(),
+  facts: z.array(BriefFact).min(3),
+  open: z.array(OpenQuestion).default([]),
+  keys: z.array(KeyInsight).min(1),
+  /**
+   * Optional, and deliberately so. Only diagnosis and estimation questions have a
+   * hidden right answer. Most product-sense prompts have none, and inventing one
+   * would be actively harmful: it would license an interviewer to grade toward
+   * their own preferred solution while believing they were grading against a key.
+   */
+  ground_truth: z.string().optional(),
+});
+export type SituationBrief = z.infer<typeof SituationBrief>;
+
 /** A follow-up the interviewer holds in reserve, and what it is meant to reveal. */
 export const Probe = z.object({
   /** When to reach for it. */
@@ -475,10 +569,12 @@ export const InterviewGuide = z.object({
     setup: z.array(z.string()).default([]),
   }),
 
-  /** Prepared answers to likely clarifying questions: what to reveal, what to withhold. */
-  clarifying: z
-    .array(z.object({ asks: z.string(), answer: z.string(), why: z.string().optional() }))
-    .default([]),
+  /**
+   * Required, not optional. A guide without a brief is a question with advice
+   * attached — the interviewer still has to invent the world on the spot, which is
+   * the failure this whole node type exists to fix.
+   */
+  brief: SituationBrief,
 
   /** Where a candidate should be by when. Uses the framework's own pacing. */
   checkpoints: z.array(z.object({ at_min: z.number(), expect: z.string() })).default([]),
