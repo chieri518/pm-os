@@ -36,3 +36,16 @@
     more units of information. Resolve toward goal-gradient when the steps are
     self-explanatory and stay on screen, and toward Miller/Cowan when each step
     requires carrying information forward in the user's head.
+
+- from: { type: heuristic, id: zeigarnik-effect }
+  to: { type: heuristic, id: peak-end-rule }
+  relation: TENSIONS_WITH
+  strength: 3
+  rationale: >-
+    Peak-End argues for giving a session a clean, satisfying ending; the popular
+    use of Zeigarnik argues for deliberately leaving something open so the user
+    feels pulled back. You cannot do both in the same moment. Prefer Peak-End by
+    default — close the loop the user came to close, because the memory advantage
+    of an open loop does not replicate. Prefer the resumption framing only when
+    the user's own work is genuinely unfinished, and then make the ending a clear
+    statement of what remains rather than an engineered cliffhanger.

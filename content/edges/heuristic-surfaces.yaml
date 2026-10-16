@@ -79,3 +79,23 @@
   rationale: >-
     In the recommendation, use reversibility to justify the size of the first step.
     A two-way door licenses shipping a narrow version now and learning from it.
+
+- from: { type: heuristic, id: zeigarnik-effect }
+  to: { type: framework_part, id: circles.list }
+  relation: SURFACES_AT
+  strength: 3
+  rationale: >-
+    Justifies state preservation and a one-tap resume for a user who will be
+    interrupted mid-task. Cite the resumption finding and flag that the memory
+    claim did not replicate — otherwise the citation props up a solution on the
+    half of the research that failed.
+
+- from: { type: heuristic, id: zeigarnik-effect }
+  to: { type: framework_part, id: aarrr.retention }
+  relation: SURFACES_AT
+  strength: 2
+  rationale: >-
+    Relevant when a retention plan leans on "unfinished" hooks such as incomplete
+    profiles or open badges. It argues for lowering the cost of returning to work
+    the user genuinely started, and against manufacturing open loops, which the
+    evidence gives no reason to expect will pull anyone back.

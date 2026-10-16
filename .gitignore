@@ -39,7 +39,8 @@ next-env.d.ts
 *.swp
 
 # local agent + tooling config
-/.claude/
+/.claude/*
+!/.claude/skills/
 AGENTS.md
 CLAUDE.md
 

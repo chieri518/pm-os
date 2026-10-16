@@ -1,0 +1,110 @@
+id: zeigarnik-effect
+scope: experience
+name: Zeigarnik Effect
+aka: ["Ovsiankina effect", "open loops", "interrupted-task effect"]
+claim: >-
+  Zeigarnik (1927) reported that people recalled tasks they were interrupted
+  during roughly twice as often as tasks they completed. The memory claim has not
+  held up; what has held up is the companion Ovsiankina effect — people who are
+  interrupted mid-task show a reliable tendency to go back and finish it.
+implication: >-
+  Design for the resumption, not for the memory. When a user is likely to be
+  pulled away mid-task, preserve their exact state and make returning to it a
+  single obvious step. Do not rely on an unfinished task to keep your product in
+  the user's head — that is the half of the finding that did not replicate.
+evidence_strength: contested
+caveat: >-
+  Ghibellini & Meier's 2025 meta-analysis found no memory advantage for
+  interrupted tasks at all: interrupted tasks made up about 49% of what was
+  recalled, a ratio of 0.99. The resumption tendency (Ovsiankina) did generalise.
+  The original effect appears to depend on conditions that are rare today —
+  an authoritative experimenter, high task involvement, and pressure to perform —
+  so it is unlikely to fire for a casual user of a low-stakes app. Separately,
+  Masicampo & Baumeister (2011) found that the intrusive thoughts an unfinished
+  goal causes disappear once the person makes a concrete plan to finish it:
+  what nags is the missing plan, not the missing completion.
+common_misapplication: >-
+  "Zeigarnik says users can't stop thinking about unfinished tasks, so show the
+  profile at 60% complete and they'll come back to finish it." Two errors in one
+  sentence. The memory effect does not replicate, and the profile meter works —
+  when it works — because of goal-gradient and endowed progress, which is a
+  different finding with better evidence. Candidates who cite Zeigarnik for
+  progress bars, cliffhangers, or streaks are citing the popular version, not
+  the research.
+teaching:
+  in_one_line: >-
+    Interrupted people tend to go back and finish — but they do not remember the
+    unfinished thing better, so the return path is your job, not their memory's.
+
+  mechanism: >-
+    Lewin's Berlin group framed an unfinished goal as a "quasi-need" that holds
+    tension until discharged. The observable, repeatable consequence of that
+    tension is behavioural: given the chance, people resume. The claimed cognitive
+    consequence — better recall — depends on how much the person cares and who is
+    watching, and in modern studies it washes out. Masicampo & Baumeister's
+    plan-making result sharpens the picture: the tension discharges once there is
+    a credible plan to finish. For product work this means the pull toward
+    resumption is real but fragile. It is strong when the user was invested and
+    the way back is obvious, and it dies quietly when returning means
+    reconstructing lost state.
+
+  in_interview:
+    how_to_deploy: >-
+      Deploy it in List Solutions when the user is likely to be interrupted — a
+      parent mid-checkout, a nurse mid-lookup — to justify state preservation and a
+      one-tap resume. Naming the replication failure, and redirecting to the
+      resumption finding, is what separates this from a listicle citation.
+    strong_sounds_like: >-
+      They will be pulled away mid-checkout, probably more than once, so I would
+      autosave the basket and payment step and reopen straight to where they left
+      off. People do tend to return to interrupted tasks — that part of the
+      Zeigarnik literature holds up — but the memory advantage does not, so I am
+      not counting on them remembering. The resume has to be on the home screen,
+      not in a notification they have to go looking for.
+    weak_sounds_like: >-
+      Because of the Zeigarnik effect, users can't stop thinking about unfinished
+      tasks, so I would show them their profile is 70% complete.
+
+  in_product_work: >-
+    It is the argument for drafts, autosave, and "continue where you left off" —
+    and against the abandoned-cart email that arrives after the cart has been
+    cleared. It is also a warning about engineered open loops: a notification
+    badge that can never be cleared is not an unfinished task the user cares
+    about, and the research gives no reason to expect it to pull them back.
+
+  in_daily_life: >-
+    The half-finished crossword you pick up again the next morning because it is
+    still lying open on the table. Put it back in the drawer and you rarely
+    finish it — the pull was the open page, not your memory of the clues.
+
+  worked_example:
+    situation: >-
+      A mortgage application flow of forty fields. Most users are interrupted
+      at least once, and session data expires after twenty minutes.
+    without: >-
+      The team adds a "you're 60% done!" email, citing Zeigarnik. Returning users
+      land on an empty form because their session expired, and most do not start
+      again.
+    with: >-
+      Persist every field server-side, reopen the app directly on the next
+      unanswered question, and end each session by telling the user exactly what
+      is left and roughly how long it takes.
+    takeaway: >-
+      The tendency to resume was already there; the product was destroying it
+      by making the return expensive. Telling the user what remains also gives
+      them the plan that, per Masicampo & Baumeister, stops the task nagging —
+      which is kinder than trying to exploit the nag.
+
+applies_when:
+  all:
+    - { dim: motivation, op: gte, value: medium }
+    - any:
+        - { dim: time_budget_sec, op: lte, value: 300 }
+        - { dim: cognitive_load, op: gte, value: high }
+source:
+  label: >-
+    Zeigarnik, B. (1927) Das Behalten erledigter und unerledigter Handlungen,
+    Psychologische Forschung 9; Ghibellini, R. & Meier, B. (2025), Humanities
+    and Social Sciences Communications 12
+  url: "https://doi.org/10.1057/s41599-025-05000-w"
+  year: 1927
