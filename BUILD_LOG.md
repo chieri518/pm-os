@@ -1302,11 +1302,11 @@ home. Verified that nothing else assumed `/` was the catalogue — only those tw
 
 ---
 
-## Milestone 15 — Launch Polish, and a Graph You Can Walk
+## Milestone 15 — Launch Polish, and the Graph Twice
 
 **Trigger:** getting it ready to show people. A review against "would this hold up
 to someone clicking around for five minutes" found the product was ahead of its own
-description, and one page was repeating a mistake this log has already named twice.
+description, and one page looked like it was repeating a mistake this log has already named twice.
 
 ### Things that had drifted
 
@@ -1335,17 +1335,22 @@ STAR went from 37 mentions to 2, PRD from 38 to 3, and mention edges from 300 to
 The map's real hubs turn out to be *segment*, *retention* and Metrics & Diagnosis,
 which is what you would have guessed.
 
-### Decision 25 — The graph opens on a question, not on everything
+### Decision 25 — Tried a focused graph, then put the whole map back
 
-The whole-corpus view was the playground's failure mode again: the most impressive
-screen and the least useful one. Ninety-odd nodes, colliding labels, and no question
-it could answer.
+The whole-corpus view looked like the playground's failure mode — the most
+impressive screen, answering no particular question — so I rebuilt it to open
+centred on one question type, with its neighbours on labelled rings and a panel of
+edge rationales.
 
-It now opens centred on one question type, with authored relationships on an inner
-ring, prose mentions on an outer one, every node labelled, and a panel giving each
-authored link's rationale. Clicking a node makes it the centre, and the URL hash
-deep-links to it. The edge rationales — authored once in Milestone 1 — now ship to
-the map as well, which is the third surface they feed.
+It was tidier and it was worse. The point of the map, it turned out, *is* seeing
+everything at once and wandering: an Obsidian-style overview that you explore rather
+than a lookup you query. The focused view answered "what connects to this?", which
+every page's backlinks panel already answers. So the whole map is back as it was.
 
-The whole-corpus view survives behind a toggle. It is still a good screenshot; it is
-just no longer the front door.
+What survived is the backlink fix above, which is what had actually been making the
+overview misleading — with STAR and PRD no longer posing as hubs, the full map now
+shows the corpus's real shape.
+
+The lesson is narrower than "never cut the impressive thing": the playground failed
+because it was a destination with nowhere to go. The map is a way of browsing, and
+browsing was the job.

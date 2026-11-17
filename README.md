@@ -14,7 +14,7 @@ advice stops.
 | `/question/*` | Eight question types: the approach, what is scored, pitfalls ranked by cost |
 | `/concept/*` | Nineteen concepts at three depths, each with an evidence verdict |
 | `/company/*` | Five company lenses, every claim tagged official, corroborated or estimate |
-| `/glossary`, `/graph` | 46 terms, auto-linked through the prose; a map you walk from a question outward |
+| `/glossary`, `/graph` | 46 terms, auto-linked through the prose; the whole corpus as one explorable map |
 
 Underneath, it is a typed knowledge graph: every relationship between two pieces of
 content is authored with a reason, and that reason is what the backlinks, the graph and
@@ -200,11 +200,9 @@ the relationship *is* — *"TENSIONS_WITH: resolve toward Hick's when the user i
 load"*. Authored edges and discovered prose mentions render separately, because only one
 of them carries a claim.
 
-`/graph` opens on one question type with only its neighbourhood drawn: authored links on
-an inner ring, prose mentions on an outer one, and a panel giving each authored link's
-reason. Click any node and it becomes the centre, so the map is walked rather than
-admired. The whole corpus — 94 nodes, 250 edges, laid out by a hand-written force
-simulation rather than a dependency — is one toggle away. ⌘K searches everything.
+`/graph` draws the whole corpus — 94 nodes, 250 edges — with a hand-written force
+simulation rather than a dependency: filter by type, hover to isolate a neighbourhood.
+⌘K searches everything.
 
 Prose mentions use the same word-boundary matching as on-page links, and acronyms
 match only in capitals, so "STAR" is a reference but "start", "standard" and "North

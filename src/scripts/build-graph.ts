@@ -65,14 +65,11 @@ const viewNodes = index.targets.map((t) => ({ id: t.key, type: t.type, label: t.
 const known = new Set(viewNodes.map((n) => n.id));
 // `rel` is widened past RelationType because MENTIONS is derived here rather than
 // authored — it is a rendering concern for the map, not a relation in the schema.
-// Authored edges carry their rationale so the map can say why two things connect,
-// not just that they do — the same string the backlinks panel shows.
-const viewEdges: { from: string; to: string; rel: string; why?: string }[] = bundle.edges
+const viewEdges: { from: string; to: string; rel: string }[] = bundle.edges
   .map((e) => ({
     from: `${e.from.type}:${e.from.id}`,
     to: `${e.to.type}:${e.to.id}`,
     rel: e.relation,
-    why: e.rationale,
   }))
   .filter((e) => known.has(e.from) && known.has(e.to));
 // Prose mentions become soft edges so the map reflects how the corpus actually reads.
