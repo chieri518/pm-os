@@ -19,12 +19,12 @@ interface RawEdge {
 const DATA = raw as { nodes: RawNode[]; edges: RawEdge[] };
 
 const TYPES = [
-  { id: "question_type", label: "Questions", color: "#f0abfc" },
-  { id: "concept", label: "Concepts", color: "#34d399" },
-  { id: "term", label: "Terms", color: "#60a5fa" },
-  { id: "framework", label: "Frameworks", color: "#fbbf24" },
-  { id: "heuristic", label: "Heuristics", color: "#a78bfa" },
-  { id: "company_lens", label: "Companies", color: "#fb7185" },
+  { id: "question_type", label: "Questions", color: "var(--graph-question)" },
+  { id: "concept", label: "Concepts", color: "var(--graph-concept)" },
+  { id: "term", label: "Terms", color: "var(--graph-term)" },
+  { id: "framework", label: "Frameworks", color: "var(--graph-framework)" },
+  { id: "heuristic", label: "Heuristics", color: "var(--graph-heuristic)" },
+  { id: "company_lens", label: "Companies", color: "var(--graph-company)" },
 ] as const;
 
 const COLOR = Object.fromEntries(TYPES.map((t) => [t.id, t.color])) as Record<string, string>;
@@ -190,7 +190,7 @@ export default function GraphClient() {
             >
               <span
                 className="size-2 rounded-full"
-                style={{ background: off ? "#3a3f47" : t.color }}
+                style={{ background: off ? "var(--color-ink-700)" : t.color }}
               />
               {t.label}
               <span className="font-mono text-[10px] text-ink-400">{count}</span>
@@ -227,7 +227,7 @@ export default function GraphClient() {
                   y1={a.y}
                   x2={b.x}
                   y2={b.y}
-                  stroke={lit ? "#34d399" : "#272b32"}
+                  style={{ stroke: lit ? "var(--color-live-400)" : "var(--color-ink-700)" }}
                   strokeWidth={lit ? 1.4 : soft ? 0.4 : 0.9}
                   opacity={neighbours ? (lit ? 0.9 : 0.06) : soft ? 0.35 : 0.7}
                 />
@@ -247,8 +247,10 @@ export default function GraphClient() {
                     cx={s.x}
                     cy={s.y}
                     r={r}
-                    fill={COLOR[s.node.type] ?? "#7d858f"}
-                    stroke="#0a0b0d"
+                    style={{
+                      fill: COLOR[s.node.type] ?? "var(--color-ink-400)",
+                      stroke: "var(--color-ink-950)",
+                    }}
                     strokeWidth={1.5}
                   />
                   {(s.deg > 9 || focus === s.id) && (
@@ -257,7 +259,7 @@ export default function GraphClient() {
                       y={s.y - r - 5}
                       textAnchor="middle"
                       className="pointer-events-none select-none"
-                      fill="#e7eaee"
+                      style={{ fill: "var(--color-ink-100)" }}
                       fontSize={focus === s.id ? 13 : 10}
                       fontWeight={focus === s.id ? 600 : 400}
                     >

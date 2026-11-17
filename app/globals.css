@@ -1,6 +1,77 @@
 @import "tailwindcss";
 
+/*
+ * Two themes, one set of token names.
+ *
+ * The ink scale is semantic, not literal: 950 is always the page, 900–850 the
+ * surfaces, 800–600 the lines, 400–100 the text from faintest to strongest. The
+ * light theme simply runs that scale the other way, so no component needs to know
+ * which theme it is in.
+ *
+ * Light is the default. Dark (the original palette) applies when the visitor's
+ * system asks for it, or when they choose it with the toggle — which sets
+ * data-theme on <html> and wins in both directions.
+ */
 @theme {
+  --color-ink-950: #f7f8fa;
+  --color-ink-900: #ffffff;
+  --color-ink-850: #f1f3f6;
+  --color-ink-800: #e3e6eb;
+  --color-ink-700: #d0d5dc;
+  --color-ink-600: #a2a9b4;
+  --color-ink-400: #646b76;
+  --color-ink-300: #3d434c;
+  --color-ink-200: #2a2f36;
+  --color-ink-100: #14171c;
+
+  --color-live-400: #0f7a63;
+  --color-live-600: #14937a;
+  --color-warn-400: #a35c00;
+  --color-tension-400: #5b45c4;
+
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
+}
+
+/* Graph node colours, deeper in light so small dots hold their contrast. */
+:root {
+  --graph-question: #c026d3;
+  --graph-concept: #059669;
+  --graph-term: #2563eb;
+  --graph-framework: #d97706;
+  --graph-heuristic: #7c3aed;
+  --graph-company: #e11d48;
+  color-scheme: light;
+}
+
+/* The dark palette, written twice: once for the system setting (unless the
+   visitor chose light), once for an explicit choice of dark. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-ink-950: #0a0b0d;
+    --color-ink-900: #101215;
+    --color-ink-850: #16181c;
+    --color-ink-800: #1c1f24;
+    --color-ink-700: #272b32;
+    --color-ink-600: #363b44;
+    --color-ink-400: #7d858f;
+    --color-ink-300: #a2aab4;
+    --color-ink-200: #c9cfd6;
+    --color-ink-100: #e7eaee;
+    --color-live-400: #34d399;
+    --color-live-600: #059669;
+    --color-warn-400: #fbbf24;
+    --color-tension-400: #a78bfa;
+    --graph-question: #f0abfc;
+    --graph-concept: #34d399;
+    --graph-term: #60a5fa;
+    --graph-framework: #fbbf24;
+    --graph-heuristic: #a78bfa;
+    --graph-company: #fb7185;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
   --color-ink-950: #0a0b0d;
   --color-ink-900: #101215;
   --color-ink-850: #16181c;
@@ -9,18 +80,38 @@
   --color-ink-600: #363b44;
   --color-ink-400: #7d858f;
   --color-ink-300: #a2aab4;
+  --color-ink-200: #c9cfd6;
   --color-ink-100: #e7eaee;
-
   --color-live-400: #34d399;
   --color-live-600: #059669;
   --color-warn-400: #fbbf24;
   --color-tension-400: #a78bfa;
-
-  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
+  --graph-question: #f0abfc;
+  --graph-concept: #34d399;
+  --graph-term: #60a5fa;
+  --graph-framework: #fbbf24;
+  --graph-heuristic: #a78bfa;
+  --graph-company: #fb7185;
+  color-scheme: dark;
 }
 
-html {
-  color-scheme: dark;
+/* The toggle shows the theme you would switch TO: a moon in light, a sun in dark. */
+.theme-sun {
+  display: none;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-sun {
+    display: block;
+  }
+  :root:not([data-theme="light"]) .theme-moon {
+    display: none;
+  }
+}
+:root[data-theme="dark"] .theme-sun {
+  display: block;
+}
+:root[data-theme="dark"] .theme-moon {
+  display: none;
 }
 
 body {

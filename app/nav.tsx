@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Route } from "next";
 import { SearchPalette } from "./search";
 import { Logo } from "./logo";
+import { ThemeToggle } from "./theme-toggle";
 
 const LINKS: { href: Route; label: string }[] = [
   { href: "/library" as Route, label: "Library" },
@@ -55,8 +56,9 @@ export function Nav({ crumb }: { crumb?: { label: string; href?: Route } }) {
             </>
           )}
         </div>
-        <div className="shrink-0">
+        <div className="flex shrink-0 items-center gap-2">
           <SearchPalette />
+          <ThemeToggle />
         </div>
       </div>
 

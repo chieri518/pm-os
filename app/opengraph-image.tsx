@@ -11,13 +11,14 @@ export const alt = `pm-os — ${SITE_TAGLINE}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const INK_950 = "#0a0b0d";
-const INK_800 = "#1c1f24";
-const INK_400 = "#7d858f";
-const INK_300 = "#a2aab4";
-const INK_100 = "#e7eaee";
-const LIVE = "#34d399";
-const WARN = "#fbbf24";
+// The light theme's tokens, matching what most visitors land on.
+const INK_950 = "#f7f8fa";
+const INK_800 = "#e3e6eb";
+const INK_400 = "#646b76";
+const INK_300 = "#3d434c";
+const INK_100 = "#14171c";
+const LIVE = "#0f7a63";
+const WARN = "#a35c00";
 
 export default function Image() {
   const stats = [
