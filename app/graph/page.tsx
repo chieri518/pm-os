@@ -3,7 +3,8 @@ import { Nav } from "../nav";
 
 export const metadata = {
   title: "Graph",
-  description: "Every concept, term, framework, heuristic and company, and how they connect.",
+  description:
+    "Start from a question type and walk the connections — which frameworks fit it, what it assumes you know, which companies weight it, and why.",
 };
 
 export default function GraphPage() {
@@ -13,8 +14,9 @@ export default function GraphPage() {
       <header className="mb-5 max-w-2xl">
         <h1 className="text-2xl font-semibold tracking-tight text-ink-100">The graph</h1>
         <p className="mt-2 text-[15px] leading-relaxed text-ink-300">
-          The whole corpus as it actually connects. Authored edges carry a typed relation and a
-          reason; mention edges were discovered by scanning prose. Filter by type, hover to isolate.
+          Start from a question and follow what it connects to. Solid links were written by hand
+          and say why they exist; dashed ones were found by reading the prose. Click anything to
+          move the centre there.
         </p>
       </header>
       <GraphClient />

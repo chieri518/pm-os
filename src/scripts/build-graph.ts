@@ -1,7 +1,7 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { loadGraph } from "../graph/load";
-import { buildLinkIndex } from "../graph/linker";
+import { buildLinkIndex, findMentions } from "../graph/linker";
 
 /**
  * Compile /content into the artefacts the app needs.
@@ -49,12 +49,8 @@ const mentions: Record<string, string[]> = {};
 for (const t of index.targets) {
   const node = graph.get(t.type, t.id);
   if (!node) continue;
-  const text = JSON.stringify(node).toLowerCase();
-  const found = new Set<string>();
-  for (const [phrase, target] of index.byPhrase) {
-    if (target.key === t.key) continue;
-    if (text.includes(phrase)) found.add(target.key);
-  }
+  // Case is preserved so the acronym rule can tell "STAR" from "start".
+  const found = findMentions(JSON.stringify(node), index, t.key);
   if (found.size) mentions[t.key] = [...found];
 }
 // Invert: target -> who mentions it.
@@ -69,11 +65,14 @@ const viewNodes = index.targets.map((t) => ({ id: t.key, type: t.type, label: t.
 const known = new Set(viewNodes.map((n) => n.id));
 // `rel` is widened past RelationType because MENTIONS is derived here rather than
 // authored — it is a rendering concern for the map, not a relation in the schema.
-const viewEdges: { from: string; to: string; rel: string }[] = bundle.edges
+// Authored edges carry their rationale so the map can say why two things connect,
+// not just that they do — the same string the backlinks panel shows.
+const viewEdges: { from: string; to: string; rel: string; why?: string }[] = bundle.edges
   .map((e) => ({
     from: `${e.from.type}:${e.from.id}`,
     to: `${e.to.type}:${e.to.id}`,
     rel: e.relation,
+    why: e.rationale,
   }))
   .filter((e) => known.has(e.from) && known.has(e.to));
 // Prose mentions become soft edges so the map reflects how the corpus actually reads.

@@ -28,6 +28,11 @@ export interface LinkIndex {
   byPhrase: Map<string, LinkTarget>;
   pattern: RegExp | null;
   targets: LinkTarget[];
+  /**
+   * Lowercased phrases whose canonical form is an acronym. These only match when
+   * written in capitals, so "STAR" links but "North Star" and "star" do not.
+   */
+  exactCase: Set<string>;
 }
 
 /**
@@ -63,6 +68,7 @@ const escapeRe = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 export function buildLinkIndex(graph: GraphIndex): LinkIndex {
   const byPhrase = new Map<string, LinkTarget>();
+  const exactCase = new Set<string>();
   const targets: LinkTarget[] = [];
 
   const add = (type: NodeType, id: string, label: string, summary: string, aka: string[]) => {
@@ -74,7 +80,10 @@ export function buildLinkIndex(graph: GraphIndex): LinkIndex {
       const k = phrase.toLowerCase().trim();
       if (!k || DENY.has(k) || k.length < 3) continue;
       // First writer wins, so a canonical name is never displaced by someone's alias.
-      if (!byPhrase.has(k)) byPhrase.set(k, target);
+      if (!byPhrase.has(k)) {
+        byPhrase.set(k, target);
+        if (isAcronym(phrase.trim())) exactCase.add(k);
+      }
     }
   };
 
@@ -97,7 +106,34 @@ export function buildLinkIndex(graph: GraphIndex): LinkIndex {
     ? new RegExp(`(?<![\\w-])(${phrases.map(escapeRe).join("|")})(?![\\w-])`, "gi")
     : null;
 
-  return { byPhrase, pattern, targets };
+  return { byPhrase, pattern, targets, exactCase };
+}
+
+const isAcronym = (s: string) => /^[A-Z][A-Z0-9&]+$/.test(s);
+
+/** Resolve one regex match to its target, applying the acronym case rule. */
+function resolve(matched: string, index: LinkIndex): LinkTarget | undefined {
+  const k = matched.toLowerCase();
+  if (index.exactCase.has(k) && matched !== matched.toUpperCase()) return undefined;
+  return index.byPhrase.get(k);
+}
+
+/**
+ * Every target mentioned anywhere in `text`, using exactly the same matching as
+ * on-page links. Build-time backlinks used to use substring search instead, which
+ * found "STAR" inside "start" and "standard" and "spec" inside "specific" — so the
+ * graph showed both as the corpus's biggest hubs on the strength of words that
+ * were never references at all.
+ */
+export function findMentions(text: string, index: LinkIndex, selfKey?: string): Set<string> {
+  const found = new Set<string>();
+  if (!index.pattern || !text) return found;
+  index.pattern.lastIndex = 0;
+  for (let m = index.pattern.exec(text); m; m = index.pattern.exec(text)) {
+    const target = resolve(m[0], index);
+    if (target && target.key !== selfKey) found.add(target.key);
+  }
+  return found;
 }
 
 /**
@@ -120,7 +156,7 @@ export function segment(
   index.pattern.lastIndex = 0;
   for (let m = index.pattern.exec(text); m; m = index.pattern.exec(text)) {
     const matched = m[0];
-    const target = index.byPhrase.get(matched.toLowerCase());
+    const target = resolve(matched, index);
     if (!target || target.key === selfKey || seen.has(target.key)) continue;
 
     seen.add(target.key);
