@@ -1,6 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
+import { antiKey, signalKey } from "@/src/practice/debrief-code";
+import { useSession } from "./session";
 
 interface Group {
   dimension: string;
@@ -9,9 +11,9 @@ interface Group {
 
 /**
  * Tickable rather than static, because this is meant to be open on a second screen
- * during a live session. State is deliberately in-memory only: an interviewer uses
- * it once, and persisting half-finished assessments of named candidates is a
- * privacy liability nobody asked for.
+ * during a live session. Ticks live in the page's mock-session state (see
+ * session.tsx), in memory only, so they flow straight into the debrief builder.
+ * Keys are positions, not text, so a debrief link stays short.
  */
 export function SignalChecklist({
   groups,
@@ -20,19 +22,11 @@ export function SignalChecklist({
   groups: Group[];
   antiSignals: { observable: string; note?: string }[];
 }) {
-  const [ticked, setTicked] = useState<Set<string>>(new Set());
+  const { ticked, toggle, resetTicks } = useSession();
   const total = useMemo(() => groups.reduce((n, g) => n + g.signals.length, 0), [groups]);
 
-  const positives = [...ticked].filter((k) => !k.startsWith("anti:")).length;
-  const negatives = [...ticked].filter((k) => k.startsWith("anti:")).length;
-
-  const toggle = (key: string) =>
-    setTicked((s) => {
-      const next = new Set(s);
-      if (next.has(key)) next.delete(key);
-      else next.add(key);
-      return next;
-    });
+  const negatives = [...ticked].filter((k) => k.startsWith("a")).length;
+  const positives = ticked.size - negatives;
 
   const Row = ({ id, text, note, bad }: { id: string; text: string; note?: string; bad?: boolean }) => {
     const on = ticked.has(id);
@@ -91,14 +85,14 @@ export function SignalChecklist({
 
       {/* The sticky aside owns scrolling now — a nested scroll region here would trap the wheel. */}
       <div className="p-3">
-        {groups.map((g) => (
+        {groups.map((g, gi) => (
           <div key={g.dimension} className="mb-4 last:mb-0">
             <div className="mb-1 px-2 font-mono text-[10px] uppercase tracking-wider text-ink-400">
               {g.dimension}
             </div>
             <ul className="space-y-0.5">
-              {g.signals.map((s) => (
-                <Row key={s.observable} id={s.observable} text={s.observable} note={s.note} />
+              {g.signals.map((s, si) => (
+                <Row key={s.observable} id={signalKey(gi, si)} text={s.observable} note={s.note} />
               ))}
             </ul>
           </div>
@@ -110,10 +104,10 @@ export function SignalChecklist({
               Anti-signals
             </div>
             <ul className="space-y-0.5">
-              {antiSignals.map((s) => (
+              {antiSignals.map((s, i) => (
                 <Row
                   key={s.observable}
-                  id={`anti:${s.observable}`}
+                  id={antiKey(i)}
                   text={s.observable}
                   note={s.note}
                   bad
@@ -128,7 +122,7 @@ export function SignalChecklist({
         <footer className="border-t border-ink-800 px-4 py-2.5">
           <button
             type="button"
-            onClick={() => setTicked(new Set())}
+            onClick={resetTicks}
             className="font-mono text-[11px] text-ink-400 hover:text-ink-100"
           >
             reset

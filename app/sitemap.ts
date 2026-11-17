@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/interviewer",
     "/interviewer/running-a-session",
     ...graph.guides().map((g) => `/interviewer/${g.id}`),
+    ...graph.guides().map((g) => `/practice/${g.id}`),
     ...graph.questionTypes().map((q) => `/question/${q.id}`),
     ...graph.concepts().map((c) => `/concept/${c.id}`),
     ...graph.frameworks().map((f) => `/framework/${f.id}`),

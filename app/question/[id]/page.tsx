@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Route } from "next";
 import { notFound } from "next/navigation";
 import { graph } from "@/src/graph/bundle";
 import type { CompanyLens, Concept, Framework, QuestionType } from "@/src/schema/nodes";
@@ -39,6 +40,8 @@ export default async function QuestionPage({ params }: { params: Promise<{ id: s
     .filter((r): r is { edge: (typeof r)["edge"]; node: Concept } => Boolean(r.node))
     .sort((a, b) => b.edge.strength - a.edge.strength);
 
+  const guide = graph.guides().find((g) => g.question_type === q.id);
+
   const lenses = graph
     .edgesFrom(ref, "ASKED_BY")
     .map((edge) => ({ edge, node: graph.get<CompanyLens>("company_lens", edge.to.id) }))
@@ -55,6 +58,20 @@ export default async function QuestionPage({ params }: { params: Promise<{ id: s
         </span>
         <h1 className="mt-2 text-3xl font-semibold tracking-tight text-ink-100">{q.name}</h1>
         {t && <p className="mt-3 text-lg leading-relaxed text-ink-300">{t.in_one_line}</p>}
+        {guide && (
+          <Link
+            href={`/practice/${guide.id}` as Route}
+            className="mt-4 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 rounded-xl border border-live-600/30 bg-live-600/[0.05] px-4 py-3 transition-colors hover:border-live-600/60"
+          >
+            <span className="text-[14.5px] text-ink-100">
+              Practise it with a partner
+              <span aria-hidden className="ml-1.5 text-ink-600">→</span>
+            </span>
+            <span className="text-[12.5px] text-ink-400">
+              They get the interviewer guide; you get the prompt, a clock and a debrief to keep.
+            </span>
+          </Link>
+        )}
       </header>
 
       <div className="space-y-8">

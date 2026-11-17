@@ -8,14 +8,9 @@ import { Section } from "../../teaching";
 import { createLinker } from "../../linked";
 import { SignalChecklist } from "../checklist";
 import { SituationBriefPanel } from "../brief";
+import { DebriefBuilder, MockSession, SessionBar } from "../session";
+import { COMPETENCIES } from "@/src/practice/competencies";
 
-const COMPETENCIES = [
-  { id: "ambiguity-scoping", label: "Ambiguity & scoping" },
-  { id: "segmentation", label: "Segmentation" },
-  { id: "jtbd-pain-points", label: "Jobs & pain points" },
-  { id: "prioritisation-tradeoffs", label: "Prioritisation & trade-offs" },
-  { id: "metrics-guardrails", label: "Metrics & guardrails" },
-] as const;
 
 const qtName = (id: string) =>
   graph.get<QuestionType>("question_type", id)?.name ?? id;
@@ -124,6 +119,9 @@ export default async function GuidePage({ params }: { params: Promise<{ id: stri
         </p>
       </div>
 
+      <MockSession>
+      <SessionBar guideId={g.id} minutes={g.duration_min} checkpoints={g.checkpoints} />
+
       <div className="grid gap-6 lg:grid-cols-[1fr_380px]">
         <div className="min-w-0 space-y-7">
           <Section title="What this question is for">
@@ -206,35 +204,15 @@ export default async function GuidePage({ params }: { params: Promise<{ id: stri
             title="Debrief"
             note="Last five minutes. Specific beats kind — they can act on specific."
           >
-            <div className="grid gap-3 sm:grid-cols-2">
-              <div className="rounded-lg border border-live-600/30 bg-live-600/[0.05] p-3">
-                <div className="mb-1.5 font-mono text-[10px] uppercase tracking-wider text-live-400">
-                  Plus
-                </div>
-                <ul className="space-y-1.5">
-                  {g.debrief.plus.map((x) => (
-                    <li key={x} className="text-[13.5px] leading-relaxed text-ink-300">
-                      “{x}”
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="rounded-lg border border-warn-400/30 bg-warn-400/[0.04] p-3">
-                <div className="mb-1.5 font-mono text-[10px] uppercase tracking-wider text-warn-400">
-                  Delta
-                </div>
-                <ul className="space-y-1.5">
-                  {g.debrief.delta.map((x) => (
-                    <li key={x} className="text-[13.5px] leading-relaxed text-ink-300">
-                      “{x}”
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-            <p className="mt-3 border-l-2 border-ink-600 pl-3 text-[14px] leading-relaxed text-ink-100">
-              {L(g.debrief.most_common)}
-            </p>
+            <DebriefBuilder
+              guideId={g.id}
+              question={g.question}
+              plusLines={g.debrief.plus}
+              deltaLines={g.debrief.delta}
+              signalGroups={g.signal_groups}
+              antiSignals={g.anti_signals}
+              mostCommon={L(g.debrief.most_common)}
+            />
           </Section>
 
           <Section title="What not to score on" tone="warn">
@@ -259,6 +237,7 @@ export default async function GuidePage({ params }: { params: Promise<{ id: stri
           <SignalChecklist groups={g.signal_groups} antiSignals={g.anti_signals} />
         </aside>
       </div>
+      </MockSession>
     </main>
   );
 }

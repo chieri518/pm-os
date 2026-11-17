@@ -41,6 +41,12 @@ export default function InterviewerIndex() {
           Built from published evaluation criteria, not reproduced from any company&apos;s internal
           material — which is confidential and not public. Each guide states how it was assembled.
         </p>
+        <p className="mt-3 text-[15px] leading-relaxed text-ink-300">
+          <span className="text-ink-100">Practising with a friend?</span> Open any guide and send
+          them the candidate link from the top of the page. They see only the prompt and a clock;
+          you run the session from the guide, tick what you see, and send back a debrief they keep.
+          Neither of you needs interviewing experience.
+        </p>
         <p className="mt-3 font-mono text-[11px] text-ink-400">
           {guides.length} guides · {probes} probes · {signals} observable signals
         </p>

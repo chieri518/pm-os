@@ -69,7 +69,7 @@ export default function HomePage() {
       kicker: "You are running the interview",
       title: "Take the other chair",
       blurb:
-        "The half nobody publishes: the situation brief behind the prompt, what to grant and what to hold back, a probe ladder, a signal checklist, and what not to score on.",
+        "The half nobody publishes: the situation brief behind the prompt, what to grant and what to hold back, a probe ladder and a signal checklist. Run any of them as a mock with a friend and send back a debrief.",
       meta: `${guides.length} interviewer guides`,
     },
   ];
