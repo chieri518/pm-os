@@ -1,16 +1,24 @@
 # pm-os
 
-A dynamic knowledge graph for PM interview preparation — bridging structural
-frameworks, user archetypes, behavioural heuristics, and company-specific rubrics.
+PM interview prep from both sides of the table.
 
-Unlike static prep libraries, `pm-os` treats these as **four facets of one answer**
-rather than four separate content types. A strong response is a traversal:
+Every prep site publishes questions and model answers. Almost none publish the
+interviewer's half — what the prompt is actually testing, which clarifications to grant
+and which to hold back, when to probe, and what to refuse to score on. `pm-os` does, and
+pairs it with a curriculum that states plainly where the evidence behind well-known PM
+advice stops.
 
-```
-Framework(CIRCLES) → Stage(Identify) → Archetype(new parent)
-   → Situation(2am, one-handed, 90s) → Heuristic(Hick's Law)
-   → Tension(vs Jakob's Law) → Lens(Meta: segmentation weighted 30%)
-```
+| Where | What it is |
+|---|---|
+| `/interviewer` | Nine interviewer guides — situation brief, probe ladder, signal checklist, bias guards |
+| `/question/*` | Eight question types: the approach, what is scored, pitfalls ranked by cost |
+| `/concept/*` | Nineteen concepts at three depths, each with an evidence verdict |
+| `/company/*` | Five company lenses, every claim tagged official, corroborated or estimate |
+| `/glossary`, `/graph` | 46 terms, auto-linked through the prose; a map you walk from a question outward |
+
+Underneath, it is a typed knowledge graph: every relationship between two pieces of
+content is authored with a reason, and that reason is what the backlinks, the graph and
+the guides display.
 
 ## Quick start
 
@@ -21,24 +29,6 @@ npm run validate   # schema + referential integrity across all content
 npm run check      # integrity checks on the interviewer guides
 npm run demo       # answers the milestone-1 query in the terminal
 ```
-
-## The one architectural idea
-
-**Heuristics bind to *situations*, never to *archetypes*.**
-
-Hick's Law does not apply to "a busy parent." It applies to anyone under high cognitive
-load or a sub-two-minute time budget. A busy parent just occupies that state often — and
-does not occupy it on a Saturday morning.
-
-So personas split into two layers:
-
-| Layer | Holds | Changes |
-|---|---|---|
-| `Archetype` | age band, life stage, role, drivers, values, frictions | slowly — it is who they are |
-| `Situation` | device, hands free, time budget, cognitive load, motivation, ability, stakes | constantly — it is where they are |
-
-Heuristics carry a **predicate** over situational dimensions. Run one archetype through
-two situations and you get two different answers, which is the whole point.
 
 ## Repository layout
 
@@ -80,6 +70,26 @@ TYPICAL_FOR    situation     → archetype      (many-to-many)
 Every edge requires a prose `rationale`. That string is the product — it becomes
 explanation copy, interview feedback, and revision material. An edge without a reason is
 just a tag.
+
+### Design note — heuristics bind to situations, not archetypes
+
+Hick's Law does not apply to "a busy parent." It applies to anyone under high cognitive
+load or a sub-two-minute time budget. A busy parent just occupies that state often — and
+does not occupy it on a Saturday morning. So personas split into two layers:
+
+| Layer | Holds | Changes |
+|---|---|---|
+| `Archetype` | age band, life stage, role, drivers, values, frictions | slowly — it is who they are |
+| `Situation` | device, hands free, time budget, cognitive load, motivation, ability, stakes | constantly — it is where they are |
+
+Heuristics carry a **predicate** over situational dimensions, so one archetype run
+through two situations gets two different answers. `npm run demo` shows it.
+
+This was the founding idea of the data model and it still governs it, but it is no longer
+a feature of the product. Two interfaces built to expose it — a slider playground and a
+timed practice builder — were cut because they answered a question nobody preparing for an
+interview was asking ([BUILD_LOG.md](BUILD_LOG.md), Milestones 6 and 10). In the app it
+surfaces only as each heuristic's *When it fires* panel.
 
 ## Concepts, at three depths
 
@@ -190,8 +200,15 @@ the relationship *is* — *"TENSIONS_WITH: resolve toward Hick's when the user i
 load"*. Authored edges and discovered prose mentions render separately, because only one
 of them carries a claim.
 
-`/graph` draws the whole corpus — 94 nodes, 354 edges — with a hand-written force
-simulation rather than a dependency. ⌘K searches everything.
+`/graph` opens on one question type with only its neighbourhood drawn: authored links on
+an inner ring, prose mentions on an outer one, and a panel giving each authored link's
+reason. Click any node and it becomes the centre, so the map is walked rather than
+admired. The whole corpus — 94 nodes, 250 edges, laid out by a hand-written force
+simulation rather than a dependency — is one toggle away. ⌘K searches everything.
+
+Prose mentions use the same word-boundary matching as on-page links, and acronyms
+match only in capitals, so "STAR" is a reference but "start", "standard" and "North
+Star" are not.
 
 ## Licence and sourcing
 
@@ -217,10 +234,6 @@ with situation briefs, and the intent-based front door.
 
 Corpus: 8 question types · 19 concepts · 7 frameworks · 9 heuristics · 46 terms ·
 9 interviewer guides · 5 company lenses · 6 archetypes · 9 situations · 104 authored edges.
-
-Archetypes and situations still drive every heuristic's firing conditions, but since the
-practice builder was removed (Milestone 10) they have no pages of their own — the idea
-surfaces on each heuristic's *When it fires* panel rather than as something to browse.
 
 The playground (Milestones 2–5) and the practice builder (Milestone 6) were both built and
 then deliberately removed; the build log records why. See [BUILD_LOG.md](BUILD_LOG.md) for

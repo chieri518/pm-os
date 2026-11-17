@@ -1299,3 +1299,53 @@ linkable from the homepage doors and from anywhere else.
 `/` stopped being the library, so the nav's "Library" link moved to `/library` and
 the glossary's "see the concepts" pointer was repointed. The brand mark still goes
 home. Verified that nothing else assumed `/` was the catalogue — only those two.
+
+---
+
+## Milestone 15 — Launch Polish, and a Graph You Can Walk
+
+**Trigger:** getting it ready to show people. A review against "would this hold up
+to someone clicking around for five minutes" found the product was ahead of its own
+description, and one page was repeating a mistake this log has already named twice.
+
+### Things that had drifted
+
+- Every heuristic page still invited you to "see this fire in a practice session" —
+  a feature deleted in Milestone 10. The link went to `/interviewer`, which does not
+  do that.
+- The README's headline was the situations/archetypes model, which has had no
+  interface since the practice builder went. It is now a design note under the data
+  model, with a plain statement that it governs the schema rather than the product.
+- The site called itself a "Career OS". There is no career content.
+- No share metadata at all, so every link pasted into a message previewed as a bare
+  URL. There is now one generated share card, built from the live corpus counts, and
+  every page's own title and description carry through to it.
+
+### A bug in the backlinks, found by looking at the graph
+
+The two biggest hubs on the map were **STAR** and **PRD**, with ~38 inbound links
+each. Neither is that central. Build-time mention detection used substring search,
+so "star" was found inside *start*, *standard* and *startup*, and PRD's alias "spec"
+inside *specific*. On-page links used word boundaries and were fine; the "Mentioned
+in" panels on 54 pages were not.
+
+Fixed by giving both paths one function, and adding a rule that acronyms match only
+in capitals — word boundaries alone would still have linked "North Star" to STAR.
+STAR went from 37 mentions to 2, PRD from 38 to 3, and mention edges from 300 to 196.
+The map's real hubs turn out to be *segment*, *retention* and Metrics & Diagnosis,
+which is what you would have guessed.
+
+### Decision 25 — The graph opens on a question, not on everything
+
+The whole-corpus view was the playground's failure mode again: the most impressive
+screen and the least useful one. Ninety-odd nodes, colliding labels, and no question
+it could answer.
+
+It now opens centred on one question type, with authored relationships on an inner
+ring, prose mentions on an outer one, every node labelled, and a panel giving each
+authored link's rationale. Clicking a node makes it the centre, and the URL hash
+deep-links to it. The edge rationales — authored once in Milestone 1 — now ship to
+the map as well, which is the third surface they feed.
+
+The whole-corpus view survives behind a toggle. It is still a good screenshot; it is
+just no longer the front door.
