@@ -1,0 +1,188 @@
+id: evaluating-ai-products
+name: Evaluating AI Products
+order: 43
+domain: metrics
+in_one_line: >-
+  "It looked great in the demo" is a sample of ten. Knowing whether an AI feature
+  is good enough means a representative eval set, graders you have checked, and a
+  live test — because the offline score is a gate, not a verdict.
+
+why_it_matters: >-
+  Every AI feature eventually faces the question "is the new version better?",
+  and without an evaluation the answer is whoever argues most confidently. It is
+  also where interviews separate candidates fastest: almost everyone can propose
+  an AI feature, far fewer can say how they would know it works before customers
+  find out that it does not.
+
+layers:
+  - level: orientation
+    title: Why you cannot test it like ordinary software
+    body: >-
+      Ordinary software is tested with examples: given this input, expect exactly
+      this output. An LLM feature breaks both halves of that. The same input can
+      produce different outputs, and for most tasks — a summary, a support reply, a
+      search answer — there is no single correct output to compare against, only
+      better and worse ones. So the unit of evidence is not "it worked when I tried
+      it" but a rate over a set: a few hundred inputs drawn from real use, graded
+      against stated criteria, and rerun every time anything changes — the prompt,
+      the model, the retrieved documents. That set is an eval. There are three ways
+      to grade it, usually combined: code checks for anything mechanical (is the
+      order number present, is the output valid, does every link resolve), people
+      grading against a rubric, and an LLM judge for scale.
+
+  - level: working
+    title: Building one that tells you something
+    body: >-
+      Sample from real traffic, stratified so each kind of request is present, and
+      deliberately include the hard tail — the ambiguous, the angry, the out of
+      scope. Hand-picked examples measure the demo, not the product. Write a rubric,
+      but expect to rewrite it: Shankar et al. (2024) named this "criteria drift" —
+      people need criteria to grade outputs, and grading outputs is how they discover
+      their criteria. Iterate on a small batch, then freeze the rubric before you
+      compare versions. Grade the current alternative with the same rubric, because
+      "good enough" means better than what happens today, not perfect; if
+      human-written answers pass 80% of the time, a 90% model is an improvement
+      even though it fails one case in ten. Measure how often two human graders
+      agree, because that sets the bar for any automated grader: one that matches
+      your graders about as often as they match each other is as good as you can
+      check. Report scores per segment rather than one average — an average
+      can look healthy while one category of request, often the expensive one, is
+      quietly failing. And give credit for abstaining: a rubric that scores "I'm not
+      sure, passing you to a colleague" as a failure trains the system toward
+      confident guessing, which is the incentive Kalai et al. (2025) argue produces
+      hallucination in the first place.
+
+  - level: expert
+    title: What LLM judges get wrong, and why the offline score is not the launch decision
+    body: >-
+      LLM-as-judge is the only way to grade thousands of outputs on every change, and
+      its failure modes are measured. Zheng et al. (2023) found GPT-4 as a judge
+      agreed with expert human votes on 85% of non-tied comparisons, against 81%
+      agreement between the experts themselves. The same paper found that when the
+      two answers were swapped, GPT-4 gave a consistent verdict only 65% of the time,
+      mostly favouring the first answer; GPT-3.5 managed 46% and Claude-v1 24%.
+      Padding a list answer with reworded repeats fooled GPT-3.5 and Claude-v1 in 21
+      of 23 cases and GPT-4 in 2. Wang et al. (2024) showed the ordering effect is
+      large enough to change a leaderboard: with ChatGPT as judge, simply reordering
+      let Vicuna-13B beat ChatGPT on 66 of 80 queries. Panickssery et al. (2024)
+      found models can recognise their own writing and that self-preference rises
+      with that ability. These are 2023-era models and current judges may do better;
+      the durable lesson is to measure your judge rather than trust anyone's numbers —
+      check its agreement with human labels on your data, run pairwise comparisons in
+      both orders, and avoid having a model grade its own output. Then the second
+      gap. An offline eval answers "is it better on the cases we wrote down";
+      whether people get more value is a different question, because users change
+      behaviour around a new system and traffic drifts from the sample. Netflix
+      reported relying on offline experiments to choose what to A/B test while not
+      finding them "as highly predictive of A/B test outcomes as we would like", and
+      Garcin et al. (2014) found that recommending the most popular stories scored
+      best in offline tests on a Swiss news site and worst when run live. Treat the offline score as the gate into a staged
+      rollout, decide on the online metrics, and feed production failures back into
+      the eval set. Keep part of it held out: a set you tune against for months
+      stops measuring anything but itself.
+
+formulas:
+  - name: Judge agreement
+    expression: "Agreement = items where judge label = human label ÷ items in a human-labelled sample"
+    notes: "Read it against human-human agreement on the same items. Matching your graders about as often as they match each other is as good as you can verify."
+  - name: Position consistency
+    expression: "Consistency = pairwise verdicts unchanged when answer order is swapped ÷ all pairwise verdicts"
+    notes: "The check Zheng et al. used. Count a win only when it survives the swap; treat the rest as ties."
+
+worked_example:
+  situation: >-
+    A team wants to move an AI meeting-notes summariser to a model that costs a
+    fifth as much. Their LLM judge — the current, expensive model — scores both
+    versions 4.2 out of 5 and they propose shipping on Friday.
+  steps:
+    - "Ask who validated the judge. Nobody has; it was set up once and trusted since."
+    - "Note the judge is the incumbent model grading its own output against a rival. Self-preference would tilt it toward the incumbent; a coarse five-point scale could hide differences in either direction. Either way the 4.2 is unvalidated."
+    - "Label 150 summaries by hand with two reviewers. They agree on 84%; the judge agrees with them on 79%. Usable, not authoritative."
+    - "Split by segment. Under 30 minutes, the models are indistinguishable. Over 60 minutes — a fifth of meetings — the cheap model drops action items in a third of summaries. The average hid it."
+    - "Decide per segment: route long meetings to the expensive model, short ones to the cheap one, which keeps most of the saving."
+    - "Ship to a tenth of teams first, watching how often users edit or regenerate a summary and reports of missed action items, before rolling further."
+  takeaway: >-
+    The tie was real and meaningless at once: true on average, false where it
+    mattered. Nothing about the decision required a better model — it required
+    checking the grader and refusing to read a single number.
+
+common_errors:
+  - mistake: "Treating a successful demo as evidence the feature works."
+    instead: >-
+      A demo is a hand-picked sample. Ask for a rate over a set drawn from real
+      traffic, including the hard and out-of-scope cases.
+  - mistake: "Reporting one average score."
+    instead: >-
+      Score per segment. The category where errors are most expensive is rarely the
+      most common, so an average is dominated by the cases that matter least.
+  - mistake: "Trusting an LLM judge because it is a strong model."
+    instead: >-
+      Validate it against human labels on your own data, swap answer order in
+      pairwise comparisons, and do not let a model grade its own output unchecked.
+  - mistake: "Setting the bar at perfection."
+    instead: >-
+      Grade today's alternative — usually people — with the same rubric. The launch
+      question is whether it beats that, by segment, with an acceptable failure mode.
+  - mistake: "Shipping on an offline win."
+    instead: >-
+      Offline evals decide what earns a live test. Staged rollout and online
+      metrics, with a guardrail metric on the expensive failure, decide the launch.
+  - mistake: "Penalising 'I don't know' in the rubric."
+    instead: >-
+      Score a correct escalation or abstention as a success where it is the right
+      behaviour. Otherwise you are training for confident guesses.
+
+in_interview:
+  how_to_deploy: >-
+    Whenever you propose an AI feature, say how you would know it is good enough
+    before anyone outside the team sees it — and name what would make your own
+    measurement wrong. Questioning an LLM judge unprompted is the AI-era equivalent
+    of raising sample-ratio mismatch in an experiment question.
+  strong_sounds_like: >-
+    Before launch I would build an eval of a few hundred real requests, stratified
+    by type, and grade today's human answers with the same rubric so we know the
+    bar we are trying to beat. I would use an LLM judge for scale, but only after
+    checking it against two human graders on a sample, and I would run comparisons
+    in both orders, because judges measurably favour whichever answer they see
+    first. That offline score only earns us a pilot — the launch decision rests on
+    re-contact rate and edits in production, with wrong refund promises as the
+    guardrail.
+  weak_sounds_like: >-
+    We would test it on a bunch of examples to make sure the quality is high, then
+    launch it and track user satisfaction, and keep improving the prompt based on
+    feedback.
+
+evidence:
+  strength: supported
+  note: >-
+    A split verdict. That LLM judges show position bias is replicated across
+    independent studies (Zheng et al. 2023; Wang et al. 2024), but the magnitudes
+    were measured on 2023-era models and specific benchmarks and should not be
+    quoted as properties of today's judges; the self-preference finding rests on one
+    strong study, and Zheng et al. themselves said their data could not establish
+    it. The gap between offline and online results is well documented for
+    recommender systems (Netflix; Garcin et al.), and the mechanism plausibly
+    carries over, but published LLM-specific evidence on the size of that gap is
+    thin. The overall method — representative sets, rubrics, human baselines,
+    staged rollout — is strong practitioner consensus, not a tested result.
+
+sources:
+  - label: "Zheng, L. et al. — Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena, NeurIPS Datasets and Benchmarks"
+    url: "https://arxiv.org/abs/2306.05685"
+    year: 2023
+  - label: "Wang, P. et al. — Large Language Models are not Fair Evaluators, ACL"
+    url: "https://aclanthology.org/2024.acl-long.511"
+    year: 2024
+  - label: "Panickssery, A., Bowman, S. & Feng, S. — LLM Evaluators Recognize and Favor Their Own Generations, NeurIPS"
+    url: "https://arxiv.org/abs/2404.13076"
+    year: 2024
+  - label: "Shankar, S. et al. — Who Validates the Validators? Aligning LLM-Assisted Evaluation of LLM Outputs with Human Preferences, UIST"
+    url: "https://arxiv.org/abs/2404.12272"
+    year: 2024
+  - label: "Kalai, A. T., Nachum, O., Vempala, S. & Zhang, E. — Why Language Models Hallucinate (preprint)"
+    url: "https://arxiv.org/abs/2509.04664"
+    year: 2025
+  - label: "Gomez-Uribe, C. & Hunt, N. — The Netflix Recommender System: Algorithms, Business Value, and Innovation, ACM TMIS"
+    year: 2015
+  - label: "Garcin, F. et al. — Offline and Online Evaluation of News Recommender Systems at swissinfo.ch, RecSys"
+    year: 2014

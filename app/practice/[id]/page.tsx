@@ -109,7 +109,7 @@ export default async function PracticePage({ params }: { params: Promise<{ id: s
             href={`/question/${qt.id}` as Route}
             className="text-live-400 underline-offset-2 hover:underline"
           >
-            how {qt.name.toLowerCase()} questions are scored →
+            what gets scored in {qt.name} →
           </Link>
         </p>
       )}

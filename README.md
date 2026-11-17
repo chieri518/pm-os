@@ -10,11 +10,12 @@ advice stops.
 
 | Where | What it is |
 |---|---|
-| `/interviewer` | Nine interviewer guides — situation brief, probe ladder, signal checklist, bias guards |
-| `/question/*` | Eight question types: the approach, what is scored, pitfalls ranked by cost |
-| `/concept/*` | Nineteen concepts at three depths, each with an evidence verdict |
+| `/interviewer` | Ten interviewer guides — situation brief, probe ladder, signal checklist, bias guards |
+| `/practice/*` | Any guide as a peer mock: the candidate gets the prompt and a clock, the interviewer runs it from the guide, and the debrief comes back as a link the candidate keeps |
+| `/question/*` | Nine question types, including AI features: the approach, what is scored, pitfalls ranked by cost |
+| `/concept/*` | Twenty-one concepts at three depths, each with an evidence verdict |
 | `/company/*` | Five company lenses, every claim tagged official, corroborated or estimate |
-| `/glossary`, `/graph` | 46 terms, auto-linked through the prose; the whole corpus as one explorable map |
+| `/glossary`, `/graph` | 55 terms, auto-linked through the prose; the whole corpus as one explorable map |
 
 Underneath, it is a typed knowledge graph: every relationship between two pieces of
 content is authored with a reason, and that reason is what the backlinks, the graph and
@@ -156,16 +157,16 @@ none have the other side of the table — how to deliver the prompt, **which cla
 to grant and which to hand back**, when to probe deeper, how to unstick a candidate
 without giving it away, and what to refuse to score on.
 
-Nine guides: **58 probes, 129 observable signals, 39 bias guards.** Scoring is a tickable
+Ten guides: **65 probes, 149 observable signals, 44 bias guards.** Scoring is a tickable
 checklist of observable behaviours rather than a 1–4 scale with anchors — we have no basis
 for a calibration scale, and inventing one would imply a precision we cannot support.
 
 Each guide also carries a **situation brief**: the world the one-sentence prompt was cut
-out of. **63 facts, each tagged with how hard it is to get** — say it, give it if asked,
-give it only if they ask precisely, hold it — and 47 of them carry the phrasing the question
+out of. **73 facts, each tagged with how hard it is to get** — say it, give it if asked,
+give it only if they ask precisely, hold it — and 55 of them carry the phrasing the question
 usually arrives in, so the brief doubles as the answer sheet for clarifying questions. Plus
-**21 things left deliberately open** with what a defensible assumption looks like, and
-**27 pivots** the question turns on, with the move that unlocks each and what to do when
+**24 things left deliberately open** with what a defensible assumption looks like, and
+**30 pivots** the question turns on, with the move that unlocks each and what to do when
 nobody finds it. Three questions have a hidden right answer and carry it; the rest say
 plainly that they do not, because inventing one would license grading toward a preferred
 solution.
@@ -200,7 +201,7 @@ the relationship *is* — *"TENSIONS_WITH: resolve toward Hick's when the user i
 load"*. Authored edges and discovered prose mentions render separately, because only one
 of them carries a claim.
 
-`/graph` draws the whole corpus — 94 nodes, 250 edges — with a hand-written force
+`/graph` draws the whole corpus — 106 nodes, 295 edges — with a hand-written force
 simulation rather than a dependency: filter by type, hover to isolate a neighbourhood.
 ⌘K searches everything.
 
@@ -226,12 +227,12 @@ either industry-standard or written for this project.
 
 ## Status
 
-Milestones 1–14 complete: data architecture, learning layer, canon coverage, the taught
+Milestones 1–16 complete: data architecture, learning layer, canon coverage, the taught
 curriculum, sourced company lenses, the linked glossary and graph, the interviewer guides
-with situation briefs, and the intent-based front door.
+with situation briefs, the intent-based front door, peer mock sessions, and AI-feature questions.
 
-Corpus: 8 question types · 19 concepts · 7 frameworks · 9 heuristics · 46 terms ·
-9 interviewer guides · 5 company lenses · 6 archetypes · 9 situations · 104 authored edges.
+Corpus: 9 question types · 21 concepts · 7 frameworks · 9 heuristics · 55 terms ·
+10 interviewer guides · 5 company lenses · 6 archetypes · 9 situations · 112 authored edges.
 
 The playground (Milestones 2–5) and the practice builder (Milestone 6) were both built and
 then deliberately removed; the build log records why. See [BUILD_LOG.md](BUILD_LOG.md) for

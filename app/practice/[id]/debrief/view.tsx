@@ -235,7 +235,7 @@ export function DebriefView(p: Props) {
           <>
             {" "}
             <Link href={p.questionType.href as Route} className="text-live-400 underline-offset-2 hover:underline">
-              How {p.questionType.name.toLowerCase()} questions are scored →
+              What gets scored in {p.questionType.name} →
             </Link>
           </>
         )}

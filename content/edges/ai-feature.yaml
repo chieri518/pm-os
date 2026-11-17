@@ -1,0 +1,84 @@
+# Edges for the AI feature question type: which structures fit it, and what it
+# assumes you already know.
+#
+# No ASKED_BY edges, deliberately. The only reports of AI-specific rounds we found
+# come from prep sites and coaching newsletters, and the round most often reported
+# (a product-sense question answered while using AI tools) is a different exercise
+# from this one. None of the five lensed companies has published that it asks AI
+# product questions as a distinct type. Add an edge when a first-party source does.
+
+# ---------------------------------------------------------------- ANSWERED_WITH
+- from: { type: question_type, id: ai-feature }
+  to: { type: framework, id: circles }
+  relation: ANSWERED_WITH
+  strength: 4
+  rationale: >-
+    Carries the product half of the answer — user, needs, prioritised solutions —
+    unchanged. It has no stage for the two beats the AI framing adds: splitting the
+    work by what an error costs, and saying how you would evaluate it. Add those
+    explicitly after Cut Through Prioritization and before Summarize Recommendation.
+
+- from: { type: question_type, id: ai-feature }
+  to: { type: framework, id: rice }
+  relation: ANSWERED_WITH
+  strength: 2
+  rationale: >-
+    Only on the follow-up, when ranking which task to automate first. Read
+    Confidence literally — how strong your eval evidence is for that task — and
+    weigh error cost alongside Impact, which RICE does not do on its own.
+
+# ---------------------------------------------------------------- REQUIRES
+- from: { type: question_type, id: ai-feature }
+  to: { type: concept, id: designing-for-probabilistic-output }
+  relation: REQUIRES
+  strength: 5
+  rationale: >-
+    The core of the question. Choosing a level of automation per task, designing
+    the failure path, and knowing that human review degrades into rubber-stamping
+    are the moves that separate a design from a demo script.
+
+- from: { type: question_type, id: ai-feature }
+  to: { type: concept, id: evaluating-ai-products }
+  relation: REQUIRES
+  strength: 5
+  rationale: >-
+    "How would you know it is good enough?" is asked of every AI feature, and
+    "test it on some examples" is the answer that loses the round. A representative
+    eval, a human baseline and a checked grader are the expected vocabulary.
+
+- from: { type: question_type, id: ai-feature }
+  to: { type: concept, id: ml-for-pms }
+  relation: REQUIRES
+  strength: 4
+  rationale: >-
+    The foundation: deciding which error you would rather make, and why accuracy
+    on an imbalanced problem is satisfiable by doing nothing. The AI feature
+    question assumes you already have it.
+
+- from: { type: question_type, id: ai-feature }
+  to: { type: concept, id: ab-testing }
+  relation: REQUIRES
+  strength: 4
+  rationale: >-
+    An offline eval earns a live test; it does not replace one. The launch
+    decision rests on a controlled rollout with a pre-chosen primary metric and a
+    guardrail metric on the expensive failure.
+
+- from: { type: question_type, id: ai-feature }
+  to: { type: concept, id: system-design-for-pms }
+  relation: REQUIRES
+  strength: 3
+  rationale: >-
+    The quality–latency–cost trade-off is the system-design triangle with a model
+    in it. Knowing that the surface sets the latency budget — an email can wait a
+    minute, autocomplete cannot wait a second — is what makes model choice a
+    product decision.
+
+- from: { type: question_type, id: ai-feature }
+  to: { type: concept, id: unit-economics }
+  relation: REQUIRES
+  strength: 3
+  rationale: >-
+    Every use of an AI feature has a marginal cost, unlike most software. Being
+    able to express it per resolved task, and compare it with what the work costs
+    today, is what answers the finance follow-up.

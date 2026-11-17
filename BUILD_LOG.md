@@ -1354,3 +1354,66 @@ shows the corpus's real shape.
 The lesson is narrower than "never cut the impressive thing": the playground failed
 because it was a destination with nowhere to go. The map is a way of browsing, and
 browsing was the job.
+
+---
+
+## Milestone 16 — Practice With a Partner, and the AI Round
+
+**Trigger:** stepping back to ask what an aspiring PM actually needs, with research
+rather than intuition. Three findings set the direction. Reciting frameworks is now
+read as a red flag rather than preparation. The way in increasingly runs through
+proof of shipped work — LinkedIn replaced its APM programme with a track that takes a
+60-second product demo and no CV. And the most common complaint about peer mock
+interviews is the partner: feedback that is thin, inconsistent, or noise unless they
+happen to be more experienced than you.
+
+That last one is the gap pm-os was already halfway across. The interviewer guides
+tell an untrained partner what to hold back, when to probe and what to score. What
+was missing was the session itself.
+
+### Decision 26 — A mock session with no backend
+
+`/practice/[guide]` is the candidate's side: the prompt, the facts every candidate is
+told, and a clock. No pacing checkpoints and no link to the guide in the main flow,
+because seeing either first spoils the exercise. The interviewer's guide gains a
+session bar — candidate link, and a timer that shows which checkpoint they should
+have reached — and the checklist and Plus/Delta lines became one debrief builder.
+
+The debrief travels **in the link's fragment**. Browsers never send the part after
+`#` to a server, so a candid note about a named person exists only in the
+interviewer's clipboard and the candidate's browser. No accounts, no database, no
+retention policy to write. The candidate's page decodes it and adds what the
+question could not show: signals not observed, the concepts this question type
+assumes, and the guides whose core competencies cover this one's `not_tested` list.
+That last field was authored in Milestone 11 for honesty; it now routes practice.
+
+One bug worth recording: the first build failed because a server component passed a
+function to a client component — a copy button that built its URL at click time.
+The fix was a `path` prop the server can pass as plain data.
+
+### Decision 27 — AI features as a product question, not a technical one
+
+The new question type, *Design & Launch an AI Feature*, sits in the `product` family
+on purpose. What it scores is product judgement around a component that will
+sometimes be wrong — which tasks may run alone, what "good enough" means, what to
+measure — not knowledge of how models work, which stays one REQUIRES edge away in
+`ml-for-pms`.
+
+Its guide holds back the fact the question turns on: a refund promised in writing is
+honoured even when policy says no. A wrong delivery date costs a follow-up email; a
+wrong refund promise costs money nobody sees until finance does. The candidate who
+asks what an error costs earns the asymmetry that should set automation per
+category. The strongest single probe — *"agents approve 97% of drafts unedited; good
+news?"* — tests whether "human in the loop" is a safety net or a rubber stamp.
+
+Two new concepts carry the evidence: *Evaluating AI Products* and *Designing for
+Probabilistic Output*. The LLM-as-judge numbers come from Zheng et al. (2023), read
+in full: GPT-4 agreed with experts on 85% of non-tied comparisons against 81%
+between experts, yet kept the same verdict only 65% of the time when the two answers
+were swapped. Both concepts are marked `supported` with split notes, because the
+bias magnitudes describe 2023-era models and the LLM-specific evidence on the
+offline–online gap is thin. No ASKED_BY edges: the only sources for "AI rounds" are
+prep sites, and the round they describe is a different exercise. The question type
+says so and tells candidates to ask their recruiter.
+
+Corpus: 9 question types · 21 concepts · 55 terms · 10 guides · 112 authored edges.

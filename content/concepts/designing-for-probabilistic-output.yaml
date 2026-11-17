@@ -1,0 +1,213 @@
+id: designing-for-probabilistic-output
+name: Designing for Probabilistic Output
+order: 74
+domain: technical
+in_one_line: >-
+  An AI feature will be wrong some of the time, fluently. Most of the design work
+  is deciding how much it may do alone, what it costs to be right, and how cheaply
+  a person can catch it when it is not.
+
+why_it_matters: >-
+  Machine Learning for PMs covers choosing which error to prefer. This is the next
+  step: once you accept the model will make that error, what does the product do
+  about it? The answers — how much to automate, where to spend on quality, latency
+  and cost, and whether the human reviewer is actually reviewing — are product
+  decisions, and they are where AI product questions are won or lost.
+
+layers:
+  - level: orientation
+    title: The question moves from "is it right?" to "what happens when it is wrong?"
+    body: >-
+      Generative models produce plausible text, and some of it is false or
+      unsupported by the material they were given — a hallucination. This is a
+      standing property, not a launch-week bug: OpenAI's GPT-4 report describes the
+      model as "not fully reliable", and Kalai et al. (2025) argue that the way models
+      are trained and scored rewards a confident guess over admitting uncertainty.
+      What makes it a design problem is that the error arrives in the same confident
+      register as a correct answer, so users cannot tell them apart by tone. That
+      leaves three levers. How much the model decides on its own. What it is
+      grounded in, so that claims can be traced and checked. And how cheaply a
+      person can notice and undo a mistake. A feature designed around those three
+      can tolerate a model that is wrong one time in twenty; a feature that assumes
+      the model is right cannot tolerate one that is wrong one time in a thousand.
+
+  - level: working
+    title: Levels of automation, and the quality–latency–cost triangle
+    body: >-
+      Automation is not on or off. Parasuraman, Sheridan and Wickens (2000) split it
+      into four functions — gathering information, analysing it, choosing an action,
+      carrying it out — each automatable to a different degree on a scale from fully
+      manual to fully automatic. In product terms the rungs are roughly: suggest and
+      let the user act, draft for approval, act with an undo window, act silently.
+      Choose per task, not per product, by asking how costly an error is, how
+      reversible, and how likely the user is to spot it — a wrong delivery date is
+      cheap and visible, a wrong refund promise is expensive and invisible until it
+      is honoured. Confidence-based routing (act when sure, ask a person otherwise)
+      is the standard pattern, but do not take confidence from the model's own say-so:
+      LLMs stating their confidence in words tend to overstate it (Xiong et al.,
+      2024). Use checkable signals — did retrieval find a matching source, do several
+      samples agree, does the answer match the system of record — and set thresholds
+      on an eval set. Grounding via retrieval-augmented generation helps: Lewis et
+      al. (2020) found it more specific and factual than a model answering from
+      memory. It does not finish the job: generative search engines audited by Liu
+      et al. (2023) had only 51.5% of sentences fully supported by their citations,
+      and legal research tools sold as hallucination-free were measured at 17-33%
+      (Magesh et al., 2025). Then the triangle. Larger models, more retrieved
+      context and extra verification calls buy quality with latency and money.
+      Providers bill per token, input and output separately, so every use has a
+      marginal cost. The levers are routing easy requests to smaller models (Chen et
+      al.'s 2023 cascade matched GPT-4 at up to 98% lower cost on their benchmarks — a
+      research result, not a guarantee), shorter outputs, batching work nobody is
+      waiting for, and not calling a model at all when code already knows the
+      answer, which OpenAI's own latency guide lists as a principle. The latency
+      budget comes from the surface: an email reply can take a minute, autocomplete
+      cannot take one second.
+
+  - level: expert
+    title: Human-in-the-loop is a design problem, not a safety net
+    body: >-
+      "A human reviews it" is the most common answer to model error and the least
+      examined. Bainbridge's "Ironies of Automation" (1983) made the point for
+      industrial control: automate the routine and you leave people the job they do
+      worst — monitoring for rare failures — while the skills needed to intervene
+      decay from disuse. The research on decision aids bears it out. Parasuraman and
+      Manzey (2010) reviewed automation bias — missing what the aid did not flag and
+      following it when wrong — and found it in experts and novices alike, not
+      prevented by training or instruction. Explanations are not the fix they look
+      like: Bansal et al. (2021) found AI explanations raised acceptance of the AI's
+      recommendation regardless of whether it was correct. What did reduce
+      overreliance in Buçinca et al. (2021, N=199) was forcing people to engage
+      before seeing the AI's answer — and participants liked those designs least,
+      which is a real product trade-off rather than a free win. So a review step
+      needs its own design and its own metrics: a workload that allows genuine
+      review, the evidence shown next to the claim, known-bad items seeded into the
+      queue to measure whether reviewers catch them, and the approval rate read as a
+      warning sign when it climbs toward a hundred. Amershi et al.'s eighteen
+      guidelines for human-AI interaction (CHI 2019) are the best single checklist
+      for the rest, and several are about exactly this: make clear how well the
+      system can do what it does, support efficient dismissal and correction, scope
+      services when in doubt, and make clear why the system did what it did.
+
+formulas:
+  - name: Expected cost of an automated action
+    expression: "Expected cost ≈ P(error) × cost of the error × (1 − P(caught before it lands))"
+    notes: "The model team works on the first term. The product team owns the third — undo windows, confirmations and visible sources all raise the chance of catching it."
+  - name: Cost per successful task
+    expression: "Cost per success = (model cost per attempt + human fix-up cost per attempt) ÷ success rate"
+    notes: "The unit that settles a model choice. A cheaper model with a lower success rate and a person cleaning up behind it can cost more per resolved task."
+
+worked_example:
+  situation: >-
+    A bank wants a chat assistant that answers customers' questions about their own
+    transactions and can also cancel a direct debit on request.
+  steps:
+    - "Split by what the assistant does, not by topic. Answering is reading; cancelling is acting on money. They get different levels of automation."
+    - "Reading: ground every answer in the customer's transaction data and show the transactions it is based on, so a wrong answer is checkable at a glance."
+    - "Do not use a model for 'what is my balance?' at all. The answer is a database lookup — code is faster, cheaper and cannot invent a number."
+    - "Acting: draft the cancellation, show exactly which payment stops and what that means for the next bill, require explicit confirmation, and keep a short undo window."
+    - "Out of scope — tax questions, disputes, anything suggesting financial difficulty — the assistant says so and hands over to a person rather than attempting an answer."
+    - "Latency budget is chat-length, so keep the model call short and stream the reply; spend the quality budget on retrieval rather than a larger model."
+    - "Measure handover rate, wrong-answer reports and cancellations reversed within the undo window, with complaints as the guardrail metric."
+  takeaway: >-
+    Almost none of the design is about making the model more accurate. It is about
+    routing the cheap, checkable work to automation, keeping consequential actions
+    behind a confirmation, and making every error visible early enough to undo.
+
+common_errors:
+  - mistake: "Promising the feature will not hallucinate."
+    instead: >-
+      Promise what happens when it does: the answer is grounded, the source is
+      shown, and the error is cheap to spot and correct.
+  - mistake: "Choosing one level of automation for the whole feature."
+    instead: >-
+      Set it per task by cost, reversibility and visibility of error. The same
+      assistant can answer freely and still need confirmation to act.
+  - mistake: "Routing on the model's self-reported confidence."
+    instead: >-
+      Use signals you can check — source found, samples agree, matches the system
+      of record — and validate the threshold on an eval set.
+  - mistake: "Treating 'a human reviews it' as the end of the safety argument."
+    instead: >-
+      Design and measure the review: workload, evidence on screen, seeded errors to
+      test whether reviewers catch them. A near-total approval rate is a warning.
+  - mistake: "Picking the most capable model by default."
+    instead: >-
+      Start from the latency budget of the surface and the cost per successful task.
+      Route easy requests to cheaper models, or to plain code where the answer is
+      already known.
+
+in_interview:
+  how_to_deploy: >-
+    After proposing any AI feature, walk one failure end to end: the model is
+    wrong, what does the user see, who notices, and how is it undone? Then choose a
+    level of automation per task and say what would earn the feature more autonomy
+    later. Naming automation bias unprompted when you propose human review is rare
+    and strongly differentiating.
+  strong_sounds_like: >-
+    I would let it answer delivery questions on its own, because they are checked
+    against the order system and a wrong date is cheap and visible. Refund questions
+    get a draft an agent approves, because a wrong promise costs real money and the
+    customer cannot spot it. I would not trust approval as a safety net by itself —
+    reviewers stop reading once the drafts are usually right — so I would seed a
+    few known-bad drafts each week and track whether they are caught. Autonomy on
+    refunds gets earned intent by intent, on that evidence.
+  weak_sounds_like: >-
+    We would use the latest model so hallucinations are minimal, add a disclaimer
+    that AI can make mistakes, and have a human in the loop to catch any errors.
+
+evidence:
+  strength: supported
+  note: >-
+    Uneven, and worth stating precisely. Automation bias and overreliance on
+    decision aids are replicated across decades of human-factors research, and
+    that hallucination persists in production systems — including retrieval-based
+    ones — is documented by independent audits. The levels-of-automation model is
+    an established framework rather than an empirical finding, and Amershi et al.'s
+    guidelines were validated with practitioners rather than outcome studies. The
+    LLM-specific mitigations — confidence routing on external signals, cascades,
+    seeded review audits — are current engineering practice with thin published
+    outcome evidence, and the cascade savings come from one research benchmark.
+    Prices and model capabilities change monthly; the structure of the trade-off
+    is stable, the numbers are not.
+
+sources:
+  - label: "Parasuraman, R., Sheridan, T. B. & Wickens, C. D. — A model for types and levels of human interaction with automation, IEEE Transactions on Systems, Man, and Cybernetics"
+    year: 2000
+  - label: "Parasuraman, R. & Manzey, D. H. — Complacency and bias in human use of automation: an attentional integration, Human Factors"
+    year: 2010
+  - label: "Bainbridge, L. — Ironies of Automation, Automatica"
+    year: 1983
+  - label: "Bansal, G. et al. — Does the Whole Exceed its Parts? The Effect of AI Explanations on Complementary Team Performance, CHI"
+    url: "https://arxiv.org/abs/2006.14779"
+    year: 2021
+  - label: "Buçinca, Z., Malaya, M. B. & Gajos, K. Z. — To Trust or to Think: Cognitive Forcing Functions Can Reduce Overreliance on AI in AI-assisted Decision-making, Proc. ACM HCI (CSCW)"
+    url: "https://arxiv.org/abs/2102.09692"
+    year: 2021
+  - label: "Amershi, S. et al. — Guidelines for Human-AI Interaction, CHI"
+    url: "https://www.microsoft.com/en-us/research/publication/guidelines-for-human-ai-interaction/"
+    year: 2019
+  - label: "Lewis, P. et al. — Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks, NeurIPS"
+    url: "https://arxiv.org/abs/2005.11401"
+    year: 2020
+  - label: "Liu, N. F., Zhang, T. & Liang, P. — Evaluating Verifiability in Generative Search Engines, Findings of EMNLP"
+    url: "https://arxiv.org/abs/2304.09848"
+    year: 2023
+  - label: "Magesh, V. et al. — Hallucination-Free? Assessing the Reliability of Leading AI Legal Research Tools, Journal of Empirical Legal Studies"
+    url: "https://arxiv.org/abs/2405.20362"
+    year: 2025
+  - label: "Xiong, M. et al. — Can LLMs Express Their Uncertainty? An Empirical Evaluation of Confidence Elicitation in LLMs, ICLR"
+    url: "https://arxiv.org/abs/2306.13063"
+    year: 2024
+  - label: "OpenAI — GPT-4 Technical Report (limitations; calibration before and after post-training)"
+    url: "https://arxiv.org/abs/2303.08774"
+    year: 2023
+  - label: "Kalai, A. T. et al. — Why Language Models Hallucinate (preprint)"
+    url: "https://arxiv.org/abs/2509.04664"
+    year: 2025
+  - label: "Chen, L., Zaharia, M. & Zou, J. — FrugalGPT: How to Use Large Language Models While Reducing Cost and Improving Performance (preprint)"
+    url: "https://arxiv.org/abs/2305.05176"
+    year: 2023
+  - label: "OpenAI — Latency optimization guide (API documentation)"
+    url: "https://developers.openai.com/api/docs/guides/latency-optimization"
+  - label: "Anthropic — Pricing (API documentation), consulted November 2026"
+    url: "https://platform.claude.com/docs/en/about-claude/pricing"

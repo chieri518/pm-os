@@ -1,0 +1,190 @@
+id: ai-feature
+name: Design & Launch an AI Feature
+order: 9
+family: product
+prompt_forms:
+  - "Design an AI-powered feature for our support team."
+  - "How would you use an LLM to improve this product?"
+  - "How would you evaluate an AI feature before launching it?"
+  - "Our AI assistant gives wrong answers sometimes. What would you do?"
+  - "How would you decide whether this should use AI at all?"
+
+what_is_tested:
+  - "Whether you establish the user and the job before reaching for the model"
+  - "Whether you treat the model being wrong as a certainty to design for, not a risk to mention"
+  - "Whether you choose how much the system may do on its own, task by task, and say why"
+  - "Whether you can say how you would know it is good enough — before launch and after it"
+  - "Whether you reason about quality, latency and cost as a trade rather than wanting all three"
+
+approach:
+  - step: 1
+    title: Ask what the AI is for before discussing the AI
+    detail: >-
+      The prompt usually names the technology and leaves the problem vague. Pin
+      down who is helped, doing what, and what success means for the business —
+      then ask whether this needs a model at all. If the answer is already in a
+      database or expressible as a rule, code is cheaper, faster and never invents
+      anything. Saying so is a strong opening, not a refusal to engage.
+  - step: 2
+    title: Split the work by what a wrong answer costs
+    detail: >-
+      An AI feature is rarely one task. A support assistant answers delivery
+      questions, explains policies and promises refunds; a wrong answer costs
+      something different in each. Break the request into its kinds of task and,
+      for each, ask how expensive an error is, how reversible, and whether the user
+      would notice it. That table drives everything after it.
+  - step: 3
+    title: Choose a level of automation per task
+    detail: >-
+      Suggest, draft for approval, act with an undo, or act silently. Cheap,
+      visible, reversible errors can be automated early; expensive, invisible ones
+      start with a person approving. Say what evidence would let a task move up a
+      rung later — autonomy is earned, not configured.
+  - step: 4
+    title: Design the failure path, not just the happy path
+    detail: >-
+      Walk one wrong answer end to end: what the user sees, how they could tell,
+      how it is corrected, who is accountable. Ground answers in your own data and
+      show the source; scope the feature so it hands over when out of its depth.
+      If you propose human review, say how you would know the reviewer is actually
+      reviewing.
+  - step: 5
+    title: Define "good enough" and how you would measure it
+    detail: >-
+      Before launch: an eval built from real requests, graded against a rubric,
+      with today's alternative graded the same way so there is a bar to beat. After
+      launch: a staged rollout with online metrics and a guardrail metric on the
+      expensive failure. The offline score earns a pilot; it does not make the
+      launch decision.
+  - step: 6
+    title: Place it on the quality–latency–cost triangle
+    detail: >-
+      The surface sets the latency budget — an email reply can take a minute,
+      autocomplete cannot take a second. Within that, decide where to spend: a
+      larger model, more retrieval, a checking step. Express cost per successful
+      task rather than per call, and compare it with what the work costs today.
+  - step: 7
+    title: Summarise the recommendation and the biggest risk
+    detail: >-
+      Restate what ships first, at what level of automation, measured how — and
+      the failure you are most worried about. Ending on the risk shows you have not
+      fallen for your own demo.
+
+time_guidance: >-
+  Roughly a quarter on the user, the job and splitting the work by error cost; a
+  third on the design including failure paths and automation levels; a third on
+  evaluation and launch; the rest on trade-offs and the summary. The common
+  inversion is fifteen minutes on capabilities and two on how anyone would know
+  it works.
+
+pitfalls:
+  - mistake: "Leading with the model — which vendor, which architecture, how many parameters."
+    instead: >-
+      Model choice is downstream of the job, the error cost and the latency budget,
+      and it is usually engineering's call. An interviewer is listening for the
+      product decisions, not the stack.
+  - mistake: "Promising accuracy, or that it will not hallucinate."
+    instead: >-
+      Assume it will be wrong some fraction of the time and describe what happens
+      then. A design that survives a wrong answer beats a claim that there will not
+      be one.
+  - mistake: "Offering 'a human in the loop' as the whole answer to model error."
+    instead: >-
+      Say where the human sits, what they see, and how you would know they are
+      still checking once the model is usually right. Unexamined review becomes
+      rubber-stamping.
+  - mistake: "Evaluating with 'we'd test it on some examples'."
+    instead: >-
+      Say which examples, graded by whom against what, compared with what baseline
+      — and what you would measure once it is live.
+  - mistake: "Treating every AI round as this question."
+    instead: >-
+      Prep sites report that some companies have added rounds where you use AI
+      tools while answering an ordinary product question — a different exercise.
+      We found no first-party description of those rounds, so ask the recruiter
+      which one you are facing.
+
+sample_questions:
+  - "Our support team wants to use an LLM to help answer customer emails. How would you design it?"
+  - "Design an AI feature that helps small-business owners do their bookkeeping."
+  - "How would you evaluate an AI meeting summariser before and after launch?"
+  - "Should a bank let an AI assistant cancel direct debits on a customer's behalf?"
+  - "Our AI search answers are fast but sometimes wrong. Users are complaining. What do you do?"
+  - "A cheaper model scores the same on our eval. Do we switch?"
+
+teaching:
+  in_one_line: >-
+    The AI feature question is not testing whether you know how models work. It is
+    testing whether you design for the model being wrong.
+
+  mechanism: >-
+    Everything else in product sense still applies — user, job, prioritisation,
+    metrics — and is scored the same way. What the AI framing adds is a component
+    that will fail at some rate, fluently, in ways the user may not spot. That
+    single property forces decisions ordinary features never need: which tasks the
+    system may do alone, what a human sees before trusting it, how "good enough" is
+    defined when there is no single correct output, and what each use costs. A
+    candidate who treats the model as a reliable component skips all of them, and
+    the answer sounds like a demo script. A candidate who treats it as a fallible
+    colleague makes them naturally — which is why the strongest answers often
+    sound less excited about the AI than the weakest.
+
+  in_interview:
+    how_to_deploy: >-
+      Run the product-design approach as normal, then add two beats CIRCLES does
+      not name: split the work by error cost to choose automation levels, and close
+      on how you would evaluate it before and after launch. Signpost both — they are
+      what the interviewer is waiting for.
+    strong_sounds_like: >-
+      Before the model: about a third of these emails are "where is my order",
+      which is a lookup, not a writing task — I would answer those from the order
+      system directly. For the rest I would start with drafts an agent approves,
+      because a wrong refund promise is expensive and the customer cannot see it
+      coming. To know if drafts are good enough I would grade a few hundred real
+      emails against a rubric, grading today's agent replies the same way so we
+      know the bar — and I would watch edits and re-contact rates in a pilot before
+      letting any category send on its own.
+    weak_sounds_like: >-
+      I would use a large language model fine-tuned on our past tickets to
+      automatically reply to customers instantly, which would cut response times to
+      zero, and we would monitor accuracy and add a human in the loop for edge cases.
+
+  in_product_work: >-
+    This is the compressed version of every AI launch review. The same failure
+    shows up in real work as a feature approved on a demo, shipped with one global
+    confidence threshold, and pulled three weeks later when an expensive kind of
+    error turns out to have been invisible to everyone checking.
+
+  in_daily_life: >-
+    Hiring a capable new assistant. You would not hand them the company card on day
+    one; you would let them draft, check their work where mistakes are costly, and
+    widen what they do alone as they earn it.
+
+  worked_example:
+    situation: "Design an AI feature that helps small-business owners do their bookkeeping."
+    without: >-
+      An assistant that reads receipts and bank feeds, categorises everything
+      automatically and files the tax return. Impressive, and it makes the most
+      consequential output — the return — the least checked.
+    with: >-
+      Split the work. Categorising a coffee receipt is cheap to get wrong and easy
+      to fix later: automate it, show the category, make correction one tap.
+      Flagging a possibly duplicated invoice is a suggestion the owner confirms.
+      Anything that leaves the business — a filing, a payment — is drafted and
+      waits for explicit approval, with the evidence beside it. Measure correction
+      rate by category, and promote a category to silent automation only when its
+      corrections stay low.
+    takeaway: >-
+      The design came from the error table, not from the model's capabilities. The
+      same model, with the same accuracy, is safe in one task and reckless in
+      another — and saying which is which is the answer.
+
+# Open prompts — deliberately silent about who the user is, so a practice session
+# can bind an archetype and a situation to them.
+context_prompts:
+  - "Design an AI feature that helps with managing an inbox"
+  - "Design an AI assistant for booking and rearranging appointments"
+  - "Design an AI feature that summarises long documents"
+  - "Design an AI feature that helps with personal finances"
+  - "Design an AI feature that answers questions about an order"
+  - "Design an AI feature that helps someone write a difficult message"

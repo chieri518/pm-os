@@ -112,3 +112,128 @@
     Anything visible on screen imposes no memory load at all. The limit applies to
     what a user must carry between steps.
   see_also: [millers-law, hicks-law]
+
+- id: llm
+  name: LLM
+  aka: ["LLMs", "large language model", "large language models"]
+  domain: technical
+  one_line: "A model trained to predict the next piece of text, which turns out to be able to draft, summarise, classify and converse."
+  definition: >-
+    The engine behind most current AI features. For a PM the property that matters
+    is not how it works inside but how it fails: the same input can produce
+    different outputs, and a wrong answer arrives in the same fluent, confident
+    register as a right one. That is why it needs evaluating statistically and
+    designing around, rather than testing once and shipping.
+  watch_out: >-
+    "Use an LLM" is an implementation, not a product decision. If the answer is
+    already knowable from your own data or a rule, code is cheaper, faster and
+    never makes it up.
+  see_also: [ml-for-pms, hallucination, designing-for-probabilistic-output]
+
+- id: hallucination
+  name: Hallucination
+  aka: ["hallucinations", "hallucinate", "hallucinates", "hallucinated", "confabulation"]
+  domain: technical
+  one_line: "A model stating something plausible, fluent and unsupported — by its source or by the world."
+  definition: >-
+    Covers both inventing facts and contradicting the material the model was given
+    to work from. It is a standing property of current models rather than a bug
+    awaiting a patch: OpenAI's own GPT-4 report describes the model as "not fully
+    reliable", and Kalai et al. (2025) argue that training and benchmark scoring
+    reward a confident guess over admitting uncertainty. The product question is
+    therefore what happens when it occurs, and who would notice.
+  watch_out: >-
+    Retrieval reduces it but does not remove it. Commercial legal research tools
+    marketed as hallucination-free were measured hallucinating on between 17% and
+    33% of benchmark queries (Magesh et al., 2025). Never promise zero.
+  see_also: [rag, eval, designing-for-probabilistic-output]
+
+- id: rag
+  name: RAG
+  aka: ["retrieval-augmented generation", "retrieval augmented generation"]
+  domain: technical
+  one_line: "Fetch relevant documents first, then have the model answer from them rather than from memory."
+  definition: >-
+    Retrieval-augmented generation pairs a search step over your own content — help
+    articles, policies, a customer's order history — with a model that writes the
+    answer using what was retrieved. Lewis et al. (2020) introduced the term and
+    found it produced more specific and factual text than a model answering from
+    its parameters alone. The product benefits are freshness (update the documents,
+    not the model) and the ability to show sources.
+  watch_out: >-
+    Two separate things can fail: retrieval can fetch the wrong passage, and the
+    model can misread or ignore the right one. An evaluation that scores only the
+    final answer cannot tell you which one to fix.
+  see_also: [hallucination, eval, designing-for-probabilistic-output]
+
+- id: token-cost
+  name: Token cost
+  aka: ["inference cost", "per-token pricing", "token costs"]
+  domain: technical
+  one_line: "What each model call costs, billed by the amount of text read in and written out."
+  definition: >-
+    Models process text in tokens — fragments of words — and API providers bill per
+    token, with input and output priced separately. Anthropic's price list, for
+    example, sets output at five times the input rate and spans more than an order
+    of magnitude between its smallest and largest models, with half price for
+    non-urgent batch work. The consequence for a PM is that, unlike most software,
+    every use of the feature has a marginal cost, and that cost moves with model
+    choice, prompt length and how much the model writes.
+  watch_out: >-
+    Cost per call is the wrong unit. Divide by the share of calls that actually
+    succeed — a cheaper model that fails more often, with a human cleaning up after
+    it, can cost more per resolved task.
+  see_also: [latency, unit-economics, designing-for-probabilistic-output]
+
+- id: model-calibration
+  name: Model calibration
+  aka: ["well-calibrated", "poorly calibrated", "miscalibrated"]
+  domain: technical
+  one_line: "Whether a model's stated confidence matches how often it is actually right."
+  definition: >-
+    A calibrated model that says 80% is right about 80% of the time, which is what
+    makes a confidence threshold usable for routing. Current LLMs are unreliable
+    here: asked to state their confidence in words they tend to overstate it (Xiong
+    et al., 2024), and OpenAI reported that the post-training that makes GPT-4 a
+    useful assistant "hurts calibration significantly" relative to the
+    pre-trained model.
+  watch_out: >-
+    Do not route on the model's own "I'm confident". Derive confidence from things
+    you can check — whether retrieval found a matching source, whether repeated
+    samples agree — and validate the threshold on an eval set.
+  see_also: [ml-for-pms, human-in-the-loop, designing-for-probabilistic-output]
+
+- id: human-in-the-loop
+  name: Human-in-the-loop
+  aka: ["human in the loop", "HITL"]
+  domain: technical
+  one_line: "A person reviews, approves or corrects the model's output before it takes effect."
+  definition: >-
+    The standard answer to "what if the model is wrong", and a real one — routing
+    uncertain cases to a person lets you automate the easy majority safely. But it
+    only works if the person genuinely reviews, which they often stop doing once the
+    model is usually right. Treat review as a design problem with its own metrics,
+    not as a safety net that exists because it was drawn on the diagram.
+  watch_out: >-
+    A 98% approval rate can mean the drafts are excellent or that nobody is reading
+    them. Seed known-bad items into the queue to find out which.
+  see_also: [automation-bias, designing-for-probabilistic-output, ml-for-pms]
+
+- id: automation-bias
+  name: Automation bias
+  aka: ["overreliance", "over-reliance", "automation complacency"]
+  domain: technical
+  one_line: "People accept an automated suggestion without checking it, including when it is wrong."
+  definition: >-
+    Documented for decades in aviation and clinical decision support: with an
+    imperfect aid, people both miss problems the aid did not flag and follow advice
+    it got wrong. Parasuraman and Manzey's 2010 review found it in experts as well
+    as novices, and found that training or instructions did not prevent it. AI
+    explanations do not reliably
+    help — Bansal et al. (2021) found they raised acceptance of the AI's
+    recommendation whether or not it was correct.
+  watch_out: >-
+    The fixes that work cost something users notice. Buçinca et al. (2021) reduced
+    overreliance by making people commit to a view before seeing the AI's, and
+    participants rated those designs least favourably.
+  see_also: [human-in-the-loop, designing-for-probabilistic-output]

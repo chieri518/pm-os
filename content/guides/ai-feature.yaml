@@ -1,0 +1,294 @@
+id: guide-ai-feature
+question_type: ai-feature
+order: 10
+question: "Our support team wants to use an LLM to help answer customer emails. How would you design it, and how would you know it's good enough to launch?"
+variants:
+  - "Design an AI feature that drafts replies to patients' non-urgent questions for a GP surgery."
+  - "Our help-centre chatbot sometimes gives wrong answers. How would you decide whether to keep it?"
+difficulty: standard
+duration_min: 40
+
+intent: >-
+  This question exists to find out whether the candidate designs for the model
+  being wrong. Nearly everyone can describe an assistant that drafts emails; the
+  signal is whether they notice that a wrong delivery date and a wrong refund
+  promise are different problems, choose how much the system may do alone on that
+  basis, and can say how anyone would know it works before customers find out. You
+  are scoring product judgement under a fallible component, not knowledge of
+  models.
+
+delivery:
+  script: >-
+    Give the prompt as written and stop. Do not mention a prototype, the email mix,
+    or anything about past errors — those are what a good candidate asks for. If
+    they ask which model or vendor to use, say it is not decided and ask what they
+    would need to know to decide. Answer business and operational questions
+    plainly; you are the head of support, not the engineer.
+  setup:
+    - "Fix the scenario numbers below in advance and hold them for every candidate."
+    - "Decide before the session that you will not endorse auto-send or drafts — the level of automation is theirs to choose."
+    - "Have the '97% of drafts approved unedited' probe ready for the last third; it is the strongest single discriminator."
+
+brief:
+  premise: >-
+    An online retailer of consumer electronics; you play its head of customer
+    support. Leadership has asked for an LLM in the loop and an engineer has a
+    week-old prototype. Answer business and operational questions plainly. Model
+    and vendor choice is undecided, and nothing has been measured — say so when
+    asked.
+  facts:
+    - asks: "How many emails, how many agents?"
+      fact: "About 40,000 emails a month, sixty agents. Median first response is 19 hours."
+      release: on_request
+    - asks: "What's the goal?"
+      fact: "Faster responses without hiring. Customer satisfaction must not fall."
+      release: on_request
+    - asks: "What are customers actually emailing about?"
+      fact: >-
+        Roughly: where is my order 35%, returns and refunds 25%, product and
+        technical questions 20%, damaged or faulty items 10%, everything else 10%.
+      release: on_request
+    - asks: "What data do we have?"
+      fact: >-
+        Two years of tickets with agent replies, a help-centre knowledge base, and an
+        order system the team can query.
+      release: on_request
+    - asks: "Has anything been built?"
+      fact: >-
+        An engineer's prototype. Leadership saw it draft replies to ten hand-picked
+        emails and loved it.
+      release: on_request
+    - asks: "What constraints does engineering have?"
+      fact: "A small team with access to a commercial model API. No in-house model training."
+      release: on_request
+    - asks: "What does a wrong answer cost? What happens when an agent gets it wrong today?"
+      fact: >-
+        Delivery mistakes cost a follow-up email. A refund or replacement promised in
+        writing is honoured even when policy says no — finance tracks it as a
+        monthly cost line.
+      release: on_earned_ask
+      why: >-
+        The asymmetry that should drive automation level by category. Only give it to
+        a candidate who asks about the cost of errors; volunteering it hands over the
+        central move.
+    - asks: "How good are the existing agent replies? Can we use them as the answer key?"
+      fact: >-
+        Monthly QA passes about 80% of sampled replies. The returns window changed
+        from 14 to 30 days in March, so older replies on returns cite the wrong
+        policy.
+      release: on_earned_ask
+      why: >-
+        Turns "train or evaluate against past replies" from obvious into visibly
+        flawed. Only once they propose using history as ground truth, or ask about
+        its quality.
+    - fact: "The prototype's error rate, or any measured quality figure."
+      release: withheld
+      why: >-
+        Nobody has measured it — say so. Designing the measurement is the exercise,
+        and inventing a figure hands them the eval they should be building.
+    - fact: "Which model or vendor to use, or whether a smaller one would do."
+      release: withheld
+      why: >-
+        Undecided, and not the skill under test. Redirect: "what would you need to
+        know to choose?" Their eval is what would settle it.
+  open:
+    - unknown: "Whether replies are drafted for agents, sent automatically, or a mix."
+      asks: "Should it send replies itself or just draft them?"
+      reasonable: "Any choice tied to error cost per category, with a route to more autonomy."
+      why_open: "The level of automation is the central product decision."
+    - unknown: "What 'good enough to launch' means."
+      asks: "What accuracy do you need?"
+      reasonable: "A bar per category, relative to today's agents, with a guardrail metric."
+      why_open: "Setting the bar is what is being scored."
+    - unknown: "What the model is allowed to draw on — the knowledge base, the order system, past tickets."
+      reasonable: "Grounding answers in current policy and live order data, and showing the source."
+      why_open: "Deciding what the system may claim is a product decision."
+  keys:
+    - insight: >-
+        The categories differ in what an error costs. "Where is my order" is a lookup
+        that is cheap to get wrong and checkable against the order system; a refund
+        promise is a liability nobody sees until finance does. Automation should be
+        set per category, not once for the feature.
+      unlocked_by: "Asking what the emails are about and what a wrong answer costs, before designing."
+      if_missed: >-
+        By minute fifteen ask: "Is a wrong answer about delivery the same as a wrong
+        answer about a refund?" Splitting after that prompt still counts, for less.
+    - insight: >-
+        A demo on ten hand-picked emails is not evidence, and past agent replies are
+        not an answer key — a fifth fail QA and the older returns replies cite a
+        retired policy. "Good enough" needs a representative eval set, a rubric, and
+        today's agents graded the same way as the bar.
+      unlocked_by: "Asking how they would know it is good, or how good the historical replies are."
+      if_missed: >-
+        Ask: "What would you compare its drafts against?" If they still answer "past
+        replies", grant the QA fact and see whether they revise.
+    - insight: >-
+        "Agents approve the drafts" is not a safety net by default. Once drafts are
+        usually right, approval drifts toward rubber-stamping, and draft mode becomes
+        auto-send with extra steps. Review needs its own measurement.
+      unlocked_by: "Raising how they would know reviewers are still checking, unprompted."
+      if_missed: >-
+        Use the 97%-approved probe. Recognising that the number is ambiguous when it
+        is handed over still counts; treating it as pure good news is the finding.
+
+checkpoints:
+  - at_min: 5
+    expect: "Goal and user established — customers and agents both named. Has asked whether every category needs a model."
+  - at_min: 13
+    expect: "Email mix split by what an error costs, and a level of automation chosen per category."
+  - at_min: 22
+    expect: "The failure path walked for at least one category: what a wrong reply looks like, who catches it, how it is undone."
+  - at_min: 31
+    expect: "An evaluation plan — representative set, rubric, human baseline — and a staged launch with online metrics and a guardrail metric."
+  - at_min: 38
+    expect: "A recommendation for what ships first, and the biggest risk named."
+
+probes:
+  - trigger: "They propose sending replies automatically across the board."
+    ask: "A customer is told in writing they'll get a refund they aren't entitled to. What happens next?"
+    looking_for: >-
+      Whether they derive the per-category split from the consequence, rather than
+      adding a disclaimer or a global confidence threshold.
+  - trigger: "They say they would test it on examples, or use past tickets as the benchmark."
+    ask: "Which examples, and who decides what a good reply is?"
+    looking_for: >-
+      A set sampled from real traffic across categories, a rubric, and a baseline
+      graded the same way. Strong candidates question whether past replies are
+      correct before you do.
+  - trigger: "They propose an LLM to grade the replies."
+    ask: "How would you know the grader is right?"
+    looking_for: >-
+      Checking agreement with human labels on a sample, and awareness that judges
+      can favour answer order, length or their own output. Naming a specific bias
+      is strong; "use a better model" is not an answer.
+  - trigger: "They have a launch plan with drafts for agents."
+    ask: "Three weeks in, agents approve 97% of drafts without editing. Good news?"
+    looking_for: >-
+      That the number cannot distinguish excellent drafts from unread ones, and a
+      way to tell — seeded known-bad drafts, sampled audits, re-contact rates.
+  - trigger: "They name a single quality metric or an accuracy target."
+    ask: "Accurate compared with what — and for which emails?"
+    looking_for: "A bar relative to today's agents, broken down by category rather than averaged."
+  - trigger: "Finance comes up, or they are moving well."
+    ask: "Finance wants to know what this costs per email. How would you answer?"
+    looking_for: >-
+      Cost per resolved email rather than per call, including agent time, compared
+      with today's cost. Order-of-magnitude reasoning is enough; exact prices are not
+      the point.
+  - trigger: "They are strong and time remains."
+    ask: "Same product, but it's live chat instead of email. What changes?"
+    looking_for: >-
+      That the latency budget collapses from hours to seconds, which moves the
+      triangle — smaller or faster models, fewer steps, streaming — and that a
+      person approving each reply becomes impractical, so the automation choices
+      need revisiting.
+
+rescues:
+  - when: "They freeze on the AI framing or say they lack an ML background."
+    offer: "\"Treat it as a new colleague who is fast and sometimes wrong. What would you let them do alone?\""
+    hold_back: >-
+      Do not mention categories or error costs. The analogy unlocks the reasoning;
+      the split is still theirs to make.
+  - when: "Deep in model, prompt or vendor detail."
+    offer: "\"Bring me back to the customer — what do they experience when it gets one wrong?\""
+    hold_back: "Do not say they went too deep. Redirect and watch whether they self-correct."
+  - when: "Stuck on what 'good enough' means."
+    offer: "\"What happens today, when an agent answers?\""
+    hold_back: >-
+      Do not supply the QA pass rate. Pointing at the current process as a baseline
+      is a nudge; handing over the number is the answer.
+
+signal_groups:
+  - dimension: Framing
+    signals:
+      - observable: "Asked about the goal and the users — customer and agent — before discussing the model."
+      - observable: "Asked whether some categories need a model at all, or could be answered from existing data."
+        note: "Rare and strong. 'Where is my order' is a lookup."
+      - observable: "Asked what the emails are about before designing."
+  - dimension: Designing for error
+    signals:
+      - observable: "Asked what a wrong answer costs, or reasoned about it by category."
+      - observable: "Chose different levels of automation for different categories, with a stated reason."
+      - observable: "Walked through what happens when a reply is wrong — what the customer sees, who catches it."
+      - observable: "Grounded replies in current policy or order data and proposed showing the source to the agent."
+  - dimension: Evaluation
+    signals:
+      - observable: "Proposed an eval drawn from real emails across categories, not a hand-picked set."
+      - observable: "Set the bar relative to today's agent replies, not to perfection."
+      - observable: "Questioned whether historical replies are correct before using them as a benchmark."
+      - observable: "Named a way an automated grader could mislead, and how to check it."
+  - dimension: Launch and measurement
+    signals:
+      - observable: "Proposed a staged rollout rather than a single launch."
+      - observable: "Named online metrics beyond satisfaction — edits, re-contact, handover rate."
+      - observable: "Named a guardrail metric on the expensive failure, such as refunds promised outside policy."
+      - observable: "Treated a high approval rate as ambiguous and proposed a way to tell."
+  - dimension: Trade-offs
+    signals:
+      - observable: "Related the latency budget to the channel — email tolerates far more than chat."
+      - observable: "Expressed cost per resolved email, or compared it with today's cost of handling one."
+      - observable: "Said what evidence would let a category earn more autonomy later."
+  - dimension: Working with you
+    signals:
+      - observable: "Separated what they would decide from what they would leave to engineering."
+      - observable: "Incorporated a fact you supplied — the QA rate, the policy change — and changed course."
+
+anti_signals:
+  - observable: "Opened with a model, vendor or architecture choice."
+    note: "Usually signals the answer will be about capability rather than the user."
+  - observable: "Treated the leadership demo as evidence that the feature works."
+  - observable: "Claimed the system would not hallucinate, or that a newer model would fix it."
+  - observable: "Offered 'a human in the loop' with no account of how the human would catch errors."
+    note: "The most common shallow answer. It names the right idea and does none of the work."
+  - observable: "Proposed fine-tuning or evaluating on past replies without asking whether they are right."
+  - observable: "Defined success only as faster response times, with nothing that must not get worse."
+
+bias_guards:
+  - >-
+    Do not reward AI vocabulary. A candidate who says "eval set" and "RAG" but never
+    asks what an error costs has shown less than one who reasons it through in
+    plain language.
+  - >-
+    Do not score enthusiasm or scepticism about AI. Recommending drafts only, or
+    recommending no model for a category, is as valid as aggressive automation —
+    score whether the choice follows from the costs they established.
+  - >-
+    Do not penalise a non-technical background. The question tests product
+    judgement under a fallible component, and the rescue line exists so knowledge of
+    model internals is never the gate.
+  - >-
+    Do not grade toward your own preferred design. Several automation splits are
+    defensible; what matters is that the split is explained.
+  - >-
+    Hold the scenario numbers constant. The email mix and the QA rate drive the
+    answer, and changing them between candidates changes the question.
+
+competencies:
+  core: [ambiguity-scoping, prioritisation-tradeoffs, metrics-guardrails]
+  light: [segmentation, jtbd-pain-points]
+  not_tested: []
+
+debrief:
+  plus:
+    - "You split the emails by what a wrong answer costs before choosing what to automate — that is the move this question is built around."
+    - "You set the bar against today's agents rather than against perfection, which made 'good enough' something we could actually test."
+    - "You treated the approval rate as ambiguous and proposed seeding known-bad drafts to check it."
+  delta:
+    - "You chose one level of automation for everything. A wrong delivery date and a wrong refund promise are different problems; say which is which."
+    - "Your evaluation was 'test it on examples'. Say which examples, graded against what, compared with which baseline."
+    - "You offered human review as the safety net without saying how you would know the reviewer is still reading."
+  most_common: >-
+    Most candidates design the happy path well and the failure path not at all. If
+    they leave with one thing, it should be to walk one wrong answer end to end —
+    what the customer sees, who catches it, what it costs — before choosing how much
+    the system may do alone.
+
+basis: >-
+  Constructed. We found no published interviewer rubric for AI product questions,
+  first-party or otherwise. The signals are derived from the research in this
+  repository's concepts — levels of automation (Parasuraman, Sheridan & Wickens),
+  automation bias, Amershi et al.'s Guidelines for Human-AI Interaction, and the
+  measured biases of LLM judges (Zheng et al.) — and from the same product-sense
+  criteria the other product guides use. The scenario, numbers, probe ladder and
+  signal wording are ours. Not a reproduction of any company's internal
+  interviewer material.

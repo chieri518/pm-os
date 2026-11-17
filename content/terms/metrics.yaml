@@ -143,3 +143,38 @@
     or files taxes daily, and a low ratio there measures the category rather than
     the product.
   see_also: [retention, north-star-metric]
+
+- id: eval
+  name: Eval
+  aka: ["evals", "eval set", "eval sets", "eval suite"]
+  domain: metrics
+  one_line: "A fixed set of representative inputs, plus a way of grading the outputs, rerun every time the AI feature changes."
+  definition: >-
+    The regression test for a probabilistic system. Because the same prompt can give
+    different answers and the output space is open-ended, "it worked when I tried
+    it" is a sample of a handful. An eval replaces that with a few hundred cases
+    drawn from real traffic, graded by code checks, human reviewers against a
+    rubric, or an LLM judge — so that "is the new prompt better?" has an answer
+    other than someone's impression.
+  watch_out: >-
+    An eval measures the cases you wrote down. It is a gate into a live test, not a
+    substitute for one, and a set you tune against for months stops measuring
+    anything but itself.
+  see_also: [evaluating-ai-products, llm-as-judge, ab-testing]
+
+- id: llm-as-judge
+  name: LLM-as-judge
+  aka: ["LLM-as-a-judge", "LLM judge", "LLM judges", "model-graded eval"]
+  domain: metrics
+  one_line: "Using one model to grade another model's output, so evaluation scales beyond what people can label."
+  definition: >-
+    Cheap and fast enough to grade thousands of outputs on every change, and in
+    Zheng et al.'s 2023 study a strong judge agreed with expert human votes about
+    as often as the experts agreed with each other. The same study measured the
+    catch: judges preferred whichever answer they saw first, and weaker judges were
+    fooled by padded, longer answers.
+  watch_out: >-
+    A judge is itself a model that needs evaluating. Check its agreement with human
+    labels on your own data before trusting it, swap answer order in pairwise
+    comparisons, and be wary of a model grading its own output.
+  see_also: [eval, evaluating-ai-products]
