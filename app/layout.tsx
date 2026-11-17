@@ -1,13 +1,28 @@
 import type { Metadata } from "next";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/src/site";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "pm-os · PM Interview & Career OS",
-    template: "%s · pm-os",
+    default: `${SITE_NAME} · ${SITE_TAGLINE}`,
+    template: `%s · ${SITE_NAME}`,
   },
-  description:
-    "Question types, concepts, frameworks and company rubrics for PM interviews — with the research checked and the caveats attached. Plus interviewer guides: probes, signal checklists and bias guards.",
+  description: SITE_DESCRIPTION,
+  /*
+   * No title or description here on purpose: Next fills og:title and og:description
+   * from each page's own title and description when these are absent, so a shared
+   * concept page previews as that concept rather than as the homepage. The image
+   * comes from app/opengraph-image.tsx and is inherited by every route.
+   */
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    locale: "en_GB",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

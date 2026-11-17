@@ -156,14 +156,9 @@ export default async function HeuristicPage({ params }: { params: Promise<{ id: 
           </p>
           {h.scope === "experience" && (
             <p className="mt-3 text-[13px] text-ink-400">
-              See this fire against a real user context in a{" "}
-              <Link
-                href="/interviewer"
-                className="text-ink-100 underline decoration-ink-600 underline-offset-4 hover:decoration-ink-400"
-              >
-                practice session
-              </Link>
-              .
+              These conditions describe a moment, not a type of person. The same user can meet
+              them at 2am with a child on one arm and not at all on a Saturday morning — so name
+              the situation before you reach for this.
             </p>
           )}
         </Section>

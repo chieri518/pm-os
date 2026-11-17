@@ -90,8 +90,9 @@ export default function HomePage() {
           What are you working on?
         </h1>
         <p className="mt-2 text-[14px] leading-relaxed text-ink-400">
-          A companion to <span className="text-ink-300">Cracking the PM Interview</span> — same
-          ground, with the sources graded and the contested claims labelled.
+          PM interview prep from <span className="text-ink-300">both sides of the table</span>:
+          interviewer guides that show what actually gets scored, and a curriculum that says
+          plainly which well-known claims the evidence does not support.
         </p>
       </header>
 
@@ -173,7 +174,8 @@ export default function HomePage() {
       <footer className="border-t border-ink-800 pt-4 font-mono text-[10px] leading-relaxed text-ink-400">
         Evidence tags are honest: <span className="text-warn-400">contested</span> means the finding
         is under active academic dispute. Company rubric weights are researched estimates from
-        published guidance, not insider information.
+        published guidance, not insider information. Built as a companion to{" "}
+        <span className="text-ink-300">Cracking the PM Interview</span>; all content is original.
       </footer>
     </main>
   );

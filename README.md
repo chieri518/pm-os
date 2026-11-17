@@ -190,7 +190,7 @@ the relationship *is* — *"TENSIONS_WITH: resolve toward Hick's when the user i
 load"*. Authored edges and discovered prose mentions render separately, because only one
 of them carries a claim.
 
-`/graph` draws the whole corpus — 93 nodes, 351 edges — with a hand-written force
+`/graph` draws the whole corpus — 94 nodes, 354 edges — with a hand-written force
 simulation rather than a dependency. ⌘K searches everything.
 
 ## Licence and sourcing
@@ -199,8 +199,6 @@ Source code is MIT. The content under `content/` is CC BY-NC 4.0. See
 [LICENSE](LICENSE) and [NOTICE.md](NOTICE.md) — the latter covers originality,
 the evidence policy, and the fact that company rubric weights are **researched
 estimates, not insider information**.
-
-> **Set your name in [LICENSE](LICENSE)** — it currently reads `<YOUR NAME>`.
 
 ## Relationship to *Cracking the PM Interview*
 
@@ -213,7 +211,17 @@ either industry-standard or written for this project.
 
 ## Status
 
-Milestones 1–6 complete: data architecture, learning layer, canon coverage, the taught
-curriculum, and the practice builder. Corpus: 8 question types, 12 concepts, 7 frameworks,
-8 heuristics, 6 archetypes, 9 situations, 5 company lenses, 89 edges.
-See [BUILD_LOG.md](BUILD_LOG.md) for decisions, trade-offs, and the bugs worth remembering.
+Milestones 1–14 complete: data architecture, learning layer, canon coverage, the taught
+curriculum, sourced company lenses, the linked glossary and graph, the interviewer guides
+with situation briefs, and the intent-based front door.
+
+Corpus: 8 question types · 19 concepts · 7 frameworks · 9 heuristics · 46 terms ·
+9 interviewer guides · 5 company lenses · 6 archetypes · 9 situations · 104 authored edges.
+
+Archetypes and situations still drive every heuristic's firing conditions, but since the
+practice builder was removed (Milestone 10) they have no pages of their own — the idea
+surfaces on each heuristic's *When it fires* panel rather than as something to browse.
+
+The playground (Milestones 2–5) and the practice builder (Milestone 6) were both built and
+then deliberately removed; the build log records why. See [BUILD_LOG.md](BUILD_LOG.md) for
+decisions, trade-offs, and the bugs worth remembering.

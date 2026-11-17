@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "All-In-One PM Career & Interview Prep OS — a knowledge graph bridging frameworks, archetypes, heuristics, and company lenses.",
+  "description": "PM interview prep from both sides of the table — a knowledge graph bridging question types, frameworks, heuristics, company lenses, and interviewer guides.",
   "scripts": {
     "validate": "tsx src/scripts/validate.ts",
     "demo": "tsx src/scripts/demo.ts",

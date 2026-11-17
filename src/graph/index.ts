@@ -79,7 +79,7 @@ const DIR_TO_TYPE = {
 } as const satisfies Record<string, NodeType>;
 
 /**
- * In-memory graph. Everything downstream — pages, practice builder, CLI — queries
+ * In-memory graph. Everything downstream — pages, build scripts, CLI — queries
  * through this interface, so the backing store stays swappable.
  */
 export class GraphIndex {

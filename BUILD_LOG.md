@@ -683,7 +683,7 @@ has the prompt, the scaffold, the timing, and the rubric. What it lacks is a tra
 
 ---
 
-## Milestone 6 — Process & Technical Concepts
+## Milestone 7 — Process & Technical Concepts
 
 **Goal:** close the two widest gaps in the curriculum — how the work gets decided
 and shipped, and the technical depth an engineer expects a PM to hold.
@@ -740,7 +740,7 @@ are all cut off. Desktop-only until fixed.
 
 ---
 
-## Milestone 7 — Company Lenses, Sourced
+## Milestone 8 — Company Lenses, Sourced
 
 **Goal:** replace "researched estimates" with actual provenance. Of everything in
 the repo, the company lenses were the content most likely to be challenged by
@@ -752,7 +752,7 @@ page, and a provenance system that grades every claim.
 
 ---
 
-### Decision 15 — Provenance is per-source, not per-page
+### Decision 17 — Provenance is per-source, not per-page
 
 The old label was a single sentence at the bottom of the UI saying the weights
 were estimates. That made two very different kinds of claim look identical:
@@ -826,7 +826,7 @@ The mobile bug remains. `/practice` overflows horizontally at 390px.
 
 ---
 
-## Milestone 8 — The Graph, Made Navigable
+## Milestone 9 — The Graph, Made Navigable
 
 **Goal:** Obsidian-style interlinking, PM-focused.
 
@@ -842,7 +842,7 @@ nothing to link to.** The corpus read fluently to someone who already had the
 vocabulary and was opaque to everyone else — exactly the failure the learning
 layer was meant to fix.
 
-### Decision 16 — `Term` is a fourth kind of node, deliberately lighter than `Concept`
+### Decision 18 — `Term` is a fourth kind of node, deliberately lighter than `Concept`
 
 A concept is a subject you study: three depth layers, formulas, evidence verdict,
 worked example. A term is a word you need to parse a sentence. Conflating them
@@ -850,7 +850,7 @@ would either bloat the glossary into 50 more study pages or dilute what a concep
 means. **46 terms** authored, each with a definition, optional formula, a
 `watch_out`, and see-also links.
 
-### Decision 17 — Auto-link on first mention, rather than hand-authoring wiki-links
+### Decision 19 — Auto-link on first mention, rather than hand-authoring wiki-links
 
 Retrofitting `[[wiki-links]]` across 540 mentions was the alternative. Instead the
 linker matches names and aliases at render time and links the **first mention per
@@ -894,7 +894,7 @@ content, so none of it is computed per request.
 
 ---
 
-## Milestone 9 — The Other Side of the Table
+## Milestone 10 — The Other Side of the Table
 
 **Goal:** the practice page was confusing and only marginally useful. Replace it
 with the thing nobody else publishes.
@@ -905,7 +905,7 @@ live by someone running a mock interview. **48 probes, 99 observable signals,
 
 ---
 
-### Decision 18 — Interviewer-first, candidates welcome
+### Decision 20 — Interviewer-first, candidates welcome
 
 Every prep site publishes questions and model answers. Almost none publish the
 interviewer's side, because real calibration guides are internal and confidential.
@@ -924,7 +924,7 @@ signal checklist, anti-signals, and bias guards.
 
 ---
 
-### Decision 19 — Signal checklist, not levels with anchors
+### Decision 21 — Signal checklist, not levels with anchors
 
 I proposed a 4-level scale with behavioural anchors. **The better call was the
 checklist**, and for the reason this project keeps returning to: we have no basis
@@ -937,7 +937,7 @@ agree either happened or did not. That is honest, and it is more usable live.
 
 ---
 
-### Decision 20 — Provenance in the banner, not the footer
+### Decision 22 — Provenance in the banner, not the footer
 
 These guides are **constructed** from published criteria. A repo whose entire
 argument is honesty about sourcing cannot then present invented interviewer
@@ -971,7 +971,7 @@ that collapses correctly, but the earlier pages have not been checked at 390px.
 
 ---
 
-## Milestone 10 — Auditing the Guides Against a Spec
+## Milestone 11 — Auditing the Guides Against a Spec
 
 **Goal:** verify the interviewer guides actually cover the PM competencies and
 session mechanics they claim to, rather than assuming they do.
@@ -992,7 +992,7 @@ The debrief absence was the worst of them. A mock interview whose value ends at
 scoring has wasted most of its point — the feedback *is* the deliverable, and
 nothing in the product produced any.
 
-### Decision 21 — Shared mechanics live once, not nine times
+### Decision 23 — Shared mechanics live once, not nine times
 
 The session arc, what you are grading, how to act as a collaborative partner, and
 the Plus/Delta format are the same whichever question you run. They now live at
@@ -1004,7 +1004,7 @@ Plus/Delta rather than strengths/weaknesses on purpose: **delta names a change,
 weakness names a deficiency.** "Name the criterion before you rank" is actionable;
 "weak on prioritisation" is a label they can do nothing with.
 
-### Decision 22 — Record what a question does NOT test
+### Decision 24 — Record what a question does NOT test
 
 The obvious move was to force all five competencies into all nine guides. That
 would have been padding: an estimation question genuinely does not exercise user
@@ -1030,7 +1030,7 @@ because they tell you which question to pair it with.
 
 ---
 
-## Milestone 11 — Mobile, and a Mark
+## Milestone 12 — Mobile, and a Mark
 
 ### A correction: I reported a bug I could not actually see
 
@@ -1092,7 +1092,7 @@ light tab strip. `app/icon.svg` (Next generates the favicon link) plus a
 
 ---
 
-## Milestone 12 — The Half of the Question the Candidate Never Sees
+## Milestone 13 — The Half of the Question the Candidate Never Sees
 
 **The gap.** The guides told an interviewer how to deliver a prompt, what to probe
 and what to score — but not what was *true*. Asked "what's the business goal?" or
@@ -1247,7 +1247,7 @@ of every one of these drifted into rationale and the next one will too.
 
 ---
 
-## Milestone 13 — A Front Door, Not a Catalogue
+## Milestone 14 — A Front Door, Not a Catalogue
 
 The homepage was 4,400px of **47 identical cards** across six sections, grouped by
 taxonomy, with no filtering and no collapsing. Its own headline promised "start
